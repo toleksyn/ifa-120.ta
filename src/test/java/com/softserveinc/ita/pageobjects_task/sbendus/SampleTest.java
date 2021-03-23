@@ -1,8 +1,7 @@
-package com.softserveinc.ita.pageobjects_task;
+package com.softserveinc.ita.pageobjects_task.sbendus;
 
+import org.junit.Test;
 import org.testng.Assert;
-import org.testng.annotations.Test;
-import org.openqa.selenium.By;
 
 public class SampleTest {
 
