@@ -11,11 +11,11 @@ public class SearchResultsPage extends Page {
     public SearchResultsPage(RemoteWebDriver driver) {
         super(driver);
     }
-    private String searchResultsLocator="//div[@class='B6fmyf']";
+    private String searchResultsLocator="//h3[@class='LC20lb DKV0Md']";
 
     public List<String> getSearchResultsLinks(){
         return  Stream.of(driver.findElements(By.xpath(searchResultsLocator)))
-                .map(el ->el.get(0).getText())
+                .map(webEl ->webEl.get(0).getText())
                 .collect(Collectors.toList());
     }
 }
