@@ -1,20 +1,19 @@
 package com.softserveinc.ita.nromanchuk;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.Keys;
 
 public class GoogleHomePage {
+
     public GoogleHomePage open() {
-        new ChromeDriver().get("http://google.com");
+        TestRunner.driver.get("https://www.google.com/");
         return this;
     }
 
-    public void searchFor(String searchTerm) {
-        new ChromeDriver()
-                .findElementById("input")
-                .sendKeys(searchTerm);
-        new ChromeDriver()
-                .findElement(By.tagName(""))
-
+    public GoogleSearchResultPage searchFor(String searchTerm) {
+        TestRunner.driver
+                .findElement(By.xpath("//input[@name='q']"))
+                .sendKeys(searchTerm + Keys.ENTER);
+        return new GoogleSearchResultPage();
     }
 }
