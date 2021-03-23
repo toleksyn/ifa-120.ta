@@ -13,23 +13,25 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class GoogleTest extends TestRunner {
 	
 	private List<String> searchResultsLinks; 
-	private String  searchString = "funny kitten";
+	private String searchString = "funny kitten";
 	
 @BeforeMethod
 public void doSearch() { 
-	
-	//driver = new ChromeDriver();
-	System.setProperty("webdriver.chrome.driver", "./lib/chromedriver.exe");
-	driver = new ChromeDriver();
 	searchResultsLinks = new GoogleHomePage()
 			.open ()
 			.searchFor(searchString)
 			.getSearchResultsLinks();
 }
 
+@Test
+public void testGoogleSearch_ExactMatchSearchString() {
+    assertTrue
+        (searchResultsLinks.toString().toLowerCase().contains(searchString)); 
+}
 
 @Test
 public void testGoogleSearch() {
-	//assertTrue(false); (searchResultsLinks.contains(searchString)) .isTrue(); }
-    assertTrue(searchResultsLinks.contains(searchString)) ; }
+assertTrue
+        (searchResultsLinks.toString().toLowerCase().contains("funny") 
+        && searchResultsLinks.toString().toLowerCase().contains("kitten")); }
 }
