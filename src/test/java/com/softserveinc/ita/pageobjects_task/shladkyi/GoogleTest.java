@@ -18,7 +18,7 @@ public class GoogleTest extends TestRunner {
         searchResultFirstLink = new GoogleHomePage()
                 .open()
                 .searchFor(searchTerm)
-                .getSearchResultFirstLink(0);
+                .getSearchResultLink(0);
     }
 
     @Test
