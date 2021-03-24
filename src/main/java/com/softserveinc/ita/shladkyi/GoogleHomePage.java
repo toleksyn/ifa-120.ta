@@ -15,7 +15,7 @@ public class GoogleHomePage {
 
     public GoogleSearchResultPage searchFor(String searchTerm) {
         TestRunner.driver
-                .findElement(By.cssSelector("[class=\"gLFyf gsfi\"]"))
+                .findElement(By.cssSelector("[class='gLFyf gsfi']"))
                 .sendKeys(searchTerm, Keys.ENTER);
         return new GoogleSearchResultPage();
     }

@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class GoogleSearchResultPage {
-    public List<String> getSearchResultFirstLink() {
+    public List<String> getSearchResultFirstLink(int indexOfLink) {
         return Stream.of(TestRunner.driver.findElements(By.xpath("//h3[@class='LC20lb DKV0Md']")))
-                .map(webElements -> webElements.get(0).getText())
+                .map(webElements -> webElements.get(indexOfLink).getText())
                 .collect(Collectors.toList());
     }
 }
