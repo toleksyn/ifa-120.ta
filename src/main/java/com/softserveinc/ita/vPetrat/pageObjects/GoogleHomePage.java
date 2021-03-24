@@ -8,16 +8,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class GoogleHomePage {
 
-    private  By searchInput = By.xpath("//input[@class='gLFyf gsfi']");
-
     public GoogleHomePage openHomePage() {
         TestRunner.getDriver().get("https://www.google.com/");
         return this;
     }
 
-    public GoogleSearchResultPage searchForTheSpecifiedRequest(String request) {
-        TestRunner.getWait().until(ExpectedConditions.elementToBeClickable(searchInput));
-        WebElement searchInputElement = TestRunner.getDriver().findElement(searchInput);
+    public GoogleSearchResultPage searchFor(String request) {
+        WebElement searchInputElement = TestRunner
+                .getWait()
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@class='gLFyf gsfi']")));
         searchInputElement.sendKeys(request);
         searchInputElement.sendKeys(Keys.ENTER);
         return new GoogleSearchResultPage();
