@@ -16,7 +16,6 @@ public abstract class Page {
     }
 
     protected WebElement getElement(By selector) {
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(selector));
 
         try {
             return driver.findElement(selector);

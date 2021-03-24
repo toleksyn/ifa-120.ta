@@ -8,7 +8,7 @@ public class GoogleHomePage extends Page {
 
     protected RemoteWebDriver driver;
     private String searchFieldLocator = "//input[@class='gLFyf gsfi']";
-    private String seachButtonLocator ="//div[1]/div[1]/div[2]/div[2]/div[2]/center[1]/input[1]";
+    private String seachButtonLocator = "//div[2]/center/input[@class='gNO89b']";
 
     public GoogleHomePage(RemoteWebDriver driver) {
         super(driver);
