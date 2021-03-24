@@ -7,14 +7,13 @@ import org.testng.annotations.Test;
 
 public class GoogleTest extends TestRunner {
 
-    private String googleSearchMessage = "funny kitten";
-
     @Test
     public void testGoogleSearch() {
-        String getFirstLink = new GoogleHomePage()
+        String googleSearchMessage = "funny kitten";
+        String firstLink = new GoogleHomePage()
                 .open()
                 .searchFor(googleSearchMessage)
-                .getGoogleSearchFirstLink();
-        Assert.assertTrue(getFirstLink.contains(googleSearchMessage));
+                .getSearchResultsLink();
+        Assert.assertTrue(firstLink.contains(googleSearchMessage));
     }
 }
