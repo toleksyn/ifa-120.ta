@@ -8,12 +8,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class GoogleSearchResultsPage {
+
     public static List<String> getSearchResultsLinks() {
         return Stream.of(TestRunner.threadLocalDriver
                 .get()
                 .findElements(By.xpath("//h3[@class='LC20lb DKV0Md']")))
                 .map(searchResultsLinksText -> searchResultsLinksText.get(0).getText())
                 .collect(Collectors.toList());
-
     }
 }

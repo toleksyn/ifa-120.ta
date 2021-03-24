@@ -8,8 +8,8 @@ import java.util.List;
 
 import static org.testng.Assert.assertTrue;
 
-
 public class GoogleTest extends TestRunner {
+
     private List<String> searchResultsLinks;
     private String searchTerm = "funny kitten";
 
@@ -25,5 +25,4 @@ public class GoogleTest extends TestRunner {
     public void checkIfFirstLinkTextContains() {
         assertTrue(searchResultsLinks.get(0).contains(searchTerm));
     }
-
 }

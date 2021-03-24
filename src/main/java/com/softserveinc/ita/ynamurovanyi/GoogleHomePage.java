@@ -19,15 +19,11 @@ public class GoogleHomePage {
                 .get()
                 .findElement(searchInputField)
                 .sendKeys(searchTerm);
-
         TestRunner.threadLocalDriver
                 .get()
                 //Search Button
                 .findElement(By.xpath("//div[@class='FPdoLc tfB0Bf']/center/input[1]"))
                 .click();
-
         return new GoogleSearchResultsPage();
     }
-
-
 }
