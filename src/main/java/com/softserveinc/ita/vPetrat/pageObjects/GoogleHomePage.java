@@ -3,7 +3,6 @@ package com.softserveinc.ita.vPetrat.pageObjects;
 import com.softserveinc.ita.pageobjects_task.TestRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class GoogleHomePage {
@@ -14,11 +13,10 @@ public class GoogleHomePage {
     }
 
     public GoogleSearchResultPage searchFor(String request) {
-        WebElement searchInputElement = TestRunner
+        TestRunner
                 .getWait()
-                .until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@class='gLFyf gsfi']")));
-        searchInputElement.sendKeys(request);
-        searchInputElement.sendKeys(Keys.ENTER);
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@class='gLFyf gsfi']")))
+                .sendKeys(request + Keys.ENTER);
         return new GoogleSearchResultPage();
     }
 }

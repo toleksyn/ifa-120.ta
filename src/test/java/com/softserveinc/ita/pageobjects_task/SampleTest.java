@@ -1,7 +1,5 @@
 package com.softserveinc.ita.pageobjects_task;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.safari.SafariDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

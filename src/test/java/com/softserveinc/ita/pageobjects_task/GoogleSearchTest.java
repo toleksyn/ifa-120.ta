@@ -31,6 +31,6 @@ public class GoogleSearchTest extends TestRunner {
                 .getListOfSearchResultLinks();
         Assert.assertTrue(searchResultLinks
                 .stream()
-                .anyMatch(resultLink -> resultLink.contains("Wikipedia")));
+                .anyMatch(resultLink -> resultLink.contains("wikipedia")));
     }
 }
