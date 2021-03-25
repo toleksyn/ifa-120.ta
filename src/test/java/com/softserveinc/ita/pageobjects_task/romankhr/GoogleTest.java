@@ -1,6 +1,6 @@
-package com.softserveinc.ita.pageobjects_task.romankhr1;
+package com.softserveinc.ita.pageobjects_task.romankhr;
 
-import com.softserveinc.ita.romankhr1.GoogleHomePage1;
+import com.softserveinc.ita.romankhr.GoogleHomePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -8,11 +8,11 @@ import java.util.List;
 
 public class GoogleTest extends TestRunner {
     private String searchTerm = "funny kitten";
-    private String searchTermSecondTest = "smartphone";
+    private String searchTermLinkTest = "smartphone";
 
     @Test
     public void testGoogleSearch() {
-        List<String> searchResultsLinks = new GoogleHomePage1()
+        List<String> searchResultsLinks = new GoogleHomePage()
                 .open()
                 .searchFor(searchTerm)
                 .getSearchResultLinks();
@@ -22,9 +22,9 @@ public class GoogleTest extends TestRunner {
 
     @Test
     public void testSmartphoneSearch() {
-        List<String> searchResultsLinks = new GoogleHomePage1()
+        List<String> searchResultsLinks = new GoogleHomePage()
                 .open()
-                .searchFor(searchTermSecondTest)
+                .searchFor(searchTermLinkTest)
                 .getSearchResultsLinks();
 
         Assert.assertTrue(searchResultsLinks

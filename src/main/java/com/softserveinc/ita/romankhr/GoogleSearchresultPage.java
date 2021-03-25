@@ -1,13 +1,14 @@
-package com.softserveinc.ita.romankhr1;
+package com.softserveinc.ita.romankhr;
 
-import com.softserveinc.ita.pageobjects_task.romankhr1.TestRunner;
+
+import com.softserveinc.ita.pageobjects_task.romankhr.TestRunner;
 import org.openqa.selenium.By;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class GoogleSearchresultPage1 {
+public class GoogleSearchresultPage {
 
     private String searchResultsLocator = "//h3[@class='LC20lb DKV0Md']";
 
