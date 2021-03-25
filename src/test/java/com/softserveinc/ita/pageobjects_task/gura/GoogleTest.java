@@ -8,20 +8,20 @@ public class GoogleTest {
     private GoogleHomePage googlePage = new GoogleHomePage();
     private GoogleResultPage resultPage = new GoogleResultPage();
 
-    public void testingSearch(int indexOfLink, String searchText, String checkingText) {
+    public void testingContainOfLink(int indexOfLink, String searchText, String textInLink) {
         System.setProperty("webdriver.chrome.driver", ".C:\\chromedriver.exe");
         googlePage.openGoogleSearch();
         googlePage.doSearch(searchText);
-        assert(resultPage.checkLinkHasText(indexOfLink, checkingText));
+        assert(resultPage.checkLinkHasText(indexOfLink, textInLink));
     }
 
     @Test
     public void testingSearchWithSearchTextFunnyKitten() {
-        testingSearch(0, "funny kitten", "funnykitten");
+        testingContainOfLink(0, "funny kitten", "funnykitten");
     }
 
     @Test
     public void testingSearchWithSearchTextSmartphone() {
-        testingSearch(0, "smartphone", "wikipedia");
+        testingContainOfLink(0, "smartphone", "wikipedia");
     }
 }
