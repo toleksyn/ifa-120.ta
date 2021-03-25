@@ -6,13 +6,10 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class GoogleSearchResultPage {
-    public List<String> getOneSearchResultLink(int indexOfLink) {
-        return Stream.of(TestRunner.driver.findElements(By.xpath("//h3[@class='LC20lb DKV0Md']")))
-                .map(webElements -> webElements.get(indexOfLink).getText())
-                .collect(Collectors.toList());
+    public String getFirstSearchResultLink() {
+        return TestRunner.driver.findElement(By.cssSelector("[class='LC20lb DKV0Md']")).getText();
     }
 
     public List<String> getAllSearchResultLinks() {
