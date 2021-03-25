@@ -15,7 +15,7 @@ public class GoogleSearchResultPage {
                 .collect(Collectors.toList()).get(0);
     }
 
-    public List<String> resultsLinks() {
+    public List<String> getResultsLinks() {
         return TestRunner
                 .driver
                 .findElements(By.xpath("//div[@class='yuRUbf']/a"))

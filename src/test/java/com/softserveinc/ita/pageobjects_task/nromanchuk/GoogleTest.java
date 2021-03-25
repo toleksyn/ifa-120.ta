@@ -13,12 +13,12 @@ public class GoogleTest extends TestRunner {
     private GoogleHomePage googleHomePage;
 
     @BeforeMethod
-    public void startTest() {
+    public void openGoogleHomePage() {
         googleHomePage = new GoogleHomePage().open();
     }
 
     @Test
-    public void TestGoogleSearch() {
+    public void testGoogleSearch() {
         String searchTerm = "funny kitten";
         String getFirstLinkText = googleHomePage
                 .searchFor(searchTerm)
@@ -27,10 +27,10 @@ public class GoogleTest extends TestRunner {
     }
 
     @Test
-    public void TestWikiLinkInResults() {
+    public void testWikiLinkInResults() {
         List<String> searchResultLinks = googleHomePage
                 .searchFor("Smartphone")
-                .resultsLinks();
+                .getResultsLinks();
         Assert.assertTrue(searchResultLinks.stream().anyMatch(resultLink -> resultLink.contains("wikipedia")));
     }
 }
