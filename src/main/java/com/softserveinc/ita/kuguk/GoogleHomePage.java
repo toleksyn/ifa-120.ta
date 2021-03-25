@@ -24,7 +24,6 @@ public class GoogleHomePage {
 		TestRunner.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		TestRunner.driver.findElement(By.xpath("//input[@name='btnK']")).click();
-		return new GoogleSearchResultsPage();
-	}
-
+		return new GoogleSearchResultsPage(); 
+		}
 }

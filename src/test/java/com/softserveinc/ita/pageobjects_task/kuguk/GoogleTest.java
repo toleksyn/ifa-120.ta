@@ -12,19 +12,22 @@ import java.util.List;
 public class GoogleTest extends TestRunner {
 
 	private List<String> searchResultsLinks;
-	private String searchString = "smartphone";
-
-	@BeforeMethod
-	public void doSearch() {
-		searchResultsLinks = new GoogleHomePage()
-				.open()
-				.searchFor(searchString)
-				.getSearchResultsLinks();
-	}
 
 	@Test
-	public void testGoogleSearch_ExactMatchSearchString() {
-		assertTrue(searchResultsLinks.toString().toLowerCase().contains("wikipedia."));
-	}
-
+	public void testGoogleSearch() {
+		searchResultsLinks = new GoogleHomePage()
+				.open()
+				.searchFor("funny kitten")
+				.getSearchResultsLinks();
+	assertTrue
+	        (searchResultsLinks.toString().toLowerCase().contains("funny") 
+	        && searchResultsLinks.toString().toLowerCase().contains("kitten")); }
+	
+	@Test
+	public void testGoogleSearch_PresenceResultInList() {
+		searchResultsLinks = new GoogleHomePage()
+				.open()
+				.searchFor("smartphone")
+				.getSearchResultsLinksList();
+	assertTrue(searchResultsLinks.toString().toLowerCase().contains("wikipedia.")); }
 }
