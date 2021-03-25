@@ -22,12 +22,7 @@
             <artifactId>testng</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-remote-driver</artifactId>
-            <version>4.0.0-beta-2</version>
-            <scope>compile</scope>
-        </dependency>
+
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
