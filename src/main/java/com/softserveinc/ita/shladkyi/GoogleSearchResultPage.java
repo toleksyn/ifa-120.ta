@@ -8,8 +8,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GoogleSearchResultPage {
-    public String getFirstSearchResultLink() {
-        return TestRunner.driver.findElement(By.cssSelector("[class='LC20lb DKV0Md']")).getText();
+    public String getSearchResultLinkText(int indexOfLink) {
+        List<WebElement> allSearchResultLinks = TestRunner.driver.findElements(By.xpath("//h3[@class='LC20lb DKV0Md']"));
+        return allSearchResultLinks.get(indexOfLink).getText();
     }
 
     public List<String> getAllSearchResultLinks() {

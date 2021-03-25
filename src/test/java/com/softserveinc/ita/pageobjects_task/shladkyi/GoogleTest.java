@@ -5,9 +5,10 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class GoogleTest extends TestRunner {
 
-    private String searchTerm;
     private GoogleHomePage googleHomePage;
 
     @BeforeMethod
@@ -18,21 +19,14 @@ public class GoogleTest extends TestRunner {
 
     @Test
     public void testValidGoogleSearchFirstLink() {
-        searchTerm = "funny kitten";
-        Assert.assertTrue(googleHomePage
-                .searchFor(searchTerm)
-                .getFirstSearchResultLink()
-                .toLowerCase()
-                .contains("funny kitten"));
+        String searchTerm = "funny kitten";
+        String firstLink = googleHomePage.searchFor(searchTerm).getSearchResultLinkText(0);
+        Assert.assertTrue(firstLink.toLowerCase().contains(searchTerm));
     }
 
     @Test
     public void testValidGoogleSearchAnyLink() {
-        searchTerm = "smartphone";
-        Assert.assertTrue(googleHomePage
-                .searchFor(searchTerm)
-                .getAllSearchResultLinks()
-                .stream()
-                .anyMatch(link -> link.contains("wikipedia.org")));
+        List<String> allLinks = googleHomePage.searchFor("smartphone").getAllSearchResultLinks();
+        Assert.assertTrue(allLinks.stream().anyMatch(link -> link.contains("wikipedia.org")));
     }
 }
