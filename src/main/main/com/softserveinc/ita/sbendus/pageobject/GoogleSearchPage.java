@@ -8,12 +8,10 @@ import java.util.stream.Collectors;
 
 public class GoogleSearchPage {
 
-    private By googleSearchListOfLinks = By.xpath("//div[@class='yuRUbf']/a");
-
-    public String getSearchAllResultLinks() {
+    public String getSearchResultsLink() {
         return TestRunner
                 .getDriver()
-                .findElements(googleSearchListOfLinks)
+                .findElements(By.xpath("//div[@class='yuRUbf']/a"))
                 .stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList())
@@ -23,7 +21,7 @@ public class GoogleSearchPage {
     public List<String> getListOfSearchResultLinks() {
         return TestRunner
                 .getDriver()
-                .findElements(googleSearchListOfLinks)
+                .findElements(By.xpath("//div[@class='yuRUbf']/a"))
                 .stream()
                 .map(WebElement -> WebElement.getAttribute("href"))
                 .collect(Collectors.toList());
