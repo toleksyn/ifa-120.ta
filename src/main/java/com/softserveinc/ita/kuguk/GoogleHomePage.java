@@ -9,7 +9,7 @@ import com.softserveinc.ita.pageobjects_task.kuguk.TestRunner;
 
 public class GoogleHomePage {
 
-	private By searchField = By.xpath("//input[@name='q']");
+	
 
 	public GoogleHomePage open() {
 		GoogleTest.driver.get("https://www.google.com");
@@ -18,6 +18,7 @@ public class GoogleHomePage {
 
 	public GoogleSearchResultsPage searchFor(String searchString) {
 
+		By searchField = By.xpath("//input[@name='q']");
 		TestRunner.driver.findElement(searchField).sendKeys(searchString);
 
 		TestRunner.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
