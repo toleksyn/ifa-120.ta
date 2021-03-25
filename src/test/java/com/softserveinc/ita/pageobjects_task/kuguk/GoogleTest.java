@@ -19,8 +19,7 @@ public class GoogleTest extends TestRunner {
 				.searchFor("funny kitten")
 				.getSearchResultsLinks();
 	assertTrue
-	        (searchResultsLinks.toString().toLowerCase().contains("funny") 
-	        && searchResultsLinks.toString().toLowerCase().contains("kitten")); }
+	        (searchResultsLinks.toString().toLowerCase().contains("funny kitten")); }
 	
 	@Test
 	public void testGoogleSearch_PresenceResultInList() {
