@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import com.softserveinc.ita.kuguk.GoogleHomePage;
 
 import static org.testng.Assert.assertTrue;
-
 import java.util.List;
 
 public class GoogleTest extends TestRunner {

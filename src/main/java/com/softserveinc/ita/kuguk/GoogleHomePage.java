@@ -1,7 +1,6 @@
 package com.softserveinc.ita.kuguk;
 
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 
 import com.softserveinc.ita.pageobjects_task.kuguk.GoogleTest;
