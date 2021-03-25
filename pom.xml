@@ -33,7 +33,7 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
             <scope>test</scope>
-            <version>${selenium.java.version}</version>       
+            <version>${chrome.driver.version}</version>       
         </dependency>
     </dependencies>
 
