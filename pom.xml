@@ -21,28 +21,16 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
-<!--            commented out to let import TestRunner in main package-->
-<!--            <scope>test</scope>-->
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-<!--            commented out to let import TestRunner in main package-->
-<!--            <scope>test</scope>-->
             <version>${selenium.java.version}</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
-<!--            commented out to let import TestRunner in main package-->
-<!--            <scope>test</scope>-->
             <version>${selenium.java.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-api</artifactId>
-            <version>3.141.59</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 

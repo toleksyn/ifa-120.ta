@@ -1,7 +1,6 @@
 package com.softserveinc.ita.pageobjects_task.ynamurovanyi;
 
 import com.softserveinc.ita.ynamurovanyi.GoogleHomePage;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
