@@ -21,11 +21,11 @@ public class GoogleTest extends TestRunner {
 
     @Test
     public void testLinksForWikipedia() {
-        List<String> searchResultsLinks2 = new GoogleHomePage()
+        List<String> searchResultsLinks = new GoogleHomePage()
                 .open()
                 .searchFor("smartphone")
                 .getSearchResultsLinks();
-        assertTrue(searchResultsLinks2
+        assertTrue(searchResultsLinks
                 .stream()
                 .anyMatch(link -> link.contains("wikipedia.org")));
     }
