@@ -19,15 +19,15 @@ public class GoogleSearchTest extends TestRunner {
     @Test
     public void testGoogleSearchFirstResultLinkText() {
         String firstSearchResultLink = googleHomePage
-                .searchFor("Funny Kitties")
-                .getSearchResultLinkForIndex(0);
-        Assert.assertTrue(firstSearchResultLink.contains("Funny Kitties"));
+                .searchFor("funny kitten")
+                .getSearchResultLinkTextForIndex(0);
+        Assert.assertTrue(firstSearchResultLink.contains("funny kitten"));
     }
 
     @Test
-    public void testGoogleSearchAllResultLinkText() {
+    public void testGoogleSearchAllResultLink() {
         List<String> searchResultLinks = googleHomePage
-                .searchFor("Smartphone")
+                .searchFor("smartphone")
                 .getListOfSearchResultLinks();
         Assert.assertTrue(searchResultLinks
                 .stream()
