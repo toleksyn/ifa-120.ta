@@ -12,7 +12,7 @@ public class GoogleTest extends TestRunner {
     private GoogleHomePage googleHomePage;
 
     @BeforeMethod
-    public void doSearch() {
+    public void openGoogleHomePage() {
         googleHomePage = new GoogleHomePage()
                 .open();
     }
