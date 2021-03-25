@@ -5,7 +5,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 public class GoogleHomePage {
-
     private By searchInput = By.xpath("//input[@class='gLFyf gsfi']");
 
     public GoogleHomePage open() {

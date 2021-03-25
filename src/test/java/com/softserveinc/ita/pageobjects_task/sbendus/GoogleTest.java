@@ -17,7 +17,7 @@ public class GoogleTest extends TestRunner {
         googleHomePage = new GoogleHomePage()
                 .open();
     }
-    
+
     @Test
     public void testGoogleSearch() {
         String googleSearchMessage = "Funny Kitten";

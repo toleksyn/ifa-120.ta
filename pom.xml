@@ -15,7 +15,6 @@
         <selenium.java.version>3.141.59</selenium.java.version>
         <chrome.driver.version>4.0.0-beta-2</chrome.driver.version>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.testng</groupId>
