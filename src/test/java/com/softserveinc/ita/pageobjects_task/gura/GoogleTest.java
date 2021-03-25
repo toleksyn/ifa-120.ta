@@ -12,12 +12,16 @@ public class GoogleTest {
         System.setProperty("webdriver.chrome.driver", ".C:\\chromedriver.exe");
         googlePage.openGoogleSearch();
         googlePage.doSearch(searchText);
-        System.out.println(resultPage.checkLinkHasText(indexOfLink, checkingText));
+        assert(resultPage.checkLinkHasText(indexOfLink, checkingText));
     }
 
     @Test
-    public void testing() {
+    public void testingSearchWithSearchTextFunnyKitten() {
         testingSearch(0, "funny kitten", "funnykitten");
+    }
+
+    @Test
+    public void testingSearchWithSearchTextSmartphone() {
         testingSearch(0, "smartphone", "wikipedia");
     }
 }
