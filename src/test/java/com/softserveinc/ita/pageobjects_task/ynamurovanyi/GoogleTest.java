@@ -11,7 +11,7 @@ import static org.testng.Assert.assertTrue;
 public class GoogleTest extends TestRunner {
 
     @Test
-    public void checkIfFirstLinkTextContains() {
+    public void testIfFirstLinkTextContains() {
         List<String> searchResultsLinksText = new GoogleHomePage()
                 .open()
                 .searchFor("funny kitten")
@@ -20,7 +20,7 @@ public class GoogleTest extends TestRunner {
     }
 
     @Test
-    public void checkLinksForWikipedia() {
+    public void testLinksForWikipedia() {
         List<String> searchResultsLinks2 = new GoogleHomePage()
                 .open()
                 .searchFor("smartphone")
