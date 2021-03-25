@@ -10,19 +10,23 @@ import static org.testng.Assert.assertTrue;
 
 public class GoogleTest extends TestRunner {
 
-    private List<String> searchResultsLinks;
-    private String searchTerm = "funny kitten";
-
-    @BeforeMethod
-    public void doSearch() {
-        searchResultsLinks = new GoogleHomePage()
+    @Test
+    public void checkIfFirstLinkTextContains() {
+        List<String> searchResultsLinksText = new GoogleHomePage()
                 .open()
-                .searchFor(searchTerm)
-                .getSearchResultsLinks();
+                .searchFor("funny kitten")
+                .getSearchResultsLinksText();
+        assertTrue(searchResultsLinksText.get(0).contains("funny kitten"));
     }
 
     @Test
-    public void checkIfFirstLinkTextContains() {
-        assertTrue(searchResultsLinks.get(0).contains(searchTerm));
+    public void checkLinksForWikipedia() {
+        List<String> searchResultsLinks2 = new GoogleHomePage()
+                .open()
+                .searchFor("smartphone")
+                .getSearchResultsLinks();
+        assertTrue(searchResultsLinks2
+                .stream()
+                .anyMatch(link -> link.contains("wikipedia.org")));
     }
 }
