@@ -1,4 +1,4 @@
-package com.softserveinc.ita.pageobjects_task.vpetrat;
+package com.softserveinc.ita.pageobjects_task;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
