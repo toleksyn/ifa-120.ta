@@ -1,6 +1,6 @@
-package com.softserveinc.ita.pageobjects_task;
+package com.softserveinc.ita.pageobjects_task.vpetrat;
 
-import com.softserveinc.ita.vPetrat.pageObjects.GoogleHomePage;
+import com.softserveinc.ita.vpetrat.pageobjects.GoogleHomePage;
 import org.junit.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

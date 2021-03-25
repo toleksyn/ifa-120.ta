@@ -1,4 +1,4 @@
-package com.softserveinc.ita.vPetrat.pageObjects;
+package com.softserveinc.ita.vpetrat.pageobjects;
 
 import com.softserveinc.ita.pageobjects_task.TestRunner;
 import org.openqa.selenium.By;
