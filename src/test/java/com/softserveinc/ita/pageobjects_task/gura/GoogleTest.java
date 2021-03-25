@@ -3,6 +3,9 @@ package com.softserveinc.ita.pageobjects_task.gura;
 import com.softserveinc.ita.gura.GoogleHomePage;
 import com.softserveinc.ita.gura.GoogleResultPage;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class GoogleTest {
     private GoogleHomePage googlePage = new GoogleHomePage();
@@ -10,9 +13,21 @@ public class GoogleTest {
 
     public void testingContainOfLink(int indexOfLink, String searchText, String textInLink) {
         System.setProperty("webdriver.chrome.driver", ".C:\\chromedriver.exe");
-        googlePage.openGoogleSearch();
+        googlePage.openPage();
         googlePage.doSearch(searchText);
-        assert(resultPage.checkLinkHasText(indexOfLink, textInLink));
+        assert(checkLinkHasText(indexOfLink, textInLink));
+    }
+
+    public boolean checkLinkHasText(int indexOfLink, String link) {
+        if (link.contains(
+                Stream.of(GoogleResultPage.getDriver()
+                        .findElements(By.xpath("//h3[@class='LC20lb DKV0Md']")))
+                        .map(element -> element
+                                .get(indexOfLink)
+                                .getText())
+                        .collect(Collectors
+                                .joining()))) return true;
+        else return false;
     }
 
     @Test
