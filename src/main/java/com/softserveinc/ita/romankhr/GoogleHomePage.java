@@ -5,8 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
 public class GoogleHomePage {
-    private String searchFieldLocator = "//input[@class='gLFyf gsfi']";
-     public GoogleHomePage open() {
+    public GoogleHomePage open() {
         TestRunner.threadLocalDriver
                 .get()
                 .get("https://www.google.com/");
@@ -15,7 +14,7 @@ public class GoogleHomePage {
 
     public GoogleSearchresultPage searchFor(String searchTerm) {
 
-        TestRunner.threadLocalDriver.get().findElement(By.xpath(searchFieldLocator)).sendKeys(searchTerm+ Keys.ENTER);
+        TestRunner.threadLocalDriver.get().findElement(By.xpath("//input[@class='gLFyf gsfi']")).sendKeys(searchTerm + Keys.ENTER);
         return new GoogleSearchresultPage();
     }
 }

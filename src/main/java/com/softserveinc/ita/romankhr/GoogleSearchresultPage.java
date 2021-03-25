@@ -10,10 +10,8 @@ import java.util.stream.Stream;
 
 public class GoogleSearchresultPage {
 
-    private String searchResultsLocator = "//h3[@class='LC20lb DKV0Md']";
-
     public List<String> getSearchResultLinks() {
-        return Stream.of(TestRunner.threadLocalDriver.get().findElements(By.xpath(searchResultsLocator)))
+        return Stream.of(TestRunner.threadLocalDriver.get().findElements(By.xpath("//h3[@class='LC20lb DKV0Md']")))
                 .map(webElement -> webElement.get(0).getText())
                 .collect(Collectors.toList());
     }
