@@ -5,15 +5,19 @@ import com.softserveinc.ita.gura.GoogleResultPage;
 import org.junit.Test;
 
 public class GoogleTest {
-    private String searchText = "funny kitten";
     private GoogleHomePage googlePage = new GoogleHomePage();
     private GoogleResultPage resultPage = new GoogleResultPage();
 
-    @Test
-    public void testingSearch() {
+    public void testingSearch(int indexOfLink, String searchText, String checkingText) {
         System.setProperty("webdriver.chrome.driver", ".C:\\chromedriver.exe");
         googlePage.openGoogleSearch();
         googlePage.doSearch(searchText);
-        System.out.println(resultPage.checkLinkHasText(0, "funny kittens"));
+        System.out.println(resultPage.checkLinkHasText(indexOfLink, checkingText));
+    }
+
+    @Test
+    public void testing() {
+        testingSearch(0, "funny kitten", "funnykitten");
+        testingSearch(0, "smartphone", "wikipedia");
     }
 }
