@@ -5,8 +5,6 @@ import org.openqa.selenium.By;
 
 public class GoogleHomePage {
 
-    private By searchInputField = By.xpath("//input");
-
     public GoogleHomePage open() {
         TestRunner.threadLocalDriver
                 .get()
@@ -17,7 +15,7 @@ public class GoogleHomePage {
     public GoogleSearchResultsPage searchFor(String searchTerm) {
         TestRunner.threadLocalDriver
                 .get()
-                .findElement(searchInputField)
+                .findElement(By.xpath("//input"))
                 .sendKeys(searchTerm);
         TestRunner.threadLocalDriver
                 .get()
