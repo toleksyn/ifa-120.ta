@@ -12,9 +12,9 @@ public class GoogleHomePage {
         return this;
     }
 
-    public GoogleSearchresultPage searchFor(String searchTerm) {
+    public GoogleSearchResultPage searchFor(String searchTerm) {
 
         TestRunner.threadLocalDriver.get().findElement(By.xpath("//input[@class='gLFyf gsfi']")).sendKeys(searchTerm + Keys.ENTER);
-        return new GoogleSearchresultPage();
+        return new GoogleSearchResultPage();
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class GoogleSearchresultPage {
+public class GoogleSearchResultPage {
 
     public List<String> getSearchResultLinks() {
         return Stream.of(TestRunner.threadLocalDriver.get().findElements(By.xpath("//h3[@class='LC20lb DKV0Md']")))

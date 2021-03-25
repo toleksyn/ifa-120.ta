@@ -8,23 +8,22 @@ import java.util.List;
 
 public class GoogleTest extends TestRunner {
     private String searchTerm = "funny kitten";
-    private String searchTermLinkTest = "smartphone";
 
     @Test
     public void testGoogleSearch() {
-        List<String> searchResultsLinks = new GoogleHomePage()
+        List<String> searchResultsTitles = new GoogleHomePage()
                 .open()
                 .searchFor(searchTerm)
                 .getSearchResultLinks();
 
-        Assert.assertTrue(searchResultsLinks.get(0).toLowerCase().contains(searchTerm));
+        Assert.assertTrue(searchResultsTitles.get(0).toLowerCase().contains(searchTerm));
     }
 
     @Test
     public void testSmartphoneSearch() {
         List<String> searchResultsLinks = new GoogleHomePage()
                 .open()
-                .searchFor(searchTermLinkTest)
+                .searchFor("smartphone")
                 .getSearchResultsLinks();
 
         Assert.assertTrue(searchResultsLinks
