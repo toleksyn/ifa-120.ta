@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class GoogleSearchPage {
 
-    public String getSearchResultsLink() {
+    public String getSearchResultLinkText() {
         return TestRunner
                 .getDriver()
                 .findElements(By.xpath("//div[@class='yuRUbf']/a"))
