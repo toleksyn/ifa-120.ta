@@ -1,6 +1,5 @@
 package com.softserveinc.ita.shladkyi;
 
-import com.softserveinc.ita.pageobjects_task.shladkyi.TestRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 

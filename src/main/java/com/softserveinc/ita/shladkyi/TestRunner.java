@@ -1,4 +1,4 @@
-package com.softserveinc.ita.pageobjects_task.shladkyi;
+package com.softserveinc.ita.shladkyi;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
