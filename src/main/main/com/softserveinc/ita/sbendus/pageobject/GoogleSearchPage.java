@@ -8,14 +8,14 @@ import java.util.stream.Collectors;
 
 public class GoogleSearchPage {
 
-    public String getSearchResultLinkText() {
+    public String getSearchResultLinkText(int index) {
         return TestRunner
                 .getDriver()
                 .findElements(By.xpath("//div[@class='yuRUbf']/a"))
                 .stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList())
-                .get(0);
+                .get(index);
     }
 
     public List<String> getListOfSearchResultLinks() {
