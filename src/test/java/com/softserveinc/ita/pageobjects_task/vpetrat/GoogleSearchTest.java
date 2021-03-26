@@ -22,7 +22,6 @@ public class GoogleSearchTest extends TestRunner {
         String firstSearchResultLink = googleHomePage
                 .searchFor("funny kitten")
                 .getSearchResultLinkTextForIndex(0);
-        System.out.println(firstSearchResultLink);
         Assert.assertTrue(firstSearchResultLink.contains("funny kitten"));
     }
 
