@@ -44,7 +44,5 @@ public class GoogleSearchTest extends TestRunner {
         Assert.assertTrue(resultImagesText.size() >= 10);
         Assert.assertTrue(resultImagesText.get(0).contains("funny") && resultImagesText.get(4).contains("funny"));
         Assert.assertTrue(TestRunner.getDriver().getCurrentUrl().contains("https://www.google.com/"));
-
-
     }
 }

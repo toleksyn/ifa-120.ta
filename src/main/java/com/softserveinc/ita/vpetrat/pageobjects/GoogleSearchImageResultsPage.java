@@ -19,7 +19,9 @@ public class GoogleSearchImageResultsPage {
     public List<String> getListOfSearchResultImagesText() {
         return TestRunner
                 .getDriver()
-                .findElements(By.xpath("//div[@id='islmp']//div[@jsaction='IE7JUb:e5gl8b;dtRDof:s370ud;R3mad:ZCNXMe;v03O1c:cJhY7b;']//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']"))
+                .findElements(By.xpath("//div[@id='islmp']" +
+                        "//div[@jsaction='IE7JUb:e5gl8b;dtRDof:s370ud;R3mad:ZCNXMe;v03O1c:cJhY7b;']" +
+                        "//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']"))
                 .stream()
                 .map(webElement -> webElement.getAttribute("title")).collect(Collectors.toList());
     }
