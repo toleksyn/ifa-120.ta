@@ -11,21 +11,22 @@ import java.util.List;
 public class GoogleTest extends TestRunner {
 
 	private List<String> searchResultsLinks;
+	private GoogleHomePage openGoogleHome;
+
+	@BeforeMethod
+	public void doSearch() {
+		openGoogleHome = new GoogleHomePage().open();
+	}
 
 	@Test
 	public void testGoogleSearch() {
-		searchResultsLinks = new GoogleHomePage()
-				.open()
-				.searchFor("funny kitten")
-				.getSearchResultsLinks();
-	assertTrue
-	        (searchResultsLinks.toString().toLowerCase().contains("funny kitten")); }
-	
+		searchResultsLinks = openGoogleHome.searchFor("funny kitten").getSearchResultsLinks();
+		assertTrue(searchResultsLinks.get(0).toLowerCase().contains("funny kitten"));
+	}
+
 	@Test
 	public void testGoogleSearch_PresenceResultInList() {
-		searchResultsLinks = new GoogleHomePage()
-				.open()
-				.searchFor("smartphone")
-				.getSearchResultsLinksList();
-	assertTrue(searchResultsLinks.toString().toLowerCase().contains("wikipedia.")); }
+		searchResultsLinks = openGoogleHome.searchFor("smartphone").getSearchResultsLinksList();
+		assertTrue(searchResultsLinks.toString().toLowerCase().contains("wikipedia."));
+	}
 }

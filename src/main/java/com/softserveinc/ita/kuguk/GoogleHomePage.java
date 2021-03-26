@@ -8,8 +8,6 @@ import com.softserveinc.ita.pageobjects_task.kuguk.TestRunner;
 
 public class GoogleHomePage {
 
-	
-
 	public GoogleHomePage open() {
 		GoogleTest.driver.get("https://www.google.com");
 		return this;
@@ -23,6 +21,6 @@ public class GoogleHomePage {
 		TestRunner.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		TestRunner.driver.findElement(By.xpath("//input[@name='btnK']")).click();
-		return new GoogleSearchResultsPage(); 
-		}
+		return new GoogleSearchResultsPage();
+	}
 }
