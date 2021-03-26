@@ -1,6 +1,5 @@
 package com.softserveinc.ita.romankhr;
 
-import com.softserveinc.ita.pageobjects_task.romankhr.TestRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
