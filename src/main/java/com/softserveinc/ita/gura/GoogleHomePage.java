@@ -2,16 +2,12 @@ package com.softserveinc.ita.gura;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-public class GoogleHomePage {
-    protected static WebDriver driver = new ChromeDriver();;
-
+public class GoogleHomePage extends TestRunner {
     public GoogleHomePage openPage() {
-        driver.get("https://www.google.com");
-        driver.manage().window().maximize();
+        TestRunner.driver.get("https://www.google.com");
+        TestRunner.driver.manage().window().maximize();
         return this;
     }
 
