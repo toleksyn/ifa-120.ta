@@ -1,6 +1,7 @@
 package com.softserveinc.ita.pageobjects_task.vpetrat;
 
 import com.softserveinc.ita.vpetrat.pageobjects.GoogleHomePage;
+import com.softserveinc.ita.vpetrat.pageobjects.GoogleSearchResultImagePage;
 import org.junit.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -21,6 +22,7 @@ public class GoogleSearchTest extends TestRunner {
         String firstSearchResultLink = googleHomePage
                 .searchFor("funny kitten")
                 .getSearchResultLinkTextForIndex(0);
+        System.out.println(firstSearchResultLink);
         Assert.assertTrue(firstSearchResultLink.contains("funny kitten"));
     }
 
@@ -32,5 +34,18 @@ public class GoogleSearchTest extends TestRunner {
         Assert.assertTrue(searchResultLinks
                 .stream()
                 .anyMatch(resultLink -> resultLink.contains("wikipedia")));
+    }
+
+    @Test
+    public void testGoogleSearchResultImagesText() {
+        GoogleSearchResultImagePage imageResultsPage = googleHomePage.searchFor("funny kitten").showSearchResultImages();
+        List<String> resultImagesText = imageResultsPage
+                .getListOfSearchResultImagesText();
+        imageResultsPage.returnToHomePage();
+        Assert.assertTrue(resultImagesText.size() >= 10);
+        Assert.assertTrue(resultImagesText.get(0).contains("funny") && resultImagesText.get(4).contains("funny"));
+        Assert.assertTrue(TestRunner.getDriver().getCurrentUrl().contains("https://www.google.com/"));
+
+
     }
 }
