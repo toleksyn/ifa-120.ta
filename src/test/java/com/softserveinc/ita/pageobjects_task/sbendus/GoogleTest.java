@@ -1,5 +1,6 @@
 package com.softserveinc.ita.pageobjects_task.sbendus;
 
+import com.softserveinc.ita.sbendus.pageobject.GoogleSearchImagePage;
 import com.softserveinc.ita.sbendus.pageobject.TestRunner;
 import com.softserveinc.ita.sbendus.pageobject.GoogleHomePage;
 import org.testng.Assert;
@@ -36,6 +37,21 @@ public class GoogleTest extends TestRunner {
         Assert.assertTrue(resultLinks
                 .stream()
                 .anyMatch(resultLink -> resultLink.contains("wikipedia")));
+    }
+
+    @Test
+    public void testGoogleSearchImageResults() {
+        String googleSearchMessage = "Funny Kitten";
+        GoogleSearchImagePage googleSearchImagePage = googleHomePage;
+        List<String> listOfSearchImages = googleHomePage
+                .searchFor(googleSearchMessage)
+                .getGoogleSearchType()
+                .getListOfSearchImages();
+        Assert.assertTrue(listOfSearchImages.size() > 10);
+        Assert.assertTrue(listOfSearchImages.get(0).contains("Funny")
+                && listOfSearchImages.get(4).contains("Funny"));
+        googleSearchImagePage.returnToGoogleHomePage();
+        Assert.assertTrue(TestRunner.getDriver().getCurrentUrl().contains("https://www.google.com/"));
     }
 }
 
