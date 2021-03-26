@@ -1,7 +1,7 @@
 package com.softserveinc.ita.pageobjects_task.sbendus;
 
-import com.softserveinc.ita.sbendus.pageobject.TestRunner;
 import com.softserveinc.ita.sbendus.pageobject.GoogleHomePage;
+import com.softserveinc.ita.sbendus.pageobject.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
