@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class GoogleSearchResultAllPage {
+public class GoogleSearchAllResultsPage {
     public List<String> getListOfSearchResultLinksText() {
         return TestRunner
                 .getWait()
@@ -31,12 +31,12 @@ public class GoogleSearchResultAllPage {
         return getListOfSearchResultLinksText().get(index);
     }
 
-    public GoogleSearchResultImagePage showSearchResultImages() {
+    public GoogleSearchImageResultsPage showSearchResultImages() {
         TestRunner
                 .getWait()
                 .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//a[@class='hide-focus-ring']")))
                 .get(0)
                 .click();
-        return new GoogleSearchResultImagePage();
+        return new GoogleSearchImageResultsPage();
     }
 }

@@ -6,8 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-public class GoogleSearchResultImagePage {
+public class GoogleSearchImageResultsPage {
     public GoogleHomePage returnToHomePage() {
         TestRunner
                 .getWait()
