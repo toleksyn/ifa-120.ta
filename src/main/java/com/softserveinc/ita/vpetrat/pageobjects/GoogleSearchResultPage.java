@@ -1,6 +1,6 @@
 package com.softserveinc.ita.vpetrat.pageobjects;
 
-import com.softserveinc.ita.pageobjects_task.TestRunner;
+import com.softserveinc.ita.vpetrat.testrunner.TestRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
