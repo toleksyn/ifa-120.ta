@@ -1,6 +1,7 @@
 package com.softserveinc.ita.pageobjects_task.romankhr;
 
 import com.softserveinc.ita.romankhr.GoogleHomePage;
+import com.softserveinc.ita.romankhr.GoogleSearchResultImagesPage;
 import com.softserveinc.ita.romankhr.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -11,6 +12,7 @@ import java.util.List;
 public class GoogleTest extends TestRunner {
     private String searchTerm = "funny kitten";
     private GoogleHomePage homePage;
+    private GoogleSearchResultImagesPage imagePage;
 
     @BeforeMethod
     public void openGoogleHomePage() {
@@ -35,5 +37,23 @@ public class GoogleTest extends TestRunner {
         Assert.assertTrue(searchResultsLinks
                 .stream()
                 .anyMatch(resultLink -> resultLink.contains("wikipedia")));
+    }
+
+    @Test
+    public void testGoogleImagesSearch() {
+        imagePage = homePage
+                .searchFor(searchTerm).moveToImages();
+
+        List<String> searchResultsImagesList = imagePage
+                .getSearchResultImages();
+        
+        imagePage.moveToGoogleHomePage();
+
+        Assert.assertTrue(searchResultsImagesList.size() > 9);
+
+        Assert.assertTrue(searchResultsImagesList.get(0).toLowerCase().contains("funny") &&
+                searchResultsImagesList.get(4).toLowerCase().contains("funny"));
+
+        Assert.assertTrue(TestRunner.threadLocalDriver.get().getTitle().toLowerCase().contains("google"));
     }
 }

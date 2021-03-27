@@ -22,4 +22,10 @@ public class GoogleSearchResultPage {
                 .map(webElement -> webElement.getAttribute("href"))
                 .collect(Collectors.toList());
     }
+
+    public GoogleSearchResultImagesPage moveToImages() {
+        TestRunner.threadLocalDriver.get().findElement(By.xpath("//div[@class='MUFPAc']/div[2]")).click();
+        return new GoogleSearchResultImagesPage();
+    }
+
 }
