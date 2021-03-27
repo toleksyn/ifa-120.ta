@@ -46,4 +46,10 @@ public class GoogleTest {
         googlePage.doSearch("smartphone");
         assert(linkHasText(extractTextFromLink(0), "wikipedia"));
     }
+
+    @Test
+    public void testingSearchOnGoogleImagePage() {
+        googlePage.doSearch("funny kittens");
+        resultPage.goToImagePage();
+    }
 }
