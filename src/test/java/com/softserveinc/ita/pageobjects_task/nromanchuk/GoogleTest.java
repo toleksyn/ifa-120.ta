@@ -49,5 +49,4 @@ public class GoogleTest extends TestRunner {
         Assert.assertEquals(TestRunner.driver.getTitle(), "Google");
     }
 
-
 }
