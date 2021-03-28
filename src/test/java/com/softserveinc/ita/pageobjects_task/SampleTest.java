@@ -7,6 +7,6 @@ public class SampleTest {
 
     @Test
     public void sampleTestMethod() {
-        Assert.assertTrue(true);
+        Assert.assertTrue(2==2);
     }
 }
