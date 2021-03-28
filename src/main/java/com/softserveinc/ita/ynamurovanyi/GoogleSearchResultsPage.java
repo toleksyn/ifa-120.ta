@@ -1,6 +1,5 @@
 package com.softserveinc.ita.ynamurovanyi;
 
-import com.softserveinc.ita.pageobjects_task.ynamurovanyi.TestRunner;
 import org.openqa.selenium.By;
 
 import java.util.List;
@@ -22,7 +21,7 @@ public class GoogleSearchResultsPage {
                 .get()
                 .findElements(By.xpath("//div[@class='yuRUbf']/a"))
                 .stream()
-                .map(searchResultsLinksText -> searchResultsLinksText.getAttribute("href"))
+                .map(searchResultsLinks -> searchResultsLinks.getAttribute("href"))
                 .collect(Collectors.toList());
     }
 }

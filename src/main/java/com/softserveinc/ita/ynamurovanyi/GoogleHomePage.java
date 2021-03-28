@@ -1,6 +1,5 @@
 package com.softserveinc.ita.ynamurovanyi;
 
-import com.softserveinc.ita.pageobjects_task.ynamurovanyi.TestRunner;
 import org.openqa.selenium.By;
 
 public class GoogleHomePage {

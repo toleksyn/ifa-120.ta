@@ -1,4 +1,4 @@
-package com.softserveinc.ita.pageobjects_task.ynamurovanyi;
+package com.softserveinc.ita.ynamurovanyi;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
