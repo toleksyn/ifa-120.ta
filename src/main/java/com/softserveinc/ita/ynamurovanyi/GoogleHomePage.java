@@ -1,6 +1,5 @@
 package com.softserveinc.ita.ynamurovanyi;
 
-import com.softserveinc.ita.pageobjects_task.ynamurovanyi.TestRunner;
 import org.openqa.selenium.By;
 
 public class GoogleHomePage {
@@ -23,5 +22,11 @@ public class GoogleHomePage {
                 .findElement(By.xpath("//div[@class='FPdoLc tfB0Bf']/center/input[1]"))
                 .click();
         return new GoogleSearchResultsPage();
+    }
+
+    public String getTitle() {
+        return TestRunner.threadLocalDriver
+                .get()
+                .getTitle();
     }
 }
