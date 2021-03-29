@@ -1,18 +1,19 @@
 package com.softserveinc.ita.pageobjects_task.gura;
 
 import com.softserveinc.ita.gura.GoogleHomePage;
+import com.softserveinc.ita.gura.GoogleImagePage;
 import com.softserveinc.ita.gura.GoogleResultPage;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.testng.annotations.BeforeTest;
-
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class GoogleTest {
     private GoogleHomePage googlePage = new GoogleHomePage();
     private GoogleResultPage resultPage = new GoogleResultPage();
+    private GoogleImagePage imagePage = new GoogleImagePage();
 
     @Before
     public void testingContainOfLink() {
@@ -49,7 +50,14 @@ public class GoogleTest {
 
     @Test
     public void testingSearchOnGoogleImagePage() {
-        googlePage.doSearch("funny kittens");
-        resultPage.goToImagePage();
+        String searchText = "funny";
+        googlePage.doSearch("funny kitten").goToImagePage();
+
+        List<String> imagesTitle = imagePage
+                .getSearchResultsLinksText();
+
+        assert(imagesTitle.get(0).toLowerCase().contains(searchText));
+        assert(imagesTitle.get(4).toLowerCase().contains(searchText));
+        assert(imagePage.navigateToHomePageByLogo().checkIfPageOpened());
     }
 }

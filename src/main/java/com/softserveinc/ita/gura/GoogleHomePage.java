@@ -17,4 +17,8 @@ public class GoogleHomePage extends TestRunner {
         searchInputField.sendKeys(Keys.ENTER);
         return new GoogleResultPage();
     }
+
+    public boolean checkIfPageOpened() {
+        return driver.findElement(By.xpath("//input[@class='lnXdpd']")).getAttribute("class").contains("lnXdpd");
+    }
 }
