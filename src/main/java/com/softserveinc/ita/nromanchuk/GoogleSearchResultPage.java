@@ -3,12 +3,11 @@ package com.softserveinc.ita.nromanchuk;
 import org.openqa.selenium.By;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class GoogleSearchResultPage {
 
     public String getLinkText(int index) {
-        return TestRunner.driver.findElements(By.xpath("//h3[@class='LC20lb DKV0Md']"))
+        return TestRunner.getDriver().findElements(By.xpath("//h3[@class='LC20lb DKV0Md']"))
                 .stream()
                 .map(element -> element.getText().toLowerCase())
                 .collect(Collectors.toList()).get(index);
@@ -16,7 +15,7 @@ public class GoogleSearchResultPage {
 
     public List<String> getResultsLinks() {
         return TestRunner
-                .driver
+                .getDriver()
                 .findElements(By.xpath("//div[@class='yuRUbf']/a"))
                 .stream()
                 .map(webElement -> webElement.getAttribute("href"))
@@ -24,7 +23,7 @@ public class GoogleSearchResultPage {
     }
 
     public ImagesResultsPage navigateToImageResultsPage() {
-        TestRunner.driver.findElement(By.xpath("//*[@data-hveid='CAEQAw']")).click();
+        TestRunner.getDriver().findElement(By.xpath("//*[@data-hveid='CAEQAw']")).click();
         return new ImagesResultsPage();
     }
 }

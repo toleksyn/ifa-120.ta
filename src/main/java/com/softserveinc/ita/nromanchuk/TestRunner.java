@@ -2,23 +2,33 @@ package com.softserveinc.ita.nromanchuk;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
 public class TestRunner {
-    public static WebDriver driver;
+    private static WebDriver driver;
+    private static WebDriverWait wait;
 
-    @BeforeSuite
-    public void setup() {
-        System.setProperty("webdriver.chrome.driver", "drivers//chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+    public static WebDriver getDriver() {
+        return driver;
     }
 
-    @AfterMethod
+    public static WebDriverWait getWait() {
+        return wait;
+    }
+
+    @BeforeSuite
+    public static void setupWebDriverTypeAndProperties() {
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, 10);
+    }
+
+    @AfterSuite
     public void close() {
-        if (TestRunner.driver != null) {
-            TestRunner.driver.quit();
-        }
+        driver.close();
     }
 }

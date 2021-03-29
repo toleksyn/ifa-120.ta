@@ -47,7 +47,7 @@ public class GoogleTest extends TestRunner {
         Assert.assertTrue(listOfTextResults.get(0).getAttribute("title").toLowerCase().contains(testTermForAssert));
         Assert.assertTrue(listOfTextResults.get(4).getAttribute("title").toLowerCase().contains(testTermForAssert));
         imagesResultsPage.navigateToGoogleHomePage();
-        Assert.assertEquals(TestRunner.driver.getTitle(), "Google");
+        Assert.assertEquals(TestRunner.getDriver().getTitle(), "Google");
     }
 
 }
