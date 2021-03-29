@@ -2,44 +2,54 @@ package com.softserveinc.ita.pageobjects_task.ynamurovanyi;
 
 import com.softserveinc.ita.ynamurovanyi.GoogleHomePage;
 import com.softserveinc.ita.ynamurovanyi.GoogleSearchImagesPage;
-import com.softserveinc.ita.ynamurovanyi.GoogleSearchResultsPage;
 import com.softserveinc.ita.ynamurovanyi.TestRunner;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class GoogleTest extends TestRunner {
 
-    @Test(priority = -1)
-    public void testIfFirstLinkTextContains() {
-        List<String> searchResultsLinksText = new GoogleHomePage()
-                .open()
-                .searchFor("funny kitten")
-                .getSearchResultsLinksText();
-        assertTrue(searchResultsLinksText.get(0).contains("funny kitten"));
+    private GoogleHomePage googleHomePage;
+
+    @BeforeMethod
+    public void openGoogleHomePage() {
+        googleHomePage = new GoogleHomePage()
+                .open();
     }
 
     @Test
-    public void testSearchImagesResults() {
-        List<String> searchResultsLinksText = GoogleSearchResultsPage
-                .getImages()
+    public void testIfFirstLinkTextContains() {
+        String searchTerm = "funny kitten";
+        List<String> searchResultsLinksText = googleHomePage
+                .searchFor(searchTerm)
                 .getSearchResultsLinksText();
-        assertTrue((GoogleSearchImagesPage.goHomeByLogo().getTitle().equals("Google"))
-                && searchResultsLinksText.size() > 9
-                && searchResultsLinksText.get(0).toLowerCase().contains("funny")
-                && searchResultsLinksText.get(4).toLowerCase().contains("funny"));
+        assertTrue(searchResultsLinksText.get(0).contains(searchTerm));
     }
 
-    @Test(priority = 1)
+    @Test
     public void testLinksForWikipedia() {
-        List<String> searchResultsLinks = new GoogleHomePage()
-                .open()
+        List<String> searchResultsLinks = googleHomePage
                 .searchFor("smartphone")
                 .getSearchResultsLinks();
         assertTrue(searchResultsLinks
                 .stream()
                 .anyMatch(link -> link.contains("wikipedia.org")));
+    }
+
+    @Test
+    public void testSearchImagesResults() {
+        GoogleSearchImagesPage googleSearchImagesPage = googleHomePage
+                .searchFor("funny kitten")
+                .navigateToImagesResultsPage();
+        List<String> searchResultsLinksText = googleSearchImagesPage
+                .getSearchResultsLinksText();
+        assertTrue(searchResultsLinksText.size() > 9);
+        assertTrue(searchResultsLinksText.get(0).toLowerCase().contains("funny"));
+        assertTrue(searchResultsLinksText.get(4).toLowerCase().contains("funny"));
+        assertEquals(googleSearchImagesPage.navigateToHomePageByLogo().getTitle(), "Google");
     }
 }

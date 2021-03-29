@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class GoogleSearchImagesPage {
 
-    public static List<String> getSearchResultsLinksText() {
+    public List<String> getSearchResultsLinksText() {
         return TestRunner.threadLocalDriver
                 .get()
                 .findElements(By.xpath("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']"))
@@ -16,7 +16,7 @@ public class GoogleSearchImagesPage {
                 .collect(Collectors.toList());
     }
 
-    public static GoogleHomePage goHomeByLogo() {
+    public GoogleHomePage navigateToHomePageByLogo() {
         TestRunner.threadLocalDriver
                 .get()
                 .findElement(By.xpath("//a[@class='F1hUFe jbTlie']"))
