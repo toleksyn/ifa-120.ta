@@ -18,8 +18,8 @@ public class GoogleSearchImagesPage {
 
     public List<String> getListOfSearchResultImagesText() {
         return TestRunner
-                .getDriver()
-                .findElements(By.xpath("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']"))
+                .getWait()
+                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']")))
                 .stream()
                 .map(webElement -> webElement.getAttribute("title")).collect(Collectors.toList());
     }
