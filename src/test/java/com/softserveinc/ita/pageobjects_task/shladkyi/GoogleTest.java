@@ -1,7 +1,7 @@
 package com.softserveinc.ita.pageobjects_task.shladkyi;
 
+import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.shladkyi.GoogleHomePage;
-import com.softserveinc.ita.shladkyi.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
