@@ -12,11 +12,11 @@ public class GoogleHomePage {
         return this;
     }
 
-    public GoogleSearchAllResultsPage searchFor(String request) {
+    public GoogleSearchResultsPage searchFor(String request) {
         TestRunner
                 .getWait()
                 .until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@class='gLFyf gsfi']")))
                 .sendKeys(request + Keys.ENTER);
-        return new GoogleSearchAllResultsPage();
+        return new GoogleSearchResultsPage();
     }
 }
