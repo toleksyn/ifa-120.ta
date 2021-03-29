@@ -7,14 +7,14 @@ import java.util.stream.Collectors;
 
 public class GoogleSearchResultImagesPage {
 
-    public List<String> getSearchResultImages() {
+    public List<String> getSearchResultImagesTitles() {
         return TestRunner.threadLocalDriver.get().findElements(By.xpath("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']"))
                 .stream()
                 .map(webElement -> webElement.getAttribute("title"))
                 .collect(Collectors.toList());
     }
 
-    public GoogleHomePage moveToGoogleHomePage() {
+    public GoogleHomePage navigateToGoogleHomePage() {
         TestRunner.threadLocalDriver.get().findElement(By.xpath("//a[@class='F1hUFe jbTlie']")).click();
         return new GoogleHomePage();
     }

@@ -12,7 +12,6 @@ import java.util.List;
 public class GoogleTest extends TestRunner {
     private String searchTerm = "funny kitten";
     private GoogleHomePage homePage;
-    private GoogleSearchResultImagesPage imagePage;
 
     @BeforeMethod
     public void openGoogleHomePage() {
@@ -23,7 +22,7 @@ public class GoogleTest extends TestRunner {
     public void testGoogleSearch() {
         List<String> searchResultsTitles = homePage
                 .searchFor(searchTerm)
-                .getSearchResultLinks();
+                .getSearchResultLinksTitles();
 
         Assert.assertTrue(searchResultsTitles.get(0).toLowerCase().contains(searchTerm));
     }
@@ -41,18 +40,19 @@ public class GoogleTest extends TestRunner {
 
     @Test
     public void testGoogleImagesSearch() {
-        imagePage = homePage
-                .searchFor(searchTerm).moveToImages();
+        String testWord = "funny";
+        GoogleSearchResultImagesPage imagePage = homePage
+                .searchFor(searchTerm).navigateToImages();
 
         List<String> searchResultsImagesList = imagePage
-                .getSearchResultImages();
-        
-        imagePage.moveToGoogleHomePage();
+                .getSearchResultImagesTitles();
+
+        imagePage.navigateToGoogleHomePage();
 
         Assert.assertTrue(searchResultsImagesList.size() > 9);
 
-        Assert.assertTrue(searchResultsImagesList.get(0).toLowerCase().contains("funny") &&
-                searchResultsImagesList.get(4).toLowerCase().contains("funny"));
+        Assert.assertTrue(searchResultsImagesList.get(0).toLowerCase().contains(testWord));
+        Assert.assertTrue(searchResultsImagesList.get(4).toLowerCase().contains(testWord));
 
         Assert.assertTrue(TestRunner.threadLocalDriver.get().getTitle().toLowerCase().contains("google"));
     }

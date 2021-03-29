@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class GoogleSearchResultPage {
 
-    public List<String> getSearchResultLinks() {
+    public List<String> getSearchResultLinksTitles() {
         return TestRunner.threadLocalDriver.get().findElements(By.xpath("//h3[@class='LC20lb DKV0Md']"))
                 .stream()
                 .map(WebElement::getText)
@@ -23,7 +23,7 @@ public class GoogleSearchResultPage {
                 .collect(Collectors.toList());
     }
 
-    public GoogleSearchResultImagesPage moveToImages() {
+    public GoogleSearchResultImagesPage navigateToImages() {
         TestRunner.threadLocalDriver.get().findElement(By.xpath("//div[@class='MUFPAc']/div[2]")).click();
         return new GoogleSearchResultImagesPage();
     }
