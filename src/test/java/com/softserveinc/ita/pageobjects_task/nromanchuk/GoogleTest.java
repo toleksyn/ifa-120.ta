@@ -38,14 +38,15 @@ public class GoogleTest extends TestRunner {
 
     @Test
     public void testGoogleImageSearch() {
+        String testTermForAssert = "funny";
         ImagesResultsPage imagesResultsPage = googleHomePage
                 .searchFor("funny kitten")
-                .switchToImageResults("//*[@id='hdtb-msb']/div[1]/div/div[2]/a");
+                .navigateToImageResultsPage();
         List<WebElement> listOfTextResults = imagesResultsPage.getListOfTextResults();
         Assert.assertTrue(listOfTextResults.size() > 9);
-        Assert.assertTrue(listOfTextResults.get(0).getAttribute("title").toLowerCase().contains("funny") &&
-                listOfTextResults.get(4).getAttribute("title").toLowerCase().contains("funny"));
-        imagesResultsPage.goToHomePage();
+        Assert.assertTrue(listOfTextResults.get(0).getAttribute("title").toLowerCase().contains(testTermForAssert));
+        Assert.assertTrue(listOfTextResults.get(4).getAttribute("title").toLowerCase().contains(testTermForAssert));
+        imagesResultsPage.navigateToGoogleHomePage();
         Assert.assertEquals(TestRunner.driver.getTitle(), "Google");
     }
 

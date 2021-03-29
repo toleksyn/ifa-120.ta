@@ -7,10 +7,11 @@ import java.util.stream.Stream;
 
 public class GoogleSearchResultPage {
 
-    public String getFirstLinkText() {
-        return Stream.of(TestRunner.driver.findElements(By.xpath("//h3[@class='LC20lb DKV0Md']")))
-                .map(element -> element.get(0).getText().toLowerCase())
-                .collect(Collectors.toList()).get(0);
+    public String getLinkText(int index) {
+        return TestRunner.driver.findElements(By.xpath("//h3[@class='LC20lb DKV0Md']"))
+                .stream()
+                .map(element -> element.getText().toLowerCase())
+                .collect(Collectors.toList()).get(index);
     }
 
     public List<String> getResultsLinks() {
@@ -22,8 +23,8 @@ public class GoogleSearchResultPage {
                 .collect(Collectors.toList());
     }
 
-    public ImagesResultsPage switchToImageResults(String imageResultsLocator) {
-        TestRunner.driver.findElement(By.xpath(imageResultsLocator)).click();
+    public ImagesResultsPage navigateToImageResultsPage() {
+        TestRunner.driver.findElement(By.xpath("//*[@data-hveid='CAEQAw']")).click();
         return new ImagesResultsPage();
     }
 }

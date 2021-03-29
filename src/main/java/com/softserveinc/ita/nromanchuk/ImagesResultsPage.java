@@ -10,7 +10,7 @@ public class ImagesResultsPage {
         return TestRunner.driver.findElements(By.xpath("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']"));
     }
 
-    public GoogleHomePage goToHomePage() {
+    public GoogleHomePage navigateToGoogleHomePage() {
         TestRunner.driver.findElement(By.xpath("//a[@class='F1hUFe jbTlie']")).click();
         return new GoogleHomePage();
     }
