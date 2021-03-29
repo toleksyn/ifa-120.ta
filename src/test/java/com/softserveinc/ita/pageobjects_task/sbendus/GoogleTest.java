@@ -42,15 +42,16 @@ public class GoogleTest extends TestRunner {
     @Test
     public void testGoogleSearchImageResults() {
         String googleSearchMessage = "Funny Kitten";
-        GoogleSearchImagePage googleSearchImagePage = googleHomePage;
-        List<String> listOfSearchImages = googleHomePage
+        String verificationText = "Funny";
+        GoogleSearchImagePage googleSearchImagePage = googleHomePage
                 .searchFor(googleSearchMessage)
-                .getGoogleSearchType()
-                .getListOfSearchImages();
+                .navigateToGoogleSearchImagePage();
+        List<String> listOfSearchImages = googleSearchImagePage
+                .getListOfSearchTitleResults();
         Assert.assertTrue(listOfSearchImages.size() > 10);
-        Assert.assertTrue(listOfSearchImages.get(0).contains("Funny")
-                && listOfSearchImages.get(4).contains("Funny"));
-        googleSearchImagePage.returnToGoogleHomePage();
+        Assert.assertTrue(listOfSearchImages.get(0).contains(verificationText));
+        Assert.assertTrue(listOfSearchImages.get(4).contains(verificationText));
+        googleSearchImagePage.navigateToHomePageByLogo();
         Assert.assertTrue(TestRunner.getDriver().getCurrentUrl().contains("https://www.google.com/"));
     }
 }

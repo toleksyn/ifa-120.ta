@@ -1,6 +1,5 @@
 package com.softserveinc.ita.sbendus.pageobject;
 
-import com.softserveinc.ita.sbendus.pageobject.GoogleSearchImagePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -28,7 +27,7 @@ public class GoogleSearchPage {
                 .collect(Collectors.toList());
     }
 
-    public GoogleSearchImagePage getGoogleSearchType() {
+    public GoogleSearchImagePage navigateToGoogleSearchImagePage() {
         WebElement imagesSearchType = TestRunner.getDriver().findElement(By.xpath("//a[@class='hide-focus-ring']"));
         imagesSearchType.click();
         return new GoogleSearchImagePage();

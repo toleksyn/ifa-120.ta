@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
-public class GoogleHomePage extends GoogleSearchImagePage {
+public class GoogleHomePage {
 
     public GoogleHomePage open() {
         TestRunner.getDriver().get("https://www.google.com/");
