@@ -42,14 +42,15 @@ public class GoogleTest extends TestRunner {
 
     @Test
     public void testSearchImagesResults() {
+        String expectedText = "funny";
         GoogleSearchImagesPage googleSearchImagesPage = googleHomePage
                 .searchFor("funny kitten")
                 .navigateToImagesResultsPage();
         List<String> searchResultsLinksText = googleSearchImagesPage
                 .getSearchResultsLinksText();
         assertTrue(searchResultsLinksText.size() > 9);
-        assertTrue(searchResultsLinksText.get(0).toLowerCase().contains("funny"));
-        assertTrue(searchResultsLinksText.get(4).toLowerCase().contains("funny"));
+        assertTrue(searchResultsLinksText.get(0).toLowerCase().contains(expectedText));
+        assertTrue(searchResultsLinksText.get(4).toLowerCase().contains(expectedText));
         assertEquals(googleSearchImagesPage.navigateToHomePageByLogo().getTitle(), "Google");
     }
 }
