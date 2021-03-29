@@ -1,5 +1,6 @@
 package com.softserveinc.ita.pageobjects_task.vpetrat;
 
+import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.vpetrat.pageobjects.GoogleHomePage;
 import com.softserveinc.ita.vpetrat.pageobjects.GoogleSearchImagesPage;
 import org.junit.Assert;

@@ -1,12 +1,13 @@
 package com.softserveinc.ita.vpetrat.pageobjects;
 
-import com.softserveinc.ita.pageobjects_task.vpetrat.TestRunner;
+import com.softserveinc.ita.common.TestRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 public class GoogleSearchResultsPage {
     public List<String> getListOfSearchResultLinksText() {
