@@ -31,7 +31,7 @@ public class GoogleSearchResultsPage {
         return getListOfSearchResultLinksText().get(index);
     }
 
-    public GoogleSearchImagesPage showSearchResultImages() {
+    public GoogleSearchImagesPage navigateToSearchResultImages() {
         TestRunner
                 .getWait()
                 .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//a[@class='hide-focus-ring']")))
