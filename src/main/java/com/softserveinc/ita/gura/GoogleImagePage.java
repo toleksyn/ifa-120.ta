@@ -11,7 +11,7 @@ public class GoogleImagePage {
         TestRunner.driver.get(link);
     }
 
-    public List<String> getSearchResultsLinksText() {
+    public List<String> getImagesTitle() {
         return TestRunner.threadLocalDriver
                 .get()
                 .findElements(By.xpath("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']"))

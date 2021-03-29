@@ -54,7 +54,7 @@ public class GoogleTest {
         googlePage.doSearch("funny kitten").goToImagePage();
 
         List<String> imagesTitle = imagePage
-                .getSearchResultsLinksText();
+                .getImagesTitle();
 
         assert(imagesTitle.get(0).toLowerCase().contains(searchText));
         assert(imagesTitle.get(4).toLowerCase().contains(searchText));
