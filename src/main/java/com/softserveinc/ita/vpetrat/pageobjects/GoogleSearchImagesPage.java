@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GoogleSearchImagesPage {
-    public GoogleHomePage returnToHomePage() {
+    public GoogleHomePage navigateToHomePage() {
         TestRunner
                 .getWait()
                 .until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='F1hUFe jbTlie']")))
