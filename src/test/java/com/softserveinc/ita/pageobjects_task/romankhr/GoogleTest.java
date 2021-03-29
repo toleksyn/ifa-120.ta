@@ -1,8 +1,8 @@
 package com.softserveinc.ita.pageobjects_task.romankhr;
 
+import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.romankhr.GoogleHomePage;
 import com.softserveinc.ita.romankhr.GoogleSearchResultImagesPage;
-import com.softserveinc.ita.romankhr.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -54,6 +54,6 @@ public class GoogleTest extends TestRunner {
         Assert.assertTrue(searchResultsImagesList.get(0).toLowerCase().contains(testWord));
         Assert.assertTrue(searchResultsImagesList.get(4).toLowerCase().contains(testWord));
 
-        Assert.assertTrue(TestRunner.threadLocalDriver.get().getTitle().toLowerCase().contains("google"));
+        Assert.assertTrue(TestRunner.getDriver().getTitle().toLowerCase().contains("google"));
     }
 }
