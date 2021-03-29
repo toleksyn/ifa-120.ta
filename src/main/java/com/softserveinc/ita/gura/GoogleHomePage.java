@@ -5,6 +5,12 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 public class GoogleHomePage extends TestRunner {
+    public GoogleHomePage() {}
+
+    public GoogleHomePage(String link) {
+        TestRunner.driver.get(link);
+    }
+
     public GoogleHomePage openPage() {
         TestRunner.driver.get("https://www.google.com");
         TestRunner.driver.manage().window().maximize();

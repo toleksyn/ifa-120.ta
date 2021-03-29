@@ -58,6 +58,6 @@ public class GoogleTest {
 
         assert(imagesTitle.get(0).toLowerCase().contains(searchText));
         assert(imagesTitle.get(4).toLowerCase().contains(searchText));
-        assert(imagePage.navigateToHomePageByLogo().checkIfPageOpened());
+        assert(imagePage.goToHomePageByLogo().checkIfPageOpened());
     }
 }

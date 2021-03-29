@@ -21,12 +21,10 @@ public class GoogleImagePage {
                 .collect(Collectors.toList());
     }
 
-    public GoogleHomePage navigateToHomePageByLogo() {
-        TestRunner.threadLocalDriver
-                .get()
-                .findElement(By.xpath("//a[@class='TYpZOd']"))
-                .click();
-        return new GoogleHomePage();
+    public GoogleHomePage goToHomePageByLogo() {
+        return new GoogleHomePage(TestRunner
+                .driver
+                .findElement(By.xpath("//a[@class='F1hUFe jbTlie']"))
+                .getAttribute("href"));
     }
-
 }
