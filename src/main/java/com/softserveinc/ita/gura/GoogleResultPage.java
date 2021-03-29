@@ -10,7 +10,7 @@ public class GoogleResultPage {
     }
 
     public GoogleImagePage goToImagePage() {
-        WebElement imagesBottom = getDriver().findElement(By.xpath("//*[@id=\"hdtb-msb\"]/div[1]/div/div[2]/a"));
+        WebElement imagesBottom = getDriver().findElement(By.xpath("//a[@data-hveid='CAEQAw']"));
         return new GoogleImagePage(imagesBottom.getAttribute("href"));
     }
 }
