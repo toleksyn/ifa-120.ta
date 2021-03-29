@@ -15,13 +15,8 @@ public class GoogleHomePage {
 
 	public GoogleSearchResultsPage searchFor(String searchString) {
 		TestRunner.getWait()
-        .until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='q']")))
-        .sendKeys(searchString + Keys.ENTER);
-        //TestRunner.getDriver().submit();
-        		//.findElement(searchField).sendKeys(searchString);
-        		//searchField = By.xpath("//input[@name='q']");
-
-		//TestRunner.getDriver().findElement(By.xpath("//input[@name='btnK']")).click();
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='q']")))
+				.sendKeys(searchString + Keys.ENTER);
 		return new GoogleSearchResultsPage();
 	}
 
