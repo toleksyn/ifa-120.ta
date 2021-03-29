@@ -1,8 +1,8 @@
 package com.softserveinc.ita.pageobjects_task.sbendus;
 
-import com.softserveinc.ita.sbendus.pageobject.GoogleSearchImagePage;
-import com.softserveinc.ita.sbendus.pageobject.TestRunner;
+import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.sbendus.pageobject.GoogleHomePage;
+import com.softserveinc.ita.sbendus.pageobject.GoogleSearchImagePage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
