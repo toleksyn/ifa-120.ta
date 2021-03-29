@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class GoogleSearchResultsPage {
 
-    public static List<String> getSearchResultsLinksText() {
+    public List<String> getSearchResultsLinksText() {
         return TestRunner.threadLocalDriver
                 .get()
                 .findElements(By.xpath("//h3[@class='LC20lb DKV0Md']"))
@@ -16,7 +16,7 @@ public class GoogleSearchResultsPage {
                 .collect(Collectors.toList());
     }
 
-    public static List<String> getSearchResultsLinks() {
+    public List<String> getSearchResultsLinks() {
         return TestRunner.threadLocalDriver
                 .get()
                 .findElements(By.xpath("//div[@class='yuRUbf']/a"))

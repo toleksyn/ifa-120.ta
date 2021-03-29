@@ -12,11 +12,12 @@ public class GoogleTest extends TestRunner {
 
     @Test
     public void testIfFirstLinkTextContains() {
+        String searchTerm = "funny kitten";
         List<String> searchResultsLinksText = new GoogleHomePage()
                 .open()
-                .searchFor("funny kitten")
+                .searchFor(searchTerm)
                 .getSearchResultsLinksText();
-        assertTrue(searchResultsLinksText.get(0).contains("funny kitten"));
+        assertTrue(searchResultsLinksText.get(0).contains(searchTerm));
     }
 
     @Test
