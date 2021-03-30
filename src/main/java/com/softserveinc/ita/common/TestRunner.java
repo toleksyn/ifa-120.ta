@@ -19,7 +19,7 @@ public class TestRunner {
     }
 
     @BeforeSuite
-    public static void setupWebDriverTypeAndProperties() {
+    public void setupWebDriverTypeAndProperties() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
