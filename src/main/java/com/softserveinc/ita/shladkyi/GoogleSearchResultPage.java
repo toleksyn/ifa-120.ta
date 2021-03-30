@@ -16,4 +16,9 @@ public class GoogleSearchResultPage {
         List<WebElement> allSearchResultLinks = TestRunner.driver.findElements(By.xpath("//div[@class='TbwUpd NJjxre']"));
         return allSearchResultLinks.stream().map(WebElement::getText).collect(Collectors.toList());
     }
+
+    public GoogleSearchImagesResultPage openImagesPage() {
+        TestRunner.driver.findElement(By.xpath("//a[@class='hide-focus-ring']")).click();
+        return new GoogleSearchImagesResultPage();
+    }
 }
