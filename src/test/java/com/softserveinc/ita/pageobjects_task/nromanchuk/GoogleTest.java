@@ -22,10 +22,10 @@ public class GoogleTest extends TestRunner {
     @Test
     public void testGoogleSearch() {
         String searchTerm = "funny kitten";
-        String getFirstLinkText = googleHomePage
+        String firstLinkText = googleHomePage
                 .searchFor(searchTerm)
                 .getLinkText(1);
-        Assert.assertTrue(getFirstLinkText.contains(searchTerm));
+        Assert.assertTrue(firstLinkText.contains(searchTerm));
     }
 
     @Test
