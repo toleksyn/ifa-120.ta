@@ -21,7 +21,7 @@ public class GoogleTest extends TestRunner {
 
     @Test
     public void testGoogleSearch() {
-        String googleSearchMessage = "Funny Kitten";
+        String googleSearchMessage = "Funny kitten";
         String firstLink = googleHomePage
                 .searchFor(googleSearchMessage)
                 .getSearchResultLinkText(1);
@@ -54,5 +54,16 @@ public class GoogleTest extends TestRunner {
         googleSearchImagePage.navigateToHomePageByLogo();
         Assert.assertTrue(TestRunner.getDriver().getCurrentUrl().contains("https://www.google.com/"));
     }
+
+    @Test
+    public void testGoogleSearchResultAmount() {
+        String googleSearchMessage = "webdriver";
+        Integer googleSearchResultAmount = googleHomePage
+                .searchFor(googleSearchMessage)
+                .getGoogleSearchResultAmount();
+        System.out.println(googleSearchResultAmount);
+        Assert.assertTrue(googleSearchResultAmount > 5000000);
+    }
 }
+
 
