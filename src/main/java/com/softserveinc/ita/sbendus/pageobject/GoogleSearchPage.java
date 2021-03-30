@@ -27,4 +27,10 @@ public class GoogleSearchPage {
                 .map(WebElement -> WebElement.getAttribute("href"))
                 .collect(Collectors.toList());
     }
+
+    public GoogleSearchImagePage navigateToGoogleSearchImagePage() {
+        WebElement imagesSearchType = TestRunner.getDriver().findElement(By.xpath("//a[@class='hide-focus-ring']"));
+        imagesSearchType.click();
+        return new GoogleSearchImagePage();
+    }
 }
