@@ -28,6 +28,6 @@ public class TestRunner {
 
     @AfterSuite
     public void close() {
-        driver.quit();
+        driver.close();
     }
 }
