@@ -1,6 +1,8 @@
 package com.softserveinc.ita.nromanchuk;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,5 +27,11 @@ public class GoogleSearchResultPage {
     public ImagesResultsPage navigateToImageResultsPage() {
         TestRunner.getDriver().findElement(By.xpath("//*[@data-hveid='CAEQAw']")).click();
         return new ImagesResultsPage();
+    }
+
+    public BooksResultsPage navigateToBooksResultsPage() {
+        TestRunner.getDriver().findElement(By.xpath("//div[@class='GOE98c']")).click();
+        TestRunner.getDriver().findElement(By.xpath("//div[@class='gTMtLb fp-nh']//a[contains(text(),'Books')]")).click();
+        return new BooksResultsPage();
     }
 }

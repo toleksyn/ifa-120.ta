@@ -50,4 +50,14 @@ public class GoogleTest extends TestRunner {
         Assert.assertEquals(TestRunner.getDriver().getTitle(), "Google");
     }
 
+    @Test
+    public void testWebDriverSearch(){
+        /*
+        6. на дом. сторінці Гугл ввести в пошук webdriver,
+        на сторінці з результатами пошуку з дропдаун меню More вибрати Books,
+         перевірити, що остання лінка містить в назві слово webdriver
+         */
+        googleHomePage.searchFor("webdriver").navigateToBooksResultsPage();
+
+    }
 }
