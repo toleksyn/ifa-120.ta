@@ -1,19 +1,27 @@
 package com.softserveinc.ita.gura;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 public class GoogleHomePage extends TestRunner {
     public GoogleHomePage() {}
 
     public GoogleHomePage(String link) {
-        TestRunner.driver.get(link);
+        driver.get(link);
     }
 
     public GoogleHomePage openPage() {
-        TestRunner.driver.get("https://www.google.com");
-        TestRunner.driver.manage().window().maximize();
+        driver.get("https://www.google.com");
+        driver.manage().window().maximize();
+        return this;
+    }
+
+    public GoogleHomePage openPageRemoteWebDriver() {
+        remoteWebDriver.get("https://www.google.com");
+        remoteWebDriver.manage().window().maximize();
         return this;
     }
 
@@ -26,5 +34,13 @@ public class GoogleHomePage extends TestRunner {
 
     public boolean checkIfPageOpened() {
         return driver.findElement(By.xpath("//input[@class='lnXdpd']")).getAttribute("class").contains("lnXdpd");
+    }
+
+    public GoogleHomePage hideGoogleLogo() {
+        remoteWebDriver.get("https://www.google.com");
+        JavascriptExecutor js = remoteWebDriver;
+
+        js.executeScript("document.getElementsByClassName('o3j99 LLD4me yr19Zb LS8OJ').setAttribute('style', 'visibility:hidden')");
+        return this;
     }
 }

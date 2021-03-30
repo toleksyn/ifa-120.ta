@@ -3,9 +3,12 @@ package com.softserveinc.ita.pageobjects_task.gura;
 import com.softserveinc.ita.gura.GoogleHomePage;
 import com.softserveinc.ita.gura.GoogleImagePage;
 import com.softserveinc.ita.gura.GoogleResultPage;
+import com.softserveinc.ita.gura.TestRunner;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -17,6 +20,7 @@ public class GoogleTest {
 
     @Before
     public void testingContainOfLink() {
+        TestRunner.driver = new ChromeDriver();
         System.setProperty("webdriver.chrome.driver", ".C:\\chromedriver.exe");
         googlePage.openPage();
     }
@@ -59,5 +63,11 @@ public class GoogleTest {
         assert(imagesTitle.get(0).toLowerCase().contains(searchText));
         assert(imagesTitle.get(4).toLowerCase().contains(searchText));
         assert(imagePage.goToHomePageByLogo().checkIfPageOpened());
+    }
+
+    @Test
+    public void testingHideGoogleLogo() {
+        googlePage.hideGoogleLogo();
+
     }
 }

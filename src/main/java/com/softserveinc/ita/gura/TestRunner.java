@@ -1,10 +1,12 @@
 package com.softserveinc.ita.gura;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class TestRunner {
-    protected static WebDriver driver = new ChromeDriver();
+    public static WebDriver driver;
 
-    public static ThreadLocal<WebDriver> threadLocalDriver;
+    protected static ThreadLocal<WebDriver> threadLocalDriver;
+
+    public static RemoteWebDriver remoteWebDriver;
 }
