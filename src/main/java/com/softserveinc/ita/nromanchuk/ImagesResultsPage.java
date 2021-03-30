@@ -2,6 +2,7 @@ package com.softserveinc.ita.nromanchuk;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
 import java.util.List;
 
 public class ImagesResultsPage {
