@@ -23,4 +23,10 @@ public class GoogleHomePage {
                 .click();
         return new GoogleSearchResultsPage();
     }
+
+    public String getTitle() {
+        return TestRunner.threadLocalDriver
+                .get()
+                .getTitle();
+    }
 }

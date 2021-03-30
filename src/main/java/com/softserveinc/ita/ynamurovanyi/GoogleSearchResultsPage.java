@@ -24,4 +24,12 @@ public class GoogleSearchResultsPage {
                 .map(searchResultsLinks -> searchResultsLinks.getAttribute("href"))
                 .collect(Collectors.toList());
     }
+
+    public GoogleSearchImagesPage navigateToImagesResultsPage() {
+        TestRunner.threadLocalDriver
+                .get()
+                .findElement(By.xpath("//a[@class='hide-focus-ring']"))
+                .click();
+        return new GoogleSearchImagesPage();
+    }
 }
