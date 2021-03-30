@@ -38,7 +38,7 @@ public class GoogleSearchTest extends TestRunner {
 
     @Test
     public void testGoogleSearchResultImagesText() {
-        GoogleSearchImagesPage imageResultsPage = googleHomePage.searchFor("funny kitten").navigateToSearchResultImages();
+        GoogleSearchImagesPage imageResultsPage = googleHomePage.searchFor("funny kitten").navigateToImages();
         List<String> resultImagesText = imageResultsPage
                 .getListOfSearchResultImagesText();
         String testParameter = "funny";
