@@ -1,6 +1,6 @@
-package com.softserveinc.ita.vpetrat.pageobjects;
+package com.softserveinc.ita.vpetrat;
 
-import com.softserveinc.ita.vpetrat.testrunner.TestRunner;
+import com.softserveinc.ita.common.TestRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -8,8 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class GoogleSearchResultPage {
 
+public class GoogleSearchResultsPage {
     public List<String> getListOfSearchResultLinksText() {
         return TestRunner
                 .getWait()
@@ -29,6 +29,15 @@ public class GoogleSearchResultPage {
     }
 
     public String getSearchResultLinkTextForIndex(int index) {
-        return getListOfSearchResultLinks().get(index);
+        return getListOfSearchResultLinksText().get(index);
+    }
+
+    public GoogleSearchImagesPage navigateToImagesPage() {
+        TestRunner
+                .getWait()
+                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//a[@class='hide-focus-ring']")))
+                .get(0)
+                .click();
+        return new GoogleSearchImagesPage();
     }
 }
