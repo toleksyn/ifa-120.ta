@@ -16,7 +16,7 @@ public class GoogleImagePage {
                 .get()
                 .findElements(By.xpath("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']"))
                 .stream()
-                .map(searchResultsLinksText -> searchResultsLinksText.getAttribute("title"))
+                .map(linksText -> linksText.getAttribute("title"))
                 .limit(10)
                 .collect(Collectors.toList());
     }
