@@ -3,6 +3,7 @@ package com.softserveinc.ita.common;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
@@ -19,7 +20,7 @@ public class TestRunner {
     }
 
     @BeforeSuite
-    public void setupWebDriverTypeAndProperties() {
+    public static void setupWebDriverTypeAndProperties() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
