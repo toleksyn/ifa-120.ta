@@ -1,5 +1,6 @@
 package com.softserveinc.ita.sbendus.pageobject;
 
+import com.softserveinc.ita.common.TestRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -25,5 +26,11 @@ public class GoogleSearchPage {
                 .stream()
                 .map(WebElement -> WebElement.getAttribute("href"))
                 .collect(Collectors.toList());
+    }
+
+    public GoogleSearchImagePage navigateToGoogleSearchImagePage() {
+        WebElement imagesSearchType = TestRunner.getDriver().findElement(By.xpath("//a[@class='hide-focus-ring']"));
+        imagesSearchType.click();
+        return new GoogleSearchImagePage();
     }
 }
