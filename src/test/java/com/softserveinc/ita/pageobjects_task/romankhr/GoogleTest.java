@@ -56,4 +56,17 @@ public class GoogleTest extends TestRunner {
 
         Assert.assertTrue(TestRunner.getDriver().getTitle().toLowerCase().contains("google"));
     }
+
+    @Test
+    public void testWebdriverSearch() {
+        String testWord = "webdriver";
+        List<String> searchResultsDescriptiobn = homePage
+                .searchFor(testWord)
+                .navigateToWebdriverResultPage()
+                .getSearchResultsDescription();
+        searchResultsDescriptiobn.forEach(System.out::println);
+        System.out.println("-->" + searchResultsDescriptiobn.size());
+
+        Assert.assertTrue(searchResultsDescriptiobn.get(0).toLowerCase().contains(testWord));
+    }
 }

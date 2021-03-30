@@ -29,4 +29,11 @@ public class GoogleSearchResultPage {
         return new GoogleSearchResultImagesPage();
     }
 
+    public GoogleSearchResultWebdriverPage navigateToWebdriverResultPage() {
+        TestRunner.getDriver().findElement(By.xpath("//a[contains(text(),\"10\")]")).click();
+        TestRunner.getDriver().findElement(By.xpath("//a[contains(text(),\"14\")]")).click();
+        return new GoogleSearchResultWebdriverPage();
+    }
+
+
 }
