@@ -1,8 +1,8 @@
 package com.softserveinc.ita.pageobjects_task.vpetrat;
 
 import com.softserveinc.ita.common.TestRunner;
-import com.softserveinc.ita.vpetrat.pageobjects.GoogleHomePage;
-import com.softserveinc.ita.vpetrat.pageobjects.GoogleSearchImagesPage;
+import com.softserveinc.ita.vpetrat.GoogleHomePage;
+import com.softserveinc.ita.vpetrat.GoogleSearchImagesPage;
 import org.junit.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -38,7 +38,7 @@ public class GoogleSearchTest extends TestRunner {
 
     @Test
     public void testGoogleSearchResultImagesText() {
-        GoogleSearchImagesPage imageResultsPage = googleHomePage.searchFor("funny kitten").navigateToImages();
+        GoogleSearchImagesPage imageResultsPage = googleHomePage.searchFor("funny kitten").navigateToImagesPage();
         List<String> resultImagesText = imageResultsPage
                 .getListOfSearchResultImagesText();
         String testParameter = "funny";

@@ -33,5 +33,5 @@
             <version>${chrome.driver.version}</version>
         </dependency>
     </dependencies>
-</project>
 
+</project>

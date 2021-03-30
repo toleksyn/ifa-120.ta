@@ -1,4 +1,4 @@
-package com.softserveinc.ita.vpetrat.pageobjects;
+package com.softserveinc.ita.vpetrat;
 
 import com.softserveinc.ita.common.TestRunner;
 import org.openqa.selenium.By;
