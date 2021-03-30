@@ -43,4 +43,14 @@ public class GoogleTest extends TestRunner {
         googleImagesResultPage.openGoogleHomePage();
         Assert.assertTrue(TestRunner.driver.getCurrentUrl().contains("https://www.google.com/"));
     }
+
+    @Test
+    public void testLanguageChange() {
+        GoogleHomePage homePage = googleHomePage.openSettings().changeGoogleLanguage("en");
+        Assert.assertEquals(homePage.getTextOfSearchButton(), "Google Search");
+        Assert.assertEquals(homePage.getTextOfLuckyButton(), "I'm Feeling Lucky");
+        homePage.openSettings().changeGoogleLanguage("uk");
+        Assert.assertEquals(homePage.getTextOfSearchButton(), "Пошук Google");
+        Assert.assertEquals(homePage.getTextOfLuckyButton(), "Мені пощастить");
+    }
 }
