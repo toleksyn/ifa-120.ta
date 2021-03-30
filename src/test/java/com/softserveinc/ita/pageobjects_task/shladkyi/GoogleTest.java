@@ -1,8 +1,8 @@
 package com.softserveinc.ita.pageobjects_task.shladkyi;
 
+import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.shladkyi.GoogleHomePage;
 import com.softserveinc.ita.shladkyi.GoogleSearchImagesResultPage;
-import com.softserveinc.ita.shladkyi.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -41,6 +41,6 @@ public class GoogleTest extends TestRunner {
         Assert.assertTrue(textOfImagesList.get(0).toLowerCase().contains(testText));
         Assert.assertTrue(textOfImagesList.get(4).toLowerCase().contains(testText));
         googleImagesResultPage.openGoogleHomePage();
-        Assert.assertTrue(TestRunner.driver.getCurrentUrl().contains("https://www.google.com/"));
+        Assert.assertTrue(TestRunner.getDriver().getCurrentUrl().contains("https://www.google.com/"));
     }
 }

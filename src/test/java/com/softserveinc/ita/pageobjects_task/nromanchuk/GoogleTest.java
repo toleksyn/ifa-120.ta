@@ -1,8 +1,8 @@
 package com.softserveinc.ita.pageobjects_task.nromanchuk;
 
+import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.nromanchuk.GoogleHomePage;
 import com.softserveinc.ita.nromanchuk.ImagesResultsPage;
-import com.softserveinc.ita.nromanchuk.TestRunner;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
