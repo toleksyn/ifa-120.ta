@@ -24,7 +24,7 @@ public class GoogleSearchResultPage {
                 .collect(Collectors.toList());
     }
 
-    public GoogleSearchResultImagesPage navigateToImages() {
+    public GoogleSearchResultImagesPage navigateToImagesPage() {
         TestRunner.getDriver().findElement(By.xpath("//div[@class='MUFPAc']/div[2]")).click();
         return new GoogleSearchResultImagesPage();
     }

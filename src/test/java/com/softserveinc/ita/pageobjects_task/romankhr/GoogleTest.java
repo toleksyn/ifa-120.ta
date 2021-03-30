@@ -42,7 +42,7 @@ public class GoogleTest extends TestRunner {
     public void testGoogleImagesSearch() {
         String testWord = "funny";
         GoogleSearchResultImagesPage imagePage = homePage
-                .searchFor(searchTerm).navigateToImages();
+                .searchFor(searchTerm).navigateToImagesPage();
 
         List<String> searchResultsImagesList = imagePage
                 .getSearchResultImagesTitles();
