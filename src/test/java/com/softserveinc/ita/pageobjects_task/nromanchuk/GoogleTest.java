@@ -1,8 +1,9 @@
 package com.softserveinc.ita.pageobjects_task.nromanchuk;
 
+import com.softserveinc.ita.common.TestRunner;
+import com.softserveinc.ita.nromanchuk.BooksResultsPage;
 import com.softserveinc.ita.nromanchuk.GoogleHomePage;
 import com.softserveinc.ita.nromanchuk.ImagesResultsPage;
-import com.softserveinc.ita.nromanchuk.TestRunner;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -51,13 +52,10 @@ public class GoogleTest extends TestRunner {
     }
 
     @Test
-    public void testWebDriverSearch(){
-        /*
-        6. на дом. сторінці Гугл ввести в пошук webdriver,
-        на сторінці з результатами пошуку з дропдаун меню More вибрати Books,
-         перевірити, що остання лінка містить в назві слово webdriver
-         */
-        googleHomePage.searchFor("webdriver").navigateToBooksResultsPage();
-
+    public void testWebDriverSearch() {
+        String searchTerm = "webdriver";
+        BooksResultsPage booksResultsPage = googleHomePage.searchFor(searchTerm).navigateToBooksResultsPage();
+        List<WebElement> listOfTextResults = booksResultsPage.getListOfResultsText();
+        Assert.assertTrue(listOfTextResults.get(9).getText().toLowerCase().contains(searchTerm));
     }
 }
