@@ -19,4 +19,16 @@ public class GoogleHomePage {
                 .sendKeys(request + Keys.ENTER);
         return new GoogleSearchResultsPage();
     }
+
+    public GoogleLuckySearchResultPage luckySearchFor(String request) {
+        TestRunner
+                .getWait()
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@class='gLFyf gsfi']")))
+                .sendKeys(request);
+        TestRunner
+                .getWait()
+                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//input[@name='btnI']")))
+                .get(0).click();
+        return new GoogleLuckySearchResultPage();
+    }
 }

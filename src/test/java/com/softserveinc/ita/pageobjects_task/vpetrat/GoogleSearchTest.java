@@ -48,4 +48,10 @@ public class GoogleSearchTest extends TestRunner {
         imageResultsPage.navigateToHomePage();
         Assert.assertEquals("Google", TestRunner.getDriver().getTitle());
     }
+
+    @Test
+    public void testGoogleLuckySearch() {
+        String searchResultUrl = googleHomePage.luckySearchFor("funny kitten").getPageUrl();
+        Assert.assertTrue(searchResultUrl.contains("youtube"));
+    }
 }
