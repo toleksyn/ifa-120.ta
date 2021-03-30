@@ -2,6 +2,7 @@ package com.softserveinc.ita.pageobjects_task.ynamurovanyi;
 
 import com.softserveinc.ita.ynamurovanyi.GoogleHomePage;
 import com.softserveinc.ita.ynamurovanyi.GoogleSearchImagesPage;
+import com.softserveinc.ita.ynamurovanyi.GoogleSearchResultsPage;
 import com.softserveinc.ita.ynamurovanyi.TestRunner;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -52,5 +53,14 @@ public class GoogleTest extends TestRunner {
         assertTrue(searchResultsLinksText.get(0).toLowerCase().contains(expectedText));
         assertTrue(searchResultsLinksText.get(4).toLowerCase().contains(expectedText));
         assertEquals(googleSearchImagesPage.navigateToHomePageByLogo().getTitle(), "Google");
+    }
+
+    @Test
+    public void testGoogleSearchResultsPages() {
+        GoogleSearchResultsPage fifthGoogleSearchResultsPage = googleHomePage
+                .searchFor("funny kitten")
+                .navigateToFifthResultsPage();
+        assertEquals(fifthGoogleSearchResultsPage.getSearchResultsLinks().size(), 10);
+        assertEquals(fifthGoogleSearchResultsPage.getSearchResultsPageNumber(), 5);
     }
 }
