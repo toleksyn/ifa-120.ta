@@ -44,27 +44,27 @@ public class GoogleTest extends TestRunner {
 		GoogleSearchResultsImagesPage searchResultsImagesPage = openGoogleHomePage.searchFor(searchString)
 				.navigateToImagePage();
 
-		String[] searchResultsImages = searchResultsImagesPage.getSearchResultsImagesText();
+		List<String> searchResultsImages = searchResultsImagesPage.getSearchResultsImagesText();
 
-		assertTrue(searchResultsImages.length > 9);
+		assertTrue(searchResultsImages.size() > 9);
 
-		assertTrue(searchResultsImages[0].toLowerCase().contains(testStringForAssert));
-		assertTrue(searchResultsImages[4].toLowerCase().contains(testStringForAssert));
+		assertTrue(searchResultsImages.get(0).toLowerCase().contains(testStringForAssert));
+		assertTrue(searchResultsImages.get(4).toLowerCase().contains(testStringForAssert));
 
 		searchResultsImagesPage.gotoGoogleHomePageByLogo();
 
 		assertEquals(TestRunner.getDriver().getTitle(), "Google", "Current Page isn't a Google homepage");
 	}
-	
+
 	@Test
 	public void testGoogleTimeSortSearch() {
 
 		TestRunner.getDriver().get("https://www.google.com.ua/?hl=en");
 		GoogleSearchResultsTimeSortPage searchResultsTimeSort = openGoogleHomePage.searchFor("webdriver")
-				.navigateToTimeSortPage();
+				.sortByPastHour();
 
-		String[] searchTimeSortResults = searchResultsTimeSort.getSearchTimeSortResultsText();
-		
-		assertTrue(searchTimeSortResults[0].toLowerCase().contains("mins ago"));
+		List<String> searchTimeSortResults = searchResultsTimeSort.getSearchTimeSortResultsText();
+
+		assertTrue(searchTimeSortResults.get(0).toLowerCase().contains("mins ago"));
 	}
 }

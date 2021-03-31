@@ -33,7 +33,7 @@ public class GoogleSearchResultsPage {
 		return new GoogleSearchResultsImagesPage();
 	}
 	
-	public GoogleSearchResultsTimeSortPage navigateToTimeSortPage() {
+	public GoogleSearchResultsTimeSortPage sortByPastHour() {
 		TestRunner.getWait()
 				.until(ExpectedConditions.elementToBeClickable(TestRunner.getDriver()
 				.findElement(By.xpath("//div[@id='hdtb-tls']"))))
