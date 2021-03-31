@@ -28,6 +28,17 @@ public class GoogleSearchPage {
                 .collect(Collectors.toList());
     }
 
+    public Integer getGoogleSearchResultAmount() {
+        String googleSearchResult = TestRunner.getDriver()
+                .findElement(By.xpath("//div[@id='result-stats']"))
+                .getText();
+        Integer googleSearchResultsAmount = Integer.parseInt(googleSearchResult
+                .substring(googleSearchResult.indexOf(":") + 1,
+                        googleSearchResult.indexOf("("))
+                .replaceAll(" ", ""));
+        return googleSearchResultsAmount;
+    }
+
     public GoogleSearchImagePage navigateToGoogleSearchImagePage() {
         WebElement imagesSearchType = TestRunner.getDriver().findElement(By.xpath("//a[@class='hide-focus-ring']"));
         imagesSearchType.click();
