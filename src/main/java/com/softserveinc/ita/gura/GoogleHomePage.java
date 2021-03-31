@@ -37,10 +37,9 @@ public class GoogleHomePage extends TestRunner {
     }
 
     public GoogleHomePage hideGoogleLogo() {
-        remoteWebDriver.get("https://www.google.com");
         JavascriptExecutor js = remoteWebDriver;
 
-        js.executeScript("document.getElementsByClassName('o3j99 LLD4me yr19Zb LS8OJ').setAttribute('style', 'visibility:hidden')");
+        js.executeScript("document.getElementsByClassName('lnXdpd')[0].setAttribute('style', 'visibility:hidden')");
         return this;
     }
 }
