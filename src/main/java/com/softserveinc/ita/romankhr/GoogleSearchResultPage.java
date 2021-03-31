@@ -28,11 +28,16 @@ public class GoogleSearchResultPage {
         return new GoogleSearchResultImagesPage();
     }
 
-    public GoogleSearchResultWebdriverPage navigateToWebdriverResultPage() {
-        TestRunner.getDriver().findElement(By.xpath("//a[contains(text(),'10')]")).click();
-        TestRunner.getDriver().findElement(By.xpath("//a[contains(text(),'14')]")).click();
-        return new GoogleSearchResultWebdriverPage();
+    public GoogleSearchResultPage navigateToNumberedResultPage(int pageNumber) {
+        TestRunner.getDriver().findElement(By.xpath("//a[contains(text()," + pageNumber + ")]")).click();
+        return this;
     }
 
+    public List<String> getSearchResultsDescription() {
+        return TestRunner.getDriver().findElements(By.xpath("//div[@class='IsZvec']"))
+                .stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+    }
 
 }
