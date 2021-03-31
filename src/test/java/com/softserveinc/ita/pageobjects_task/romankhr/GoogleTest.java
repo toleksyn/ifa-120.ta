@@ -60,13 +60,13 @@ public class GoogleTest extends TestRunner {
     @Test
     public void testWebdriverSearch() {
         String testWord = "webdriver";
-        List<String> searchResultsDescription = homePage
+        List<String> searchResultDescriptions = homePage
                 .searchFor(testWord)
                 .navigateToNumberedResultPage(10)
                 .navigateToNumberedResultPage(14)
-                .getSearchResultsDescription();
+                .getSearchResultDescriptions();
 
-        Assert.assertTrue(searchResultsDescription.get(0).toLowerCase().contains(testWord));
+        Assert.assertTrue(searchResultDescriptions.get(0).toLowerCase().contains(testWord));
     }
 
 }

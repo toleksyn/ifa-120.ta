@@ -33,7 +33,7 @@ public class GoogleSearchResultPage {
         return this;
     }
 
-    public List<String> getSearchResultsDescription() {
+    public List<String> getSearchResultDescriptions() {
         return TestRunner.getDriver().findElements(By.xpath("//div[@class='IsZvec']"))
                 .stream()
                 .map(WebElement::getText)
