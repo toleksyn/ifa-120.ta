@@ -61,7 +61,6 @@ public class GoogleTest extends TestRunner {
         Integer googleSearchResultAmount = googleHomePage
                 .searchFor(googleSearchMessage)
                 .getGoogleSearchResultAmount();
-        System.out.println(googleSearchResultAmount);
         Assert.assertTrue(googleSearchResultAmount > 5000000);
     }
 }

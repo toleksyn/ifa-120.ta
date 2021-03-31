@@ -36,7 +36,6 @@ public class GoogleSearchPage {
                 .substring(googleSearchResult.indexOf(":") + 1,
                         googleSearchResult.indexOf("("))
                 .replaceAll(" ", ""));
-
         return googleSearchResultsAmount;
     }
 
