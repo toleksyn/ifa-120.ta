@@ -22,7 +22,7 @@ public class GoogleHomePage {
         return new GoogleSearchResultPage();
     }
 
-    public GoogleSettingsPage openSettings() {
+    public GoogleSettingsPage openSettingsPage() {
         TestRunner.getDriver().findElement(By.id("Mses6b")).click();
         WebElement searchSettingsButton = TestRunner.getDriver().findElement(By.xpath("//a[@class='EzVRq']"));
         TestRunner.getWait().until(ExpectedConditions.elementToBeClickable(searchSettingsButton));
@@ -30,11 +30,11 @@ public class GoogleHomePage {
         return new GoogleSettingsPage();
     }
 
-    public String getTextOfSearchButton() {
+    public String getSearchButtonText() {
         return TestRunner.getDriver().findElement(By.cssSelector("[name='btnK']")).getAttribute("value");
     }
 
-    public String getTextOfLuckyButton() {
+    public String getLuckyButtonText() {
         return TestRunner.getDriver().findElement(By.cssSelector("[name='btnI']")).getAttribute("value");
     }
 }
