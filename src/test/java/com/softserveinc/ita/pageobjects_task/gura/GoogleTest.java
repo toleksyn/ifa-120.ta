@@ -18,11 +18,18 @@ public class GoogleTest {
     private GoogleResultPage resultPage = new GoogleResultPage();
     private GoogleImagePage imagePage = new GoogleImagePage();
 
-    @Before
-    public void testingContainOfLink() {
+//    @Before
+    public void beforeTesting() {
         TestRunner.driver = new ChromeDriver();
         System.setProperty("webdriver.chrome.driver", ".C:\\chromedriver.exe");
         googlePage.openPage();
+    }
+
+    @Before
+    public void beforeTestingRemoteWebDriver() {
+        TestRunner.remoteWebDriver = new ChromeDriver();
+        System.setProperty("webdriver.chrome.driver", ".C:\\chromedriver.exe");
+        googlePage.openPageRemoteWebDriver();
     }
 
     public String extractTextFromLink(int indexOfLink) {
