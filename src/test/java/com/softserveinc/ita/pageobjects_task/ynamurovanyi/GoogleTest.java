@@ -59,7 +59,7 @@ public class GoogleTest extends TestRunner {
     public void testGoogleSearchResultsPages() {
         GoogleSearchResultsPage fifthGoogleSearchResultsPage = googleHomePage
                 .searchFor("funny kitten")
-                .navigateToFifthResultsPage();
+                .navigateToResultsPageNumber(5);
         assertEquals(fifthGoogleSearchResultsPage.getSearchResultsLinks().size(), 10);
         assertEquals(fifthGoogleSearchResultsPage.getSearchResultsPageNumber(), 5);
     }
