@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class GoogleResultPage {
     public static WebDriver getDriver() {
-        return TestRunner.driver;
+        return TestRunner.getDriver();
     }
 
     public GoogleImagePage goToImagePage() {
