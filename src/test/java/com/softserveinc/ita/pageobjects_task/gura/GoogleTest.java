@@ -1,17 +1,17 @@
 package com.softserveinc.ita.pageobjects_task.gura;
 
 import com.softserveinc.ita.gura.*;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class GoogleTest {
-    private GoogleHomePage googlePage = new GoogleHomePage();
+    private GoogleHomePage googlePage;
     private GoogleResultPage resultPage = new GoogleResultPage();
     private GoogleImagePage imagePage = new GoogleImagePage();
 
@@ -19,6 +19,7 @@ public class GoogleTest {
     public void beforeTesting() {
         TestRunner.setDriver(new ChromeDriver());
         System.setProperty("webdriver.chrome.driver", ".C:\\chromedriver.exe");
+        googlePage = new GoogleHomePage();
         googlePage.openPage();
     }
 
@@ -29,7 +30,7 @@ public class GoogleTest {
         googlePage.openPageRemoteWebDriver();
     }
 
-    public String extractTextFromLink(int indexOfLink) {
+    private String extractTextFromLink(int indexOfLink) {
          return Stream.of(GoogleResultPage.getDriver()
                     .findElements(By.xpath("//h3[@class='LC20lb DKV0Md']")))
                     .map(element -> element
@@ -39,21 +40,16 @@ public class GoogleTest {
                     .collect(Collectors.joining());
     }
 
-    public boolean linkHasText(String link, String contains) {
-        if (link.contains(contains)) return true;
-        else return false;
-    }
-
     @Test
     public void testingSearchWithSearchTextFunnyKitten() {
         googlePage.doSearch("funny kittens");
-        assert(linkHasText(extractTextFromLink(0), "funnykitten"));
+        Assert.assertTrue(extractTextFromLink(0).contains("funny kitten"));
     }
 
     @Test
     public void testingSearchWithSearchTextSmartphone() {
         googlePage.doSearch("smartphone");
-        assert(linkHasText(extractTextFromLink(0), "wikipedia"));
+        Assert.assertTrue(extractTextFromLink(0).contains("wikipedia"));
     }
 
     @Test
@@ -69,9 +65,4 @@ public class GoogleTest {
         assert(imagePage.goToHomePageByLogo().checkIfPageOpened());
     }
 
-    @Test
-    public void testingHideGoogleLogo() {
-        googlePage.hideGoogleLogo();
-        assert();
-    }
 }
