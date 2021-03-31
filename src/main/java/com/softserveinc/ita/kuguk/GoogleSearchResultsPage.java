@@ -32,4 +32,22 @@ public class GoogleSearchResultsPage {
 				.click();
 		return new GoogleSearchResultsImagesPage();
 	}
+	
+	public GoogleSearchResultsTimeSortPage navigateToTimeSortPage() {
+		TestRunner.getWait()
+				.until(ExpectedConditions.elementToBeClickable(TestRunner.getDriver()
+				.findElement(By.xpath("//div[@id='hdtb-tls']"))))
+				.click();
+				
+		TestRunner.getWait()
+				.until(ExpectedConditions.elementToBeClickable(TestRunner.getDriver()
+				.findElement(By.xpath("//div[@id='hdtbMenus']/span[1]"))))		
+				.click();
+		
+		TestRunner.getWait()
+				.until(ExpectedConditions.elementToBeClickable(TestRunner.getDriver()
+				.findElement(By.xpath("//a[contains(text(),'Past hour')]"))))
+				.click();
+		return new GoogleSearchResultsTimeSortPage();
+	}
 }

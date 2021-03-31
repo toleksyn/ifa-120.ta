@@ -1,11 +1,14 @@
 package com.softserveinc.ita.pageobjects_task.kuguk;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
 import com.softserveinc.ita.kuguk.GoogleHomePage;
 import com.softserveinc.ita.kuguk.GoogleSearchResultsImagesPage;
+import com.softserveinc.ita.kuguk.GoogleSearchResultsTimeSortPage;
 import com.softserveinc.ita.common.TestRunner;
 
 import static org.testng.Assert.assertEquals;
@@ -51,5 +54,17 @@ public class GoogleTest extends TestRunner {
 		searchResultsImagesPage.gotoGoogleHomePageByLogo();
 
 		assertEquals(TestRunner.getDriver().getTitle(), "Google", "Current Page isn't a Google homepage");
+	}
+	
+	@Test
+	public void testGoogleTimeSortSearch() {
+
+		TestRunner.getDriver().get("https://www.google.com.ua/?hl=en");
+		GoogleSearchResultsTimeSortPage searchResultsTimeSort = openGoogleHomePage.searchFor("webdriver")
+				.navigateToTimeSortPage();
+
+		String[] searchTimeSortResults = searchResultsTimeSort.getSearchTimeSortResultsText();
+		
+		assertTrue(searchTimeSortResults[0].toLowerCase().contains("mins ago"));
 	}
 }
