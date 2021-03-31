@@ -55,7 +55,7 @@ public class GoogleTest extends TestRunner {
     public void testWebDriverSearch() {
         String searchTerm = "webdriver";
         BooksResultsPage booksResultsPage = googleHomePage.searchFor(searchTerm).navigateToBooksResultsPage();
-        List<WebElement> listOfTextResults = booksResultsPage.getListOfResultsText();
+        List<WebElement> listOfTextResults = booksResultsPage.getResultsTextList();
         Assert.assertTrue(listOfTextResults.get(9).getText().toLowerCase().contains(searchTerm));
     }
 }

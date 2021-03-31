@@ -8,7 +8,7 @@ import java.util.List;
 
 public class BooksResultsPage {
 
-    public List<WebElement> getListOfResultsText() {
+    public List<WebElement> getResultsTextList() {
         return TestRunner.getDriver().findElements(By.xpath("//h3"));
     }
 }
