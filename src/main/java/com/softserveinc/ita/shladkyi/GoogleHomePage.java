@@ -2,6 +2,7 @@ package com.softserveinc.ita.shladkyi;
 
 
 import com.softserveinc.ita.common.TestRunner;
+import com.softserveinc.ita.common.WebElementUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -16,17 +17,13 @@ public class GoogleHomePage {
     }
 
     public GoogleSearchResultPage searchFor(String searchTerm) {
-        TestRunner.getDriver()
-                .findElement(By.cssSelector("[class='gLFyf gsfi']"))
-                .sendKeys(searchTerm, Keys.ENTER);
+        WebElementUtil.setValueForElement("//input[@class='gLFyf gsfi']", searchTerm + Keys.ENTER);
         return new GoogleSearchResultPage();
     }
 
     public GoogleSettingsPage openSettingsPage() {
-        TestRunner.getDriver().findElement(By.id("Mses6b")).click();
-        WebElement searchSettingsButton = TestRunner.getDriver().findElement(By.xpath("//a[@class='EzVRq']"));
-        TestRunner.getWait().until(ExpectedConditions.elementToBeClickable(searchSettingsButton));
-        searchSettingsButton.click();
+        WebElementUtil.clickElement("//button[@id='Mses6b']");
+        WebElementUtil.clickElement("//a[@class='EzVRq']");
         return new GoogleSettingsPage();
     }
 
