@@ -19,7 +19,11 @@ public class WebElementUtil {
         return TestRunner.getWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(webElementsXPath)));
     }
 
-    public static WebElement getElementFromListForIndex(String webElementsXPath, int elementIndex) {
+    public static WebElement getElementFromListByIndex(String webElementsXPath, int elementIndex) {
         return getListOfElements(webElementsXPath).get(elementIndex);
+    }
+
+    public static List<WebElement> getListOfElementsMoreThenAmount(String webElementXpath, int amount) {
+        return TestRunner.getWait().until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath(webElementXpath), amount));
     }
 }
