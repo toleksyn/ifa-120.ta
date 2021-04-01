@@ -8,9 +8,6 @@ import java.util.List;
 
 public class WebElementUtil {
 
-
-
-
     public static void clickElement(String webElementXPath) {
         TestRunner.getWait().until(ExpectedConditions.elementToBeClickable(By.xpath(webElementXPath))).click();
     }
