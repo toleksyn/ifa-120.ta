@@ -1,9 +1,9 @@
 package com.softserveinc.ita.sbendus.pageobject;
 
 import com.softserveinc.ita.common.TestRunner;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+
+import static com.softserveinc.ita.common.WebElementUtil.setValueForElement;
 
 public class GoogleHomePage {
 
@@ -13,9 +13,7 @@ public class GoogleHomePage {
     }
 
     public GoogleSearchPage searchFor(String searchTerm) {
-        WebElement googleSearchInput = TestRunner.getDriver().findElement(By.xpath("//input[@class='gLFyf gsfi']"));
-        googleSearchInput.sendKeys(searchTerm);
-        googleSearchInput.sendKeys(Keys.ENTER);
+        setValueForElement("//input[@class='gLFyf gsfi']", searchTerm + Keys.ENTER);
         return new GoogleSearchPage();
     }
 }

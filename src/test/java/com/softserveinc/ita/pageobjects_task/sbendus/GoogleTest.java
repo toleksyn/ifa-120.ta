@@ -21,7 +21,7 @@ public class GoogleTest extends TestRunner {
 
     @Test
     public void testGoogleSearch() {
-        String googleSearchMessage = "Funny kitten";
+        String googleSearchMessage = "Funny Kitten";
         String firstLink = googleHomePage
                 .searchFor(googleSearchMessage)
                 .getSearchResultLinkText(1);
@@ -43,14 +43,19 @@ public class GoogleTest extends TestRunner {
     public void testGoogleSearchImageResults() {
         String googleSearchMessage = "Funny Kitten";
         String verificationText = "Funny";
+
         GoogleSearchImagePage googleSearchImagePage = googleHomePage
                 .searchFor(googleSearchMessage)
                 .navigateToGoogleSearchImagePage();
+
         List<String> listOfSearchImages = googleSearchImagePage
                 .getListOfSearchTitleResults();
+
+        System.out.println(listOfSearchImages);
         Assert.assertTrue(listOfSearchImages.size() > 10);
         Assert.assertTrue(listOfSearchImages.get(0).contains(verificationText));
         Assert.assertTrue(listOfSearchImages.get(4).contains(verificationText));
+
         googleSearchImagePage.navigateToHomePageByLogo();
         Assert.assertTrue(TestRunner.getDriver().getCurrentUrl().contains("https://www.google.com/"));
     }
