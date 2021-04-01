@@ -33,11 +33,9 @@ public class GoogleSearchResultPage {
         return this;
     }
 
-    public List<String> getSearchResultDescriptions() {
-        return TestRunner.getDriver().findElements(By.xpath("//div[@class='IsZvec']"))
-                .stream()
-                .map(WebElement::getText)
-                .collect(Collectors.toList());
+    public String getSearchResultDescription(int numberOfItem) {
+
+        return TestRunner.getDriver().findElements(By.xpath("//div[@class='IsZvec']")).get(numberOfItem - 1).getText().toLowerCase();
     }
 
 }
