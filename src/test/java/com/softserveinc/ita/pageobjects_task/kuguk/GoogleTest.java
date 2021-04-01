@@ -1,7 +1,5 @@
 package com.softserveinc.ita.pageobjects_task.kuguk;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -41,6 +39,7 @@ public class GoogleTest extends TestRunner {
 	@Test
 	public void testGoogleSearchImages() {
 		String testStringForAssert = "funny";
+
 		GoogleSearchResultsImagesPage searchResultsImagesPage = openGoogleHomePage.searchFor(searchString)
 				.navigateToImagePage();
 
@@ -58,13 +57,15 @@ public class GoogleTest extends TestRunner {
 
 	@Test
 	public void testGoogleTimeSortSearch() {
-
+		String timeFilterCriteria = "Past hour";
+		String testStringForAssert = "mins ago";
 		TestRunner.getDriver().get("https://www.google.com.ua/?hl=en");
+
 		GoogleSearchResultsTimeSortPage searchResultsTimeSort = openGoogleHomePage.searchFor("webdriver")
-				.sortByPastHour();
+				.sortBy(timeFilterCriteria);
 
-		List<String> searchTimeSortResults = searchResultsTimeSort.getSearchTimeSortResultsText();
-
-		assertTrue(searchTimeSortResults.get(0).toLowerCase().contains("mins ago"));
+		assertTrue(searchResultsTimeSort
+				.getSearchTimeSortResultsText(testStringForAssert, 0)
+				.toLowerCase().contains(testStringForAssert));
 	}
 }
