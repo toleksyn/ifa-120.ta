@@ -5,7 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class GoogleHomePage {
+public class
+GoogleHomePage {
 
     public GoogleHomePage openHomePage() {
         TestRunner.getDriver().get("https://www.google.com/");

@@ -1,6 +1,7 @@
 package com.softserveinc.ita.gura;
 
 import com.softserveinc.ita.common.TestRunner;
+import com.softserveinc.ita.common.WebElementUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,19 +16,18 @@ public class GoogleResultPage {
     }
 
     public String getTextFromLink(int indexOfLink) {
-        return Stream.of(TestRunner.getDriver()
-                .findElements(By.xpath("//h3[@class='LC20lb DKV0Md']")))
-                .map(element -> element
-                        .get(indexOfLink)
-                        .getText())
-                .map(String::toString)
-                .collect(Collectors.joining());
+        return WebElementUtil.getElementFromListByIndex("//h3[@class='LC20lb DKV0Md']", indexOfLink).getText();
+//        return Stream.of(TestRunner.getDriver()
+//                .findElements(By.xpath("//h3[@class='LC20lb DKV0Md']")))
+//                .map(element -> element
+//                        .get(indexOfLink)
+//                        .getText())
+//                .map(String::toString)
+//                .collect(Collectors.joining());
     }
 
     public List<String> getListOfSearchResultLinks() {
-        return TestRunner
-                .getWait()
-                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='yuRUbf']/a")))
+        return WebElementUtil.getListOfElements("//div[@class='yuRUbf']/a")
                 .stream()
                 .map(webElement -> webElement.getAttribute("href"))
                 .collect(Collectors.toList());

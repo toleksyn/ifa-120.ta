@@ -1,6 +1,7 @@
 package com.softserveinc.ita.gura;
 
 import com.softserveinc.ita.common.TestRunner;
+import com.softserveinc.ita.common.WebElementUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -13,9 +14,7 @@ public class GoogleHomePage {
     }
 
     public GoogleResultPage doSearch(String inputText) {
-        WebElement searchInputField = TestRunner.getDriver().findElement(By.xpath("//input[@name='q']"));
-        searchInputField.sendKeys(inputText);
-        searchInputField.sendKeys(Keys.ENTER);
+        WebElementUtil.setValueForElement("//input[@name='q']", inputText + Keys.ENTER);
         return new GoogleResultPage();
     }
 
