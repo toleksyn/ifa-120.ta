@@ -1,6 +1,7 @@
 package com.softserveinc.ita.vpetrat;
 
 import com.softserveinc.ita.common.TestRunner;
+import com.softserveinc.ita.common.WebElementUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,18 +12,14 @@ import java.util.stream.Collectors;
 
 public class GoogleSearchResultsPage {
     public List<String> getListOfSearchResultLinksText() {
-        return TestRunner
-                .getWait()
-                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//h3[@class='LC20lb DKV0Md']")))
-                .stream()
+         return WebElementUtil.getListOfElements("//h3[@class='LC20lb DKV0Md']")
+                 .stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
     }
 
     public List<String> getListOfSearchResultLinks() {
-        return TestRunner
-                .getWait()
-                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='yuRUbf']/a")))
+        return WebElementUtil.getListOfElements("//div[@class='yuRUbf']/a")
                 .stream()
                 .map(webElement -> webElement.getAttribute("href"))
                 .collect(Collectors.toList());
@@ -33,11 +30,7 @@ public class GoogleSearchResultsPage {
     }
 
     public GoogleSearchImagesPage navigateToImagesPage() {
-        TestRunner
-                .getWait()
-                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//a[@class='hide-focus-ring']")))
-                .get(0)
-                .click();
+        WebElementUtil.getElementFromListForIndex("//a[@class='hide-focus-ring']", 0).click();
         return new GoogleSearchImagesPage();
     }
 }
