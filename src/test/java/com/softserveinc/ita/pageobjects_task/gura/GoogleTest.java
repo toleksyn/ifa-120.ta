@@ -42,6 +42,6 @@ public class GoogleTest {
     @Test
     public void testHideGoogleLogo() {
         googleHomePage.hideGoogleLogo();
-        Assert.assertTrue(googleHomePage.checkGoogleLogoVisibilityVisibility("visibility:hidden"));
+        Assert.assertTrue(googleHomePage.checkGoogleLogoVisibility("visibility:hidden"));
     }
 }
