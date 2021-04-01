@@ -4,14 +4,13 @@ import com.softserveinc.ita.gura.*;
 import org.junit.Assert;
 import org.junit.Test;
 import org.testng.annotations.BeforeClass;
-
 import java.util.List;
 
 public class GoogleTest {
     private GoogleHomePage googleHomePage;
 
     @BeforeClass
-    public void beforeTesting() {
+    public void openGoogleHomePage() {
         googleHomePage = new GoogleHomePage().openGoogleHomePage();
     }
 
@@ -33,7 +32,7 @@ public class GoogleTest {
         GoogleImagePage googleImagePage = googleHomePage.doSearch("funny kitten").goToImagePage();
 
         List<String> imagesTitle = new GoogleImagePage()
-                .getImagesTitle();
+                .getImagesTitles();
 
         Assert.assertTrue(imagesTitle.get(0).toLowerCase().contains(searchText));
         Assert.assertTrue(imagesTitle.get(4).toLowerCase().contains(searchText));
@@ -43,9 +42,6 @@ public class GoogleTest {
     @Test
     public void testHideGoogleLogo() {
         googleHomePage.hideGoogleLogo();
-        Assert.assertTrue(googleHomePage.checkVisibilityGoogleLogo());
-
-
+        Assert.assertTrue(googleHomePage.checkGoogleLogoVisibilityVisibility("visibility:hidden"));
     }
-
 }
