@@ -1,24 +1,28 @@
 package com.softserveinc.ita.pageobjects_task.gura;
 
 import com.softserveinc.ita.common.TestRunner;
-import com.softserveinc.ita.gura.*;
+import com.softserveinc.ita.gura.GoogleHomePage;
+import com.softserveinc.ita.gura.GoogleImagePage;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import java.util.List;
 
 public class GoogleTest extends TestRunner {
-    private GoogleHomePage googleHomePage = new GoogleHomePage();
+    private GoogleHomePage googleHomePage;
 
-    @BeforeClass
+    @BeforeMethod
     public void openGoogleHomePage() {
+        googleHomePage = new GoogleHomePage();
         googleHomePage.openGoogleHomePage();
     }
 
     @Test
-    public void testSearchWithSearchTextFunnyKitten() {
-        String linkText = googleHomePage.doSearch("funny kitten").getTextFromLink(0);
-        Assert.assertTrue(linkText.contains("funny kitten"));
+    public void testSearchFirstLinkText() {
+        String searchText = "funny kitten";
+        String linkText = googleHomePage.doSearch(searchText).getTextFromLink(0);
+        Assert.assertTrue(linkText.contains(searchText));
     }
 
     @Test
@@ -30,14 +34,16 @@ public class GoogleTest extends TestRunner {
     @Test
     public void testSearchOnGoogleImagePage() {
         String searchText = "funny";
-        GoogleImagePage googleImagePage = googleHomePage.doSearch("funny kitten").goToImagePage();
+        googleHomePage.doSearch("funny kitten");
+        GoogleImagePage googleImagePage = new GoogleHomePage().goToImagePage();
 
-        List<String> imagesTitle = new GoogleImagePage()
-                .getImagesTitles();
+        String link = TestRunner.getDriver().findElement(By.xpath("//a[@class='F1hUFe jbTlie']")).getAttribute("href");
+
+        List<String> imagesTitle = new GoogleImagePage().getImagesTitles();
 
         Assert.assertTrue(imagesTitle.get(0).toLowerCase().contains(searchText));
         Assert.assertTrue(imagesTitle.get(4).toLowerCase().contains(searchText));
-        Assert.assertTrue(googleImagePage.goToHomePageByLogo().isPageOpened());
+        Assert.assertTrue(googleImagePage.goToHomePageByLogo().isGooglePageOpened(link));
     }
 
     @Test

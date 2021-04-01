@@ -1,6 +1,7 @@
 package com.softserveinc.ita.gura;
 
 import com.softserveinc.ita.common.TestRunner;
+import com.softserveinc.ita.common.WebElementUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -13,14 +14,18 @@ public class GoogleHomePage {
     }
 
     public GoogleResultPage doSearch(String inputText) {
-        WebElement searchInputField = TestRunner.getDriver().findElement(By.xpath("//input[@name='q']"));
-        searchInputField.sendKeys(inputText);
-        searchInputField.sendKeys(Keys.ENTER);
+        WebElementUtil.setValueForElement("//input[@name='q']", inputText + Keys.ENTER);
         return new GoogleResultPage();
     }
 
-    public boolean isPageOpened() {
-        return TestRunner.getDriver().findElement(By.xpath("//input[@class='lnXdpd']")).getAttribute("class").contains("lnXdpd");
+    public GoogleImagePage goToImagePage() {
+        WebElementUtil.clickElement("//a[@data-hveid='CAEQAw']");
+        return new GoogleImagePage();
+    }
+
+    public boolean isGooglePageOpened(String link) {
+        if (TestRunner.getDriver().getCurrentUrl() == link) return true;
+        else return false;
     }
 
     public void hideGoogleLogo() {
@@ -29,6 +34,6 @@ public class GoogleHomePage {
     }
 
     public boolean checkGoogleLogoVisibility() {
-        return TestRunner.getDriver().findElement(By.xpath("//img[@class='lnXdpd']")).getAttribute("style").contains("visibility:hidden");
+        return TestRunner.getDriver().findElement(By.xpath("//img[@class='lnXdpd']")).getAttribute("style").contains("hidden");
     }
 }
