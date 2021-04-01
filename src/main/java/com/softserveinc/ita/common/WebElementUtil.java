@@ -23,4 +23,8 @@ public class WebElementUtil {
     public static WebElement getElementFromListForIndex(String webElementsXPath, int elementIndex) {
         return getListOfElements(webElementsXPath).get(elementIndex);
     }
+
+    public static List<WebElement> getListOfElementsMoreThenAmount(String webElementXpath, int amount) {
+        return TestRunner.getWait().until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath(webElementXpath), amount));
+    }
 }
