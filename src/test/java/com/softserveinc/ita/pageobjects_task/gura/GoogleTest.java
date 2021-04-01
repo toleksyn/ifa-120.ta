@@ -17,7 +17,7 @@ public class GoogleTest extends TestRunner {
 
     @Test
     public void testSearchWithSearchTextFunnyKitten() {
-        String linkText = googleHomePage.doSearch("funny kittens").getTextFromLink(0);
+        String linkText = googleHomePage.doSearch("funny kitten").getTextFromLink(0);
         Assert.assertTrue(linkText.contains("funny kitten"));
     }
 
@@ -37,7 +37,7 @@ public class GoogleTest extends TestRunner {
 
         Assert.assertTrue(imagesTitle.get(0).toLowerCase().contains(searchText));
         Assert.assertTrue(imagesTitle.get(4).toLowerCase().contains(searchText));
-        Assert.assertTrue(googleImagePage.goToHomePageByLogo().checkIfPageOpened());
+        Assert.assertTrue(googleImagePage.goToHomePageByLogo().isPageOpened());
     }
 
     @Test

@@ -19,7 +19,7 @@ public class GoogleHomePage {
         return new GoogleResultPage();
     }
 
-    public boolean checkIfPageOpened() {
+    public boolean isPageOpened() {
         return TestRunner.getDriver().findElement(By.xpath("//input[@class='lnXdpd']")).getAttribute("class").contains("lnXdpd");
     }
 
