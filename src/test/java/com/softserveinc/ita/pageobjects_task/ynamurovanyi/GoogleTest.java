@@ -1,9 +1,9 @@
 package com.softserveinc.ita.pageobjects_task.ynamurovanyi;
 
+import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.ynamurovanyi.GoogleHomePage;
 import com.softserveinc.ita.ynamurovanyi.GoogleSearchImagesPage;
 import com.softserveinc.ita.ynamurovanyi.GoogleSearchResultsPage;
-import com.softserveinc.ita.ynamurovanyi.TestRunner;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
