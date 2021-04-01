@@ -1,6 +1,7 @@
 package com.softserveinc.ita.pageobjects_task.nromanchuk;
 
 import com.softserveinc.ita.common.TestRunner;
+import com.softserveinc.ita.nromanchuk.BooksResultsPage;
 import com.softserveinc.ita.nromanchuk.GoogleHomePage;
 import com.softserveinc.ita.nromanchuk.ImagesResultsPage;
 import org.openqa.selenium.WebElement;
@@ -50,4 +51,11 @@ public class GoogleTest extends TestRunner {
         Assert.assertEquals(TestRunner.getDriver().getTitle(), "Google");
     }
 
+    @Test
+    public void testWebDriverSearch() {
+        String searchTerm = "webdriver";
+        BooksResultsPage booksResultsPage = googleHomePage.searchFor(searchTerm).navigateToBooksResultsPage();
+        List<WebElement> listOfTextResults = booksResultsPage.getResultsTextList();
+        Assert.assertTrue(listOfTextResults.get(9).getText().toLowerCase().contains(searchTerm));
+    }
 }
