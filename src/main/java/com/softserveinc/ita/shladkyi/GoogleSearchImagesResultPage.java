@@ -10,13 +10,11 @@ import java.util.stream.Collectors;
 public class GoogleSearchImagesResultPage {
 
     public List<String> getSearchResultImagesTextList() {
-
-        return WebElementUtil.getListOfElements("//img[@class='rg_i Q4LuWd']")
+        return WebElementUtil.getListOfElementsMoreThenAmount("//img[@class='rg_i Q4LuWd']", 10)
                 .stream()
                 .map(webElement -> webElement.getAttribute("alt"))
                 .collect(Collectors.toList());
     }
-
 
     public GoogleHomePage openGoogleHomePage() {
         WebElementUtil.clickElement("//a[@class='F1hUFe jbTlie']");

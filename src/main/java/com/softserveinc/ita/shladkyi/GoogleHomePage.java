@@ -28,10 +28,10 @@ public class GoogleHomePage {
     }
 
     public String getSearchButtonText() {
-        return TestRunner.getDriver().findElement(By.cssSelector("[name='btnK']")).getAttribute("value");
+        return TestRunner.getDriver().findElement(By.xpath("//input[@name='btnK']")).getAttribute("value");
     }
 
     public String getLuckyButtonText() {
-        return TestRunner.getDriver().findElement(By.cssSelector("[name='btnI']")).getAttribute("value");
+        return TestRunner.getDriver().findElement(By.xpath("//input[@name='btnI']")).getAttribute("value");
     }
 }
