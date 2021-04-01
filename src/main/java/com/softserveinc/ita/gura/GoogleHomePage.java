@@ -28,7 +28,7 @@ public class GoogleHomePage {
         js.executeScript("document.getElementsByClassName('lnXdpd')[0].setAttribute('style', 'visibility:hidden')");
     }
 
-    public boolean checkGoogleLogoVisibility(String cssValue) {
-        return TestRunner.getDriver().findElement(By.xpath("//img[@class='lnXdpd']")).getAttribute("style").contains(cssValue);
+    public boolean checkGoogleLogoVisibility() {
+        return TestRunner.getDriver().findElement(By.xpath("//img[@class='lnXdpd']")).getAttribute("style").contains("visibility:hidden");
     }
 }

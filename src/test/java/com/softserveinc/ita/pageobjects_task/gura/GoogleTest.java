@@ -1,17 +1,18 @@
 package com.softserveinc.ita.pageobjects_task.gura;
 
+import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.gura.*;
 import org.junit.Assert;
 import org.junit.Test;
 import org.testng.annotations.BeforeClass;
 import java.util.List;
 
-public class GoogleTest {
-    private GoogleHomePage googleHomePage;
+public class GoogleTest extends TestRunner {
+    private GoogleHomePage googleHomePage = new GoogleHomePage();
 
     @BeforeClass
     public void openGoogleHomePage() {
-        googleHomePage = new GoogleHomePage().openGoogleHomePage();
+        googleHomePage.openGoogleHomePage();
     }
 
     @Test
@@ -42,6 +43,6 @@ public class GoogleTest {
     @Test
     public void testHideGoogleLogo() {
         googleHomePage.hideGoogleLogo();
-        Assert.assertTrue(googleHomePage.checkGoogleLogoVisibility("visibility:hidden"));
+        Assert.assertTrue(googleHomePage.checkGoogleLogoVisibility());
     }
 }
