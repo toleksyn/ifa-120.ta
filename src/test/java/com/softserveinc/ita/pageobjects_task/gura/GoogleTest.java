@@ -3,7 +3,7 @@ package com.softserveinc.ita.pageobjects_task.gura;
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.gura.*;
 import org.junit.Assert;
-import org.junit.Test;
+import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
 import java.util.List;
 
