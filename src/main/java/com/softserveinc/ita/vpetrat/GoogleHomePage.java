@@ -2,9 +2,7 @@ package com.softserveinc.ita.vpetrat;
 
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.common.WebElementUtil;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class GoogleHomePage {
 
