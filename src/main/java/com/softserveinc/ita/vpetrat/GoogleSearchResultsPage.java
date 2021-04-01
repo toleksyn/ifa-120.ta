@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 
 public class GoogleSearchResultsPage {
     public List<String> getListOfSearchResultLinksText() {
-         return WebElementUtil.getListOfElements("//h3[@class='LC20lb DKV0Md']")
-                 .stream()
+        return WebElementUtil.getListOfElements("//h3[@class='LC20lb DKV0Md']")
+                .stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
     }
@@ -27,7 +27,7 @@ public class GoogleSearchResultsPage {
     }
 
     public GoogleSearchImagesPage navigateToImagesPage() {
-        WebElementUtil.getElementFromListForIndex("//a[@class='hide-focus-ring']", 0).click();
+        WebElementUtil.getElementFromListByIndex("//a[@class='hide-focus-ring']", 0).click();
         return new GoogleSearchImagesPage();
     }
 }
