@@ -1,7 +1,6 @@
 package com.softserveinc.ita.romankhr;
 
-import com.softserveinc.ita.common.TestRunner;
-import org.openqa.selenium.By;
+import com.softserveinc.ita.common.WebElementUtil;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -9,33 +8,33 @@ import java.util.stream.Collectors;
 
 public class GoogleSearchResultPage {
 
-    public List<String> getSearchResultLinksTitles() {
-        return TestRunner.getDriver().findElements(By.xpath("//h3[@class='LC20lb DKV0Md']"))
+    public String getSearchResultLinksTitles() {
+        return WebElementUtil.getListOfElements("//h3[@class='LC20lb DKV0Md']")
                 .stream()
                 .map(WebElement::getText)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()).get(0).toLowerCase();
     }
 
     public List<String> getSearchResultsLinks() {
-        return TestRunner.getDriver().findElements(By.xpath("//div[@class='yuRUbf']/a"))
+        return WebElementUtil.getListOfElements("//div[@class='yuRUbf']/a")
                 .stream()
                 .map(webElement -> webElement.getAttribute("href"))
                 .collect(Collectors.toList());
     }
 
     public GoogleSearchResultImagesPage navigateToImagesPage() {
-        TestRunner.getDriver().findElement(By.xpath("//div[@class='MUFPAc']/div[2]")).click();
+        WebElementUtil.clickElement("//div[@class='MUFPAc']/div[2]");
         return new GoogleSearchResultImagesPage();
     }
 
     public GoogleSearchResultPage navigateToNumberedResultPage(int pageNumber) {
-        TestRunner.getDriver().findElement(By.xpath("//a[contains(text()," + pageNumber + ")]")).click();
+        WebElementUtil.clickElement("//a[contains(text()," + pageNumber + ")]");
         return this;
     }
 
     public String getSearchResultDescription(int numberOfItem) {
-
-        return TestRunner.getDriver().findElements(By.xpath("//div[@class='IsZvec']")).get(numberOfItem - 1).getText().toLowerCase();
+        return WebElementUtil.getElementFromListByIndex("//h3[@class='LC20lb DKV0Md']", numberOfItem)
+                .getText()
+                .toLowerCase();
     }
-
 }
