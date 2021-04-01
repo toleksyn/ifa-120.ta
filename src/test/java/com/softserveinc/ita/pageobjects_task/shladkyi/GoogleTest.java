@@ -35,12 +35,22 @@ public class GoogleTest extends TestRunner {
     @Test
     public void testValidGoogleImagesSearch() {
         GoogleSearchImagesResultPage googleImagesResultPage = googleHomePage.searchFor("funny kitten").openImagesPage();
-        List<String> textOfImagesList = googleImagesResultPage.getListOfSearchResultImagesText();
-        Assert.assertTrue(textOfImagesList.size() >= 10);
+        List<String> imagesListText = googleImagesResultPage.getSearchResultImagesTextList();
+        Assert.assertTrue(imagesListText.size() >= 10);
         String testText = "funny";
-        Assert.assertTrue(textOfImagesList.get(0).toLowerCase().contains(testText));
-        Assert.assertTrue(textOfImagesList.get(4).toLowerCase().contains(testText));
+        Assert.assertTrue(imagesListText.get(0).toLowerCase().contains(testText));
+        Assert.assertTrue(imagesListText.get(4).toLowerCase().contains(testText));
         googleImagesResultPage.openGoogleHomePage();
         Assert.assertTrue(TestRunner.getDriver().getCurrentUrl().contains("https://www.google.com/"));
+    }
+
+    @Test
+    public void testLanguageChange() {
+        GoogleHomePage homePage = googleHomePage.openSettingsPage().changeGoogleLanguage("en");
+        Assert.assertEquals(homePage.getSearchButtonText(), "Google Search");
+        Assert.assertEquals(homePage.getLuckyButtonText(), "I'm Feeling Lucky");
+        homePage.openSettingsPage().changeGoogleLanguage("uk");
+        Assert.assertEquals(homePage.getSearchButtonText(), "Пошук Google");
+        Assert.assertEquals(homePage.getLuckyButtonText(), "Мені пощастить");
     }
 }

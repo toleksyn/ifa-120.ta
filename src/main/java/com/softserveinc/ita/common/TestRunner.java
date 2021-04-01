@@ -6,6 +6,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
+import java.time.Duration;
+
 public class TestRunner {
     private static WebDriver driver;
     private static WebDriverWait wait;
@@ -24,10 +26,11 @@ public class TestRunner {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, 10);
+        wait.pollingEvery(Duration.ofSeconds(2));
     }
 
     @AfterSuite
     public void close() {
-        driver.close();
+        driver.quit();
     }
 }

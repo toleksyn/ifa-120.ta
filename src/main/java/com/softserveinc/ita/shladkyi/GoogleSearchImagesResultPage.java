@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class GoogleSearchImagesResultPage {
 
-    public List<String> getListOfSearchResultImagesText() {
+    public List<String> getSearchResultImagesTextList() {
         return TestRunner.getDriver().findElements(By.xpath("//img[@class='rg_i Q4LuWd']"))
                 .stream()
                 .map(webElement -> webElement.getAttribute("alt"))

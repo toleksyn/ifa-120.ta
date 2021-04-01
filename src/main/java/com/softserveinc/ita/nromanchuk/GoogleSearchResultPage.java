@@ -28,4 +28,10 @@ public class GoogleSearchResultPage {
         TestRunner.getDriver().findElement(By.xpath("//*[@data-hveid='CAEQAw']")).click();
         return new ImagesResultsPage();
     }
+
+    public BooksResultsPage navigateToBooksResultsPage() {
+        TestRunner.getDriver().findElement(By.xpath("//div[@class='GOE98c']")).click();
+        TestRunner.getDriver().findElements(By.xpath("//div[@class='gTMtLb fp-nh']//a")).get(1).click();
+        return new BooksResultsPage();
+    }
 }
