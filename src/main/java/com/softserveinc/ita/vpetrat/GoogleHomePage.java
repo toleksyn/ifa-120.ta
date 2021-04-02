@@ -1,9 +1,8 @@
 package com.softserveinc.ita.vpetrat;
 
 import com.softserveinc.ita.common.TestRunner;
-import org.openqa.selenium.By;
+import com.softserveinc.ita.common.WebElementUtil;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class GoogleHomePage {
 
@@ -13,22 +12,13 @@ public class GoogleHomePage {
     }
 
     public GoogleSearchResultsPage searchFor(String request) {
-        TestRunner
-                .getWait()
-                .until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@class='gLFyf gsfi']")))
-                .sendKeys(request + Keys.ENTER);
+        WebElementUtil.setElementValue("//input[@class='gLFyf gsfi']", request + Keys.ENTER);
         return new GoogleSearchResultsPage();
     }
 
     public GoogleLuckySearchResultPage luckySearchFor(String request) {
-        TestRunner
-                .getWait()
-                .until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@class='gLFyf gsfi']")))
-                .sendKeys(request);
-        TestRunner
-                .getWait()
-                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//input[@name='btnI']")))
-                .get(0).click();
+        WebElementUtil.setElementValue("//input[@class='gLFyf gsfi']", request);
+        WebElementUtil.getElementFromListByIndex("//input[@name='btnI']", 0).click();
         return new GoogleLuckySearchResultPage();
     }
 }
