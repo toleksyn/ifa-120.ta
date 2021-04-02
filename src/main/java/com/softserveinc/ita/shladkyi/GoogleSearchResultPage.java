@@ -1,8 +1,6 @@
 package com.softserveinc.ita.shladkyi;
 
-import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.common.WebElementUtil;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;

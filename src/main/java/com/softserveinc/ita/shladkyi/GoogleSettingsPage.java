@@ -1,9 +1,9 @@
 package com.softserveinc.ita.shladkyi;
 
-import com.softserveinc.ita.common.WebElementUtil;
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import com.softserveinc.ita.common.TestRunner;
+import com.softserveinc.ita.common.WebElementUtil;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class GoogleSettingsPage {
     public GoogleHomePage changeGoogleLanguage(String abbreviationLanguage) {
