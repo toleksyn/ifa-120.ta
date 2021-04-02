@@ -8,7 +8,8 @@ import java.util.stream.Collectors;
 public class GoogleSearchImagesPage {
 
     public List<String> getSearchResultsLinksText() {
-        return WebElementUtil.getListOfElementsMoreThenAmount("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']", 10)
+        return WebElementUtil.getElementsListAtLeast
+                ("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']", 10)
                 .stream()
                 .map(searchResultsLinksText -> searchResultsLinksText.getText())
                 .collect(Collectors.toList());
