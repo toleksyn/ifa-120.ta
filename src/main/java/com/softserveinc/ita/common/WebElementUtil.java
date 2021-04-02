@@ -11,19 +11,23 @@ public class WebElementUtil {
         TestRunner.getWait().until(ExpectedConditions.elementToBeClickable(By.xpath(webElementXPath))).click();
     }
 
-    public static void setValueForElement(String webElementXPath, String value) {
+    public static void setElementValue(String webElementXPath, String value) {
         TestRunner.getWait().until(ExpectedConditions.elementToBeClickable(By.xpath(webElementXPath))).sendKeys(value);
     }
 
-    public static List<WebElement> getListOfElements(String webElementsXPath) {
+    public static List<WebElement> getElementsList(String webElementsXPath) {
         return TestRunner.getWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(webElementsXPath)));
     }
 
     public static WebElement getElementFromListByIndex(String webElementsXPath, int elementIndex) {
-        return getListOfElements(webElementsXPath).get(elementIndex);
+        return getElementsList(webElementsXPath).get(elementIndex);
     }
 
-    public static List<WebElement> getListOfElementsMoreThenAmount(String webElementXpath, int amount) {
-        return TestRunner.getWait().until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath(webElementXpath), amount));
+    public static List<WebElement> getElementsListAtLeast(String webElementXPath, int amount) {
+        return TestRunner.getWait().until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath(webElementXPath), amount));
+    }
+
+    public static WebElement getElement(String webElementXPath) {
+        return TestRunner.getWait().until(ExpectedConditions.elementToBeClickable(By.xpath(webElementXPath)));
     }
 }
