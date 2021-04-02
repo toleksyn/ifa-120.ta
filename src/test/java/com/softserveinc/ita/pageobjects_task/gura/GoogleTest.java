@@ -36,10 +36,10 @@ public class GoogleTest extends TestRunner {
         GoogleImagePage googleImagePage = googleHomePage.doSearch("funny kitten").goToImagePage();
 
         String link = googleImagePage.getGoogleLogoLink();
-        List<String> imagesTitle = new GoogleImagePage().getImagesTitles();
+        List<String> imagesTitles = new GoogleImagePage().getImagesTitles();
 
-        Assert.assertTrue(imagesTitle.get(0).toLowerCase().contains(searchText));
-        Assert.assertTrue(imagesTitle.get(4).toLowerCase().contains(searchText));
+        Assert.assertTrue(imagesTitles.get(0).toLowerCase().contains(searchText));
+        Assert.assertTrue(imagesTitles.get(4).toLowerCase().contains(searchText));
         googleImagePage.goToHomePageByLogo();
         Assert.assertTrue(link.equals(TestRunner.getDriver().getCurrentUrl()));
     }
