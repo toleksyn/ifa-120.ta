@@ -21,7 +21,7 @@ public class GoogleTest extends TestRunner {
 
     @Test
     public void testGoogleSearch() {
-        String googleSearchMessage = "Funny kitten";
+        String googleSearchMessage = "Funny Kitten";
         String firstLink = googleHomePage
                 .searchFor(googleSearchMessage)
                 .getSearchResultLinkText(1);

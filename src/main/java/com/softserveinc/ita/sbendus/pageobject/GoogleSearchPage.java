@@ -12,8 +12,7 @@ import static com.softserveinc.ita.common.WebElementUtil.*;
 public class GoogleSearchPage {
 
     public String getSearchResultLinkText(int index) {
-
-        return (getElementFromListForIndex("//div[@class='yuRUbf']/a", index))
+        return getElementFromListByIndex("//div[@class='yuRUbf']/a", index)
                 .getText();
     }
 
