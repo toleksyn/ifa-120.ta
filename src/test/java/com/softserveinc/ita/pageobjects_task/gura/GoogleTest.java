@@ -4,7 +4,6 @@ import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.gura.GoogleHomePage;
 import com.softserveinc.ita.gura.GoogleImagePage;
 import org.testng.Assert;
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 import java.util.List;
@@ -34,10 +33,9 @@ public class GoogleTest extends TestRunner {
     @Test
     public void testSearchOnGoogleImagePage() {
         String searchText = "funny";
-        googleHomePage.doSearch("funny kitten");
-        GoogleImagePage googleImagePage = new GoogleHomePage().goToImagePage();
+        GoogleImagePage googleImagePage = googleHomePage.doSearch("funny kitten").goToImagePage();
 
-        String link = TestRunner.getDriver().findElement(By.xpath("//a[@class='F1hUFe jbTlie']")).getAttribute("href");
+        String link = googleImagePage.getGoogleLogoLink();
         List<String> imagesTitle = new GoogleImagePage().getImagesTitles();
 
         Assert.assertTrue(imagesTitle.get(0).toLowerCase().contains(searchText));

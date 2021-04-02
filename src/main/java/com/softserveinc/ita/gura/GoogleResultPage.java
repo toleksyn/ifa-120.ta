@@ -15,4 +15,9 @@ public class GoogleResultPage {
                 .map(webElement -> webElement.getAttribute("href"))
                 .collect(Collectors.toList());
     }
+
+    public GoogleImagePage goToImagePage() {
+        WebElementUtil.clickElement("//a[@data-hveid='CAEQAw']");
+        return new GoogleImagePage();
+    }
 }

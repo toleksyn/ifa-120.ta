@@ -1,6 +1,9 @@
 package com.softserveinc.ita.gura;
 
+import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.common.WebElementUtil;
+import org.openqa.selenium.By;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,5 +18,9 @@ public class GoogleImagePage {
     public GoogleHomePage goToHomePageByLogo() {
         WebElementUtil.clickElement("//a[@class='F1hUFe jbTlie']");
         return new GoogleHomePage();
+    }
+
+    public String getGoogleLogoLink() {
+        return TestRunner.getDriver().findElement(By.xpath("//a[@class='F1hUFe jbTlie']")).getAttribute("href");
     }
 }

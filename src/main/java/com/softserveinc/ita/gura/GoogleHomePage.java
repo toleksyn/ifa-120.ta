@@ -17,11 +17,6 @@ public class GoogleHomePage {
         return new GoogleResultPage();
     }
 
-    public GoogleImagePage goToImagePage() {
-        WebElementUtil.clickElement("//a[@data-hveid='CAEQAw']");
-        return new GoogleImagePage();
-    }
-
     public void hideGoogleLogo() {
         JavascriptExecutor js = (JavascriptExecutor) TestRunner.getDriver();
         js.executeScript("document.getElementsByClassName('lnXdpd')[0].setAttribute('style', 'visibility:hidden')");
