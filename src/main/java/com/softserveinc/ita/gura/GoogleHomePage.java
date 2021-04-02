@@ -23,11 +23,6 @@ public class GoogleHomePage {
         return new GoogleImagePage();
     }
 
-    public boolean isGooglePageOpened(String link) {
-        if (TestRunner.getDriver().getCurrentUrl() == link) return true;
-        else return false;
-    }
-
     public void hideGoogleLogo() {
         JavascriptExecutor js = (JavascriptExecutor) TestRunner.getDriver();
         js.executeScript("document.getElementsByClassName('lnXdpd')[0].setAttribute('style', 'visibility:hidden')");

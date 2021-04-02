@@ -3,7 +3,7 @@ package com.softserveinc.ita.pageobjects_task.gura;
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.gura.GoogleHomePage;
 import com.softserveinc.ita.gura.GoogleImagePage;
-import org.junit.Assert;
+import org.testng.Assert;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
@@ -38,12 +38,12 @@ public class GoogleTest extends TestRunner {
         GoogleImagePage googleImagePage = new GoogleHomePage().goToImagePage();
 
         String link = TestRunner.getDriver().findElement(By.xpath("//a[@class='F1hUFe jbTlie']")).getAttribute("href");
-
         List<String> imagesTitle = new GoogleImagePage().getImagesTitles();
 
         Assert.assertTrue(imagesTitle.get(0).toLowerCase().contains(searchText));
         Assert.assertTrue(imagesTitle.get(4).toLowerCase().contains(searchText));
-        Assert.assertTrue(googleImagePage.goToHomePageByLogo().isGooglePageOpened(link));
+        googleImagePage.goToHomePageByLogo();
+        Assert.assertTrue(link.equals(TestRunner.getDriver().getCurrentUrl()));
     }
 
     @Test
