@@ -13,7 +13,7 @@ public class GoogleHomePage {
     }
 
     public GoogleResultPage doSearch(String inputText) {
-        WebElementUtil.setValueForElement("//input[@name='q']", inputText + Keys.ENTER);
+        WebElementUtil.setElementValue("//input[@name='q']", inputText + Keys.ENTER);
         return new GoogleResultPage();
     }
 

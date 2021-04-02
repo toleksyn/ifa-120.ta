@@ -10,7 +10,7 @@ public class GoogleResultPage {
     }
 
     public List<String> getListOfSearchResultLinks() {
-        return WebElementUtil.getListOfElements("//div[@class='yuRUbf']/a")
+        return WebElementUtil.getElementsList("//div[@class='yuRUbf']/a")
                 .stream()
                 .map(webElement -> webElement.getAttribute("href"))
                 .collect(Collectors.toList());

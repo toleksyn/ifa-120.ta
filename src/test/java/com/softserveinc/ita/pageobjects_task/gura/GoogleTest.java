@@ -9,11 +9,10 @@ import org.testng.annotations.BeforeMethod;
 import java.util.List;
 
 public class GoogleTest extends TestRunner {
-    private GoogleHomePage googleHomePage;
+    private GoogleHomePage googleHomePage = new GoogleHomePage();
 
     @BeforeMethod
     public void openGoogleHomePage() {
-        googleHomePage = new GoogleHomePage();
         googleHomePage.openGoogleHomePage();
     }
 
