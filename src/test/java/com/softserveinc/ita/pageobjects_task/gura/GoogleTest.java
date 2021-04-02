@@ -7,6 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 import java.util.List;
+import java.util.Locale;
 
 public class GoogleTest extends TestRunner {
     private GoogleHomePage googleHomePage = new GoogleHomePage();
@@ -19,7 +20,7 @@ public class GoogleTest extends TestRunner {
     @Test
     public void testSearchFirstLinkText() {
         String searchText = "funny kitten";
-        String linkText = googleHomePage.doSearch(searchText).getTextFromLink(0);
+        String linkText = googleHomePage.doSearch(searchText).getTextFromLink(0).toLowerCase(Locale.ROOT);
         Assert.assertTrue(linkText.contains(searchText));
     }
 
