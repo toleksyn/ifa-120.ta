@@ -28,6 +28,7 @@ public class WebElementUtil {
     }
 
     public static WebElement getElementFromListByIndex(String webElementsXPath, int elementIndex) {
-        return getElement("(" + webElementsXPath + ")[" + elementIndex + 1 + "]");
+        return getElement("(" + webElementsXPath + ")[" + (elementIndex + 1) + "]");
     }
 }
+
