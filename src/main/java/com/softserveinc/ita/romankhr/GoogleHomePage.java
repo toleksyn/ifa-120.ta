@@ -7,13 +7,12 @@ import org.openqa.selenium.Keys;
 public class GoogleHomePage {
 
     public GoogleHomePage open() {
-        TestRunner.getDriver()
-                .get("https://www.google.com/");
+        TestRunner.getDriver().get("https://www.google.com/");
         return this;
     }
 
     public GoogleSearchResultPage searchFor(String searchTerm) {
-        WebElementUtil.setValueForElement("//input[@class='gLFyf gsfi']", searchTerm + Keys.ENTER);
+        WebElementUtil.setElementValue("//input[@class='gLFyf gsfi']", searchTerm + Keys.ENTER);
         return new GoogleSearchResultPage();
     }
 }

@@ -23,6 +23,7 @@ public class GoogleTest extends TestRunner {
         String searchResultTitle = homePage
                 .searchFor(searchTerm)
                 .getSearchResultLinksTitles();
+
         Assert.assertTrue(searchResultTitle.contains(searchTerm));
     }
 
