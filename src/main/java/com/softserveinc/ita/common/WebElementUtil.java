@@ -26,4 +26,8 @@ public class WebElementUtil {
     public static WebElement getElement(String webElementXPath) {
         return TestRunner.getWait().until(ExpectedConditions.elementToBeClickable(By.xpath(webElementXPath)));
     }
+
+    public static WebElement getElementFromListByIndex(String webElementsXPath, int elementIndex) {
+        return getElement("(" + webElementsXPath + ")[" + elementIndex + 1 + "]");
+    }
 }
