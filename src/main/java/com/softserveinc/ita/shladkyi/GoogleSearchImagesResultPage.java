@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class GoogleSearchImagesResultPage {
 
     public List<String> getSearchResultImagesTextList() {
-        return WebElementUtil.getListOfElementsMoreThenAmount("//img[@class='rg_i Q4LuWd']", 10)
+        return WebElementUtil.getElementsListAtLeast("//img[@class='rg_i Q4LuWd']", 10)
                 .stream()
                 .map(webElement -> webElement.getAttribute("alt"))
                 .collect(Collectors.toList());

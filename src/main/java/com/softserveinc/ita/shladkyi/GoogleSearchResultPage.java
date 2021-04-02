@@ -15,7 +15,7 @@ public class GoogleSearchResultPage {
     }
 
     public List<String> getAllSearchResultLinks() {
-        return WebElementUtil.getListOfElements("//div[@class='TbwUpd NJjxre']")
+        return WebElementUtil.getElementsList("//div[@class='TbwUpd NJjxre']")
                 .stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());

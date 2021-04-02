@@ -17,7 +17,7 @@ public class GoogleHomePage {
     }
 
     public GoogleSearchResultPage searchFor(String searchTerm) {
-        WebElementUtil.setValueForElement("//input[@class='gLFyf gsfi']", searchTerm + Keys.ENTER);
+        WebElementUtil.setElementValue("//input[@class='gLFyf gsfi']", searchTerm + Keys.ENTER);
         return new GoogleSearchResultPage();
     }
 
@@ -28,10 +28,10 @@ public class GoogleHomePage {
     }
 
     public String getSearchButtonText() {
-        return TestRunner.getDriver().findElement(By.xpath("//input[@name='btnK']")).getAttribute("value");
+        return WebElementUtil.getElement("(//input[@class='gNO89b'])[2]").getAttribute("value");
     }
 
     public String getLuckyButtonText() {
-        return TestRunner.getDriver().findElement(By.xpath("//input[@name='btnI']")).getAttribute("value");
+        return WebElementUtil.getElement("(//input[@class='RNmpXc'])[2]").getAttribute("value");
     }
 }
