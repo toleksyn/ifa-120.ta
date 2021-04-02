@@ -2,11 +2,10 @@ package com.softserveinc.ita.pageobjects_task.kuguk;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import java.util.List;
 import com.softserveinc.ita.kuguk.GoogleHomePage;
 import com.softserveinc.ita.kuguk.GoogleSearchResultsImagesPage;
-import com.softserveinc.ita.kuguk.GoogleSearchResultsTimeSortPage;
+import com.softserveinc.ita.kuguk.GoogleSearchSortResultsPage;
 import com.softserveinc.ita.common.TestRunner;
 
 import static org.testng.Assert.assertEquals;
@@ -15,25 +14,25 @@ import static org.testng.Assert.assertTrue;
 public class GoogleTest extends TestRunner {
 
 	private GoogleHomePage openGoogleHomePage;
-	private List<String> searchResultsLinks;
 	private String searchString;
 
 	@BeforeMethod
 	public void doSearch() {
 		openGoogleHomePage = new GoogleHomePage().open();
-		searchString = "funny kitten";
+		searchString = "\"funny kitten\"";
 	}
 
 	@Test
 	public void testGoogleSearch() {
-		searchResultsLinks = openGoogleHomePage.searchFor(searchString).getSearchResultsLinksText();
-		assertTrue(searchResultsLinks.get(0).toLowerCase().contains("funny kitten"));
+		String searchResultsLinks = openGoogleHomePage.searchFor(searchString).getSearchResultsLinksText(2).getText();
+		assertTrue(searchResultsLinks.toLowerCase().contains("funny kitten"));
 	}
 
 	@Test
 	public void testGoogleSearch_PresenceResultInList() {
-		searchResultsLinks = openGoogleHomePage.searchFor("smartphone").getSearchResultsLinksList();
-		assertTrue(searchResultsLinks.toString().toLowerCase().contains("wikipedia."));
+		List<String>searchResultsLinksList = openGoogleHomePage.searchFor("smartphone")
+				.getSearchResultsLinksList();
+		assertTrue(searchResultsLinksList.toString().toLowerCase().contains("wikipedia."));
 	}
 
 	@Test
@@ -57,12 +56,12 @@ public class GoogleTest extends TestRunner {
 
 	@Test
 	public void testGoogleTimeSortSearch() {
-		String timeFilterCriteria = "Past hour";
+		String sortFilter = "Past hour";
 		String testStringForAssert = "mins ago";
 		TestRunner.getDriver().get("https://www.google.com.ua/?hl=en");
 
-		GoogleSearchResultsTimeSortPage searchResultsTimeSort = openGoogleHomePage.searchFor("webdriver")
-				.sortBy(timeFilterCriteria);
+		GoogleSearchSortResultsPage searchResultsTimeSort = openGoogleHomePage.searchFor("webdriver")
+				.sortBy(sortFilter);
 
 		assertTrue(searchResultsTimeSort
 				.getSearchTimeSortResultsText(testStringForAssert, 0)

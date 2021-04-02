@@ -8,7 +8,7 @@ public class GoogleSearchResultsImagesPage {
 
 	public List<String> getSearchResultsImagesText() {
 
-		return WebElementUtil.getListOfElementsMoreThenAmount("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']", 10)
+		return WebElementUtil.getElementsListAtLeast("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']", 10)
 				.stream()
 				.map(foundImagesList -> foundImagesList.getAttribute("title"))
 				.collect(Collectors.toList());
