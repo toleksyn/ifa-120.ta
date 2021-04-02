@@ -18,7 +18,7 @@ public class GoogleHomePage {
 
     public GoogleLuckySearchResultPage luckySearchFor(String request) {
         WebElementUtil.setElementValue("//input[@class='gLFyf gsfi']", request);
-        WebElementUtil.getElementsList("//input[@name='btnI']").get(0).click();
+        WebElementUtil.clickElement("//input[@name='btnI']");
         return new GoogleLuckySearchResultPage();
     }
 }

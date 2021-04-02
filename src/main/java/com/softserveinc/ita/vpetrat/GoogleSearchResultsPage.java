@@ -27,7 +27,7 @@ public class GoogleSearchResultsPage {
     }
 
     public GoogleSearchImagesPage navigateToImagesPage() {
-        WebElementUtil.getElementsList("//a[@class='hide-focus-ring']").get(0).click();
+        WebElementUtil.clickElement("//a[@class='hide-focus-ring']");
         return new GoogleSearchImagesPage();
     }
 }
