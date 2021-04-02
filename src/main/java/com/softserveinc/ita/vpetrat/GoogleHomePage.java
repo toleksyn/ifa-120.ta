@@ -12,12 +12,12 @@ public class GoogleHomePage {
     }
 
     public GoogleSearchResultsPage searchFor(String request) {
-        WebElementUtil.setValueForElement("//input[@class='gLFyf gsfi']", request + Keys.ENTER);
+        WebElementUtil.setElementValue("//input[@class='gLFyf gsfi']", request + Keys.ENTER);
         return new GoogleSearchResultsPage();
     }
 
     public GoogleLuckySearchResultPage luckySearchFor(String request) {
-        WebElementUtil.setValueForElement("//input[@class='gLFyf gsfi']", request);
+        WebElementUtil.setElementValue("//input[@class='gLFyf gsfi']", request);
         WebElementUtil.getElementFromListByIndex("//input[@name='btnI']", 0).click();
         return new GoogleLuckySearchResultPage();
     }
