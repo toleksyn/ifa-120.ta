@@ -24,7 +24,7 @@ public class GoogleTest extends TestRunner {
 
 	@Test
 	public void testGoogleSearch() {
-		String searchResultsLinks = openGoogleHomePage.searchFor(searchString).getSearchResultsLinksText(2).getText();
+		String searchResultsLinks = openGoogleHomePage.searchFor(searchString).getSearchResultsLinksText(0).getText();
 		assertTrue(searchResultsLinks.toLowerCase().contains("funny kitten"));
 	}
 

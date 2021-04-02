@@ -20,7 +20,7 @@ public class GoogleSearchResultsPage {
 				.collect(Collectors.toList());
 	}
 	
-public GoogleSearchResultsImagesPage navigateToImagePage() {
+	public GoogleSearchResultsImagesPage navigateToImagePage() {
 		WebElementUtil.clickElement("//*[@data-hveid='CAEQAw']");		
 		
 		return new GoogleSearchResultsImagesPage();
