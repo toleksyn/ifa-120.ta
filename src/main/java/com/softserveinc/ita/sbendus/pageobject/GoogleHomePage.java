@@ -3,7 +3,7 @@ package com.softserveinc.ita.sbendus.pageobject;
 import com.softserveinc.ita.common.TestRunner;
 import org.openqa.selenium.Keys;
 
-import static com.softserveinc.ita.common.WebElementUtil.setValueForElement;
+import static com.softserveinc.ita.common.WebElementUtil.setElementValue;
 
 public class GoogleHomePage {
 
@@ -13,7 +13,7 @@ public class GoogleHomePage {
     }
 
     public GoogleSearchPage searchFor(String searchTerm) {
-        setValueForElement("//input[@class='gLFyf gsfi']", searchTerm + Keys.ENTER);
+        setElementValue("//input[@class='gLFyf gsfi']", searchTerm + Keys.ENTER);
         return new GoogleSearchPage();
     }
 }

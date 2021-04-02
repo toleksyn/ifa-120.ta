@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.softserveinc.ita.common.WebElementUtil.clickElement;
-import static com.softserveinc.ita.common.WebElementUtil.getListOfElementsMoreThenAmount;
+import static com.softserveinc.ita.common.WebElementUtil.getElementsListAtLeast;
 
 public class GoogleSearchImagePage {
 
     public List<String> getListOfSearchTitleResults() {
-        return getListOfElementsMoreThenAmount("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']", 10)
+        return getElementsListAtLeast("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']", 10)
                 .stream()
                 .map(WebElement -> WebElement.getAttribute("title"))
                 .collect(Collectors.toList());

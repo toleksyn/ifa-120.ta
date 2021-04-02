@@ -20,11 +20,7 @@ public class WebElementUtil {
     }
 
     public static WebElement getElementFromListByIndex(String webElementsXPath, int elementIndex) {
-<<<<<<< HEAD
-        return getListOfElements(webElementsXPath).get(elementIndex);
-=======
         return getElementsList(webElementsXPath).get(elementIndex);
->>>>>>> origin/V.Petrat-main
     }
 
     public static List<WebElement> getElementsListAtLeast(String webElementXPath, int amount) {
