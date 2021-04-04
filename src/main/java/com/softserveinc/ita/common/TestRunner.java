@@ -25,7 +25,7 @@ public class TestRunner {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, 60);
+        wait = new WebDriverWait(driver, 30);
         wait.pollingEvery(Duration.ofSeconds(2));
     }
 

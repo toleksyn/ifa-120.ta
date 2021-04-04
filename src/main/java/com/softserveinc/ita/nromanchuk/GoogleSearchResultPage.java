@@ -14,14 +14,14 @@ public class GoogleSearchResultPage {
     }
 
     public List<String> getResultsLinks() {
-        return WebElementUtil.getListOfElements("//div[@class='yuRUbf']/a")
+        return WebElementUtil.getElementsList("//div[@class='yuRUbf']/a")
                 .stream()
                 .map(webElement -> webElement.getAttribute("href"))
                 .collect(Collectors.toList());
     }
 
     public ImagesResultsPage navigateToImageResultsPage() {
-        WebElementUtil.clickElement("//*[@data-hveid='CAEQAw']");
+        WebElementUtil.clickElement(("(//a[@class='hide-focus-ring'])[1]"));
         return new ImagesResultsPage();
     }
 
