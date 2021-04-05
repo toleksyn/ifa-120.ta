@@ -27,8 +27,12 @@ public class WebElementUtil {
         return TestRunner.getWait().until(ExpectedConditions.elementToBeClickable(By.xpath(webElementXPath)));
     }
 
-    public static WebElement getElementFromListByIndex(String webElementsXPath, int elementIndex) {
-        return getElement("(" + webElementsXPath + ")[" + (elementIndex + 1) + "]");
+    public static WebElement getElementByIndex(String webElementsXPath, int elementIndex) {
+        return getElement(String.format("(%s)[%d]", webElementsXPath, (elementIndex+1)));
+    }
+
+    public static void openURL(String URL) {
+        TestRunner.getDriver().get(URL);
     }
 }
 
