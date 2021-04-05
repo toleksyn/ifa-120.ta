@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class GoogleSearchResultPage {
     public String getSearchResultLinkText(int indexOfLink) {
-        return WebElementUtil.getElementFromListByIndex("//h3[@class='LC20lb DKV0Md']", indexOfLink)
+        return WebElementUtil.getElementByIndex("//h3[@class='LC20lb DKV0Md']", indexOfLink)
                 .getText();
     }
 
