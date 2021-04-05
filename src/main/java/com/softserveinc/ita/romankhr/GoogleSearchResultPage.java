@@ -33,7 +33,7 @@ public class GoogleSearchResultPage {
     }
 
     public String getSearchResultDescription(int numberOfItem) {
-        return WebElementUtil.getElementFromListByIndex("//h3[@class='LC20lb DKV0Md']", numberOfItem)
+        return WebElementUtil.getElementFromListByIndex("//div[@class='IsZvec']", numberOfItem)
                 .getText()
                 .toLowerCase();
     }
