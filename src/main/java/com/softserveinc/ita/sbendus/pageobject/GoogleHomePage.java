@@ -1,6 +1,6 @@
 package com.softserveinc.ita.sbendus.pageobject;
 
-import com.softserveinc.ita.common.TestRunner;
+import com.softserveinc.ita.common.WebElementUtil;
 import org.openqa.selenium.Keys;
 
 import static com.softserveinc.ita.common.WebElementUtil.setElementValue;
@@ -8,7 +8,7 @@ import static com.softserveinc.ita.common.WebElementUtil.setElementValue;
 public class GoogleHomePage {
 
     public GoogleHomePage open() {
-        TestRunner.getDriver().get("https://www.google.com/");
+        WebElementUtil.openURL("https://www.google.com/");
         return this;
     }
 
