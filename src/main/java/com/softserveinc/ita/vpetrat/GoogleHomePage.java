@@ -1,13 +1,12 @@
 package com.softserveinc.ita.vpetrat;
 
-import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.common.WebElementUtil;
 import org.openqa.selenium.Keys;
 
 public class GoogleHomePage {
 
     public GoogleHomePage openHomePage() {
-        TestRunner.getDriver().get("https://www.google.com/");
+        WebElementUtil.openURL("https://www.google.com/");
         return this;
     }
 
@@ -18,7 +17,7 @@ public class GoogleHomePage {
 
     public GoogleLuckySearchResultPage luckySearchFor(String request) {
         WebElementUtil.setElementValue("//input[@class='gLFyf gsfi']", request);
-        WebElementUtil.getElementFromListByIndex("//input[@name='btnI']", 0).click();
+        WebElementUtil.getElementByIndex("//input[@name='btnI']", 0).click();
         return new GoogleLuckySearchResultPage();
     }
 }
