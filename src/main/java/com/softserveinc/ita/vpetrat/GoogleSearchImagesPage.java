@@ -12,7 +12,7 @@ public class GoogleSearchImagesPage {
     }
 
     public List<String> getListOfSearchResultImagesText() {
-        return WebElementUtil.getListOfElementsMoreThenAmount("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']", 10)
+        return WebElementUtil.getElementsListAtLeast("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']", 10)
                 .stream()
                 .map(webElement -> webElement.getAttribute("title")).collect(Collectors.toList());
     }
