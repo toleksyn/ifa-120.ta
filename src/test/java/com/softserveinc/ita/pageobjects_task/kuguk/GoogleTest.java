@@ -24,13 +24,15 @@ public class GoogleTest extends TestRunner {
 
 	@Test
 	public void testGoogleSearch() {
-		String searchResultsLinks = openGoogleHomePage.searchFor(searchString).getSearchResultsLinksText(0).getText();
+		String searchResultsLinks = openGoogleHomePage.searchFor(searchString)
+				.getSearchResultsLinksText(0)
+				.getText();
 		assertTrue(searchResultsLinks.toLowerCase().contains("funny kitten"));
 	}
 
 	@Test
 	public void testGoogleSearch_PresenceResultInList() {
-		List<String>searchResultsLinksList = openGoogleHomePage.searchFor("smartphone")
+		List<String> searchResultsLinksList = openGoogleHomePage.searchFor("smartphone")
 				.getSearchResultsLinksList();
 		assertTrue(searchResultsLinksList.toString().toLowerCase().contains("wikipedia."));
 	}
@@ -58,13 +60,13 @@ public class GoogleTest extends TestRunner {
 	public void testGoogleTimeSortSearch() {
 		String sortFilter = "Past hour";
 		String testStringForAssert = "mins ago";
-		TestRunner.getDriver().get("https://www.google.com.ua/?hl=en");
+
+		openGoogleHomePage.openSettingsPage().changeGoogleLanguage("en");
 
 		GoogleSearchSortResultsPage searchResultsTimeSort = openGoogleHomePage.searchFor("webdriver")
 				.sortBy(sortFilter);
 
-		assertTrue(searchResultsTimeSort
-				.getSearchTimeSortResultsText(testStringForAssert, 0)
-				.toLowerCase().contains(testStringForAssert));
+		assertTrue(searchResultsTimeSort.getSearchTimeSortResultsText(testStringForAssert, 0).toLowerCase()
+				.contains(testStringForAssert));
 	}
 }

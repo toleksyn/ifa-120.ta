@@ -17,4 +17,9 @@ public class GoogleHomePage {
 		return new GoogleSearchResultsPage();
 	}
 
+	public GoogleSettingsPage openSettingsPage() {
+		WebElementUtil.clickElement("//button [@id= 'Mses6b']");
+		WebElementUtil.clickElement("//a[@class='EzVRq']");
+		return new GoogleSettingsPage();
+	}
 }
