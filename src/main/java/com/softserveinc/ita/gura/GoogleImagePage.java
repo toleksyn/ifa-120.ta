@@ -1,10 +1,6 @@
 package com.softserveinc.ita.gura;
 
-import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.common.WebElementUtil;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
