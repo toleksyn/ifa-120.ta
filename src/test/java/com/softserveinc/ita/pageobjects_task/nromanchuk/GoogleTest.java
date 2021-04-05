@@ -25,7 +25,7 @@ public class GoogleTest extends TestRunner {
         String searchTerm = "funny kitten";
         String firstLinkText = googleHomePage
                 .searchFor(searchTerm)
-                .getLinkText(1);
+                .getLinkText(0);
         Assert.assertTrue(firstLinkText.contains(searchTerm));
     }
 
@@ -55,7 +55,7 @@ public class GoogleTest extends TestRunner {
     public void testWebDriverSearch() {
         String searchTerm = "webdriver";
         BooksResultsPage booksResultsPage = googleHomePage.searchFor(searchTerm).navigateToBooksResultsPage();
-        List<WebElement> listOfTextResults = booksResultsPage.getResultsTextList();
-        Assert.assertTrue(listOfTextResults.get(9).getText().toLowerCase().contains(searchTerm));
+        String resultLinkText = booksResultsPage.getResultLinkTextByIndex(9);
+        Assert.assertTrue(resultLinkText.contains(searchTerm));
     }
 }
