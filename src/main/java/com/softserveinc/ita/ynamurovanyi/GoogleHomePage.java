@@ -1,23 +1,20 @@
 package com.softserveinc.ita.ynamurovanyi;
 
-import com.softserveinc.ita.common.TestRunner;
-import com.softserveinc.ita.common.WebElementUtil;
-import org.openqa.selenium.Keys;
+import com.codeborne.selenide.Selenide;
 
 public class GoogleHomePage {
 
     public GoogleHomePage open() {
-        TestRunner.getDriver()
-                .get("http://google.com");
+        Selenide.open("https://google.com");
         return this;
     }
 
     public GoogleSearchResultsPage searchFor(String searchTerm) {
-        WebElementUtil.setElementValue("//input", searchTerm + Keys.ENTER);
+        Selenide.$x("//input[@class='gLFyf gsfi']").val(searchTerm).pressEnter();
         return new GoogleSearchResultsPage();
     }
 
     public String getTitle() {
-        return TestRunner.getDriver().getTitle();
+        return Selenide.title();
     }
 }

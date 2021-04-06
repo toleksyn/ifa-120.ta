@@ -1,22 +1,21 @@
 package com.softserveinc.ita.ynamurovanyi;
 
-import com.softserveinc.ita.common.WebElementUtil;
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Selenide;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class GoogleSearchImagesPage {
 
     public List<String> getSearchResultsLinksText() {
-        return WebElementUtil.getElementsListAtLeast
-                ("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']", 10)
-                .stream()
-                .map(searchResultsLinksText -> searchResultsLinksText.getText())
-                .collect(Collectors.toList());
+        return Selenide.$$x("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']")
+                .should(CollectionCondition.sizeGreaterThan(9))
+                .texts();
     }
 
     public GoogleHomePage navigateToHomePageByLogo() {
-        WebElementUtil.clickElement("//a[@class='F1hUFe jbTlie']");
+        Selenide.$x("//div[@class='ZbYMvd']").click();
+        Selenide.$x("//div[@class='logo doodle']").click();
         return new GoogleHomePage();
     }
 }
