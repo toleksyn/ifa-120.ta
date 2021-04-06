@@ -1,6 +1,5 @@
 package com.softserveinc.ita.pageobjects_task.shladkyi;
 
-import com.codeborne.selenide.Selenide;
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.shladkyi.GoogleHomePage;
 import com.softserveinc.ita.shladkyi.GoogleSearchImagesResultPage;
@@ -9,7 +8,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
-import java.util.Objects;
+
+import static com.codeborne.selenide.Selenide.title;
+import static java.util.Objects.requireNonNull;
 
 public class GoogleTest extends TestRunner {
 
@@ -43,7 +44,7 @@ public class GoogleTest extends TestRunner {
         Assert.assertTrue(imagesListText.get(0).toLowerCase().contains(testText));
         Assert.assertTrue(imagesListText.get(4).toLowerCase().contains(testText));
         googleImagesResultPage.openGoogleHomePage();
-        Assert.assertTrue(Objects.requireNonNull(Selenide.title()).contains("https://www.google.com/"));
+        Assert.assertTrue(requireNonNull(title()).contains("Google"));
     }
 
     @Test
