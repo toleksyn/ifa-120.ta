@@ -9,14 +9,14 @@ import java.util.stream.Collectors;
 public class GoogleSearchResultPage {
 
     public String getSearchResultLinksTitles() {
-        return WebElementUtil.getListOfElements("//h3[@class='LC20lb DKV0Md']")
+        return WebElementUtil.getElementsList("//h3[@class='LC20lb DKV0Md']")
                 .stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList()).get(0).toLowerCase();
     }
 
     public List<String> getSearchResultsLinks() {
-        return WebElementUtil.getListOfElements("//div[@class='yuRUbf']/a")
+        return WebElementUtil.getElementsList("//div[@class='yuRUbf']/a")
                 .stream()
                 .map(webElement -> webElement.getAttribute("href"))
                 .collect(Collectors.toList());
