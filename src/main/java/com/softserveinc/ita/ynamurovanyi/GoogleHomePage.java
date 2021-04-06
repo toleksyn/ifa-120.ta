@@ -1,7 +1,7 @@
 package com.softserveinc.ita.ynamurovanyi;
 
 import com.softserveinc.ita.common.TestRunner;
-import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 public class GoogleHomePage {
 
@@ -12,13 +12,7 @@ public class GoogleHomePage {
     }
 
     public GoogleSearchResultsPage searchFor(String searchTerm) {
-        TestRunner.getDriver()
-                .findElement(By.xpath("//input"))
-                .sendKeys(searchTerm);
-        TestRunner.getDriver()
-                //Search Button
-                .findElement(By.xpath("//div[@class='FPdoLc tfB0Bf']/center/input[1]"))
-                .click();
+        WebElementUtil.setValueForElement("//input", searchTerm + Keys.ENTER);
         return new GoogleSearchResultsPage();
     }
 

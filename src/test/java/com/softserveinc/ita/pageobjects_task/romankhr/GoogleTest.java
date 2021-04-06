@@ -1,5 +1,6 @@
 package com.softserveinc.ita.pageobjects_task.romankhr;
 
+import com.codeborne.selenide.WebDriverRunner;
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.romankhr.GoogleHomePage;
 import com.softserveinc.ita.romankhr.GoogleSearchResultImagesPage;
@@ -54,7 +55,7 @@ public class GoogleTest extends TestRunner {
         Assert.assertTrue(searchResultsImagesList.get(0).toLowerCase().contains(testWord));
         Assert.assertTrue(searchResultsImagesList.get(4).toLowerCase().contains(testWord));
 
-        Assert.assertTrue(TestRunner.getDriver().getTitle().toLowerCase().contains("google"));
+        Assert.assertTrue(WebDriverRunner.getWebDriver().getTitle().toLowerCase().contains("google"));
     }
 
     @Test
