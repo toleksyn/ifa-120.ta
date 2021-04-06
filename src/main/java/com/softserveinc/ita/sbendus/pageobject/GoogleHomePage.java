@@ -14,8 +14,6 @@ public class GoogleHomePage {
 
     public GoogleSearchPage searchFor(String searchTerm) {
         $x("//input[@class='gLFyf gsfi']").sendKeys(searchTerm + Keys.ENTER);
-
-//        setElementValue("//input[@class='gLFyf gsfi']", searchTerm + Keys.ENTER);
         return new GoogleSearchPage();
     }
 }
