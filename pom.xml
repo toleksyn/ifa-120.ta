@@ -7,6 +7,7 @@
     <groupId>com.softserveinc.ita</groupId>
     <artifactId>ifa-120.ta</artifactId>
     <version>3.1</version>
+    <com.codeborne.selenide>5.20.1</com.codeborne.selenide>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -31,6 +32,11 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
             <version>${chrome.driver.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>${com.codeborne.selenide}</version>
         </dependency>
     </dependencies>
 
