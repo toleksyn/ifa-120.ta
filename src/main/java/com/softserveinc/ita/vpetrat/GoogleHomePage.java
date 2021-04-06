@@ -1,23 +1,26 @@
 package com.softserveinc.ita.vpetrat;
 
-import com.softserveinc.ita.common.WebElementUtil;
-import org.openqa.selenium.Keys;
+import com.codeborne.selenide.Selenide;
 
 public class GoogleHomePage {
 
     public GoogleHomePage openHomePage() {
-        WebElementUtil.openURL("https://www.google.com/");
+        Selenide.open("https://www.google.com/");
         return this;
     }
 
     public GoogleSearchResultsPage searchFor(String request) {
-        WebElementUtil.setElementValue("//input[@class='gLFyf gsfi']", request + Keys.ENTER);
+        Selenide.$x("//input[@class='gLFyf gsfi']").val(request).pressEnter();
         return new GoogleSearchResultsPage();
     }
 
     public GoogleLuckySearchResultPage luckySearchFor(String request) {
-        WebElementUtil.setElementValue("//input[@class='gLFyf gsfi']", request);
-        WebElementUtil.getElementByIndex("//input[@name='btnI']", 0).click();
+        Selenide.$x("//input[@class='gLFyf gsfi']").val(request);
+        Selenide.$x("//input[@name='btnI']").click();
         return new GoogleLuckySearchResultPage();
+    }
+
+    public String getPageTittle() {
+        return Selenide.title();
     }
 }

@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeSuite;
 public class TestRunner {
 
     @BeforeSuite
-    public void setupWebDriverTypeAndProperties() {\
+    public void setupWebDriverTypeAndProperties() {
         Configuration.browser = "chrome";
         Configuration.startMaximized = true;
         Configuration.timeout = 60000;
