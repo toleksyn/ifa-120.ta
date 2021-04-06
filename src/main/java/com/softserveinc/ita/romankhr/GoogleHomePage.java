@@ -1,7 +1,6 @@
 package com.softserveinc.ita.romankhr;
 
 import com.softserveinc.ita.common.TestRunner;
-import com.softserveinc.ita.common.WebElementUtil;
 import org.openqa.selenium.Keys;
 
 public class GoogleHomePage {

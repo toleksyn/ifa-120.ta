@@ -1,7 +1,6 @@
 package com.softserveinc.ita.ynamurovanyi;
 
 import com.softserveinc.ita.common.TestRunner;
-import com.softserveinc.ita.common.WebElementUtil;
 import org.openqa.selenium.By;
 
 import java.util.List;

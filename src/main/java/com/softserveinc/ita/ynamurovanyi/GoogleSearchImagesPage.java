@@ -1,7 +1,5 @@
 package com.softserveinc.ita.ynamurovanyi;
 
-import com.softserveinc.ita.common.WebElementUtil;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -1,7 +1,5 @@
 package com.softserveinc.ita.romankhr;
 
-import com.softserveinc.ita.common.WebElementUtil;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

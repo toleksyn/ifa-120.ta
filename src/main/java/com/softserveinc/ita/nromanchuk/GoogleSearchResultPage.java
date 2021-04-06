@@ -1,7 +1,5 @@
 package com.softserveinc.ita.nromanchuk;
 
-import com.softserveinc.ita.common.WebElementUtil;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

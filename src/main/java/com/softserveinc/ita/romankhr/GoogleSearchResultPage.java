@@ -1,6 +1,5 @@
 package com.softserveinc.ita.romankhr;
 
-import com.softserveinc.ita.common.WebElementUtil;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
