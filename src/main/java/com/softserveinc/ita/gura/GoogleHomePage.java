@@ -23,6 +23,6 @@ public class GoogleHomePage {
     }
 
     public boolean checkGoogleLogoVisibility() {
-        return TestRunner.getDriver().findElement(By.xpath("//img[@class='lnXdpd']")).getAttribute("style").contains("hidden");
+        return WebElementUtil.getElement("//div[@class='k1zIA kKvsb']").getAttribute("style").contains("hidden");
     }
 }
