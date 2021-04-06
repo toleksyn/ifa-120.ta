@@ -7,7 +7,7 @@ import java.util.List;
 public class BooksResultsPage {
 
     public List<WebElement> getResultsTextList() {
-        return WebElementUtil.getListOfElements("//h3");
+        return WebElementUtil.getElementsList("//h3");
     }
 
     public String getResultLinkTextByIndex(int index) {

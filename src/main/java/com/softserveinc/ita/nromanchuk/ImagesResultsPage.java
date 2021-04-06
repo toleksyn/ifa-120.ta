@@ -7,7 +7,7 @@ import java.util.List;
 public class ImagesResultsPage {
 
     public List<WebElement> getListOfTextResults() {
-        return WebElementUtil.getListOfElements("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']");
+        return WebElementUtil.getElementsList("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']");
     }
 
     public GoogleHomePage navigateToGoogleHomePage() {
