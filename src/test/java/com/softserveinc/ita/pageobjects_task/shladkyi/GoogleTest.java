@@ -1,5 +1,6 @@
 package com.softserveinc.ita.pageobjects_task.shladkyi;
 
+import com.codeborne.selenide.Selenide;
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.shladkyi.GoogleHomePage;
 import com.softserveinc.ita.shladkyi.GoogleSearchImagesResultPage;
@@ -8,6 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.Objects;
 
 public class GoogleTest extends TestRunner {
 
@@ -16,7 +18,7 @@ public class GoogleTest extends TestRunner {
     @BeforeMethod
     public void openGoogleHomePage() {
         googleHomePage = new GoogleHomePage()
-                .open();
+                .openHomePage();
     }
 
     @Test
@@ -35,13 +37,13 @@ public class GoogleTest extends TestRunner {
     @Test
     public void testValidGoogleImagesSearch() {
         GoogleSearchImagesResultPage googleImagesResultPage = googleHomePage.searchFor("funny kitten").openImagesPage();
-        List<String> imagesListText = googleImagesResultPage.getSearchResultImagesTextList();
+        List<String> imagesListText = googleImagesResultPage.getSearchResultImagesTextList(10);
         Assert.assertTrue(imagesListText.size() >= 10);
         String testText = "funny";
         Assert.assertTrue(imagesListText.get(0).toLowerCase().contains(testText));
         Assert.assertTrue(imagesListText.get(4).toLowerCase().contains(testText));
         googleImagesResultPage.openGoogleHomePage();
-        Assert.assertTrue(TestRunner.getDriver().getCurrentUrl().contains("https://www.google.com/"));
+        Assert.assertTrue(Objects.requireNonNull(Selenide.title()).contains("https://www.google.com/"));
     }
 
     @Test
