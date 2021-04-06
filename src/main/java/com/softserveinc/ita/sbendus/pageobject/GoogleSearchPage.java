@@ -1,26 +1,27 @@
 package com.softserveinc.ita.sbendus.pageobject;
 
+import com.codeborne.selenide.Selenide;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.softserveinc.ita.common.WebElementUtil.*;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class GoogleSearchPage {
 
     public String getSearchResultLinkText(int index) {
-        return getElementByIndex("//div[@class='yuRUbf']/a", index)
-                .getText();
+        return $x(String.format("(%s)[%d]", "//div[@class='yuRUbf']/a", (index + 1))).getText();
     }
 
     public List<String> getListOfSearchResultLinks() {
-        return getElementsList("//div[@class='yuRUbf']/a")
+        return Selenide.$$x("//div[@class='yuRUbf']/a")
                 .stream()
-                .map(WebElement -> WebElement.getAttribute("href"))
+                .map(SelenideElement -> SelenideElement.getAttribute("href"))
                 .collect(Collectors.toList());
     }
 
     public Integer getGoogleSearchResultAmount() {
-        String googleSearchResult = getElement("//div[@id='result-stats']").getText();
+        String googleSearchResult = $x("//div[@id='result-stats']").getText();
         Integer googleSearchResultsAmount = Integer.parseInt(googleSearchResult
                 .substring(googleSearchResult.indexOf(":") + 1,
                         googleSearchResult.indexOf("("))
@@ -29,7 +30,9 @@ public class GoogleSearchPage {
     }
 
     public GoogleSearchImagePage navigateToGoogleSearchImagePage() {
-        clickElement("//a[@class='hide-focus-ring']");
+        $x("//a[@class='hide-focus-ring']").click();
         return new GoogleSearchImagePage();
     }
+
 }
+

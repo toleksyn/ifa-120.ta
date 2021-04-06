@@ -13,3 +13,4 @@ public class TestRunner {
         Configuration.pollingInterval = 2000;
     }
 }
+

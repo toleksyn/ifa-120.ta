@@ -1,19 +1,19 @@
 package com.softserveinc.ita.sbendus.pageobject;
 
-import com.softserveinc.ita.common.WebElementUtil;
+import com.codeborne.selenide.Selenide;
 import org.openqa.selenium.Keys;
 
-import static com.softserveinc.ita.common.WebElementUtil.setElementValue;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class GoogleHomePage {
 
     public GoogleHomePage open() {
-        WebElementUtil.openURL("https://www.google.com/");
+        Selenide.open("https://www.google.com/");
         return this;
     }
 
     public GoogleSearchPage searchFor(String searchTerm) {
-        setElementValue("//input[@class='gLFyf gsfi']", searchTerm + Keys.ENTER);
+        $x("//input[@class='gLFyf gsfi']").sendKeys(searchTerm + Keys.ENTER);
         return new GoogleSearchPage();
     }
 }
