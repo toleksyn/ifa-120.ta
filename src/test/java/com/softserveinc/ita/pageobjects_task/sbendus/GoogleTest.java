@@ -1,5 +1,6 @@
 package com.softserveinc.ita.pageobjects_task.sbendus;
 
+import com.codeborne.selenide.WebDriverRunner;
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.sbendus.pageobject.GoogleHomePage;
 import com.softserveinc.ita.sbendus.pageobject.GoogleSearchImagePage;
@@ -21,10 +22,10 @@ public class GoogleTest extends TestRunner {
 
     @Test
     public void testGoogleSearch() {
-        String googleSearchMessage = "Funny kitten";
+        String googleSearchMessage = "Funny Kitten";
         String firstLink = googleHomePage
                 .searchFor(googleSearchMessage)
-                .getSearchResultLinkText(1);
+                .getSearchResultLinkText(0);
         Assert.assertTrue(firstLink.contains(googleSearchMessage));
     }
 
@@ -47,13 +48,14 @@ public class GoogleTest extends TestRunner {
                 .searchFor(googleSearchMessage)
                 .navigateToGoogleSearchImagePage();
         List<String> listOfSearchImages = googleSearchImagePage
-                .getListOfSearchTitleResults();
+                .getListOfSearchTitleResults(10);
         Assert.assertTrue(listOfSearchImages.size() > 10);
         Assert.assertTrue(listOfSearchImages.get(0).contains(verificationText));
         Assert.assertTrue(listOfSearchImages.get(4).contains(verificationText));
         googleSearchImagePage.navigateToHomePageByLogo();
-        Assert.assertTrue(TestRunner.getDriver().getCurrentUrl().contains("https://www.google.com/"));
+        Assert.assertTrue(WebDriverRunner.url().contains("https://www.google.com/"));
     }
+
 
     @Test
     public void testGoogleSearchResultAmount() {
