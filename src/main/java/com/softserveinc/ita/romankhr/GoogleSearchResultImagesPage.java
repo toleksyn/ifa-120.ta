@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class GoogleSearchResultImagesPage {
 
     public List<String> getSearchResultImagesTitles() {
-        return WebElementUtil.getListOfElements("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']")
+        return WebElementUtil.getElementsList("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']")
                 .stream()
                 .map(webElement -> webElement.getAttribute("title"))
                 .collect(Collectors.toList());
