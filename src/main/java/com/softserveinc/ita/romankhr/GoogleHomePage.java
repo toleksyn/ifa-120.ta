@@ -13,7 +13,7 @@ public class GoogleHomePage {
     }
 
     public GoogleSearchResultPage searchFor(String searchTerm) {
-        WebElementUtil.setValueForElement("//input[@class='gLFyf gsfi']", searchTerm + Keys.ENTER);
+        WebElementUtil.setElementValue("//input[@class='gLFyf gsfi']", searchTerm + Keys.ENTER);
         return new GoogleSearchResultPage();
     }
 }
