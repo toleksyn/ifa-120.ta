@@ -12,7 +12,7 @@ public class GoogleSearchImagePage {
         return Selenide.$$x("//h3[@class='LC20lb DKV0Md']")
                 .should(CollectionCondition.sizeGreaterThan(amount))
                 .stream()
-                .map(SelenideElement -> SelenideElement.getAttribute("title"))
+                .map(selenideElement -> selenideElement.getAttribute("title"))
                 .collect(Collectors.toList());
     }
 
