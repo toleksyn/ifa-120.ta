@@ -10,7 +10,6 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.title;
-import static java.util.Objects.requireNonNull;
 
 public class GoogleTest extends TestRunner {
 
