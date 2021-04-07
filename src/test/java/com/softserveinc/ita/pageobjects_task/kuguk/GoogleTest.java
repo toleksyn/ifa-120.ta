@@ -57,7 +57,6 @@ public class GoogleTest extends TestRunner {
 
 		searchResultsImagesPage.gotoGoogleHomePageByLogo();
 		assertEquals(WebDriverRunner.getWebDriver().getTitle(), "Google", "Current Page isn't a Google homepage");
-
 	}
 
 	@Test
@@ -70,7 +69,6 @@ public class GoogleTest extends TestRunner {
 		GoogleSearchSortResultsPage searchResultsTimeSort = openGoogleHomePage
 				.searchFor("webdriver")
 				.sortBy(sortFilter);
-
 		assertTrue(searchResultsTimeSort.getSearchTimeSortResultsText(testStringForAssert, 0).toLowerCase()
 				.contains(testStringForAssert));
 	}

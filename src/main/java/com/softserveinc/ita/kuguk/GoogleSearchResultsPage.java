@@ -4,26 +4,20 @@ import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class GoogleSearchResultsPage {
 
 	public String getSearchResultsLinksText(int elementIndex) {
-
 		return $x(String.format("(%s)[%d]", "//h3[@class='LC20lb DKV0Md']", elementIndex + 1))
 				.getText();
 	}
 
 	public List<String> getSearchResultsLinksList() {
-		return $$x("//div[@class='yuRUbf']/a")
-				.stream().map(foundLinksList -> foundLinksList
-				.getAttribute("href"))
-				.collect(Collectors.toList());
+		return $$x("//div[@class='yuRUbf']/a").texts();
 	}
 
 	public GoogleSearchResultsImagesPage navigateToImagePage() {
 		$x("//*[@data-hveid='CAEQAw']").click();
-
 		return new GoogleSearchResultsImagesPage();
 	}
 

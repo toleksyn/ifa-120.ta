@@ -10,10 +10,6 @@ public class GoogleSettingsPage {
 		$x("//div [@data-value='" + languageMark + "']").click();
 		$x("//div [@class='goog-inline-block jfk-button jfk-button-action']").click();
 		Selenide.confirm();
-
-			
-//TestRunner.getWait().until(ExpectedConditions.alertIsPresent()).accept();
 		return new GoogleHomePage();
 	}
-
 }
