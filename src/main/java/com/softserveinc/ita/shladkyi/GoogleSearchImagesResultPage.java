@@ -13,10 +13,7 @@ public class GoogleSearchImagesResultPage {
 
     public List<String> getSearchResultImagesTextList(int amount) {
         return $$x("//img[@class='rg_i Q4LuWd']")
-                .should(CollectionCondition.sizeGreaterThan(amount))
-                .stream()
-                .map(selenideElement -> selenideElement.getAttribute("alt"))
-                .collect(Collectors.toList());
+                .shouldHave(CollectionCondition.sizeGreaterThan(amount)).texts();
     }
 
     public GoogleHomePage openGoogleHomePage() {

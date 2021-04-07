@@ -15,10 +15,7 @@ public class GoogleSearchResultPage {
     }
 
     public List<String> getAllSearchResultLinks() {
-        return $$x("//div[@class='TbwUpd NJjxre']")
-                .stream()
-                .map(SelenideElement::getText)
-                .collect(Collectors.toList());
+        return $$x("//div[@class='TbwUpd NJjxre']").texts();
     }
 
     public GoogleSearchImagesResultPage openImagesPage() {

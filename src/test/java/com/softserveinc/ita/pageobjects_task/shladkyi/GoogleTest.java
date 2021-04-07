@@ -44,8 +44,8 @@ public class GoogleTest extends TestRunner {
         Assert.assertTrue(imagesListText.get(0).toLowerCase().contains(testText));
         Assert.assertTrue(imagesListText.get(4).toLowerCase().contains(testText));
         googleImagesResultPage.openGoogleHomePage();
-        Assert.assertTrue(requireNonNull(title()).contains("Google"));
-    }
+        Assert.assertTrue(title().contains("Google"));
+        }
 
     @Test
     public void testLanguageChange() {
