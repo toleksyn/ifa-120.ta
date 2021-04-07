@@ -2,7 +2,6 @@ package com.softserveinc.ita.vpetrat;
 
 
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,9 +9,7 @@ import java.util.stream.Collectors;
 public class GoogleSearchResultsPage {
     public List<String> getListOfSearchResultLinksText() {
         return Selenide.$$x("//h3[@class='LC20lb DKV0Md']")
-                .stream()
-                .map(SelenideElement::getText)
-                .collect(Collectors.toList());
+                .texts();
     }
 
     public List<String> getListOfSearchResultLinks() {

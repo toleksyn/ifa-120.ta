@@ -14,7 +14,7 @@ public class GoogleSearchImagesPage {
 
     public List<String> getListOfSearchResultImagesText(int amount) {
         return Selenide.$$x("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']")
-                .should(CollectionCondition.sizeGreaterThan(amount))
+                .shouldHave(CollectionCondition.sizeGreaterThan(amount))
                 .stream()
                 .map(selenideElement -> selenideElement.getAttribute("title")).collect(Collectors.toList());
     }
