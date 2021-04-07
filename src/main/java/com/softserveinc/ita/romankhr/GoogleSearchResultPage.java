@@ -1,7 +1,5 @@
 package com.softserveinc.ita.romankhr;
 
-import org.openqa.selenium.WebElement;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
