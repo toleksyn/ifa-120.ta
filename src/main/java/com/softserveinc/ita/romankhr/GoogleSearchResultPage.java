@@ -10,11 +10,8 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class GoogleSearchResultPage {
 
-    public String getSearchResultLinksTitles() {
-        return $$x("//h3[@class='LC20lb DKV0Md']")
-                .stream()
-                .map(WebElement::getText)
-                .collect(Collectors.toList()).get(0).toLowerCase();
+    public String getSearchResultLinkTitle() {
+        return $$x("//h3[@class='LC20lb DKV0Md']").first().toString().toLowerCase();
     }
 
     public List<String> getSearchResultsLinks() {
