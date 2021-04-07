@@ -1,7 +1,7 @@
 package com.softserveinc.ita.shladkyi;
 
 import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.switchTo;
+import static com.codeborne.selenide.Selenide.confirm;
 
 public class GoogleSettingsPage {
 
@@ -10,7 +10,7 @@ public class GoogleSettingsPage {
         $x("//a[@id='langanchormore']").click();
         $x(String.format("//div[@data-value='%s']", abbreviationLanguage)).click();
         $x("//div[@class='goog-inline-block jfk-button jfk-button-action']").click();
-        switchTo().alert().accept();
+        confirm();
         return new GoogleHomePage();
     }
 }
