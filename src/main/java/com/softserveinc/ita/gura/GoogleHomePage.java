@@ -1,19 +1,18 @@
 package com.softserveinc.ita.gura;
 
 import com.softserveinc.ita.common.TestRunner;
-import com.softserveinc.ita.common.WebElementUtil;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
+import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.open;
 
 public class GoogleHomePage {
     public GoogleHomePage openGoogleHomePage() {
-        TestRunner.getDriver().get("https://www.google.com");
+        open("https://www.google.com");
         return this;
     }
 
     public GoogleResultPage doSearch(String inputText) {
-        WebElementUtil.setElementValue("//input[@name='q']", inputText + Keys.ENTER);
+        $x("//input[@name='q']").setValue(inputText).pressEnter();
         return new GoogleResultPage();
     }
 
@@ -23,6 +22,6 @@ public class GoogleHomePage {
     }
 
     public boolean checkGoogleLogoVisibility() {
-        return WebElementUtil.getElement("//div[@class='k1zIA kKvsb']").getAttribute("style").contains("hidden");
+        return $x("//div[@class='k1zIA kKvsb']").getAttribute("style").contains("hidden");
     }
 }

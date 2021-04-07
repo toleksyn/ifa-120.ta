@@ -1,23 +1,30 @@
 package com.softserveinc.ita.gura;
 
-import com.softserveinc.ita.common.WebElementUtil;
 import java.util.List;
 import java.util.stream.Collectors;
+import static com.codeborne.selenide.Selenide.$$x;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class GoogleImagePage {
-    public List<String> getImagesTitles() {
-        return WebElementUtil.getElementsListAtLeast("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']", 10)
+    public List<String> getImagesTitles(int amount) {
+        return $$x("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']")
+                .shouldHaveSize(amount)
                 .stream()
                 .map(linksText -> linksText.getAttribute("title"))
                 .collect(Collectors.toList());
+
+//        return WebElementUtil.getElementsListAtLeast("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']", 10)
+//                .stream()
+//                .map(linksText -> linksText.getAttribute("title"))
+//                .collect(Collectors.toList());
     }
 
     public GoogleHomePage goToHomePageByLogo() {
-        WebElementUtil.clickElement("//a[@class='F1hUFe jbTlie']");
+        $x("//a[@class='F1hUFe jbTlie']").click();
         return new GoogleHomePage();
     }
 
     public String getGoogleLogoLink() {
-        return WebElementUtil.getElement("//a[@class='F1hUFe jbTlie']").getAttribute("href");
+        return $x("//a[@class='F1hUFe jbTlie']").getAttribute("href");
     }
 }

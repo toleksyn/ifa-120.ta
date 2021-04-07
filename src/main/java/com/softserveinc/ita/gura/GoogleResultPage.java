@@ -1,23 +1,26 @@
 package com.softserveinc.ita.gura;
 
-import com.softserveinc.ita.common.WebElementUtil;
+import com.codeborne.selenide.Selenide;
 import java.util.List;
-import java.util.stream.Collectors;
+import static com.codeborne.selenide.Selenide.$$x;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class GoogleResultPage {
     public String getTextFromLink(int indexOfLink) {
-        return WebElementUtil.getElementByIndex("//h3[@class='LC20lb DKV0Md'][1]", indexOfLink).getText();
+        return Selenide.$x(String.format("(%s)[%d]", "//h3[@class='LC20lb DKV0Md'][1]", indexOfLink)).getText();
     }
 
     public List<String> getListOfSearchResultLinks() {
-        return WebElementUtil.getElementsList("//div[@class='yuRUbf']/a")
-                .stream()
-                .map(webElement -> webElement.getAttribute("href"))
-                .collect(Collectors.toList());
+        return $$x("//h3[@class='LC20lb DKV0Md']")
+                .texts();
+//        return WebElementUtil.getElementsList("//div[@class='yuRUbf']/a")
+//                .stream()
+//                .map(webElement -> webElement.getAttribute("href"))
+//                .collect(Collectors.toList());
     }
 
     public GoogleImagePage goToImagePage() {
-        WebElementUtil.clickElement("//a[@data-hveid='CAEQAw']");
+        $x("//a[@data-hveid='CAEQAw']").click();
         return new GoogleImagePage();
     }
 }

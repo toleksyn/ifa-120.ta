@@ -32,6 +32,18 @@
             <artifactId>selenium-chrome-driver</artifactId>
             <version>${chrome.driver.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>5.20.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>5.20.1</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
 </project>

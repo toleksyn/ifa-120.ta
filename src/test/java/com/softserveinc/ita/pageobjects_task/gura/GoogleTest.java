@@ -9,12 +9,12 @@ import org.testng.annotations.BeforeMethod;
 import java.util.List;
 import java.util.Locale;
 
-public class GoogleTest extends TestRunner {
-    private GoogleHomePage googleHomePage = new GoogleHomePage();
+public class GoogleTest {
+    private GoogleHomePage googleHomePage;
 
     @BeforeMethod
     public void openGoogleHomePage() {
-        googleHomePage.openGoogleHomePage();
+        googleHomePage = new GoogleHomePage().openGoogleHomePage();
     }
 
     @Test
@@ -36,7 +36,7 @@ public class GoogleTest extends TestRunner {
         GoogleImagePage googleImagePage = googleHomePage.doSearch("funny kitten").goToImagePage();
 
         String link = googleImagePage.getGoogleLogoLink();
-        List<String> imagesTitles = new GoogleImagePage().getImagesTitles();
+        List<String> imagesTitles = new GoogleImagePage().getImagesTitles(10);
 
         Assert.assertTrue(imagesTitles.get(0).toLowerCase().contains(searchText));
         Assert.assertTrue(imagesTitles.get(4).toLowerCase().contains(searchText));
