@@ -13,10 +13,6 @@ public class GoogleResultPage {
     public List<String> getListOfSearchResultLinks() {
         return $$x("//h3[@class='LC20lb DKV0Md']")
                 .texts();
-//        return WebElementUtil.getElementsList("//div[@class='yuRUbf']/a")
-//                .stream()
-//                .map(webElement -> webElement.getAttribute("href"))
-//                .collect(Collectors.toList());
     }
 
     public GoogleImagePage goToImagePage() {

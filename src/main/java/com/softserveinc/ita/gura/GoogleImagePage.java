@@ -12,11 +12,6 @@ public class GoogleImagePage {
                 .stream()
                 .map(linksText -> linksText.getAttribute("title"))
                 .collect(Collectors.toList());
-
-//        return WebElementUtil.getElementsListAtLeast("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']", 10)
-//                .stream()
-//                .map(linksText -> linksText.getAttribute("title"))
-//                .collect(Collectors.toList());
     }
 
     public GoogleHomePage goToHomePageByLogo() {
