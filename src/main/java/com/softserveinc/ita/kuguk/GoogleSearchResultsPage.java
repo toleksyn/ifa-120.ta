@@ -8,7 +8,7 @@ import java.util.List;
 public class GoogleSearchResultsPage {
 
 	public String getSearchResultsLinksText(int elementIndex) {
-		return $x(String.format("(%s)[%d]", "//h3[@class='LC20lb DKV0Md']", elementIndex + 1))
+		return $x(String.format("(//h3[@class='LC20lb DKV0Md'])[%d]", elementIndex + 1))
 				.getText();
 	}
 
@@ -24,10 +24,7 @@ public class GoogleSearchResultsPage {
 	public GoogleSearchSortResultsPage sortBy(String sortFilter) {
 		$x("//div[@id='hdtb-tls']").click();
 		$x("(//div[@class='KTBKoe'])[1]").click();
-
-		String sortFilterXPath = String.format(String.format("%s'%s')]", "//a[contains(text(),", sortFilter));
-		$x(sortFilterXPath).click();
-
+		$x(String.format("//a[contains(text(),'%s')]", sortFilter)).click();
 		return new GoogleSearchSortResultsPage();
 	}
 }
