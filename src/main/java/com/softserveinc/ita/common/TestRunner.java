@@ -1,7 +1,6 @@
 package com.softserveinc.ita.common;
 
 import com.codeborne.selenide.Configuration;
-
 import org.testng.annotations.BeforeSuite;
 
 public class TestRunner {
