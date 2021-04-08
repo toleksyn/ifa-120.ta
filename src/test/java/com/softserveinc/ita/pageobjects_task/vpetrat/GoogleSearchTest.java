@@ -40,13 +40,13 @@ public class GoogleSearchTest extends TestRunner {
     public void testGoogleSearchResultImagesText() {
         GoogleSearchImagesPage imageResultsPage = googleHomePage.searchFor("funny kitten").navigateToImagesPage();
         List<String> resultImagesText = imageResultsPage
-                .getListOfSearchResultImagesText();
+                .getListOfSearchResultImagesText(10);
         String testParameter = "funny";
-        Assert.assertTrue(resultImagesText.size() >= 10);
+        Assert.assertTrue(resultImagesText.size() > 9);
         Assert.assertTrue(resultImagesText.get(0).toLowerCase().contains(testParameter));
         Assert.assertTrue(resultImagesText.get(4).toLowerCase().contains(testParameter));
-        imageResultsPage.navigateToHomePage();
-        Assert.assertEquals("Google", TestRunner.getDriver().getTitle());
+        GoogleHomePage homePage = imageResultsPage.navigateToHomePage();
+        Assert.assertEquals("Google", homePage.getPageTittle());
     }
 
     @Test
