@@ -1,13 +1,12 @@
 package com.softserveinc.ita.gura;
 
-import com.codeborne.selenide.Selenide;
 import java.util.List;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class GoogleResultPage {
     public String getTextFromLink(int indexOfLink) {
-        return Selenide.$x(String.format("(%s)[%d]", "//h3[@class='LC20lb DKV0Md'][1]", indexOfLink)).getText();
+        return $x(String.format("//h3[@class='LC20lb DKV0Md'][%d]", indexOfLink)).getText();
     }
 
     public List<String> getListOfSearchResultLinks() {

@@ -1,8 +1,6 @@
 package com.softserveinc.ita.gura;
 
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.WebDriverRunner;
-import org.openqa.selenium.JavascriptExecutor;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 
