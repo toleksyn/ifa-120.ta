@@ -14,8 +14,7 @@ public class GoogleSearchImagesPage {
     }
 
     public GoogleHomePage navigateToHomePageByLogo() {
-        Selenide.$x("//div[@class='ZbYMvd']").click();
-        Selenide.$x("//div[@class='logo doodle']").click();
+        Selenide.$x("//a[@class='F1hUFe jbTlie']").click();
         return new GoogleHomePage();
     }
 }

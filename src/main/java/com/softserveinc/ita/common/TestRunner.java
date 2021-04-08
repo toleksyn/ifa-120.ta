@@ -7,6 +7,7 @@ public class TestRunner {
 
     @BeforeSuite
     public void setupWebDriverTypeAndProperties() {
+        Configuration.browser = "chrome";
         Configuration.startMaximized = true;
         Configuration.timeout = 60000;
         Configuration.pollingInterval = 2000;

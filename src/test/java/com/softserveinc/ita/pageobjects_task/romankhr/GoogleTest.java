@@ -20,11 +20,10 @@ public class GoogleTest extends TestRunner {
 
     @Test
     public void testGoogleSearch() {
-        List<String> searchResultsTitles = homePage
+        String searchResultTitle = homePage
                 .searchFor(searchTerm)
                 .getSearchResultLinksTitles();
-
-        Assert.assertTrue(searchResultsTitles.get(0).toLowerCase().contains(searchTerm));
+        Assert.assertTrue(searchResultTitle.contains(searchTerm));
     }
 
     @Test
@@ -55,5 +54,17 @@ public class GoogleTest extends TestRunner {
         Assert.assertTrue(searchResultsImagesList.get(4).toLowerCase().contains(testWord));
 
         Assert.assertTrue(TestRunner.getDriver().getTitle().toLowerCase().contains("google"));
+    }
+
+    @Test
+    public void testWebdriverSearch() {
+        String testWord = "webdriver";
+        String searchResultDescription = homePage
+                .searchFor(testWord)
+                .navigateToNumberedResultPage(10)
+                .navigateToNumberedResultPage(14)
+                .getSearchResultDescription(0);
+
+        Assert.assertTrue(searchResultDescription.contains(testWord));
     }
 }
