@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$x;
 public class GoogleSearchResultPage {
 
     public String getLinkText(int index) {
-        return $x(String.format("(%s)[%d]","//h3[@class='LC20lb DKV0Md']", index)).text();
+        return $x(String.format("(//h3[@class='LC20lb DKV0Md'])[%d]",index)).text();
     }
 
     public List<String> getResultsLinks() {
@@ -28,7 +28,7 @@ public class GoogleSearchResultPage {
 
     public BooksResultsPage navigateToBooksResultsPage() {
         $x("//div[@class='GOE98c']").click();
-        $x(String.format("(%s)[%d]","//div[@class='gTMtLb fp-nh']//a", 2)).click();
+        $x(String.format("(//div[@class='gTMtLb fp-nh']//a)[2]")).click();
         return new BooksResultsPage();
     }
 }
