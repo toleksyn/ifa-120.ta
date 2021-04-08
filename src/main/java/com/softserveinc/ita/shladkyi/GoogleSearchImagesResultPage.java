@@ -15,7 +15,7 @@ public class GoogleSearchImagesResultPage {
         return $$x("//img[@class='rg_i Q4LuWd']")
                 .shouldHave(CollectionCondition.sizeGreaterThan(amount))
                 .stream()
-                .map(selenideElement -> selenideElement.getAttribute("alt"))
+                .map(selenideElement -> selenideElement.attr("alt"))
                 .collect(Collectors.toList());
     }
 
