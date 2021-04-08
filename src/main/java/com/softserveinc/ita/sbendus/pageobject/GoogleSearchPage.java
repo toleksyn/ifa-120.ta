@@ -16,7 +16,7 @@ public class GoogleSearchPage {
     public List<String> getListOfSearchResultLinks() {
         return Selenide.$$x("//div[@class='yuRUbf']/a")
                 .stream()
-                .map(SelenideElement -> SelenideElement.getAttribute("href"))
+                .map(selenideElement -> selenideElement.getAttribute("href"))
                 .collect(Collectors.toList());
     }
 

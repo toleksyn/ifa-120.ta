@@ -10,7 +10,7 @@ public class GoogleSearchImagePage {
 
     public List<String> getListOfSearchTitleResults(int amount) {
         return Selenide.$$x("//h3[@class='LC20lb DKV0Md']")
-                .should(CollectionCondition.sizeGreaterThan(amount))
+                .shouldHave(CollectionCondition.sizeGreaterThan(amount))
                 .stream()
                 .map(selenideElement -> selenideElement.getAttribute("title"))
                 .collect(Collectors.toList());
