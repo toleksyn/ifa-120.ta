@@ -1,33 +1,30 @@
 package com.softserveinc.ita.vpetrat;
 
-import com.softserveinc.ita.common.WebElementUtil;
-import org.openqa.selenium.WebElement;
+
+import com.codeborne.selenide.Selenide;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 public class GoogleSearchResultsPage {
     public List<String> getListOfSearchResultLinksText() {
-        return WebElementUtil.getElementsList("//h3[@class='LC20lb DKV0Md']")
-                .stream()
-                .map(WebElement::getText)
-                .collect(Collectors.toList());
+        return Selenide.$$x("//h3[@class='LC20lb DKV0Md']")
+                .texts();
     }
 
     public List<String> getListOfSearchResultLinks() {
-        return WebElementUtil.getElementsList("//div[@class='yuRUbf']/a")
+        return Selenide.$$x("//div[@class='yuRUbf']/a")
                 .stream()
-                .map(webElement -> webElement.getAttribute("href"))
+                .map(selenideElement -> selenideElement.getAttribute("href"))
                 .collect(Collectors.toList());
     }
 
     public String getSearchResultLinkTextForIndex(int index) {
-        return getListOfSearchResultLinksText().get(index);
+        return Selenide.$x(String.format("(%s)[%d]", "//h3[@class='LC20lb DKV0Md']", index + 1)).getText();
     }
 
     public GoogleSearchImagesPage navigateToImagesPage() {
-        WebElementUtil.getElementFromListByIndex("//a[@class='hide-focus-ring']", 0).click();
+        Selenide.$x("//a[@class='hide-focus-ring']").click();
         return new GoogleSearchImagesPage();
     }
 }
