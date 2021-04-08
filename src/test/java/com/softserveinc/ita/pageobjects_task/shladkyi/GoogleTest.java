@@ -9,6 +9,8 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static com.codeborne.selenide.Selenide.title;
+
 public class GoogleTest extends TestRunner {
 
     private GoogleHomePage googleHomePage;
@@ -16,7 +18,7 @@ public class GoogleTest extends TestRunner {
     @BeforeMethod
     public void openGoogleHomePage() {
         googleHomePage = new GoogleHomePage()
-                .open();
+                .openHomePage();
     }
 
     @Test
@@ -35,14 +37,14 @@ public class GoogleTest extends TestRunner {
     @Test
     public void testValidGoogleImagesSearch() {
         GoogleSearchImagesResultPage googleImagesResultPage = googleHomePage.searchFor("funny kitten").openImagesPage();
-        List<String> imagesListText = googleImagesResultPage.getSearchResultImagesTextList();
+        List<String> imagesListText = googleImagesResultPage.getSearchResultImagesTextList(10);
         Assert.assertTrue(imagesListText.size() >= 10);
         String testText = "funny";
         Assert.assertTrue(imagesListText.get(0).toLowerCase().contains(testText));
         Assert.assertTrue(imagesListText.get(4).toLowerCase().contains(testText));
         googleImagesResultPage.openGoogleHomePage();
-        Assert.assertTrue(TestRunner.getDriver().getCurrentUrl().contains("https://www.google.com/"));
-    }
+        Assert.assertTrue(title().contains("Google"));
+        }
 
     @Test
     public void testLanguageChange() {
