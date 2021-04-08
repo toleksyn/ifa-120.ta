@@ -20,6 +20,6 @@ public class GoogleHomePage {
     }
 
     public boolean checkGoogleLogoVisibility() {
-        return $x("//div[@class='k1zIA kKvsb']").getAttribute("style").contains("hidden");
+        return $x("//div[@class='k1zIA kKvsb']").attr("style").contains("hidden");
     }
 }

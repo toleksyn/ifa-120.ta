@@ -10,7 +10,7 @@ public class GoogleImagePage {
         return $$x("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']")
                 .shouldHaveSize(amount)
                 .stream()
-                .map(linksText -> linksText.getAttribute("title"))
+                .map(linksText -> linksText.attr("title"))
                 .collect(Collectors.toList());
     }
 
@@ -20,6 +20,6 @@ public class GoogleImagePage {
     }
 
     public String getGoogleLogoLink() {
-        return $x("//a[@class='F1hUFe jbTlie']").getAttribute("href");
+        return $x("//a[@class='F1hUFe jbTlie']").attr("href");
     }
 }
