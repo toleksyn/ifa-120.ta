@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.$x;
 public class GoogleSearchResultPage {
 
     public String getSearchResultLinkText(int index) {
-        return $x(String.format("(%s)[%d]", "//h3[@class='LC20lb DKV0Md']", index + 1)).getText();
+        return $x(String.format("(//h3[@class='LC20lb DKV0Md'])[%d]", index + 1)).getText();
     }
 
     public List<String> getAllSearchResultLinks() {
