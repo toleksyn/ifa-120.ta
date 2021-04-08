@@ -1,18 +1,17 @@
 package com.softserveinc.ita.nromanchuk;
 
-import com.softserveinc.ita.common.WebElementUtil;
-import org.openqa.selenium.WebElement;
+import com.codeborne.selenide.ElementsCollection;
 
-import java.util.List;
+import static com.codeborne.selenide.Selenide.*;
 
 public class ImagesResultsPage {
 
-    public List<WebElement> getListOfTextResults() {
-        return WebElementUtil.getElementsListAtLeast("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']",10);
+    public ElementsCollection getListOfTextResults() {
+        return $$x("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']");
     }
 
     public GoogleHomePage navigateToGoogleHomePage() {
-        WebElementUtil.clickElement("//a[@class='F1hUFe jbTlie']");
+        $x("//a[@class='F1hUFe jbTlie']").click();
         return new GoogleHomePage();
     }
 
