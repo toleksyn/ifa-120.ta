@@ -1,6 +1,7 @@
 package com.softserveinc.ita.pageobjects_task.nromanchuk;
 
-import com.codeborne.selenide.*;
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.WebDriverRunner;
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.nromanchuk.BooksResultsPage;
 import com.softserveinc.ita.nromanchuk.GoogleHomePage;
@@ -25,7 +26,8 @@ public class GoogleTest extends TestRunner {
         String searchTerm = "funny kitten";
         String firstLinkText = googleHomePage
                 .searchFor(searchTerm)
-                .getLinkText(1);
+                .getLinkText(1)
+                .toLowerCase();
         Assert.assertTrue(firstLinkText.contains(searchTerm));
     }
 
@@ -55,7 +57,7 @@ public class GoogleTest extends TestRunner {
     public void testWebDriverSearch() {
         String searchTerm = "webdriver";
         BooksResultsPage booksResultsPage = googleHomePage.searchFor(searchTerm).navigateToBooksResultsPage();
-        String resultLinkText = booksResultsPage.getResultLinkTextByIndex(9);
+        String resultLinkText = booksResultsPage.getResultLinkTextByIndex(9).toLowerCase();
         Assert.assertTrue(resultLinkText.contains(searchTerm));
     }
 }

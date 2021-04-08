@@ -2,7 +2,8 @@ package com.softserveinc.ita.nromanchuk;
 
 import com.codeborne.selenide.ElementsCollection;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$$x;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class ImagesResultsPage {
 
@@ -11,7 +12,7 @@ public class ImagesResultsPage {
     }
 
     public GoogleHomePage navigateToGoogleHomePage() {
-        $x("//a[@class='F1hUFe jbTlie']").click();
+       $x("//a[@class='F1hUFe jbTlie']").click();
         return new GoogleHomePage();
     }
 
