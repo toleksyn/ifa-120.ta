@@ -1,19 +1,21 @@
 package com.softserveinc.ita.vpetrat;
 
-import com.softserveinc.ita.common.WebElementUtil;
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Selenide;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class GoogleSearchImagesPage {
     public GoogleHomePage navigateToHomePage() {
-        WebElementUtil.clickElement("//a[@class='F1hUFe jbTlie']");
+        Selenide.$x("//div[@class='ZbYMvd']").click();
         return new GoogleHomePage();
     }
 
-    public List<String> getListOfSearchResultImagesText() {
-        return WebElementUtil.getElementsListAtLeast("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']", 10)
+    public List<String> getListOfSearchResultImagesText(int amount) {
+        return Selenide.$$x("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']")
+                .shouldHave(CollectionCondition.sizeGreaterThan(amount))
                 .stream()
-                .map(webElement -> webElement.getAttribute("title")).collect(Collectors.toList());
+                .map(selenideElement -> selenideElement.getAttribute("title")).collect(Collectors.toList());
     }
 }
