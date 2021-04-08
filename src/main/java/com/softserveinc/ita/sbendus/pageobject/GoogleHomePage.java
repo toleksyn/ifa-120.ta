@@ -13,7 +13,7 @@ public class GoogleHomePage {
     }
 
     public GoogleSearchPage searchFor(String searchTerm) {
-        $x("//input[@class='gLFyf gsfi']").sendKeys(searchTerm + Keys.ENTER);
+        $x("//input[@class='gLFyf gsfi']").val(searchTerm).pressEnter();
         return new GoogleSearchPage();
     }
 }

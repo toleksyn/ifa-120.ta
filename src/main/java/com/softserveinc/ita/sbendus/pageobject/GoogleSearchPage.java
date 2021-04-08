@@ -9,8 +9,8 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class GoogleSearchPage {
 
-    public String getSearchResultLinkText(int index) {
-        return $x(String.format("(%s)[%d]", "//div[@class='yuRUbf']/a", (index + 1))).getText();
+    public String getSearchResultLinkText(int number) {
+        return $x(String.format("('//div[@class='yuRUbf']/a')[%d]", (number))).getText();
     }
 
     public List<String> getListOfSearchResultLinks() {
