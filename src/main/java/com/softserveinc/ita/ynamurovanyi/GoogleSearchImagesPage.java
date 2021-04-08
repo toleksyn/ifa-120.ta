@@ -9,7 +9,7 @@ public class GoogleSearchImagesPage {
 
     public List<String> getSearchResultsLinksText() {
         return Selenide.$$x("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']")
-                .should(CollectionCondition.sizeGreaterThan(9))
+                .shouldHave(CollectionCondition.sizeGreaterThan(9))
                 .texts();
     }
 
