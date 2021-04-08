@@ -1,23 +1,22 @@
 package com.softserveinc.ita.shladkyi;
 
-import com.softserveinc.ita.common.TestRunner;
-import org.openqa.selenium.By;
+
+import com.codeborne.selenide.CollectionCondition;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static com.codeborne.selenide.Selenide.$$x;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class GoogleSearchImagesResultPage {
 
-    public List<String> getSearchResultImagesTextList() {
-        return TestRunner.getDriver().findElements(By.xpath("//img[@class='rg_i Q4LuWd']"))
-                .stream()
-                .map(webElement -> webElement.getAttribute("alt"))
-                .collect(Collectors.toList());
+    public List<String> getSearchResultImagesTextList(int amount) {
+        return $$x("//img[@class='rg_i Q4LuWd']")
+                .shouldHave(CollectionCondition.sizeGreaterThan(amount)).texts();
     }
 
-
     public GoogleHomePage openGoogleHomePage() {
-        TestRunner.getDriver().findElement(By.cssSelector("[class='TYpZOd']")).click();
+        $x("//div[@class='ZbYMvd']").click();
         return new GoogleHomePage();
     }
 }

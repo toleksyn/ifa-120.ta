@@ -1,40 +1,33 @@
 package com.softserveinc.ita.shladkyi;
 
 
-import com.softserveinc.ita.common.TestRunner;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.open;
 
 
 public class GoogleHomePage {
 
-    public GoogleHomePage open() {
-        TestRunner.getDriver().get("https://www.google.com/");
+    public GoogleHomePage openHomePage() {
+        open("https://www.google.com/");
         return this;
     }
 
     public GoogleSearchResultPage searchFor(String searchTerm) {
-        TestRunner.getDriver()
-                .findElement(By.cssSelector("[class='gLFyf gsfi']"))
-                .sendKeys(searchTerm, Keys.ENTER);
+        $x("//input[@class='gLFyf gsfi']").setValue(searchTerm).pressEnter();
         return new GoogleSearchResultPage();
     }
 
     public GoogleSettingsPage openSettingsPage() {
-        TestRunner.getDriver().findElement(By.id("Mses6b")).click();
-        WebElement searchSettingsButton = TestRunner.getDriver().findElement(By.xpath("//a[@class='EzVRq']"));
-        TestRunner.getWait().until(ExpectedConditions.elementToBeClickable(searchSettingsButton));
-        searchSettingsButton.click();
+        $x("//button[@id='Mses6b']").click();
+        $x("//a[@class='EzVRq']").click();
         return new GoogleSettingsPage();
     }
 
     public String getSearchButtonText() {
-        return TestRunner.getDriver().findElement(By.cssSelector("[name='btnK']")).getAttribute("value");
+        return $x("(//input[@class='gNO89b'])[2]").getAttribute("value");
     }
 
     public String getLuckyButtonText() {
-        return TestRunner.getDriver().findElement(By.cssSelector("[name='btnI']")).getAttribute("value");
+        return $x("(//input[@class='RNmpXc'])[2]").getAttribute("value");
     }
 }
