@@ -6,9 +6,9 @@ import java.util.List;
 import com.softserveinc.ita.kuguk.GoogleHomePage;
 import com.softserveinc.ita.kuguk.GoogleSearchResultsImagesPage;
 import com.softserveinc.ita.kuguk.GoogleSearchSortResultsPage;
-import com.codeborne.selenide.WebDriverRunner;
 import com.softserveinc.ita.common.TestRunner;
 
+import static com.codeborne.selenide.Selenide.title;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -56,7 +56,7 @@ public class GoogleTest extends TestRunner {
 		assertTrue(searchResultsImages.get(4).toLowerCase().contains(testStringForAssert));
 
 		searchResultsImagesPage.gotoGoogleHomePageByLogo();
-		assertEquals(WebDriverRunner.getWebDriver().getTitle(), "Google", "Current Page isn't a Google homepage");
+		assertEquals(title(), "Google", "Current Page isn't a Google homepage");
 	}
 
 	@Test
