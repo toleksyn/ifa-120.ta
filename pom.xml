@@ -14,6 +14,8 @@
         <testng.version>7.3.0</testng.version>
         <selenium.java.version>3.141.59</selenium.java.version>
         <chrome.driver.version>3.141.59</chrome.driver.version>
+        <com.codeborne.selenide>5.20.1</com.codeborne.selenide>
+
     </properties>
 
     <dependencies>
@@ -35,14 +37,7 @@
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
-            <version>5.20.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.codeborne</groupId>
-            <artifactId>selenide</artifactId>
-            <version>5.20.1</version>
-            <scope>compile</scope>
+            <version>${com.codeborne.selenide}</version>
         </dependency>
     </dependencies>
 
