@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$x;
 public class GoogleSearchResultPage {
 
     public String getLinkText(int index) {
-        return $x(String.format("(//h3[@class='LC20lb DKV0Md'])[%d]",index)).text();
+        return $x(String.format("(//h3[@class='LC20lb DKV0Md'])[%d]", index)).text();
     }
 
     public List<String> getResultsLinks() {
