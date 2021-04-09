@@ -1,48 +1,41 @@
 package com.softserveinc.ita.ynamurovanyi;
 
-import com.softserveinc.ita.common.TestRunner;
-import com.softserveinc.ita.common.WebElementUtil;
-import org.openqa.selenium.By;
+import com.codeborne.selenide.Selenide;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class GoogleSearchResultsPage {
 
-    public List<String> getSearchResultsLinksText() {
-        return WebElementUtil.getElementsList("//h3[@class='LC20lb DKV0Md']")
-                .stream()
-                .map(searchResultsLinksText -> searchResultsLinksText.getText())
-                .collect(Collectors.toList());
-    }
-
     public List<String> getSearchResultsLinks() {
-        return WebElementUtil.getElementsList("//div[@class='yuRUbf']/a")
+        return Selenide.$$x("//div[@class='yuRUbf']/a")
                 .stream()
-                .map(searchResultsLinks -> searchResultsLinks.getAttribute("href"))
+                .map(searchResultsLinks -> searchResultsLinks.attr("href"))
                 .collect(Collectors.toList());
     }
 
     public GoogleSearchImagesPage navigateToImagesResultsPage() {
-        WebElementUtil.clickElement("//a[@class='hide-focus-ring']");
+        Selenide.$x("//a[@class='hide-focus-ring']").click();
         return new GoogleSearchImagesPage();
     }
 
     public GoogleSearchResultsPage navigateToResultsPageNumber(int targetPageNumber) {
-        WebElementUtil.clickElement("//a[contains(text()," + targetPageNumber + ")]");
+        Selenide.$x("//a[contains(text()," + targetPageNumber + ")]").click();
         return this;
     }
 
     public int getSearchResultsPageNumber() {
-        String pageNumber = TestRunner.getDriver()
-                .findElement(By.xpath("//div[@id='result-stats']"))
-                .getText();
+        String pageNumber = Selenide.$x("//div[@id='result-stats']").text();
         pageNumber = pageNumber.substring(0, pageNumber.indexOf(":"));  //replace ":" with "f" for EN lang
         pageNumber = pageNumber.replaceAll("[^0-9]", "");
         if (pageNumber.isEmpty()) {
             pageNumber = "1";
         }
         return Integer.valueOf(pageNumber);
+    }
+
+    public String getSearchResultsLinkText(int linkIndex) {
+        return Selenide.$x(String.format("(%s)[%d]", "//h3[@class='LC20lb DKV0Md']", linkIndex + 1)).text();
     }
 }
 

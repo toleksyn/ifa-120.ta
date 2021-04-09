@@ -1,34 +1,34 @@
 package com.softserveinc.ita.nromanchuk;
 
-import com.softserveinc.ita.common.WebElementUtil;
-
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.codeborne.selenide.Selenide.$$x;
+import static com.codeborne.selenide.Selenide.$x;
+
 
 public class GoogleSearchResultPage {
 
     public String getLinkText(int index) {
-        return WebElementUtil.getElementFromListByIndex("//h3[@class='LC20lb DKV0Md']", index)
-                .getText()
-                .toLowerCase();
+        return $x(String.format("(//h3[@class='LC20lb DKV0Md'])[%d]", index)).text();
     }
 
     public List<String> getResultsLinks() {
-        return WebElementUtil.getElementsList("//div[@class='yuRUbf']/a")
+        return $$x("//div[@class='yuRUbf']/a")
                 .stream()
-                .map(webElement -> webElement.getAttribute("href"))
+                .map(foundLinksList -> foundLinksList
+                        .getAttribute("href"))
                 .collect(Collectors.toList());
     }
 
     public ImagesResultsPage navigateToImageResultsPage() {
-        WebElementUtil.clickElement("//*[@data-hveid='CAEQAw']");
+        $x("(//a[@class='hide-focus-ring'])[1]").click();
         return new ImagesResultsPage();
     }
 
     public BooksResultsPage navigateToBooksResultsPage() {
-        WebElementUtil.clickElement("//div[@class='GOE98c']");
-        WebElementUtil.getElementFromListByIndex("//div[@class='gTMtLb fp-nh']//a", 1)
-                .click();
+        $x("//div[@class='GOE98c']").click();
+        $x(String.format("(//div[@class='gTMtLb fp-nh']//a)[2]")).click();
         return new BooksResultsPage();
     }
 }

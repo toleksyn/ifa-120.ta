@@ -1,22 +1,24 @@
 package com.softserveinc.ita.kuguk;
 
-import com.softserveinc.ita.common.TestRunner;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import com.codeborne.selenide.Selenide;
+
+import static com.codeborne.selenide.Selenide.$x;
 
 public class GoogleHomePage {
 
     public GoogleHomePage open() {
-        TestRunner.getDriver().get("https://www.google.com");
+        Selenide.open("https://www.google.com");
         return this;
     }
 
     public GoogleSearchResultsPage searchFor(String searchString) {
-        TestRunner.getWait()
-                .until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='q']")))
-                .sendKeys(searchString + Keys.ENTER);
+        $x("//input[@name='q']").setValue(searchString).pressEnter();
         return new GoogleSearchResultsPage();
     }
 
+    public GoogleSettingsPage openSettingsPage() {
+        $x("//button [@id= 'Mses6b']").click();
+        $x("//a[@class='EzVRq']").click();
+        return new GoogleSettingsPage();
+    }
 }

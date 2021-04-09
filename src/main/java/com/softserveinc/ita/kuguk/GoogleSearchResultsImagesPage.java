@@ -1,23 +1,18 @@
 package com.softserveinc.ita.kuguk;
 
-import com.softserveinc.ita.common.TestRunner;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import java.util.List;
+
+import static com.codeborne.selenide.Selenide.$$x;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class GoogleSearchResultsImagesPage {
 
-    public String[] getSearchResultsImagesText() {
-        TestRunner.getWait()
-                .until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']")));
-
-        return TestRunner.getDriver().findElements(By.xpath("//*[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']"))
-                .stream()
-                .map(foundImagesList -> foundImagesList.getAttribute("title"))
-                .toArray(String[]::new);
+    public List<String> getSearchResultsImagesText() {
+        return $$x("//a[@class='VFACy kGQAp sMi44c lNHeqe WGvvNb']").texts();
     }
 
     public GoogleHomePage gotoGoogleHomePageByLogo() {
-        TestRunner.getDriver().findElement(By.xpath("//a[@class='F1hUFe jbTlie']")).click();
+        $x("//a[@class='F1hUFe jbTlie']").click();
         return new GoogleHomePage();
     }
 }

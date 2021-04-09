@@ -1,21 +1,18 @@
 package com.softserveinc.ita.sbendus.pageobject;
 
-import com.softserveinc.ita.common.TestRunner;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import com.codeborne.selenide.Selenide;
+
+import static com.codeborne.selenide.Selenide.$x;
 
 public class GoogleHomePage {
 
     public GoogleHomePage open() {
-        TestRunner.getDriver().get("https://www.google.com/");
+        Selenide.open("https://www.google.com/");
         return this;
     }
 
     public GoogleSearchPage searchFor(String searchTerm) {
-        WebElement googleSearchInput = TestRunner.getDriver().findElement(By.xpath("//input[@class='gLFyf gsfi']"));
-        googleSearchInput.sendKeys(searchTerm);
-        googleSearchInput.sendKeys(Keys.ENTER);
+        $x("//input[@class='gLFyf gsfi']").val(searchTerm).pressEnter();
         return new GoogleSearchPage();
     }
 }

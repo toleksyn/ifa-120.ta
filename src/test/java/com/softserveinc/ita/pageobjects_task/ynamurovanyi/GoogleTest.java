@@ -25,10 +25,10 @@ public class GoogleTest extends TestRunner {
     @Test
     public void testIfFirstLinkTextContains() {
         String searchTerm = "funny kitten";
-        List<String> searchResultsLinksText = googleHomePage
+        String searchResultsLinkText = googleHomePage
                 .searchFor(searchTerm)
-                .getSearchResultsLinksText();
-        assertTrue(searchResultsLinksText.get(0).contains(searchTerm));
+                .getSearchResultsLinkText(0);
+        assertTrue(searchResultsLinkText.contains(searchTerm));
     }
 
     @Test
