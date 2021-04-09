@@ -10,8 +10,8 @@ public class GoogleHomePage {
         return this;
     }
 
-    public GoogleResultPage doSearch(String inputText) {
-        $x("//input[@name='q']").setValue(inputText).pressEnter();
+    public GoogleResultPage searchFor(String request) {
+        $x("//input[@name='q']").setValue(request).pressEnter();
         return new GoogleResultPage();
     }
 
@@ -19,7 +19,7 @@ public class GoogleHomePage {
         Selenide.executeJavascript("document.getElementsByClassName('lnXdpd')[0].setAttribute('style', 'visibility:hidden')");
     }
 
-    public boolean checkGoogleLogoVisibility() {
+    public boolean isGoogleLogoVisible() {
         return $x("//div[@class='k1zIA kKvsb']").attr("style").contains("hidden");
     }
 }

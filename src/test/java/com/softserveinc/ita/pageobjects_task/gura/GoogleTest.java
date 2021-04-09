@@ -20,20 +20,20 @@ public class GoogleTest {
     @Test
     public void testSearchFirstLinkText() {
         String searchText = "funny kitten";
-        String linkText = googleHomePage.doSearch(searchText).getTextFromLink(0).toLowerCase(Locale.ROOT);
+        String linkText = googleHomePage.searchFor(searchText).getTextFromLink(0).toLowerCase(Locale.ROOT);
         Assert.assertTrue(linkText.contains(searchText));
     }
 
     @Test
     public void testSearchWithSearchTextSmartphone() {
-        List<String> hrefTextLinksList = googleHomePage.doSearch("smartphone").getListOfSearchResultLinks();
+        List<String> hrefTextLinksList = googleHomePage.searchFor("smartphone").getListOfSearchResultLinks();
         Assert.assertTrue(hrefTextLinksList.stream().anyMatch(link -> link.contains("wikipedia")));
     }
 
     @Test
     public void testSearchOnGoogleImagePage() {
         String searchText = "funny";
-        GoogleImagePage googleImagePage = googleHomePage.doSearch("funny kitten").goToImagePage();
+        GoogleImagePage googleImagePage = googleHomePage.searchFor("funny kitten").goToImagePage();
 
         String link = googleImagePage.getGoogleLogoLink();
         List<String> imagesTitles = new GoogleImagePage().getImagesTitles(10);
@@ -47,6 +47,6 @@ public class GoogleTest {
     @Test
     public void testHideGoogleLogo() {
         googleHomePage.hideGoogleLogo();
-        Assert.assertTrue(googleHomePage.checkGoogleLogoVisibility());
+        Assert.assertTrue(googleHomePage.isGoogleLogoVisible());
     }
 }
