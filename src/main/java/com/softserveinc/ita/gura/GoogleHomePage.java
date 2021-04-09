@@ -19,7 +19,7 @@ public class GoogleHomePage {
         Selenide.executeJavascript("document.getElementsByClassName('lnXdpd')[0].setAttribute('style', 'visibility:hidden')");
     }
 
-    public boolean isGoogleLogoVisible() {
+    public boolean isGoogleLogoHidden() {
         return $x("//div[@class='k1zIA kKvsb']").attr("style").contains("hidden");
     }
 }
