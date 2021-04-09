@@ -1,10 +1,11 @@
 package com.softserveinc.ita.pageobjects_task.nromanchuk;
 
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.WebDriverRunner;
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.nromanchuk.BooksResultsPage;
 import com.softserveinc.ita.nromanchuk.GoogleHomePage;
 import com.softserveinc.ita.nromanchuk.ImagesResultsPage;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -17,7 +18,7 @@ public class GoogleTest extends TestRunner {
 
     @BeforeMethod
     public void openGoogleHomePage() {
-        googleHomePage = new GoogleHomePage().open();
+        googleHomePage = new GoogleHomePage().openGoogleHomePage();
     }
 
     @Test
@@ -25,7 +26,8 @@ public class GoogleTest extends TestRunner {
         String searchTerm = "funny kitten";
         String firstLinkText = googleHomePage
                 .searchFor(searchTerm)
-                .getLinkText(0);
+                .getLinkText(1)
+                .toLowerCase();
         Assert.assertTrue(firstLinkText.contains(searchTerm));
     }
 
@@ -43,19 +45,19 @@ public class GoogleTest extends TestRunner {
         ImagesResultsPage imagesResultsPage = googleHomePage
                 .searchFor("funny kitten")
                 .navigateToImageResultsPage();
-        List<WebElement> listOfTextResults = imagesResultsPage.getListOfTextResults();
+        ElementsCollection listOfTextResults = imagesResultsPage.getListOfTextResults();
         Assert.assertTrue(listOfTextResults.size() > 9);
         Assert.assertTrue(listOfTextResults.get(0).getAttribute("title").toLowerCase().contains(testTermForAssert));
         Assert.assertTrue(listOfTextResults.get(4).getAttribute("title").toLowerCase().contains(testTermForAssert));
         imagesResultsPage.navigateToGoogleHomePage();
-        Assert.assertEquals(TestRunner.getDriver().getTitle(), "Google");
+        Assert.assertEquals(WebDriverRunner.getWebDriver().getTitle(), "Google", "Current Page isn't a Google homepage");
     }
 
     @Test
     public void testWebDriverSearch() {
         String searchTerm = "webdriver";
         BooksResultsPage booksResultsPage = googleHomePage.searchFor(searchTerm).navigateToBooksResultsPage();
-        String resultLinkText = booksResultsPage.getResultLinkTextByIndex(9);
+        String resultLinkText = booksResultsPage.getResultLinkTextByIndex(9).toLowerCase();
         Assert.assertTrue(resultLinkText.contains(searchTerm));
     }
 }
