@@ -24,10 +24,10 @@ public class GoogleHomePage {
     }
 
     public String getSearchButtonText() {
-        return $x("(//input[@class='gNO89b'])[2]").getAttribute("value");
+        return $x("(//input[@class='gNO89b'])[2]").attr("value");
     }
 
     public String getLuckyButtonText() {
-        return $x("(//input[@class='RNmpXc'])[2]").getAttribute("value");
+        return $x("(//input[@class='RNmpXc'])[2]").attr("value");
     }
 }
