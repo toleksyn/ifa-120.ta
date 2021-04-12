@@ -39,7 +39,7 @@ public class RozetkaSearchResultsPage {
     }
 
     public int getProductPriseByNumber(int number) {
-        return Integer.parseInt($x(String.format("(//span[@class='goods-tile__price-value'])[%d]", number)).getText().replaceAll(" ",""));
+        return Integer.parseInt($x(String.format("(//span[@class='goods-tile__price-value'])[%d]", number)).getText().replaceAll(" ", ""));
     }
 
     public void openNextResultPage() {
@@ -58,7 +58,4 @@ public class RozetkaSearchResultsPage {
         $x(String.format("//label[contains(text(),'%s')]", checkboxName)).click();
         return this;
     }
-
-
-
 }
