@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class RozetkaProductPage {
     public String getProductTittle() {
-        return $x("//h1[@class='product__title']").getText();
+        return $x("//h1[@class='product__title']").text();
     }
 
     public ElementsCollection getListOfProductTabs() {

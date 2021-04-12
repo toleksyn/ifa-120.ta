@@ -11,12 +11,12 @@ public class RozetkaSearchResultsPage {
         return Selenide.$$x("//span[@class='goods-tile__title']");
     }
 
-    public RozetkaProductPage pressProductByNumber(int number) {
+    public RozetkaProductPage navigateToProductByNumber(int number) {
         $x(String.format("(//a[@class='goods-tile__picture'])[%d]", number)).click();
         return new RozetkaProductPage();
     }
 
-    public RozetkaProductPage pressFirstProduct() {
+    public RozetkaProductPage navigateToFirstProduct() {
         $x("//a[@class='goods-tile__picture']").click();
         return new RozetkaProductPage();
     }
@@ -35,11 +35,11 @@ public class RozetkaSearchResultsPage {
     }
 
     public String getProductNameByNumber(int number) {
-        return $x(String.format("(//span[@class='goods-tile__title'])[%d]", number)).getText();
+        return $x(String.format("(//span[@class='goods-tile__title'])[%d]", number)).text();
     }
 
     public int getProductPriseByNumber(int number) {
-        return Integer.parseInt($x(String.format("(//span[@class='goods-tile__price-value'])[%d]", number)).getText().replaceAll(" ", ""));
+        return Integer.parseInt($x(String.format("(//span[@class='goods-tile__price-value'])[%d]", number)).text().replaceAll(" ", ""));
     }
 
     public void openNextResultPage() {
@@ -51,7 +51,7 @@ public class RozetkaSearchResultsPage {
     }
 
     public int getCurrentPageNumber() {
-        return Integer.parseInt($x("//a[@class='pagination__link pagination__link_state_active']").getText());
+        return Integer.parseInt($x("//a[@class='pagination__link pagination__link_state_active']").text());
     }
 
     public RozetkaSearchResultsPage pressFilterCheckBox(String filterType, String checkboxName) {
