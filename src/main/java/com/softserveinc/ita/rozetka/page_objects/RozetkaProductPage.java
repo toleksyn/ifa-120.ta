@@ -7,7 +7,8 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class RozetkaProductPage {
-    public String getProductTitle() {
+
+     public String getProductTitle() {
         return $x("//h1[@class='product__title']").text();
     }
 

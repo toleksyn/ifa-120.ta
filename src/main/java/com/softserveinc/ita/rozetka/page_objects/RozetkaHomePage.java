@@ -7,12 +7,12 @@ import static com.codeborne.selenide.Selenide.open;
 public class RozetkaHomePage {
 
     public RozetkaHomePage openHomePage() {
-        open("https://rozetka.com.ua/");
+        open("https://rozetka.com.ua/ua/");
         return this;
     }
 
     public RozetkaCategoryPage navigateToCategoryPage(int number) {
-        Selenide.$$x("//a[@class = 'menu-categories__link']").get(number).hover().click();
+        Selenide.$$x("//a[@class = 'menu-categories__link']").get(number).click();
         return new RozetkaCategoryPage();
     }
 
