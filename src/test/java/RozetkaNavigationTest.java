@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-public class RozetkaTest extends TestRunner {
+public class RozetkaNavigationTest extends TestRunner {
     private RozetkaHomePage rozetkaHomePage;
 
     @Test
