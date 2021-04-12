@@ -7,7 +7,7 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class RozetkaSearchResultsPage {
-    public ElementsCollection getSearchResultList() {
+    public ElementsCollection getProductList() {
         return Selenide.$$x("//span[@class='goods-tile__title']");
     }
 
