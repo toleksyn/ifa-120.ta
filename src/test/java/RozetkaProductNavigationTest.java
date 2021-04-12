@@ -2,13 +2,13 @@ import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.page_objects.RozetkaCategoryPage;
 import com.softserveinc.ita.rozetka.page_objects.RozetkaHomePage;
 import com.softserveinc.ita.rozetka.page_objects.RozetkaProductPage;
-import org.junit.Assert;
-import org.junit.Test;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-public class RozetkaNavigationTest extends TestRunner {
+public class RozetkaProductNavigationTest extends TestRunner {
     private RozetkaHomePage rozetkaHomePage;
 
     @Test

@@ -12,7 +12,7 @@ public class RozetkaHomePage {
     }
 
     public RozetkaCategoryPage navigateToCategoryPage(int number) {
-        Selenide.$$x("//a[@class = 'menu-categories__link']").get(number).click();
+        Selenide.$$x("//a[@class = 'menu-categories__link']").get(number).hover().click();
         return new RozetkaCategoryPage();
     }
 
