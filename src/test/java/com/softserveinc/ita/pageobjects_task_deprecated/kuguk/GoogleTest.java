@@ -1,6 +1,6 @@
 package com.softserveinc.ita.pageobjects_task_deprecated.kuguk;
 
-import com.softserveinc.ita.deprecated.common.TestRunner;
+import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.deprecated.kuguk.GoogleHomePage;
 import com.softserveinc.ita.deprecated.kuguk.GoogleSearchResultsImagesPage;
 import com.softserveinc.ita.deprecated.kuguk.GoogleSearchSortResultsPage;

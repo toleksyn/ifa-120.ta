@@ -1,6 +1,6 @@
 package com.softserveinc.ita.pageobjects_task_deprecated.vpetrat;
 
-import com.softserveinc.ita.deprecated.common.TestRunner;
+import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.deprecated.vpetrat.GoogleHomePage;
 import com.softserveinc.ita.deprecated.vpetrat.GoogleSearchImagesPage;
 import org.junit.Assert;

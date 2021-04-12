@@ -1,4 +1,4 @@
-package com.softserveinc.ita.deprecated.common;
+package com.softserveinc.ita.common;
 
 import com.codeborne.selenide.Configuration;
 import org.testng.annotations.BeforeSuite;

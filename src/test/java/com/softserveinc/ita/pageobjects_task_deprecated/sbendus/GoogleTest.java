@@ -1,7 +1,7 @@
 package com.softserveinc.ita.pageobjects_task_deprecated.sbendus;
 
 import com.codeborne.selenide.WebDriverRunner;
-import com.softserveinc.ita.deprecated.common.TestRunner;
+import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.deprecated.sbendus.pageobject.GoogleHomePage;
 import com.softserveinc.ita.deprecated.sbendus.pageobject.GoogleSearchImagePage;
 import org.testng.Assert;

@@ -1,6 +1,6 @@
 package com.softserveinc.ita.pageobjects_task_deprecated.shladkyi;
 
-import com.softserveinc.ita.deprecated.common.TestRunner;
+import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.deprecated.shladkyi.GoogleHomePage;
 import com.softserveinc.ita.deprecated.shladkyi.GoogleSearchImagesResultPage;
 import org.testng.Assert;

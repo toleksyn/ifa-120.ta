@@ -1,6 +1,6 @@
 package com.softserveinc.ita.pageobjects_task_deprecated.ynamurovanyi;
 
-import com.softserveinc.ita.deprecated.common.TestRunner;
+import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.deprecated.ynamurovanyi.GoogleHomePage;
 import com.softserveinc.ita.deprecated.ynamurovanyi.GoogleSearchImagesPage;
 import com.softserveinc.ita.deprecated.ynamurovanyi.GoogleSearchResultsPage;

@@ -1,7 +1,7 @@
 package com.softserveinc.ita.pageobjects_task_deprecated.romankhr;
 
 import com.codeborne.selenide.WebDriverRunner;
-import com.softserveinc.ita.deprecated.common.TestRunner;
+import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.deprecated.romankhr.GoogleHomePage;
 import com.softserveinc.ita.deprecated.romankhr.GoogleSearchResultImagesPage;
 import org.testng.Assert;
