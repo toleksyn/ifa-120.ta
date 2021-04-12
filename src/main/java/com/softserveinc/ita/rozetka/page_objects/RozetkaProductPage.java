@@ -7,7 +7,7 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class RozetkaProductPage {
-    public String getProductTittle() {
+    public String getProductTitle() {
         return $x("//h1[@class='product__title']").text();
     }
 
@@ -17,5 +17,10 @@ public class RozetkaProductPage {
 
     public SelenideElement getViewedProduct(int number) {
         return $x(String.format("(//section[@class='recently-viewed']//a[@class='lite-tile__title'])[%d]", number));
+    }
+
+    public RozetkaCategoryPage returnToCategoryPage(int index) {
+        Selenide.$$x("//a[@class='breadcrumbs__link']").get(index).click();
+        return new RozetkaCategoryPage();
     }
 }
