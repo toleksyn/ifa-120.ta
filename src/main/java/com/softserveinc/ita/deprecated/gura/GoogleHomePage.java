@@ -16,7 +16,7 @@ public class GoogleHomePage {
     }
 
     public void hideGoogleLogo() {
-        Selenide.executeJavascript("document.getElementsByClassName('lnXdpd')[0].setAttribute('style', 'visibility:hidden')");
+        Selenide.executeJavaScript("document.getElementsByClassName('lnXdpd')[0].setAttribute('style', 'visibility:hidden')");
     }
 
     public boolean isGoogleLogoHidden() {
