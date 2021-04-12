@@ -26,7 +26,7 @@ public class RozetkaSearchResultsPage {
     }
 
     public SelenideElement getProductByNumber(int number) {
-        return $x("(//a[@class='goods-tile__picture'])[%d]");
+        return $x(String.format("(//a[@class='goods-tile__picture'])[%d]", number));
     }
 
     public RozetkaSearchResultsPage setSortingType(String sortingTypeKey) {
@@ -54,7 +54,7 @@ public class RozetkaSearchResultsPage {
         return Integer.parseInt($x("//a[@class='pagination__link pagination__link_state_active']").text());
     }
 
-    public RozetkaSearchResultsPage pressFilterCheckBox(String filterType, String checkboxName) {
+    public RozetkaSearchResultsPage pressFilterCheckBox(String checkboxName) {
         $x(String.format("//label[contains(text(),'%s')]", checkboxName)).click();
         return this;
     }
