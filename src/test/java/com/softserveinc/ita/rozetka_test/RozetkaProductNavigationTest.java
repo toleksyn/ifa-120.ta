@@ -1,6 +1,7 @@
 package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
+import com.softserveinc.ita.rozetka.page_objects.RozetkaBasketPage;
 import com.softserveinc.ita.rozetka.page_objects.RozetkaCategoryPage;
 import com.softserveinc.ita.rozetka.page_objects.RozetkaHomePage;
 import com.softserveinc.ita.rozetka.page_objects.RozetkaProductPage;
@@ -27,5 +28,15 @@ public class RozetkaProductNavigationTest extends TestRunner {
         Assert.assertTrue(chosenProduct.getProductTitle().contains("Комп'ютер"));
         chosenProduct.returnToCategoryPage(1);
         Assert.assertTrue(catalogCategoryItem.getPageTitle().contains("Комп'ютери"));
+    }
+
+    @Test
+    public void testAddingProductToBasket() {
+        RozetkaProductPage productPage = rozetkaHomePage
+                .navigateToCategoryPage(6)
+                .navigateToProductCategoryPage(1)
+                .navigateToProductByNumber(0);
+        RozetkaBasketPage basketPage = productPage.buyProduct();
+        Assert.assertEquals(basketPage.getFirstProductTitle(), productPage.getProductTitle());
     }
 }
