@@ -7,7 +7,7 @@ public class BasketPage {
         return $x("//a[@class='cart-product__title']").text();
     }
 
-    public OrderPage gotoOrderPage() {
+    public OrderPage openOrderPage() {
         $x("//a[@class='button button_size_large button_color_green cart-receipt__submit']").click();
         return new OrderPage();
     }

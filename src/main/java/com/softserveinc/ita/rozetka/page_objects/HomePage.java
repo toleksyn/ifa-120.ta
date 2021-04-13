@@ -22,7 +22,7 @@ public class HomePage extends BasePage {
         return new CategoryPage();
     }
 
-    public ProductPage gotoProductPage(){
+    public ProductPage openProductPage(){
         $x("(//div[@class='tile__inner'])[1]/a[2]").click();
         return new ProductPage();
     }

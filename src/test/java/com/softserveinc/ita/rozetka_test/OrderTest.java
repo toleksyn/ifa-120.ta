@@ -8,13 +8,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class OrderTest {
-    private HomePage rozetkaHomePage;
     private BasketPage basketPage;
     private OrderPage orderPage;
 
     @BeforeMethod
     public void openHomepage() {
-        basketPage = new HomePage().openHomePage().gotoProductPage().buyProduct();
+        basketPage = new HomePage().openHomePage().openProductPage().buyProduct();
     }
 
     @AfterMethod
@@ -24,6 +23,6 @@ public class OrderTest {
 
     @Test
     public void testOrderProductTest() {
-        orderPage = basketPage.gotoOrderPage().fillAllInputFields();
+        orderPage = basketPage.openOrderPage().fillAllInputFields();
     }
 }
