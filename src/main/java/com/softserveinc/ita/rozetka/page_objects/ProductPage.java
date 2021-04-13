@@ -30,5 +30,8 @@ public class ProductPage extends BasePage {
         return new BasketPage();
     }
 
-
+    public BasketPage putProductOpenBasket() {
+        $x("(//span[@class='buy-button__label'])[1]").hover().click();
+        return new BasketPage();
+    }
 }

@@ -26,4 +26,9 @@ public class HomePage extends BasePage {
                 .click();
         return new CategoryPage();
     }
+
+    public ProductPage navigateToFirstProduct() {
+        $x("//li[@class='main-goods__cell']").click();
+        return new ProductPage();
+    }
 }
