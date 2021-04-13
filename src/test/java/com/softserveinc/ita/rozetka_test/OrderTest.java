@@ -4,28 +4,31 @@ import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.page_objects.BasketPage;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import com.softserveinc.ita.rozetka.page_objects.OrderPage;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class OrderTest extends TestRunner {
 
-    //private HomePage openRozetkaHomePage;
     private OrderPage openOrderPage;
     private BasketPage openBasketPage;
     private String searchString;
 
     @BeforeMethod
     public void putProductToBasketOpenOrder() {
-    //    openRozetkaHomePage = new HomePage().openHomePage();
-    openOrderPage =
-        new HomePage()
-            .openHomePage()
-            .navigateToFirstProduct()
-            .putProductOpenBasket()
-            .openOrderPage();
+        openOrderPage =
+                new HomePage()
+                        .openHomePage()
+                        .navigateToFirstProduct()
+                        .putProductOpenBasket()
+                        .openOrderPage();
 
     }
 
+    @Test
+    public void testOrderProductTest() {
+        openOrderPage.fillAllInputFields();
+    }
 
     @Test
     public void testEditOrder() {
