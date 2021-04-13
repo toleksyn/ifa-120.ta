@@ -7,7 +7,8 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class RozetkaProductPage {
-    public String getProductTitle() {
+
+     public String getProductTitle() {
         return $x("//h1[@class='product__title']").text();
     }
 
@@ -22,5 +23,10 @@ public class RozetkaProductPage {
     public RozetkaCategoryPage returnToCategoryPage(int index) {
         Selenide.$$x("//a[@class='breadcrumbs__link']").get(index).click();
         return new RozetkaCategoryPage();
+    }
+
+    public RozetkaBasketPage buyProduct() {
+        $x("//button[@class='buy-button button button_with_icon button_color_green button_size_large']").hover().click();
+        return new RozetkaBasketPage();
     }
 }
