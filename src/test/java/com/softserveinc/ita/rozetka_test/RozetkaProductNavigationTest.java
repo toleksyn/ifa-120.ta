@@ -40,7 +40,8 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .openProductsListPage("Ванни")
                 .openFirstProduct();
         BasketPage basketPage = productPage.addProductToBasket();
-        Assert.assertEquals(basketPage.getProductTitleByName("Ванна"), productPage.getProductTitle());
+        Assert.assertEquals(basketPage.getProductTitleByName("Ванна"), productPage.getProductTitle(),
+                "Added wrong product to basket");
     }
 
     @Test
