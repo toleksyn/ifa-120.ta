@@ -1,29 +1,29 @@
 package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
-import com.softserveinc.ita.rozetka.page_objects.RozetkaCategoryPage;
-import com.softserveinc.ita.rozetka.page_objects.RozetkaHomePage;
-import com.softserveinc.ita.rozetka.page_objects.RozetkaProductPage;
+import com.softserveinc.ita.rozetka.page_objects.CategoryPage;
+import com.softserveinc.ita.rozetka.page_objects.HomePage;
+import com.softserveinc.ita.rozetka.page_objects.ProductPage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class RozetkaProductNavigationTest extends TestRunner {
-    private RozetkaHomePage rozetkaHomePage;
+    private HomePage rozetkaHomePage;
 
     @BeforeMethod
     public void openHomepage() {
-        rozetkaHomePage = new RozetkaHomePage().openHomePage();
+        rozetkaHomePage = new HomePage().openHomePage();
     }
 
     @Test
     public void testSelectProductByCatalog() {
-        RozetkaCategoryPage catalogCategoryItem = rozetkaHomePage
-                .navigateToCategoryPage(0);
+        CategoryPage catalogCategoryItem = rozetkaHomePage
+                .openCategoryPage(0);
         Assert.assertTrue(catalogCategoryItem.getPageTitle().contains("Комп'ютери"));
-        RozetkaProductPage chosenProduct = catalogCategoryItem
+        ProductPage chosenProduct = catalogCategoryItem
                 .navigateToProductCategoryPage(1)
-                .navigateToProductByNumber(0);
+                .openToProductByNumber(0);
         chosenProduct.returnToCategoryPage(1);
         Assert.assertTrue(catalogCategoryItem.getPageTitle().contains("Комп'ютери"));
     }
