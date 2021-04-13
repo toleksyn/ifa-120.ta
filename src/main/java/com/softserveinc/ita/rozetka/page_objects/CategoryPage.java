@@ -15,9 +15,9 @@ public class CategoryPage extends BasePage {
         return new ProductPage();
     }
 
-    public ConcreteCategoryPage navigateToConcreteCategotyPage(int index) {
+    public ProductsListPage navigateToProductsListPage(int index) {
         $x(String.format("(//a[@class='tile-cats__heading tile-cats__heading_type_center'])[%d]", index)).click();
-        return new ConcreteCategoryPage();
+        return new ProductsListPage();
     }
 
 
