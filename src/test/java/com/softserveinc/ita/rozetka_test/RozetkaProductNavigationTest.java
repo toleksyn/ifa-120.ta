@@ -34,4 +34,9 @@ public class RozetkaProductNavigationTest extends TestRunner {
         chosenProduct.returnToCategoryPage(1);
         Assert.assertTrue(pageTitle.getText().contains("Компьютеры"));
     }
+
+    @Test
+    public void testAddProductToOrder() {
+        Assert.assertTrue(rozetkaHomePage.goToProductPage(1).addProductToBasket().goToOrder().isThisOrderPage());
+    }
 }

@@ -2,6 +2,7 @@ package com.softserveinc.ita.rozetka.page_objects;
 
 import com.codeborne.selenide.Selenide;
 
+import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.open;
 
 public class RozetkaHomePage {
@@ -16,4 +17,8 @@ public class RozetkaHomePage {
         return new RozetkaCategoryPage();
     }
 
+    public RozetkaProductPage goToProductPage(int index) {
+        $$x("//a[class='tile__title']").get(index).click();
+        return new RozetkaProductPage();
+    }
 }

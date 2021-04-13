@@ -23,4 +23,9 @@ public class RozetkaProductPage {
         Selenide.$$x("//a[@class='breadcrumbs__link']").get(index).click();
         return new RozetkaCategoryPage();
     }
+
+    public RozetkaBasketPage addProductToBasket() {
+        $x("//button[class='buy-button button button_with_icon button_color_green button_size_large buy-button_state_in-cart']").click();
+        return new RozetkaBasketPage();
+    }
 }
