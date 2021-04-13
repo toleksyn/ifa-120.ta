@@ -1,9 +1,6 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-import com.codeborne.selenide.Selenide;
-
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class HomePage extends BasePage {
 
@@ -12,17 +9,25 @@ public class HomePage extends BasePage {
         return this;
     }
 
-    public CategoryPage navigateToCategoryPage(int number) {
-        Selenide.$$x("//a[@class = 'menu-categories__link']").get(number).click();
+    public CategoryPage openCategoryPage(int number) {
+        $$x("//a[@class = 'menu-categories__link']").get(number).click();
         return new CategoryPage();
     }
 
-    public CategoryPage navigateToCategoryPageFromLeftSidebar(int number) {
+    public CategoryPage openCategoryPageFromLeftSidebar(int number) {
         $x(String.format("(//ul[@class='menu-categories menu-categories_type_main']//li[%d])", number)).doubleClick();
         return new CategoryPage();
     }
 
-    public ProductPage openProductPage(){
+    public CategoryPage openCategoryPageFromLeftSidebar(String pageCategory) {
+        $x(String.format("//a[@class = 'menu-categories__link' and contains(text(), '%s')]", pageCategory))
+                .click();
+        $x("//button[@class='search-form__microphone']")
+                .click();
+        return new CategoryPage();
+    }
+
+    public ProductPage openFirstProductPage(){
         $x("(//div[@class='tile__inner'])[1]/a[2]").click();
         return new ProductPage();
     }
