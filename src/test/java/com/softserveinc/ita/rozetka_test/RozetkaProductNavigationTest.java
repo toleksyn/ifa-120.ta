@@ -20,24 +20,37 @@ public class RozetkaProductNavigationTest extends TestRunner {
     @Test
     public void testSelectProductByCatalog() {
         CategoryPage catalogCategoryItem = rozetkaHomePage
-                .navigateToCategoryPageFromLeftSidebar("Ноутбуки");
-        Assert.assertTrue(catalogCategoryItem.getPageTitle().contains("Комп'ютери"));
+                .openCategoryPageFromLeftSidebar("Ноутбуки");
+        Assert.assertTrue(catalogCategoryItem.getPageTitle().contains("Комп'ютери"),
+                "'Комп'ютери та ноутбуки' page title contains 'Ноутбуки та комп'ютери'");
         ProductPage chosenProduct = catalogCategoryItem
-                .navigateToProductsListPage("Ноутбуки")
-                .navigateToProductByName("Ноутбук Apple MacBook Air 13");
-        Assert.assertTrue(chosenProduct.getProductTitle().contains("Ноутбук Apple MacBook"));
+                .openProductsListPage("Ноутбуки")
+                .openProductByName("Ноутбук Apple MacBook Air 13");
+        Assert.assertTrue(chosenProduct.getProductTitle().contains("Ноутбук Apple MacBook"),
+                "Category 'Ноутбуки' with a list of products displays at least one item");
         chosenProduct.returnToCategoryPage(1);
-        Assert.assertTrue(catalogCategoryItem.getPageTitle().contains("Комп'ютери"));
+        Assert.assertTrue(catalogCategoryItem.getPageTitle().contains("Комп'ютери"),
+                "'Комп'ютери та ноутбуки' page title contains 'Ноутбуки та комп'ютери'");
     }
 
+    @Test
+    public void testAddingProductToBasket() {
+        ProductPage productPage = rozetkaHomePage
+                .openCategoryPageFromLeftSidebar("Сантехніка")
+                .openProductsListPage("Ванни")
+                .openFirstProduct();
+        BasketPage basketPage = productPage.addProductToBasket();
+        Assert.assertEquals(basketPage.getProductTitleByName("Ванна"), productPage.getProductTitle());
+    }
 
-//    @Test
-//    public void testAddingProductToBasket() {
-//        ProductPage productPage = rozetkaHomePage
-//                .navigateToCategoryPage("Сантехніка")
-//                .navigateToProductCategoryPage("Ванни")
-//                .navigateToProductByNumber("Ванна акрилова VOLLE Dios");
-//        BasketPage basketPage = productPage.buyProduct();
-//        Assert.assertEquals(basketPage.getFirstProductTitle(), productPage.getProductTitle());
-//    }
+    @Test
+    public void testSelectProductBySearch() {
+        String productTittle = rozetkaHomePage
+                .getHeaderPage()
+                .searchFor("гаманець")
+                .openProductByNumber(1)
+                .getProductTitle();
+        Assert.assertTrue(productTittle.toLowerCase().contains("гаманець"), "Search request lead to the wrong product");
+    }
 }
+

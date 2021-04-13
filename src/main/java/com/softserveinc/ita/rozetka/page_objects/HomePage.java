@@ -1,7 +1,6 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class HomePage extends BasePage {
 
@@ -10,14 +9,21 @@ public class HomePage extends BasePage {
         return this;
     }
 
-//    public CategoryPage navigateToCategoryPageFromLeftSidebar(int number) {
-//        $x(String.format("(//ul[@class='menu-categories menu-categories_type_main']//li[%d])", number)).doubleClick();
-//        return new CategoryPage();
-//    }
+    public CategoryPage openCategoryPage(int number) {
+        $$x("//a[@class = 'menu-categories__link']").get(number).click();
+        return new CategoryPage();
+    }
 
-    public CategoryPage navigateToCategoryPageFromLeftSidebar(String categoryName) {
-        $x(String.format("//a[@class = 'menu-categories__link js-menu-categories__link' and contains(text(), '%s')]", categoryName))
+    public CategoryPage openCategoryPageFromLeftSidebar(int number) {
+        $x(String.format("(//ul[@class='menu-categories menu-categories_type_main']//li[%d])", number)).doubleClick();
+        return new CategoryPage();
+    }
+
+    public CategoryPage openCategoryPageFromLeftSidebar(String pageCategory) {
+        $x(String.format("//a[@class = 'menu-categories__link' and contains(text(), '%s')]", pageCategory))
                 .click();
+        $x("//button[@class='search-form__microphone']")
+                .hover();
         return new CategoryPage();
     }
 }
