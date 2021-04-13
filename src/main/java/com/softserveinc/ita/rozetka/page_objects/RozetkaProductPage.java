@@ -23,4 +23,9 @@ public class RozetkaProductPage {
         Selenide.$$x("//a[@class='breadcrumbs__link']").get(index).click();
         return new RozetkaCategoryPage();
     }
+
+    public RozetkaProductPage switchProductDescription(int number){
+        $x(String.format("(//li[@class='tabs__item'])[%d]/a", number));
+        return this;
+    }
 }

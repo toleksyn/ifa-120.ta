@@ -39,6 +39,6 @@ public class RozetkaProductNavigationTest extends TestRunner {
     public void TestPossibilityViewingProductDescriptions() {
      RozetkaProductPage productPage=rozetkaHomePage.navigateToCategoryPageFromLeftSidebar(1)
              .navigateToConcreteCategotyPage(7)
-             .navigateToProductByNumber(1);
+             .openProductPageByNumber(1).switchProductDescription(2);
     }
 }
