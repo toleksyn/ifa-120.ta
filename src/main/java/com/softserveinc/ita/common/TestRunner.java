@@ -9,7 +9,7 @@ public class TestRunner {
     public void setupWebDriverTypeAndProperties() {
         Configuration.browser = "chrome";
         Configuration.startMaximized = true;
-        Configuration.timeout = 20000;
+        Configuration.timeout = 60000;
         Configuration.pollingInterval = 2000;
     }
 }
