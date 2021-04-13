@@ -6,19 +6,19 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-public class RozetkaSearchResultsPage {
+public class SearchResultsPage {
     public ElementsCollection getProductList() {
         return Selenide.$$x("//span[@class='goods-tile__title']");
     }
 
-    public RozetkaProductPage navigateToProductByNumber(int number) {
+    public ProductPage navigateToProductByNumber(int number) {
         $x(String.format("(//a[@class='goods-tile__picture'])[%d]", number)).click();
-        return new RozetkaProductPage();
+        return new ProductPage();
     }
 
-    public RozetkaProductPage navigateToFirstProduct() {
+    public ProductPage navigateToFirstProduct() {
         $x("//a[@class='goods-tile__picture']").click();
-        return new RozetkaProductPage();
+        return new ProductPage();
     }
 
     public SelenideElement getFirstProduct() {
@@ -29,7 +29,7 @@ public class RozetkaSearchResultsPage {
         return $x(String.format("(//a[@class='goods-tile__picture'])[%d]", number));
     }
 
-    public RozetkaSearchResultsPage setSortingType(String sortingTypeKey) {
+    public SearchResultsPage setSortingType(String sortingTypeKey) {
         $x("//select").selectOptionContainingText(sortingTypeKey);
         return this;
     }
@@ -54,7 +54,7 @@ public class RozetkaSearchResultsPage {
         return Integer.parseInt($x("//a[@class='pagination__link pagination__link_state_active']").text());
     }
 
-    public RozetkaSearchResultsPage pressFilterCheckBox(String checkboxName) {
+    public SearchResultsPage pressFilterCheckBox(String checkboxName) {
         $x(String.format("//label[contains(text(),'%s')]", checkboxName)).click();
         return this;
     }
