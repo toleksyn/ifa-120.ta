@@ -4,12 +4,9 @@ import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.page_objects.RozetkaCategoryPage;
 import com.softserveinc.ita.rozetka.page_objects.RozetkaHomePage;
 import com.softserveinc.ita.rozetka.page_objects.RozetkaProductPage;
-import org.junit.Assert;
-import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import static com.codeborne.selenide.Selenide.$x;
 
 public class RozetkaProductNavigationTest extends TestRunner {
     private RozetkaHomePage rozetkaHomePage;
@@ -19,20 +16,16 @@ public class RozetkaProductNavigationTest extends TestRunner {
         rozetkaHomePage = new RozetkaHomePage().openHomePage();
     }
 
-
     @Test
-    public void testSelectProductByCataloge() {
-        WebElement pageTitle = $x("//h1[@class='portal__heading']");
-        WebElement productTitle = $x("//h1[@class='product__title']");
-        RozetkaCategoryPage catalogeCategoryItem = rozetkaHomePage
+    public void testSelectProductByCatalog() {
+        RozetkaCategoryPage catalogCategoryItem = rozetkaHomePage
                 .navigateToCategoryPage(0);
-        Assert.assertTrue(pageTitle.getText().contains("Компьютеры"));
-        RozetkaProductPage chosenProduct = catalogeCategoryItem
+        Assert.assertTrue(catalogCategoryItem.getPageTitle().contains("Комп'ютери"));
+        RozetkaProductPage chosenProduct = catalogCategoryItem
                 .navigateToProductCategoryPage(1)
                 .navigateToProductByNumber(0);
-        Assert.assertTrue(productTitle.getText().contains("Компьютер"));
         chosenProduct.returnToCategoryPage(1);
-        Assert.assertTrue(pageTitle.getText().contains("Компьютеры"));
+        Assert.assertTrue(catalogCategoryItem.getPageTitle().contains("Комп'ютери"));
     }
 
     @Test

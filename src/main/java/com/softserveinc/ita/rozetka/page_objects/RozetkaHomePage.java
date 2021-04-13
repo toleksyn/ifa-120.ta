@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class RozetkaHomePage {
 
     public RozetkaHomePage openHomePage() {
-        open("https://rozetka.com.ua/");
+        open("https://rozetka.com.ua/ua/");
         return this;
     }
 
