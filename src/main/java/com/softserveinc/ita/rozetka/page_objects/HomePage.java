@@ -21,4 +21,9 @@ public class HomePage {
         $x(String.format("(//ul[@class='menu-categories menu-categories_type_main']//li[%d])", number)).doubleClick();
         return new CategoryPage();
     }
+
+    public ProductPage gotoProductPage(){
+        $x("(//div[@class='tile__inner'])[1]/a[2]").click();
+        return new ProductPage();
+    }
 }

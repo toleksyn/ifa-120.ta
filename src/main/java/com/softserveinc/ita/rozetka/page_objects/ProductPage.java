@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class ProductPage {
 
-     public String getProductTitle() {
+    public String getProductTitle() {
         return $x("//h1[@class='product__title']").text();
     }
 
@@ -26,6 +26,7 @@ public class ProductPage {
     }
 
     public BasketPage buyProduct() {
+        $x("//h1[@class='product__title']").click();
         $x("//button[@class='buy-button button button_with_icon button_color_green button_size_large']").hover().click();
         return new BasketPage();
     }
