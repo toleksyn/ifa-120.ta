@@ -36,7 +36,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .navigateToCategoryPage(6)
                 .navigateToProductCategoryPage(1)
                 .navigateToProductByNumber(0);
-        BasketPage basketPage = productPage.buyProduct();
-        Assert.assertEquals(basketPage.getFirstProductTitle(), productPage.getProductTitle());
+        BasketPage basketPage = productPage.addProductToBasket();
+        Assert.assertEquals(basketPage.getFirstProductTitle(), productPage.getProductTitle(), "Add to basket wrong product");
     }
 }
