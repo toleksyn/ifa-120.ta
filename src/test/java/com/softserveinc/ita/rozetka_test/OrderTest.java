@@ -4,29 +4,44 @@ import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.page_objects.BasketPage;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import com.softserveinc.ita.rozetka.page_objects.OrderPage;
-import org.testng.annotations.AfterMethod;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class OrderTest extends TestRunner {
-    private BasketPage basketPage;
-    private OrderPage orderPage;
+
+    private OrderPage openOrderPage;
+    private BasketPage openBasketPage;
+    private String searchString;
 
     @BeforeMethod
-    public void openHomepage() {
-        basketPage = new HomePage()
-                .openHomePage()
-                .openFirstProductPage()
-                .addProductToBasket();
-    }
-
-    @AfterMethod
-    public void clearBasket() {
+    public void putProductToBasketOpenOrder() {
+        openOrderPage =
+                new HomePage()
+                        .openHomePage()
+                        .navigateToFirstProduct()
+                        .putProductOpenBasket()
+                        .openOrderPage();
 
     }
 
     @Test
     public void testOrderProductTest() {
-        orderPage = basketPage.openOrderPage().fillAllInputFields();
+        openOrderPage.fillAllInputFields();
     }
+
+    @Test
+    public void testEditOrder() {
+        openOrderPage.editItemInBasket();
+        openBasketPage = new BasketPage();
+        openBasketPage.pushPlusItem();
+        openBasketPage.openOrderPage();
+        openOrderPage.editItemInBasket();
+        openBasketPage.pushMinusItem();
+        openBasketPage.openOrderPage();
+
+//                .getSearchResultsLinksText(0);
+//        assertTrue(searchResultsLinks.toLowerCase().contains("funny kitten"));
+    }
+
 }

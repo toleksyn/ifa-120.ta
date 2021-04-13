@@ -10,4 +10,9 @@ public class OrderPage {
         $x("//div[@class='form__row js-phone']/input").setValue("77777777");
         return this;
     }
+
+    public BasketPage editItemInBasket() {
+        $x("//*[@class='button button_with_icon button_type_link checkout-product__edit-button']").click();
+        return new BasketPage();
+    }
 }

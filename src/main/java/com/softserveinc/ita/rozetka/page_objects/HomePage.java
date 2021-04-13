@@ -27,8 +27,8 @@ public class HomePage extends BasePage {
         return new CategoryPage();
     }
 
-    public ProductPage openFirstProductPage(){
-        $x("(//div[@class='tile__inner'])[1]/a[2]").click();
+    public ProductPage navigateToFirstProduct() {
+        $x("//li[@class='main-goods__cell']").click();
         return new ProductPage();
     }
 }
