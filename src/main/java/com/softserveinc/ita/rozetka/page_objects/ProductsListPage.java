@@ -11,12 +11,12 @@ public class ProductsListPage extends BasePage {
         return Selenide.$$x("//span[@class='goods-tile__title']");
     }
 
-    public ProductPage navigateToProductByNumber(int number) {
+    public ProductPage openProductByNumber(int number) {
         $x(String.format("(//a[@class='goods-tile__picture'])[%d]", number)).click();
         return new ProductPage();
     }
 
-    public ProductPage navigateToFirstProduct() {
+    public ProductPage openFirstProduct() {
         $x("//a[@class='goods-tile__picture']").click();
         return new ProductPage();
     }
@@ -50,7 +50,6 @@ public class ProductsListPage extends BasePage {
     public ProductsListPage openPreviousResultPage() {
         $x("//a[@class='button button_color_gray button_size_medium pagination__direction']").click();
         return this;
-
     }
 
     public int getCurrentPageNumber() {
@@ -60,5 +59,10 @@ public class ProductsListPage extends BasePage {
     public ProductsListPage useFilter(String filterName) {
         $x(String.format("//label[contains(text(),'%s')]", filterName)).click();
         return this;
+    }
+
+    public ProductPage openProductByName(String productName) {
+        $x(String.format("//span[@class='goods-tile__title'and contains(text(), '%s')]", productName)).click();
+        return new ProductPage();
     }
 }
