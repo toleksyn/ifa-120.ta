@@ -5,20 +5,20 @@ import com.codeborne.selenide.Selenide;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 
-public class RozetkaHomePage {
+public class HomePage {
 
-    public RozetkaHomePage openHomePage() {
+    public HomePage openHomePage() {
         open("https://rozetka.com.ua/ua/");
         return this;
     }
 
-    public RozetkaCategoryPage navigateToCategoryPage(int number) {
+    public CategoryPage navigateToCategoryPage(int number) {
         Selenide.$$x("//a[@class = 'menu-categories__link']").get(number).click();
-        return new RozetkaCategoryPage();
+        return new CategoryPage();
     }
 
-    public RozetkaCategoryPage navigateToCategoryPageFromLeftSidebar(int number){
+    public CategoryPage navigateToCategoryPageFromLeftSidebar(int number){
         $x(String.format("(//ul[@class='menu-categories menu-categories_type_main']//li[%d])", number)).doubleClick();
-        return new RozetkaCategoryPage();
+        return new CategoryPage();
     }
 }
