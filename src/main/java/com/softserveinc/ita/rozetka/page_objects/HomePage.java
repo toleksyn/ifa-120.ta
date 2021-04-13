@@ -22,7 +22,8 @@ public class HomePage extends BasePage {
     public CategoryPage openCategoryPageFromLeftSidebar(String pageCategory) {
         $x(String.format("//a[@class = 'menu-categories__link' and contains(text(), '%s')]", pageCategory))
                 .click();
-        $x("//button[@class='search-form__microphone']").click();
+        $x("//button[@class='search-form__microphone']")
+                .hover();
         return new CategoryPage();
     }
 }
