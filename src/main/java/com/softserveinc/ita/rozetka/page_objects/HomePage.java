@@ -23,7 +23,7 @@ public class HomePage extends BasePage {
         $x(String.format("//a[@class = 'menu-categories__link' and contains(text(), '%s')]", pageCategory))
                 .click();
         $x("//button[@class='search-form__microphone']")
-                .hover();
+                .click();
         return new CategoryPage();
     }
 }
