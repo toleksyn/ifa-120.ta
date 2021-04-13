@@ -1,10 +1,7 @@
 package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
-import com.softserveinc.ita.rozetka.page_objects.BasketPage;
-import com.softserveinc.ita.rozetka.page_objects.CategoryPage;
-import com.softserveinc.ita.rozetka.page_objects.HomePage;
-import com.softserveinc.ita.rozetka.page_objects.ProductPage;
+import com.softserveinc.ita.rozetka.page_objects.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -34,9 +31,15 @@ public class RozetkaProductNavigationTest extends TestRunner {
     public void testAddingProductToBasket() {
         ProductPage productPage = rozetkaHomePage
                 .navigateToCategoryPage(6)
-                .navigateToProductCategoryPage(1)
-                .navigateToProductByNumber(0);
+                .navigateToSearchResultPage(1)
+                .navigateToFirstProduct();
         BasketPage basketPage = productPage.buyProduct();
         Assert.assertEquals(basketPage.getFirstProductTitle(), productPage.getProductTitle());
+    }
+
+    @Test
+    public void testSelectProductBySearch() {
+        String productTittle = rozetkaHomePage.getHeaderPage().searchFor("гаманець").navigateToProductByNumber(1).getProductTitle();
+        Assert.assertTrue(productTittle.toLowerCase().contains("гаманець"),"Search request lead to the wrong product");
     }
 }

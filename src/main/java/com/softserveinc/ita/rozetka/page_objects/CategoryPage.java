@@ -3,7 +3,7 @@ package com.softserveinc.ita.rozetka.page_objects;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
-public class CategoryPage {
+public class CategoryPage extends BasePage {
 
     public CategoryPage navigateToProductCategoryPage(int index) {
         $$x("//a[@class='tile-cats__heading tile-cats__heading_type_center']").get(index).click();
@@ -15,12 +15,10 @@ public class CategoryPage {
         return new ProductPage();
     }
 
-    public ConcreteCategoryPage navigateToConcreteCategotyPage(int index){
+    public ProductsListPage navigateToProductsListPage(int index) {
         $x(String.format("(//a[@class='tile-cats__heading tile-cats__heading_type_center'])[%d]", index)).click();
-        return new ConcreteCategoryPage();
+        return new ProductsListPage();
     }
-
-
 
 
 }

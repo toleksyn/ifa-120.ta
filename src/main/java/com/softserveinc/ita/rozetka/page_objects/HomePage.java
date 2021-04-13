@@ -5,7 +5,7 @@ import com.codeborne.selenide.Selenide;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 
-public class HomePage {
+public class HomePage extends BasePage {
 
     public HomePage openHomePage() {
         open("https://rozetka.com.ua/ua/");
@@ -17,7 +17,7 @@ public class HomePage {
         return new CategoryPage();
     }
 
-    public CategoryPage navigateToCategoryPageFromLeftSidebar(int number){
+    public CategoryPage navigateToCategoryPageFromLeftSidebar(int number) {
         $x(String.format("(//ul[@class='menu-categories menu-categories_type_main']//li[%d])", number)).doubleClick();
         return new CategoryPage();
     }
