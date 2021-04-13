@@ -25,8 +25,10 @@ public class ProductPage extends BasePage {
         return new CategoryPage();
     }
 
-    public BasketPage buyProduct() {
+    public BasketPage addProductToBasket() {
         $x("//button[@class='buy-button button button_with_icon button_color_green button_size_large']").hover().click();
         return new BasketPage();
     }
+
+
 }
