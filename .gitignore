@@ -12,6 +12,3 @@ buildNumber.properties
 .idea/
 *.iml
 /build/
-
-
-/build/
