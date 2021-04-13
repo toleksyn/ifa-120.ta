@@ -2,18 +2,18 @@ package com.softserveinc.ita.rozetka.page_objects;
 
 import com.codeborne.selenide.Selenide;
 
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class HomePage {
 
     public HomePage openHomePage() {
-        open("https://rozetka.com.ua/ua/");
+        Selenide.open("https://rozetka.com.ua/ua/");
         return this;
     }
 
-    public CategoryPage openCategoryPage(int number) {
-        Selenide.$$x("//a[@class = 'menu-categories__link']").get(number).click();
-        return new CategoryPage();
+    public ConcreteCategoryPage navigateToCategoryPage(String pageCategory) {
+     $x(String.format("//a[@class = 'menu-categories__link js-menu-categories__link' and contains(text(), '%s')]", pageCategory))
+             .click();
+        return new ConcreteCategoryPage();
     }
-
 }

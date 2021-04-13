@@ -1,7 +1,8 @@
 package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
-import com.softserveinc.ita.rozetka.page_objects.CategoryPage;
+import com.softserveinc.ita.rozetka.page_objects.BasketPage;
+import com.softserveinc.ita.rozetka.page_objects.ConcreteCategoryPage;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import com.softserveinc.ita.rozetka.page_objects.ProductPage;
 import org.testng.Assert;
@@ -18,13 +19,24 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     @Test
     public void testSelectProductByCatalog() {
-        CategoryPage catalogCategoryItem = rozetkaHomePage
-                .openCategoryPage(0);
+        ConcreteCategoryPage catalogCategoryItem = rozetkaHomePage
+                .navigateToCategoryPage("Ноутбуки");
         Assert.assertTrue(catalogCategoryItem.getPageTitle().contains("Комп'ютери"));
         ProductPage chosenProduct = catalogCategoryItem
-                .navigateToProductCategoryPage(1)
-                .openToProductByNumber(0);
+                .navigateToProductCategoryPage("Ноутбуки")
+                .navigateToProductByNumber("Ноутбук Apple MacBook Air 13");
+        Assert.assertTrue(chosenProduct.getProductTitle().contains("Ноутбук Apple MacBook"));
         chosenProduct.returnToCategoryPage(1);
         Assert.assertTrue(catalogCategoryItem.getPageTitle().contains("Комп'ютери"));
+    }
+
+    @Test
+    public void testAddingProductToBasket() {
+        ProductPage productPage = rozetkaHomePage
+                .navigateToCategoryPage("Сантехніка")
+                .navigateToProductCategoryPage("Ванни")
+                .navigateToProductByNumber("Ванна акрилова VOLLE Dios");
+        BasketPage basketPage = productPage.buyProduct();
+        Assert.assertEquals(basketPage.getFirstProductTitle(), productPage.getProductTitle());
     }
 }

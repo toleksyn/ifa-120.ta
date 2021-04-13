@@ -20,8 +20,14 @@ public class ProductPage {
         return $x(String.format("(//section[@class='recently-viewed']//a[@class='lite-tile__title'])[%d]", number));
     }
 
-    public CategoryPage returnToCategoryPage(int index) {
-        Selenide.$$x("//a[@class='breadcrumbs__link']").get(index).click();
-        return new CategoryPage();
+    public BasketPage buyProduct() {
+        $x("//button[@class='buy-button button button_with_icon button_color_green button_size_large']").hover().click();
+        return new BasketPage();
     }
+
+    public ConcreteCategoryPage returnToCategoryPage(int index) {
+        Selenide.$$x("//a[@class='breadcrumbs__link']").get(index).click();
+        return new ConcreteCategoryPage();
+    }
+
 }
