@@ -6,7 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-public class SearchResultsPage {
+public class SearchResultsPage extends BasePage {
     public ElementsCollection getProductList() {
         return Selenide.$$x("//span[@class='goods-tile__title']");
     }
@@ -42,20 +42,23 @@ public class SearchResultsPage {
         return Integer.parseInt($x(String.format("(//span[@class='goods-tile__price-value'])[%d]", number)).text().replaceAll(" ", ""));
     }
 
-    public void openNextResultPage() {
+    public SearchResultsPage openNextResultPage() {
         $x("//a[@class='button button_color_gray button_size_medium pagination__direction pagination__direction_type_forward']").click();
+        return this;
     }
 
-    public void openPreviousResultPage() {
+    public SearchResultsPage openPreviousResultPage() {
         $x("//a[@class='button button_color_gray button_size_medium pagination__direction']").click();
+        return this;
+
     }
 
     public int getCurrentPageNumber() {
         return Integer.parseInt($x("//a[@class='pagination__link pagination__link_state_active']").text());
     }
 
-    public SearchResultsPage pressFilterCheckBox(String checkboxName) {
-        $x(String.format("//label[contains(text(),'%s')]", checkboxName)).click();
+    public SearchResultsPage useFilter(String filterName) {
+        $x(String.format("//label[contains(text(),'%s')]", filterName)).click();
         return this;
     }
 }
