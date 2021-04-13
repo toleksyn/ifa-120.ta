@@ -8,5 +8,4 @@ public class OrderPage {
         $x("//*[@class='button button_with_icon button_type_link checkout-product__edit-button']").click();
         return new BasketPage();
     }
-//*[@class='button button_with_icon button_type_link checkout-product__edit-button']
 }

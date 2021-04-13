@@ -9,36 +9,32 @@ import org.testng.annotations.Test;
 
 public class OrderTest extends TestRunner {
 
-    //private HomePage openRozetkaHomePage;
     private OrderPage openOrderPage;
     private BasketPage openBasketPage;
     private String searchString;
 
     @BeforeMethod
     public void putProductToBasketOpenOrder() {
-    //    openRozetkaHomePage = new HomePage().openHomePage();
-    openOrderPage =
-        new HomePage()
-            .openHomePage()
-            .navigateToFirstProduct()
-            .putProductOpenBasket()
-            .openOrderPage();
+
+        openOrderPage = new HomePage()
+                .openHomePage()
+                .navigateToFirstProduct()
+                .putProductOpenBasket()
+                .openOrderPage();
 
     }
 
-
     @Test
     public void testEditOrder() {
+        int orderQuantity;
+        int orderSum;
         openOrderPage.editItemInBasket();
         openBasketPage = new BasketPage();
+        orderSum = openBasketPage.getOrderItemPrice();
         openBasketPage.pushPlusItem();
         openBasketPage.openOrderPage();
         openOrderPage.editItemInBasket();
         openBasketPage.pushMinusItem();
         openBasketPage.openOrderPage();
-
-//                .getSearchResultsLinksText(0);
-//        assertTrue(searchResultsLinks.toLowerCase().contains("funny kitten"));
     }
-
 }

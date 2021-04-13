@@ -10,12 +10,19 @@ public class BasketPage {
     public OrderPage openOrderPage() {
         $x("//*[@class='button button_size_large button_color_green cart-receipt__submit']").click();
         return new OrderPage();
-        }
+    }
+
     public void pushPlusItem() {
-         $x("(//*[@class='button button_color_white button_size_medium cart-counter__button'])[2]").click();
+        $x("(//*[@class='button button_color_white button_size_medium cart-counter__button'])[2]").click();
     }
 
     public void pushMinusItem() {
         $x("(//*[@class='button button_color_white button_size_medium cart-counter__button'])[1]").click();
+    }
+
+    public int getOrderItemPrice() {
+        String ItemPrice = ($x("//*[@class='cart-product__price']").text());
+        return Integer.parseInt(ItemPrice.replace("₴", "").replace(" ", ""));
+
     }
 }
