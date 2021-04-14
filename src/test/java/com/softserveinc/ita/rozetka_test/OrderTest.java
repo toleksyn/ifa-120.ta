@@ -22,26 +22,8 @@ public class OrderTest extends TestRunner {
                         .navigateToFirstProduct()
                         .putProductOpenBasket()
                         .openOrderPage();
-
     }
 
-    @Test
-    public void testOrderProductTest() {
-        openOrderPage.fillAllInputFields();
-    }
 
-    @Test
-    public void testEditOrder() {
-        openOrderPage.editItemInBasket();
-        openBasketPage = new BasketPage();
-        openBasketPage.pushPlusItem();
-        openBasketPage.openOrderPage();
-        openOrderPage.editItemInBasket();
-        openBasketPage.pushMinusItem();
-        openBasketPage.openOrderPage();
-
-//                .getSearchResultsLinksText(0);
-//        assertTrue(searchResultsLinks.toLowerCase().contains("funny kitten"));
-    }
 
 }

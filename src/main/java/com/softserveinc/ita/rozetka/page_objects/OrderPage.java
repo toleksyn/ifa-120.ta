@@ -17,4 +17,15 @@ public class OrderPage {
         $x("//*[@class='button button_with_icon button_type_link checkout-product__edit-button']").click();
         return new BasketPage();
     }
+
+    public OrderPage setPhone(String phone) {
+        $x("//input[@type='tel']").setValue(phone);
+        return this;
+    }
+
+    public OrderPage setCity(String city) {
+        $x("//div[@class='form__row js-city']//input[@name='search']").setValue(city).click();
+        $x(String.format("(//li[contains(text(),'%s')])[1]", city)).click();
+        return this;
+    }
 }
