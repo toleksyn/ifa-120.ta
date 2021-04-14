@@ -1,42 +1,72 @@
 package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
-import com.softserveinc.ita.rozetka.page_objects.RozetkaCategoryPage;
-import com.softserveinc.ita.rozetka.page_objects.RozetkaHomePage;
-import com.softserveinc.ita.rozetka.page_objects.RozetkaProductPage;
-import org.junit.Assert;
-import org.openqa.selenium.WebElement;
+import com.softserveinc.ita.rozetka.page_objects.BasketPage;
+import com.softserveinc.ita.rozetka.page_objects.CategoryPage;
+import com.softserveinc.ita.rozetka.page_objects.HomePage;
+import com.softserveinc.ita.rozetka.page_objects.ProductPage;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Selenide.$x;
 
 public class RozetkaProductNavigationTest extends TestRunner {
-    private RozetkaHomePage rozetkaHomePage;
+    private HomePage rozetkaHomePage;
 
     @BeforeMethod
     public void openHomepage() {
-        rozetkaHomePage = new RozetkaHomePage().openHomePage();
+        rozetkaHomePage = new HomePage().openHomePage();
     }
 
-
     @Test
-    public void testSelectProductByCataloge() {
-        WebElement pageTitle = $x("//h1[@class='portal__heading']");
-        WebElement productTitle = $x("//h1[@class='product__title']");
-        RozetkaCategoryPage catalogeCategoryItem = rozetkaHomePage
-                .navigateToCategoryPage(0);
-        Assert.assertTrue(pageTitle.getText().contains("Компьютеры"));
-        RozetkaProductPage chosenProduct = catalogeCategoryItem
-                .navigateToProductCategoryPage(1)
-                .navigateToProductByNumber(0);
-        Assert.assertTrue(productTitle.getText().contains("Компьютер"));
+    public void testSelectProductByCatalog() {
+        CategoryPage catalogCategoryItem = rozetkaHomePage
+                .openCategoryPageFromLeftSidebar("Ноутбуки");
+        Assert.assertTrue(catalogCategoryItem.getPageTitle().contains("Комп'ютери"),
+                "The page title does not match the condition");
+        ProductPage chosenProduct = catalogCategoryItem
+                .openProductsListPage("Ноутбуки")
+                .openProductByName("Ноутбук Apple MacBook Air 13");
+        Assert.assertTrue(chosenProduct.getProductTitle().contains("Ноутбук Apple MacBook"),
+                "There is no product with this name");
         chosenProduct.returnToCategoryPage(1);
-        Assert.assertTrue(pageTitle.getText().contains("Компьютеры"));
+        Assert.assertTrue(catalogCategoryItem.getPageTitle().contains("Комп'ютери"),
+                "The page title does not match the condition");
     }
 
     @Test
-    public void testAddProductToOrder() {
-        Assert.assertTrue(rozetkaHomePage.goToProductPage(1).addProductToBasket().goToOrder().isThisOrderPage());
+    public void testAddingProductToBasket() {
+        ProductPage productPage = rozetkaHomePage
+                .openCategoryPageFromLeftSidebar("Сантехніка")
+                .openProductsListPage("Ванни")
+                .openFirstProduct();
+        BasketPage basketPage = productPage.addProductToBasket();
+        Assert.assertEquals(basketPage.getProductTitleByName("Ванна"), productPage.getProductTitle(),
+                "Added wrong product to basket");
+    }
+
+    @Test
+    public void testSelectProductBySearch() {
+        String productTittle = rozetkaHomePage
+                .getHeaderPage()
+                .searchFor("гаманець")
+                .openProductByNumber(1)
+                .getProductTitle();
+        Assert.assertTrue(productTittle.toLowerCase().contains("гаманець"), "Search request lead to the wrong product");
+    }
+
+    @Test
+    public void testPossibilityViewingProductDescriptions() {
+        ProductPage productPage = rozetkaHomePage.openCategoryPageFromLeftSidebar("Ноутбуки")
+                .openProductsListPage("Планшети")
+                .openFirstProduct().openProductTabByName("Характеристики");
+        String madeIn = productPage.getCharacteristicDescriptionByIndex(1);
+        Assert.assertTrue(madeIn.toLowerCase().contains("Китай"), "field 'Країна виробник' should contains 'Китай'");
+        String productTabsTitle = productPage.openProductTabByName("Відгуки").getProductTabsTitle();
+        Assert.assertTrue(productTabsTitle.contains("Відгуки"), "Product tabs title should contains 'Відгуки'");
+        int commentsList = productPage.openProductTabByName("Питання").getCommentsList().size();
+        Assert.assertTrue(commentsList > 0);
+
     }
 }
+
