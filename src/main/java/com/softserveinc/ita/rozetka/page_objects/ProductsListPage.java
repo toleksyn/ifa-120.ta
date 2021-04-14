@@ -2,11 +2,11 @@ package com.softserveinc.ita.rozetka.page_objects;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$x;
 
 public class ProductsListPage extends BasePage {
+
     public ElementsCollection getProductList() {
         return Selenide.$$x("//span[@class='goods-tile__title']");
     }
@@ -14,19 +14,6 @@ public class ProductsListPage extends BasePage {
     public ProductPage openProductByNumber(int number) {
         $x(String.format("(//a[@class='goods-tile__picture'])[%d]", number)).click();
         return new ProductPage();
-    }
-
-    public ProductPage openFirstProduct() {
-        $x("//a[@class='goods-tile__picture']").click();
-        return new ProductPage();
-    }
-
-    public SelenideElement getFirstProduct() {
-        return $x("//a[@class='goods-tile__picture']");
-    }
-
-    public SelenideElement getProductByNumber(int number) {
-        return $x(String.format("(//a[@class='goods-tile__picture'])[%d]", number));
     }
 
     public ProductsListPage setSortingType(String sortingTypeKey) {

@@ -1,6 +1,7 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
 public abstract class BasePage {
+
     private final HeaderPage headerPage;
     private final FooterPage footerPage;
 
