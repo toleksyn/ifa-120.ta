@@ -43,7 +43,7 @@ public class ProductPage extends BasePage {
                 .shouldBe(CollectionCondition.sizeGreaterThan(amountQuestionsItem));
     }
 
-    public ElementsCollection getCharacteristicListSize(int amountCharacteristicsItem) {
+    public ElementsCollection getCharagitcteristicListSize(int amountCharacteristicsItem) {
         return $$x("//dd/ul/li")
                 .shouldBe(CollectionCondition.sizeGreaterThan(amountCharacteristicsItem));
     }
