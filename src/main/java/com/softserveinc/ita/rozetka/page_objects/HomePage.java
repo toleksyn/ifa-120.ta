@@ -3,6 +3,7 @@ package com.softserveinc.ita.rozetka.page_objects;
 import static com.codeborne.selenide.Selenide.*;
 
 public class HomePage extends BasePage {
+
     private LeftSidebar leftSidebar;
 
     public HomePage() {

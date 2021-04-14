@@ -12,6 +12,5 @@ public class RozetkaProductNavigationTest extends TestRunner {
     public void openHomepage() {
         rozetkaHomePage = new HomePage().openHomePage();
     }
-
 }
 
