@@ -16,7 +16,7 @@ public class OrderTest extends TestRunner {
     public void putProductToBasketOpenOrder() {
         openOrderPage = new HomePage()
                 .openHomePage()
-                .openProduct(1)
+                .openProductByNumber(1)
                 .addProductToBasket()
                 .openOrderPage();
     }

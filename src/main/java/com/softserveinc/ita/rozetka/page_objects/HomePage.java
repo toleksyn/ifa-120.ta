@@ -24,8 +24,8 @@ public class HomePage extends BasePage {
         return new CategoryPage();
     }
 
-    public ProductPage openProduct(int index) {
-        $x(String.format("//li[@class='main-goods__cell'][%d]", index)).click();
+    public ProductPage openProductByNumber(int number) {
+        $x(String.format("//li[@class='main-goods__cell'][%d]", number)).click();
         return new ProductPage();
     }
 }

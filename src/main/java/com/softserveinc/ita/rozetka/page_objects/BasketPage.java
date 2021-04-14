@@ -13,22 +13,24 @@ public class BasketPage {
         return new OrderPage();
     }
 
-    public int increaseProductCount() {
+    public BasketPage increaseProductCount() {
         $x("(//*[@class='button button_color_white button_size_medium cart-counter__button'])[2]").click();
-        return Integer.parseInt($x("//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid']").val());
+        return this;
     }
 
-    public int decreaseProductCount() {
+    public BasketPage decreaseProductCount() {
         $x("(//*[@class='button button_color_white button_size_medium cart-counter__button'])[1]").click();
-        return Integer.parseInt($x("//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid']").val());
+        return this;
     }
 
     public int getProductCount() {
+        $x("//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid']").click();
         return Integer.parseInt($x("//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid']").val());
     }
 
     public int getOrderProductPrice() {
-        String ProductPrice = ($x("//*[@class='cart-product__price']").hover().text());
+        $x("//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid']").click();
+        String ProductPrice = ($x("//*[@class='cart-product__price']").text());
         return Integer.parseInt(ProductPrice.replace("₴", "").replace(" ", ""));
     }
 }
