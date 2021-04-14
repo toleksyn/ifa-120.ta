@@ -17,12 +17,13 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     @Test
     public void testSelectProductBySearch() {
+        String searchRequest = "гаманець";
         String productTittle = rozetkaHomePage
                 .getHeaderPage()
-                .searchFor("гаманець")
+                .searchFor(searchRequest)
                 .openProductByNumber(1)
                 .getProductTitle();
-        Assert.assertTrue(productTittle.toLowerCase().contains("гаманець"), "Search request lead to the wrong product");
+        Assert.assertTrue(productTittle.toLowerCase().contains(searchRequest), "Search request lead to the wrong product");
     }
 
 }
