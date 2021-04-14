@@ -4,7 +4,6 @@ import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.page_objects.BasketPage;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import com.softserveinc.ita.rozetka.page_objects.OrderPage;
-
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -16,32 +15,26 @@ public class OrderTest extends TestRunner {
 
     @BeforeMethod
     public void putProductToBasketOpenOrder() {
-        openOrderPage =
-                new HomePage()
-                        .openHomePage()
-                        .navigateToFirstProduct()
-                        .putProductOpenBasket()
-                        .openOrderPage();
 
-    }
+        openOrderPage = new HomePage()
+                .openHomePage()
+                .navigateToFirstProduct()
+                .addProductToBasket()
+                .openOrderPage();
 
-    @Test
-    public void testOrderProductTest() {
-        openOrderPage.fillAllInputFields();
     }
 
     @Test
     public void testEditOrder() {
+        int orderQuantity;
+        int orderSum;
         openOrderPage.editItemInBasket();
         openBasketPage = new BasketPage();
+        orderSum = openBasketPage.getOrderItemPrice();
         openBasketPage.pushPlusItem();
         openBasketPage.openOrderPage();
         openOrderPage.editItemInBasket();
         openBasketPage.pushMinusItem();
         openBasketPage.openOrderPage();
-
-//                .getSearchResultsLinksText(0);
-//        assertTrue(searchResultsLinks.toLowerCase().contains("funny kitten"));
     }
-
 }
