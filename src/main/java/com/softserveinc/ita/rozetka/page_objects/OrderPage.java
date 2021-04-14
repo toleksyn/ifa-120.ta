@@ -10,6 +10,6 @@ public class OrderPage {
     }
 
     public boolean isThisIsOrderPage() {
-        return  $x("//h1[class='checkout-heading']").text().equals("Оформлення замовлення");
+        return $x("//h1[@class='checkout-heading']").text().equals("Оформлення замовлення");
     }
 }

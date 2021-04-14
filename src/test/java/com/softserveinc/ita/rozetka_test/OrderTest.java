@@ -41,6 +41,6 @@ public class OrderTest extends TestRunner {
 
     @Test
     public void testOpenOrderPage() {
-        Assert.assertTrue(openOrderPage.isThisIsOrderPage());
+        Assert.assertTrue(openOrderPage.isThisIsOrderPage(), "The page title shouldn't match the condition");
     }
 }
