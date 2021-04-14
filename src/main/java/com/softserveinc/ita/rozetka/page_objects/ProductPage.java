@@ -52,6 +52,7 @@ public class ProductPage extends BasePage {
         return $x("//h2[@class='product-tabs__heading']").text();
     }
 
-    public List<SelenideElement> getCommentsList(){
+    public List<SelenideElement> getCommentsList() {
         return $$x("//div[@class='comment']");
+    }
 }
