@@ -4,7 +4,6 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
-import java.util.AbstractList;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$$x;
@@ -36,7 +35,7 @@ public class ProductPage extends BasePage {
 
     public ProductPage openProductTabByName(String tabName) {
         $x(String.format("//a[@class='tabs__link' and contains(text(),'%s')]", tabName)).click();
-        return new ProductPage();
+        return this;
     }
 
     public String getCharacteristicDescriptionByIndex(int index) {
