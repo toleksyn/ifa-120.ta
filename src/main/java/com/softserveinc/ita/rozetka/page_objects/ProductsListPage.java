@@ -6,6 +6,7 @@ import com.codeborne.selenide.Selenide;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class ProductsListPage extends BasePage {
+
     public ElementsCollection getProductList() {
         return Selenide.$$x("//span[@class='goods-tile__title']");
     }
