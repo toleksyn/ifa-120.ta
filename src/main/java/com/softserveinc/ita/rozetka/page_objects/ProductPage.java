@@ -4,6 +4,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
+import java.util.AbstractList;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$$x;
@@ -30,11 +31,6 @@ public class ProductPage extends BasePage {
 
     public BasketPage addProductToBasket() {
         $x("//button[@class='buy-button button button_with_icon button_color_green button_size_large']").hover().click();
-        return new BasketPage();
-    }
-
-    public BasketPage putProductOpenBasket() {
-        $x("(//span[@class='buy-button__label'])[1]").hover().click();
         return new BasketPage();
     }
 
