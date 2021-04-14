@@ -12,5 +12,3 @@ buildNumber.properties
 .idea/
 *.iml
 /build/
-hs_err_pid9228.log
-replay_pid9228.log
