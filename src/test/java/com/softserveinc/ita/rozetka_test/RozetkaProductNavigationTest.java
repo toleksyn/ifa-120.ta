@@ -63,7 +63,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
         Assert.assertTrue(madeIn.toLowerCase().contains("Китай"), "field 'Країна виробник' should contains 'Китай'");
         String productTabsTitle = productPage.openProductTabByName("Відгуки").getProductTabsTitle();
         Assert.assertTrue(productTabsTitle.contains("Відгуки"), "Product tabs title should contains 'Відгуки'");
-        int commentsList = productPage.openProductTabByName("Питання").getCommentsList().size();
+        int commentsList = productPage.openProductTabByName("Питання").getCommentsTextList().size();
         Assert.assertTrue(commentsList > 0);
 
     }
