@@ -7,6 +7,8 @@ public class LeftSidebar {
     public CategoryPage openCategory(String categoryName){
         $x(String.format("//a[@class = 'menu-categories__link' and contains(text(), '%s')]", categoryName))
                 .click();
+        $x("//button[@class='search-form__microphone']")
+                .click();
         return new CategoryPage();
     }
 }
