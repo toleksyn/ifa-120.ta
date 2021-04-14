@@ -2,9 +2,6 @@ package com.softserveinc.ita.rozetka.page_objects;
 
 import com.codeborne.selenide.*;
 
-import java.util.List;
-
-import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -41,14 +38,13 @@ public class ProductPage extends BasePage {
         return $x("//h2[@class='product-tabs__heading']").text();
     }
 
-    public int getQuestionListSize(int amountQuestionsItem) {
+    public ElementsCollection getQuestionList(int amountQuestionsItem) {
         return $$x("//div[@class='comment']")
-                .shouldHave(CollectionCondition.sizeGreaterThan(amountQuestionsItem)).size();
+                .shouldBe(CollectionCondition.sizeGreaterThan(amountQuestionsItem));
     }
 
-    public int getCharacteristicListSize(int amountCharacteristicsItem ){
+    public ElementsCollection getCharacteristicListSize(int amountCharacteristicsItem) {
         return $$x("//dd/ul/li")
-                .shouldHave(CollectionCondition.sizeGreaterThan(amountCharacteristicsItem))
-                .size();
+                .shouldBe(CollectionCondition.sizeGreaterThan(amountCharacteristicsItem));
     }
 }
