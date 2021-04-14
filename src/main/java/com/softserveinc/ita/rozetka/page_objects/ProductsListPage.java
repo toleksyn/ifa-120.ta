@@ -2,34 +2,20 @@ package com.softserveinc.ita.rozetka.page_objects;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-public class RozetkaSearchResultsPage {
+public class ProductsListPage extends BasePage {
     public ElementsCollection getProductList() {
         return Selenide.$$x("//span[@class='goods-tile__title']");
     }
 
-    public RozetkaProductPage navigateToProductByNumber(int number) {
+    public ProductPage openProductByNumber(int number) {
         $x(String.format("(//a[@class='goods-tile__picture'])[%d]", number)).click();
-        return new RozetkaProductPage();
+        return new ProductPage();
     }
 
-    public RozetkaProductPage navigateToFirstProduct() {
-        $x("//a[@class='goods-tile__picture']").click();
-        return new RozetkaProductPage();
-    }
-
-    public SelenideElement getFirstProduct() {
-        return $x("//a[@class='goods-tile__picture']");
-    }
-
-    public SelenideElement getProductByNumber(int number) {
-        return $x(String.format("(//a[@class='goods-tile__picture'])[%d]", number));
-    }
-
-    public RozetkaSearchResultsPage setSortingType(String sortingTypeKey) {
+    public ProductsListPage setSortingType(String sortingTypeKey) {
         $x("//select").selectOptionContainingText(sortingTypeKey);
         return this;
     }
@@ -42,20 +28,27 @@ public class RozetkaSearchResultsPage {
         return Integer.parseInt($x(String.format("(//span[@class='goods-tile__price-value'])[%d]", number)).text().replaceAll(" ", ""));
     }
 
-    public void openNextResultPage() {
+    public ProductsListPage openNextResultPage() {
         $x("//a[@class='button button_color_gray button_size_medium pagination__direction pagination__direction_type_forward']").click();
+        return this;
     }
 
-    public void openPreviousResultPage() {
+    public ProductsListPage openPreviousResultPage() {
         $x("//a[@class='button button_color_gray button_size_medium pagination__direction']").click();
+        return this;
     }
 
     public int getCurrentPageNumber() {
         return Integer.parseInt($x("//a[@class='pagination__link pagination__link_state_active']").text());
     }
 
-    public RozetkaSearchResultsPage pressFilterCheckBox(String checkboxName) {
-        $x(String.format("//label[contains(text(),'%s')]", checkboxName)).click();
+    public ProductsListPage useFilter(String filterName) {
+        $x(String.format("//label[contains(text(),'%s')]", filterName)).click();
         return this;
+    }
+
+    public ProductPage openProductByName(String productName) {
+        $x(String.format("//span[@class='goods-tile__title'and contains(text(), '%s')]", productName)).click();
+        return new ProductPage();
     }
 }
