@@ -13,9 +13,13 @@ public class OrderPage {
         return this;
     }
 
-    public BasketPage editItemInBasket() {
+    public BasketPage startEditingProductInBasket() {
         $x("//*[@class='button button_with_icon button_type_link checkout-product__edit-button']").click();
         return new BasketPage();
+    }
+
+    public String getPageTitle() {
+        return $x("//h1[@class='checkout-heading']").text();
     }
 
     public OrderPage setPhone(String phone) {

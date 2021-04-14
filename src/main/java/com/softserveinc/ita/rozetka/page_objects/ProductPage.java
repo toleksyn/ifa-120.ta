@@ -1,9 +1,8 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.*;
 
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class ProductPage extends BasePage {
@@ -13,15 +12,15 @@ public class ProductPage extends BasePage {
     }
 
     public ElementsCollection getListOfProductTabs() {
-        return Selenide.$$x("//a[@class='tabs__link']");
+        return $$x("//a[@class='tabs__link']").shouldBe(CollectionCondition.sizeGreaterThan(4));
     }
 
     public SelenideElement getViewedProduct(int number) {
         return $x(String.format("(//section[@class='recently-viewed']//a[@class='lite-tile__title'])[%d]", number));
     }
 
-    public CategoryPage returnToCategoryPage(int index) {
-        Selenide.$$x("//a[@class='breadcrumbs__link']").get(index).click();
+    public CategoryPage returnToCategoryPageByName(String categoryName) {
+        $x(String.format("//a[@class='breadcrumbs__link'] //span[contains(text(),'%s')]", categoryName)).click();
         return new CategoryPage();
     }
 
@@ -30,8 +29,22 @@ public class ProductPage extends BasePage {
         return new BasketPage();
     }
 
-    public BasketPage putProductOpenBasket() {
-        $x("(//span[@class='buy-button__label'])[1]").hover().click();
-        return new BasketPage();
+    public ProductPage openProductTabByName(String tabName) {
+        $x(String.format("//a[@class='tabs__link' and contains(text(),'%s')]", tabName)).click();
+        return this;
+    }
+
+    public String getProductTabsTitle() {
+        return $x("//h2[@class='product-tabs__heading']").text();
+    }
+
+    public ElementsCollection getQuestionList(int amountQuestionsItem) {
+        return $$x("//div[@class='comment']")
+                .shouldBe(CollectionCondition.sizeGreaterThan(amountQuestionsItem));
+    }
+
+    public ElementsCollection getCharacteristicListSize(int amountCharacteristicsItem) {
+        return $$x("//dd/ul/li")
+                .shouldBe(CollectionCondition.sizeGreaterThan(amountCharacteristicsItem));
     }
 }

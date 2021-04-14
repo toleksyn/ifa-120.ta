@@ -5,14 +5,13 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class CategoryPage extends BasePage {
 
-
-    public CategoryPage openProductCategoryPage(int index) {
-        $$x("//a[@class='tile-cats__heading tile-cats__heading_type_center']").get(index).click();
+    public CategoryPage openProductCategoryPage(String categoryName) {
+        $x(String.format("//a[@class='tile-cats__heading tile-cats__heading_type_center' and contains(text(), '%s')]", categoryName)).click();
         return new CategoryPage();
     }
 
     public ProductPage openProductByNumber(int number) {
-        $$x("//span[@class='goods-tile__title']").get(number).click();
+        $x(String.format("(//span[@class='goods-tile__title'])[%d]", number)).click();
         return new ProductPage();
     }
 

@@ -6,7 +6,6 @@ import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import com.softserveinc.ita.rozetka.page_objects.OrderPage;
 
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 public class OrderTest extends TestRunner {
 
@@ -16,14 +15,12 @@ public class OrderTest extends TestRunner {
 
     @BeforeMethod
     public void putProductToBasketOpenOrder() {
-        openOrderPage =
-                new HomePage()
-                        .openHomePage()
-                        .navigateToFirstProduct()
-                        .putProductOpenBasket()
-                        .openOrderPage();
+        openOrderPage = new HomePage()
+                .openHomePage()
+                .openProductByNumber(1)
+                .addProductToBasket()
+                .openOrderPage();
+
     }
-
-
 
 }

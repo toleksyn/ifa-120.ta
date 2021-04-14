@@ -4,6 +4,16 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class HomePage extends BasePage {
 
+    private LeftSidebar leftSidebar;
+
+    public HomePage() {
+        leftSidebar = new LeftSidebar();
+    }
+
+    public LeftSidebar getLeftSidebar() {
+        return leftSidebar;
+    }
+
     public HomePage openHomePage() {
         open("https://rozetka.com.ua/ua/");
         return this;
@@ -14,21 +24,8 @@ public class HomePage extends BasePage {
         return new CategoryPage();
     }
 
-    public CategoryPage openCategoryPageFromLeftSidebar(int number) {
-        $x(String.format("(//ul[@class='menu-categories menu-categories_type_main']//li[%d])", number)).doubleClick();
-        return new CategoryPage();
-    }
-
-    public CategoryPage openCategoryPageFromLeftSidebar(String pageCategory) {
-        $x(String.format("//a[@class = 'menu-categories__link' and contains(text(), '%s')]", pageCategory))
-                .click();
-        $x("//button[@class='search-form__microphone']")
-                .click();
-        return new CategoryPage();
-    }
-
-    public ProductPage navigateToFirstProduct() {
-        $x("//li[@class='main-goods__cell']").click();
+    public ProductPage openProductByNumber(int number) {
+        $x(String.format("//li[@class='main-goods__cell'][%d]", number)).click();
         return new ProductPage();
     }
 }
