@@ -38,4 +38,9 @@ public class OrderTest extends TestRunner {
         openBasketPage.pushMinusItem();
         openBasketPage.openOrderPage();
     }
+
+    @Test
+    public void testOpenOrderPage() {
+        Assert.assertTrue(openOrderPage.getPageTitle().equals("Оформлення замовлення"), "The page title shouldn't match the condition");
+    }
 }
