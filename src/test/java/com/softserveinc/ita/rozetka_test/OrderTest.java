@@ -38,9 +38,4 @@ public class OrderTest extends TestRunner {
         openBasketPage.pushMinusItem();
         openBasketPage.openOrderPage();
     }
-
-    @Test
-    public void testOpenOrderPage() {
-        Assert.assertTrue(openOrderPage.isThisIsOrderPage(), "The page title shouldn't match the condition");
-    }
 }
