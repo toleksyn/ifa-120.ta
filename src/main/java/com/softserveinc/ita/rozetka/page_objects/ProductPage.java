@@ -1,12 +1,11 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.*;
 
 import java.util.List;
 
-import static com.codeborne.selenide.Selenide.$$x;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class ProductPage extends BasePage {
@@ -16,7 +15,7 @@ public class ProductPage extends BasePage {
     }
 
     public ElementsCollection getListOfProductTabs() {
-        return Selenide.$$x("//a[@class='tabs__link']");
+        return $$x("//a[@class='tabs__link']");
     }
 
     public SelenideElement getViewedProduct(int number) {
@@ -24,7 +23,7 @@ public class ProductPage extends BasePage {
     }
 
     public CategoryPage returnToCategoryPage(int index) {
-        Selenide.$$x("//a[@class='breadcrumbs__link']").get(index).click();
+        $$x("//a[@class='breadcrumbs__link']").get(index).click();
         return new CategoryPage();
     }
 
@@ -38,15 +37,18 @@ public class ProductPage extends BasePage {
         return this;
     }
 
-    public String getCharacteristicDescriptionByIndex(int index) {
-        return $x(String.format("(//ul[@class='characteristics-full__sub-list'])[%d]", index)).text();
-    }
-
     public String getProductTabsTitle() {
         return $x("//h2[@class='product-tabs__heading']").text();
     }
 
-    public List<SelenideElement> getCommentsList() {
-        return $$x("//div[@class='comment']");
+    public int getQuestionListSize(int amountQuestionsItem) {
+        return $$x("//div[@class='comment']")
+                .shouldHave(CollectionCondition.sizeGreaterThan(amountQuestionsItem)).size();
+    }
+
+    public int getCharacteristicListSize(int amountCharacteristicsItem ){
+        return $$x("//dd/ul/li")
+                .shouldHave(CollectionCondition.sizeGreaterThan(amountCharacteristicsItem))
+                .size();
     }
 }

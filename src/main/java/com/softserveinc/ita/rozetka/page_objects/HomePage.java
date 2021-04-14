@@ -24,11 +24,6 @@ public class HomePage extends BasePage {
         return new CategoryPage();
     }
 
-    public CategoryPage openCategoryPageFromLeftSidebar(int number) {
-        $x(String.format("(//ul[@class='menu-categories menu-categories_type_main']//li[%d])", number)).doubleClick();
-        return new CategoryPage();
-    }
-
     public CategoryPage openCategoryPageFromLeftSidebar(String pageCategory) {
         $x(String.format("//a[@class = 'menu-categories__link' and contains(text(), '%s')]", pageCategory))
                 .click();
