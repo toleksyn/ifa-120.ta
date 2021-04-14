@@ -9,7 +9,7 @@ public class OrderPage {
         return new BasketPage();
     }
 
-    public boolean isThisIsOrderPage() {
-        return $x("//h1[@class='checkout-heading']").text().equals("Оформлення замовлення");
+    public String getPageTitle() {
+        return $x("//h1[@class='checkout-heading']").text();
     }
 }
