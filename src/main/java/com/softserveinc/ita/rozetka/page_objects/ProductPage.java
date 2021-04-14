@@ -12,15 +12,15 @@ public class ProductPage extends BasePage {
     }
 
     public ElementsCollection getListOfProductTabs() {
-        return $$x("//a[@class='tabs__link']");
+        return $$x("//a[@class='tabs__link']").shouldBe(CollectionCondition.sizeGreaterThan(4));
     }
 
     public SelenideElement getViewedProduct(int number) {
         return $x(String.format("(//section[@class='recently-viewed']//a[@class='lite-tile__title'])[%d]", number));
     }
 
-    public CategoryPage returnToCategoryPage(int index) {
-        $$x("//a[@class='breadcrumbs__link']").get(index).click();
+    public CategoryPage returnToCategoryPageByName(String categoryName) {
+        $x(String.format("//a[@class='breadcrumbs__link'] //span[contains(text(),'%s')]", categoryName)).click();
         return new CategoryPage();
     }
 
