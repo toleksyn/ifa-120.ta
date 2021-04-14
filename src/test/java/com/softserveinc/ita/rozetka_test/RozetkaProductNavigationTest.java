@@ -9,6 +9,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 
 public class RozetkaProductNavigationTest extends TestRunner {
     private HomePage rozetkaHomePage;
@@ -58,13 +60,21 @@ public class RozetkaProductNavigationTest extends TestRunner {
     public void testPossibilityViewingProductDescriptions() {
         ProductPage productPage = rozetkaHomePage.openCategoryPageFromLeftSidebar("Ноутбуки")
                 .openProductsListPage("Планшети")
-                .openFirstProduct().openProductTabByName("Характеристики");
-        String madeIn = productPage.getCharacteristicDescriptionByIndex(1);
-        Assert.assertTrue(madeIn.toLowerCase().contains("Китай"), "field 'Країна виробник' should contains 'Китай'");
-        String productTabsTitle = productPage.openProductTabByName("Відгуки").getProductTabsTitle();
-        Assert.assertTrue(productTabsTitle.contains("Відгуки"), "Product tabs title should contains 'Відгуки'");
-        int commentsList = productPage.openProductTabByName("Питання").getCommentsTextList().size();
-        Assert.assertTrue(commentsList > 0);
+                .openFirstProduct()
+                .openProductTabByName("Характеристики");
+        List<String> characteristicsTextList = productPage
+                .getCharacteristicsTextList();
+        Assert.assertTrue(characteristicsTextList.size() > 0, "product characteristic description" +
+                " should contain at least 1 row");
+        String productTabsTitle = productPage
+                .openProductTabByName("Відгуки")
+                .getProductTabsTitle();
+        Assert.assertTrue(productTabsTitle.contains("Відгуки"), "product tabs title should contains 'Відгуки'");
+        int characteristicsRowsAmount = productPage
+                .openProductTabByName("Питання")
+                .getCommentsTextList()
+                .size();
+        Assert.assertTrue(characteristicsRowsAmount > 0, "list size  should contain at least 1 text field");
 
     }
 }

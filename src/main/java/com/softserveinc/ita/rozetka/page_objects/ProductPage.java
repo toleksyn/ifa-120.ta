@@ -39,9 +39,9 @@ public class ProductPage extends BasePage {
         return new ProductPage();
     }
 
-    public String getCharacteristicDescriptionByIndex(int index) {
-        return $x(String.format("(//ul[@class='characteristics-full__sub-list'])[%d]", index)).text();
-    }
+//    public String getCharacteristicDescriptionByIndex(int index) {
+//        return $x(String.format("(//ul[@class='characteristics-full__sub-list'])[%d]", index)).text();
+//    }
 
     public String getProductTabsTitle(){
         return $x("//h2[@class='product-tabs__heading']").text();
@@ -49,5 +49,9 @@ public class ProductPage extends BasePage {
 
     public List<String> getCommentsTextList(){
         return $$x("//div[@class='comment']").texts();
+    }
+
+    public List<String> getCharacteristicsTextList(){
+        return $$x("//dt").texts();
     }
 }
