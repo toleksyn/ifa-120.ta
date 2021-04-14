@@ -23,8 +23,8 @@ public class ProductPage extends BasePage {
         return $x(String.format("(//section[@class='recently-viewed']//a[@class='lite-tile__title'])[%d]", number));
     }
 
-    public CategoryPage returnToCategoryPage(int index) {
-        Selenide.$$x("//a[@class='breadcrumbs__link']").get(index).click();
+    public CategoryPage returnToCategoryPageByName(String categoryName) {
+       $x(String.format("//a[@class='breadcrumbs__link'] //span[contains(text(),'%s')]", categoryName)).click();
         return new CategoryPage();
     }
 
