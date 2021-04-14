@@ -4,6 +4,9 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
+import java.util.List;
+
+import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class ProductPage extends BasePage {
@@ -28,5 +31,27 @@ public class ProductPage extends BasePage {
     public BasketPage addProductToBasket() {
         $x("//button[@class='buy-button button button_with_icon button_color_green button_size_large']").hover().click();
         return new BasketPage();
+    }
+
+    public BasketPage putProductOpenBasket() {
+        $x("(//span[@class='buy-button__label'])[1]").hover().click();
+        return new BasketPage();
+    }
+
+    public ProductPage openProductTabByName(String tabName) {
+        $x(String.format("//a[@class='tabs__link' and contains(text(),'%s')]", tabName)).click();
+        return new ProductPage();
+    }
+
+    public String getCharacteristicDescriptionByIndex(int index) {
+        return $x(String.format("(//ul[@class='characteristics-full__sub-list'])[%d]", index)).text();
+    }
+
+    public String getProductTabsTitle() {
+        return $x("//h2[@class='product-tabs__heading']").text();
+    }
+
+    public List<SelenideElement> getCommentsList() {
+        return $$x("//div[@class='comment']");
     }
 }

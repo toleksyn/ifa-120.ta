@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+
 public class RozetkaProductNavigationTest extends TestRunner {
     private HomePage rozetkaHomePage;
 
@@ -41,7 +42,8 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .openProductsListPage("Ванни")
                 .openFirstProduct();
         BasketPage basketPage = productPage.addProductToBasket();
-        Assert.assertEquals(basketPage.getProductTitleByName("Ванна"), productPage.getProductTitle());
+        Assert.assertEquals(basketPage.getProductTitleByName("Ванна"), productPage.getProductTitle(),
+                "Added wrong product to basket");
     }
 
     @Test
@@ -52,6 +54,20 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .openProductByNumber(1)
                 .getProductTitle();
         Assert.assertTrue(productTittle.toLowerCase().contains("гаманець"), "Search request lead to the wrong product");
+    }
+
+    @Test
+    public void testPossibilityViewingProductDescriptions() {
+        ProductPage productPage = rozetkaHomePage.openCategoryPageFromLeftSidebar("Ноутбуки")
+                .openProductsListPage("Планшети")
+                .openFirstProduct().openProductTabByName("Характеристики");
+        String madeIn = productPage.getCharacteristicDescriptionByIndex(1);
+        Assert.assertTrue(madeIn.toLowerCase().contains("Китай"), "field 'Країна виробник' should contains 'Китай'");
+        String productTabsTitle = productPage.openProductTabByName("Відгуки").getProductTabsTitle();
+        Assert.assertTrue(productTabsTitle.contains("Відгуки"), "Product tabs title should contains 'Відгуки'");
+        int commentsList = productPage.openProductTabByName("Питання").getCommentsList().size();
+        Assert.assertTrue(commentsList > 0);
+
     }
 }
 
