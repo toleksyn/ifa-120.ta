@@ -19,18 +19,19 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     @Test
     public void testSelectProductByCatalog() {
+        String pageCategory = "Ноутбуки";
         CategoryPage catalogCategoryItem = rozetkaHomePage
-                .openCategoryPageFromLeftSidebar("Ноутбуки");
+                .openCategoryPageFromLeftSidebar(pageCategory);
         Assert.assertTrue(catalogCategoryItem.getPageTitle().contains("Комп'ютери"),
-                "The page title does not match the condition");
+                "The page title should match the condition");
         ProductPage chosenProduct = catalogCategoryItem
-                .openProductsListPage("Ноутбуки")
+                .openProductsListPage(pageCategory)
                 .openProductByName("Ноутбук Apple MacBook Air 13");
         Assert.assertTrue(chosenProduct.getProductTitle().contains("Ноутбук Apple MacBook"),
-                "There is no product with this name");
+                "The product title should match the condition");
         chosenProduct.returnToCategoryPage(1);
         Assert.assertTrue(catalogCategoryItem.getPageTitle().contains("Комп'ютери"),
-                "The page title does not match the condition");
+                "The page title should match the condition");
     }
 
     @Test
