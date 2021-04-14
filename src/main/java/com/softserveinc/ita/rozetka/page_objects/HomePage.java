@@ -4,6 +4,16 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class HomePage extends BasePage {
 
+    private LeftSidebar leftSidebar;
+
+    public HomePage() {
+        leftSidebar = new LeftSidebar();
+    }
+
+    public LeftSidebar getLeftSidebar() {
+        return leftSidebar;
+    }
+
     public HomePage openHomePage() {
         open("https://rozetka.com.ua/ua/");
         return this;
