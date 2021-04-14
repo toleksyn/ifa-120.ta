@@ -19,7 +19,7 @@ public class OrderTest extends TestRunner {
         openOrderPage = new HomePage()
                 .openHomePage()
                 .navigateToFirstProduct()
-                .putProductOpenBasket()
+                .addProductToBasket()
                 .openOrderPage();
 
     }
