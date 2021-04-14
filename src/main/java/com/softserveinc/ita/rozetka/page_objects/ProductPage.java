@@ -12,7 +12,7 @@ public class ProductPage extends BasePage {
     }
 
     public ElementsCollection getListOfProductTabs() {
-        return $$x("//a[@class='tabs__link']");
+        return $$x("//a[@class='tabs__link']").shouldBe(CollectionCondition.sizeGreaterThan(4));
     }
 
     public SelenideElement getViewedProduct(int number) {
