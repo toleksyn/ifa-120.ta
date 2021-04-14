@@ -2,7 +2,9 @@ package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 
 public class RozetkaProductNavigationTest extends TestRunner {
@@ -12,5 +14,16 @@ public class RozetkaProductNavigationTest extends TestRunner {
     public void openHomepage() {
         rozetkaHomePage = new HomePage().openHomePage();
     }
+
+    @Test
+    public void testSelectProductBySearch() {
+        String productTittle = rozetkaHomePage
+                .getHeaderPage()
+                .searchFor("гаманець")
+                .openProductByNumber(1)
+                .getProductTitle();
+        Assert.assertTrue(productTittle.toLowerCase().contains("гаманець"), "Search request lead to the wrong product");
+    }
+
 }
 
