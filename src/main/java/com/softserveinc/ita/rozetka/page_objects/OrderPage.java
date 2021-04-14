@@ -3,6 +3,7 @@ package com.softserveinc.ita.rozetka.page_objects;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class OrderPage {
+
     public OrderPage fillAllInputFields(){
         $x("//div[@class='form__row js-surname']/input").setValue("Петренко");
         $x("//div[@class='form__row js-name']/input").setValue("Вася");

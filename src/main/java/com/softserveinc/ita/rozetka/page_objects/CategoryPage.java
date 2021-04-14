@@ -5,7 +5,6 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class CategoryPage extends BasePage {
 
-
     public CategoryPage openProductCategoryPage(int index) {
         $$x("//a[@class='tile-cats__heading tile-cats__heading_type_center']").get(index).click();
         return new CategoryPage();
