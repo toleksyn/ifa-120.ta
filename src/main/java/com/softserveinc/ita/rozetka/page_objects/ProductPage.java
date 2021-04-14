@@ -34,7 +34,12 @@ public class ProductPage extends BasePage {
         return new BasketPage();
     }
 
-    public ProductPage openProductTabByName(String tabName) {
+    public BasketPage putProductOpenBasket() {
+        $x("(//span[@class='buy-button__label'])[1]").hover().click();
+        return new BasketPage();
+    }
+      
+      public ProductPage openProductTabByName(String tabName) {
         $x(String.format("//a[@class='tabs__link' and contains(text(),'%s')]", tabName)).click();
         return new ProductPage();
     }
@@ -49,5 +54,4 @@ public class ProductPage extends BasePage {
 
     public List<SelenideElement> getCommentsList(){
         return $$x("//div[@class='comment']");
-    }
 }

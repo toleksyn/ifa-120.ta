@@ -23,15 +23,15 @@ public class RozetkaProductNavigationTest extends TestRunner {
         CategoryPage catalogCategoryItem = rozetkaHomePage
                 .openCategoryPageFromLeftSidebar("Ноутбуки");
         Assert.assertTrue(catalogCategoryItem.getPageTitle().contains("Комп'ютери"),
-                "'Комп'ютери та ноутбуки' page title contains 'Ноутбуки та комп'ютери'");
+                "The page title does not match the condition");
         ProductPage chosenProduct = catalogCategoryItem
                 .openProductsListPage("Ноутбуки")
                 .openProductByName("Ноутбук Apple MacBook Air 13");
         Assert.assertTrue(chosenProduct.getProductTitle().contains("Ноутбук Apple MacBook"),
-                "Category 'Ноутбуки' with a list of products displays at least one item");
+                "There is no product with this name");
         chosenProduct.returnToCategoryPage(1);
         Assert.assertTrue(catalogCategoryItem.getPageTitle().contains("Комп'ютери"),
-                "'Комп'ютери та ноутбуки' page title contains 'Ноутбуки та комп'ютери'");
+                "The page title does not match the condition");
     }
 
     @Test
@@ -41,7 +41,8 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .openProductsListPage("Ванни")
                 .openFirstProduct();
         BasketPage basketPage = productPage.addProductToBasket();
-        Assert.assertEquals(basketPage.getProductTitleByName("Ванна"), productPage.getProductTitle());
+        Assert.assertEquals(basketPage.getProductTitleByName("Ванна"), productPage.getProductTitle(),
+                "Added wrong product to basket");
     }
 
     @Test
