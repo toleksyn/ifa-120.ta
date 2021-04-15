@@ -18,7 +18,7 @@ public class ProductPage extends BasePage {
                 .text();
     }
 
-    public CategoryPage returnToCategoryPageByName(String categoryName) {
+    public CategoryPage openCategoryPageByName(String categoryName) {
         $x(String.format("//a[@class='breadcrumbs__link'] //span[contains(text(),'%s')]", categoryName)).click();
         return new CategoryPage();
     }
