@@ -47,4 +47,9 @@ public class ProductPage extends BasePage {
         return $$x("//dd/ul/li")
                 .shouldBe(CollectionCondition.sizeGreaterThan(amountCharacteristicsItem));
     }
+
+    public ProductPage openProductCharacteristics() {
+        $x("//a[@class='tabs__link' and contains(text(),'Характеристики')]").click();
+        return  this;
+    }
 }
