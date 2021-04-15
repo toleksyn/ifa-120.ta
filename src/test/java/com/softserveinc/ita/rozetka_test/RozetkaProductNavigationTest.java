@@ -17,7 +17,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
         rozetkaHomePage = new HomePage().openHomePage();
     }
 
-        @Test
+    @Test
     public void testSelectProductByCatalog() {
         String pageCategoryName = "Ноутбуки";
         CategoryPage catalogCategoryItem = rozetkaHomePage
