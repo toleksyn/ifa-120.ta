@@ -1,5 +1,8 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import com.codeborne.selenide.Condition;
+
+import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class BasketPage {
@@ -25,12 +28,12 @@ public class BasketPage {
 
     public int getProductCount() {
         $x("//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid']").click();
-        return Integer.parseInt($x("//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid']").val());
+        return Integer.parseInt($x("//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid']").shouldBe(not(Condition.empty)).val());
     }
 
     public int getOrderProductPrice() {
         $x("//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid']").click();
-        String ProductPrice = ($x("//*[@class='cart-product__price']").text());
+        String ProductPrice = ($x("//*[@class='cart-product__price']").shouldBe(not(Condition.empty)).text());
         return Integer.parseInt(ProductPrice.replace("₴", "").replace(" ", ""));
     }
 }
