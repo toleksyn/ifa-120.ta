@@ -4,11 +4,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class HomePage extends BasePage {
 
-    private LeftSidebar leftSidebar;
-
-    public HomePage() {
-        leftSidebar = new LeftSidebar();
-    }
+    private LeftSidebar leftSidebar = new LeftSidebar();
 
     public LeftSidebar getLeftSidebar() {
         return leftSidebar;

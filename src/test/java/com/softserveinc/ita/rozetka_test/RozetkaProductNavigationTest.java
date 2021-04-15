@@ -11,6 +11,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     private HomePage rozetkaHomePage;
 
+    //This added for future tests
     @BeforeMethod
     public void openHomepage() {
         rozetkaHomePage = new HomePage().openHomePage();

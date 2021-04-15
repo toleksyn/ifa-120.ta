@@ -2,6 +2,8 @@ package com.softserveinc.ita.rozetka.page_objects;
 
 import com.codeborne.selenide.*;
 
+import java.util.List;
+
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -11,12 +13,9 @@ public class ProductPage extends BasePage {
         return $x("//h1[@class='product__title']").text();
     }
 
-    public ElementsCollection getListOfProductTabs() {
-        return $$x("//a[@class='tabs__link']").shouldBe(CollectionCondition.sizeGreaterThan(4));
-    }
-
-    public SelenideElement getViewedProduct(int number) {
-        return $x(String.format("(//section[@class='recently-viewed']//a[@class='lite-tile__title'])[%d]", number));
+    public String getViewedProductName(int number) {
+        return $x(String.format("(//section[@class='recently-viewed']//a[@class='lite-tile__title'])[%d]", number))
+                .text();
     }
 
     public CategoryPage returnToCategoryPageByName(String categoryName) {
@@ -25,7 +24,9 @@ public class ProductPage extends BasePage {
     }
 
     public BasketPage addProductToBasket() {
-        $x("//button[@class='buy-button button button_with_icon button_color_green button_size_large']").hover().click();
+        $x("//button[@class='buy-button button button_with_icon button_color_green button_size_large']")
+                .hover()
+                .click();
         return new BasketPage();
     }
 
@@ -38,18 +39,13 @@ public class ProductPage extends BasePage {
         return $x("//h2[@class='product-tabs__heading']").text();
     }
 
-    public ElementsCollection getQuestionList(int amountQuestionsItem) {
+    public int getQuestionListSize(int amountQuestionsItem) {
         return $$x("//div[@class='comment']")
-                .shouldBe(CollectionCondition.sizeGreaterThan(amountQuestionsItem));
+                .shouldHave(CollectionCondition.sizeGreaterThan(amountQuestionsItem)).size();
     }
 
-    public ElementsCollection getCharacteristicListSize(int amountCharacteristicsItem) {
-        return $$x("//dd/ul/li")
-                .shouldBe(CollectionCondition.sizeGreaterThan(amountCharacteristicsItem));
-    }
-
-    public ProductPage openProductCharacteristics() {
-        $x("//a[@class='tabs__link' and contains(text(),'Характеристики')]").click();
-        return  this;
+    public List<String> getCharacteristicsTexts(int amountCharacteristicsItem) {
+        return $$x("//dd/ul/li/*")
+                .shouldHave(CollectionCondition.sizeGreaterThan(amountCharacteristicsItem)).texts();
     }
 }

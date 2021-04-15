@@ -25,7 +25,7 @@ public class ProductsListPage extends BasePage {
         return $x(String.format("(//span[@class='goods-tile__title'])[%d]", number)).text();
     }
 
-    public int getProductPriseByNumber(int number) {
+    public int getProductPriceByNumber(int number) {
         return Integer.parseInt($x(String.format("(//span[@class='goods-tile__price-value'])[%d]", number)).text().replaceAll(" ", ""));
     }
 
@@ -43,7 +43,7 @@ public class ProductsListPage extends BasePage {
         return Integer.parseInt($x("//a[@class='pagination__link pagination__link_state_active']").text());
     }
 
-    public ProductsListPage useFilter(String filterName) {
+    public ProductsListPage filter(String filterName) {
         $x(String.format("//label[contains(text(),'%s')]", filterName)).click();
         return this;
     }
