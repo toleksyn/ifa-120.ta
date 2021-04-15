@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 
 public class RozetkaProductNavigationTest extends TestRunner {
 
+    //This added for future tests
     private HomePage rozetkaHomePage;
 
     //This added for future tests
