@@ -8,12 +8,14 @@ import org.testng.annotations.BeforeMethod;
 
 public class OrderTest extends TestRunner {
 
+    //This added for future tests
     private OrderPage openOrderPage;
     private BasketPage openBasketPage;
     private String searchString;
 
+    //This added for future tests
     @BeforeMethod
-    public void putProductToBasketOpenOrder() {
+    public void addProductToBasketOpenOrder() {
         openOrderPage = new HomePage()
                 .openHomePage()
                 .openProductByNumber(1)

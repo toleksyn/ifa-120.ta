@@ -1,5 +1,5 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-public class FooterPage {
+public class Footer {
     //This is mock class for future test cases
 }
