@@ -27,6 +27,5 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .getProductTitle();
         Assert.assertTrue(productTitle.toLowerCase().contains(searchRequest), "Product title should contain search request");
     }
-
 }
 
