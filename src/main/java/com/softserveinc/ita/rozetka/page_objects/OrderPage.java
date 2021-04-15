@@ -29,7 +29,27 @@ public class OrderPage {
 
     public OrderPage setCity(String city) {
         $x("//div[@class='form__row js-city']//input[@name='search']").setValue(city).click();
-        $x(String.format("(//li[contains(text(),'%s')])[1]", city)).click();
+        $x(String.format("//div[@class='form__row js-city']//li[1]", city)).click();
         return this;
+    }
+
+    public boolean isDisplayedComfirmOrderButton() {
+        return $x("//div[@class='checkout-total__buttons']").isDisplayed();
+    }
+
+    public String getSurname() {
+        return $x("//div[@class='form__row js-surname']/input").getValue();
+    }
+
+    public String getName() {
+        return $x("//div[@class='form__row js-name']/input").getValue();
+    }
+
+    public String getPhone() {
+        return $x("//input[@type='tel']").getValue().replaceAll(" ", "");
+    }
+
+    public String getCity() {
+        return $x("//div[@class='form__row js-city']//input[@name='search']").getValue().toLowerCase();
     }
 }
