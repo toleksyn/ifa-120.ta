@@ -18,13 +18,15 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     @Test
     public void testPossibilityViewingProductDescriptions() {
-        ProductPage productPage = rozetkaHomePage.getLeftSidebar
-                ("Ноутбуки")
+        ProductPage productPage = rozetkaHomePage
+                .getLeftSidebar()
+                .openCategory("Ноутбуки")
                 .openProductsListPage("Планшети")
                 .openProductByNumber(1)
                 .openProductTabByName("Характеристики");
         int characteristicsListSize = productPage
-                .getCharacteristicListSize(1);
+               .getCharagitcteristicListSize(1)
+                .size();
         Assert.assertTrue(characteristicsListSize > 0, "product characteristic description" +
                 " should contain at least 1 row");
         String productTabsTitle = productPage
@@ -33,10 +35,9 @@ public class RozetkaProductNavigationTest extends TestRunner {
         Assert.assertTrue(productTabsTitle.contains("Відгуки"), "product tabs title should contains 'Відгуки'");
         int questionsRowsAmount = productPage
                 .openProductTabByName("Питання")
-                .getQuestionListSize(1);
+                .getQuestionList(1)
+                .size();
         Assert.assertTrue(questionsRowsAmount > 0, "list size  should contain at least 1 text field");
-
     }
-
 }
 
