@@ -40,4 +40,23 @@ public class BasketPage {
                 .text());
         return Integer.parseInt(ProductPrice.replace("₴", "").replace(" ", ""));
     }
+
+    public BasketPage deleteProduct(int numberOfProduct) {
+        $x(String.format("//button[@id='cartProductActions%d']", numberOfProduct - 1))
+                .click();
+        $x("//button[@class='button button--medium button--with-icon button--link context-menu-actions__button']")
+                .click();
+        return this;
+    }
+
+    public boolean isBasketEmpty() {
+        return ($x("//div[@class='cart-dummy']").exists());
+    }
+
+    public BasketPage deleteAllProducts() {
+        while (!isBasketEmpty()) {
+            deleteProduct(1);
+        }
+        return this;
+    }
 }
