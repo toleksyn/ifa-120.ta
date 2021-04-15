@@ -24,8 +24,9 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .openCategory("Сантехніка")
                 .openProductsListPage("Ванни")
                 .openProductByNumber(1);
+        String productTitle = productPage.getProductTitle();
         BasketPage basketPage = productPage.addProductToBasket();
-        Assert.assertEquals(basketPage.getProductTitleByName("Ванна"), productPage.getProductTitle(),
+        Assert.assertEquals(basketPage.getProductTitleByName("Ванна"), productTitle,
                 "Product should be added to basket");
     }
 }
