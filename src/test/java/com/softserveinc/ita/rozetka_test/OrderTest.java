@@ -8,11 +8,9 @@ import org.testng.annotations.BeforeMethod;
 
 public class OrderTest extends TestRunner {
 
+    //This added for future tests
     private OrderPage openOrderPage;
     private BasketPage openBasketPage;
-
-    public OrderTest() {
-    }
 
     //This added for future tests
     @BeforeMethod
