@@ -2,6 +2,8 @@ package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
+import com.softserveinc.ita.rozetka.page_objects.ProductPage;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 
 public class RozetkaProductNavigationTest extends TestRunner {
@@ -35,8 +37,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
         Assert.assertTrue(productTabsTitle.contains("Відгуки"), "product tabs title should contains 'Відгуки'");
         int questionsRowsAmount = productPage
                 .openProductTabByName("Питання")
-                .getQuestionList(1)
-                .size();
+                .getQuestionListSize();
         Assert.assertTrue(questionsRowsAmount > 0, "list size  should contain at least 1 text field");
 }
 
