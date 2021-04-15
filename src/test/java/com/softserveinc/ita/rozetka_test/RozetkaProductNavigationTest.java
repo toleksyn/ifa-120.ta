@@ -27,7 +27,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .openProductByNumber(1)
                 .openProductTabByName("Характеристики");
         int characteristicsListSize = productPage
-                .getCharacteristicListSize(1)
+                .getCharacteristicsTexts()
                 .size();
         Assert.assertTrue(characteristicsListSize > 0, "product characteristic description" +
                 " should contain at least 1 row");
