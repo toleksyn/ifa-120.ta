@@ -42,5 +42,6 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .getQuestionListSize();
         Assert.assertTrue(questionsRowsAmount > 0, "list size  should contain at least 1 text field");
     }
+
 }
 
