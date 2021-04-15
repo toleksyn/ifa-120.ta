@@ -14,7 +14,7 @@ public class OrderPage {
         return this;
     }
 
-    public BasketPage startEditingProductInBasket() {
+    public BasketPage startEditingProductsInBasket() {
         $x("//*[@class='button button_with_icon button_type_link checkout-product__edit-button']").click();
         return new BasketPage();
     }
