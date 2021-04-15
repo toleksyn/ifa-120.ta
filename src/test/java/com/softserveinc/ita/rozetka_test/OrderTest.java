@@ -11,10 +11,12 @@ import org.testng.annotations.Test;
 
 public class OrderTest extends TestRunner {
 
+    //This added for future tests
     private OrderPage openOrderPage;
     private BasketPage openBasketPage;
     private String searchString;
 
+    //This added for future tests
     @BeforeMethod
     public void putProductToBasketOpenOrder() {
         openOrderPage = new HomePage()
@@ -35,7 +37,7 @@ public class OrderTest extends TestRunner {
                 .setSurname(surname)
                 .setCity(city)
                 .setPhone(phone)
-                .isDisplayedComfirmOrderButton();
+                .isDisplayedConfirmOrderButton();
         Assert.assertTrue(isDisplayedConfirmOrderButton, "The Comfirm Button should be displayed");
         Assert.assertEquals(openOrderPage.getSurname(), surname, "The surname should be " + surname);
         Assert.assertEquals(openOrderPage.getName(), name, "The name should be " + name);

@@ -3,6 +3,7 @@ package com.softserveinc.ita.rozetka.page_objects;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class OrderPage {
+
     public OrderPage setSurname(String surname) {
         $x("//div[@class='form__row js-surname']/input").setValue(surname);
         return this;
@@ -13,7 +14,7 @@ public class OrderPage {
         return this;
     }
 
-    public BasketPage startEditingProductInBasket() {
+    public BasketPage startEditingProductsInBasket() {
         $x("//*[@class='button button_with_icon button_type_link checkout-product__edit-button']").click();
         return new BasketPage();
     }
@@ -28,12 +29,13 @@ public class OrderPage {
     }
 
     public OrderPage setCity(String city) {
-        $x("//div[@class='form__row js-city']//input[@name='search']").setValue(city).click();
+        $x("//div[@class='form__row js-city']//input[@name='search']").setValue(city)
+                .click();
         $x(String.format("//div[@class='form__row js-city']//li[1]", city)).click();
         return this;
     }
 
-    public boolean isDisplayedComfirmOrderButton() {
+    public boolean isDisplayedConfirmOrderButton() {
         return $x("//div[@class='checkout-total__buttons']").isDisplayed();
     }
 
@@ -46,10 +48,12 @@ public class OrderPage {
     }
 
     public String getPhone() {
-        return $x("//input[@type='tel']").getValue().replaceAll(" ", "");
+        return $x("//input[@type='tel']").getValue()
+                .replaceAll(" ", "");
     }
 
     public String getCity() {
-        return $x("//div[@class='form__row js-city']//input[@name='search']").getValue().toLowerCase();
+        return $x("//div[@class='form__row js-city']//input[@name='search']").getValue()
+                .toLowerCase();
     }
 }
