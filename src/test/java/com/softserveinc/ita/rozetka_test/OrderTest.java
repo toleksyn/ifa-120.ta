@@ -10,11 +10,9 @@ import org.testng.annotations.Test;
 
 public class OrderTest extends TestRunner {
 
-    //This added for future tests
     private OrderPage openOrderPage;
     private BasketPage openBasketPage;
 
-    //This added for future tests
     @BeforeMethod
     public void addProductToBasketOpenOrder() {
         openOrderPage = new HomePage()
