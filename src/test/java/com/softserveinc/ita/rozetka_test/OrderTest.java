@@ -20,6 +20,9 @@ public class OrderTest extends TestRunner {
                 .openProductByNumber(1)
                 .addProductToBasket()
                 .openOrderPage();
+
+        Assert.assertEquals(openOrderPage.getPageTitle(), "Оформлення замовлення", "Page header should be" +
+                " 'Оформлення замовлення'");
     }
 
     @Test
@@ -27,33 +30,34 @@ public class OrderTest extends TestRunner {
 
         openBasketPage = openOrderPage.startEditingProductsInBasket();
 
-        int orderProductCount = 0;
+        int orderProductCount;
         orderProductCount = openBasketPage.getProductCount(1);
-        int orderProductSum = 0;
+        int orderProductSum;
         orderProductSum = openBasketPage.getOrderProductSum(1);
 
-        int changedOrderProductCount = 0;
-        int changedOrderProductSum = 0;
+        int changedOrderProductCount;
+        int changedOrderProductSum;
         openBasketPage.increaseProductCount(1);
         changedOrderProductCount = openBasketPage.getProductCount(1);
         changedOrderProductSum = openBasketPage.getOrderProductSum(1);
 
         Assert.assertEquals(changedOrderProductCount, 2 * orderProductCount, "the new count for the product " +
-                        "must be twice as much as the previous one");
+                "should be twice as much as the previous one");
         Assert.assertEquals(changedOrderProductSum, 2 * orderProductSum, "new amount for the product" +
-                        " must be twice as much as the previous one");
+                " should be twice as much as the previous one");
 
         openBasketPage.openOrderPage();
         openOrderPage.startEditingProductsInBasket();
 
         openBasketPage.decreaseProductCount(1);
+
         changedOrderProductCount = openBasketPage.getProductCount(1);
         changedOrderProductSum = openBasketPage.getOrderProductSum(1);
 
         openBasketPage.openOrderPage();
         Assert.assertEquals(changedOrderProductCount, orderProductCount, "the new count for the product " +
-                "must be twice less than the previous one");
+                "should be twice less than the previous one");
         Assert.assertEquals(changedOrderProductSum, orderProductSum, "the new amount for the product " +
-                "must be twice less than the previous one");
+                "should be twice less than the previous one");
     }
 }
