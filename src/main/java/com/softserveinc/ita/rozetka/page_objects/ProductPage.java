@@ -39,15 +39,15 @@ public class ProductPage extends BasePage {
         return $x("//h2[@class='product-tabs__heading']").text();
     }
 
-    public int getQuestionListSize(int amountQuestionsItem) {
+    public int getQuestionListSize() {
         return $$x("//div[@class='comment']")
-                .shouldHave(CollectionCondition.sizeGreaterThan(amountQuestionsItem))
+                .shouldHave(CollectionCondition.sizeGreaterThan(0))
                 .size();
     }
 
-    public List<String> getCharacteristicsTexts(int amountCharacteristicsItem) {
+    public List<String> getCharacteristicsTexts() {
         return $$x("//dd/ul/li/*")
-                .shouldHave(CollectionCondition.sizeGreaterThan(amountCharacteristicsItem))
+                .shouldHave(CollectionCondition.sizeGreaterThan(0))
                 .texts();
     }
 }
