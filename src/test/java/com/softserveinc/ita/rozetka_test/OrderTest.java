@@ -12,6 +12,7 @@ public class OrderTest extends TestRunner {
     private BasketPage openBasketPage;
     private String searchString;
 
+    //This added for future tests
     @BeforeMethod
     public void addProductToBasketOpenOrder() {
         openOrderPage = new HomePage()
