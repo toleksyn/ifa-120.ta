@@ -4,7 +4,9 @@ import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.page_objects.BasketPage;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import com.softserveinc.ita.rozetka.page_objects.OrderPage;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class OrderTest extends TestRunner {
 
@@ -24,31 +26,36 @@ public class OrderTest extends TestRunner {
 
     @Test
     public void testEditOrder() {
-        int orderProductCount;
-        int orderSum;
-        int changedOrderProductCount;
-        int changedOrderSum;
 
-        openOrderPage.startEditingProductInBasket();
-        openBasketPage = new BasketPage();
-        orderProductCount = openBasketPage.getProductCount();
-        orderSum = openBasketPage.getOrderProductPrice();
-        openBasketPage.increaseProductCount();
-        changedOrderProductCount = openBasketPage.getProductCount();
-        changedOrderSum = openBasketPage.getOrderProductPrice();
+        openBasketPage = openOrderPage.startEditingProductsInBasket();
 
-        Assert.assertEquals(changedOrderProductCount, 2 * orderProductCount);
-        Assert.assertEquals(changedOrderSum, 2 * orderSum);
+        int orderProductCount = 0;
+        orderProductCount = openBasketPage.getProductCount(1);
+        int orderProductSum = 0;
+        orderProductSum = openBasketPage.getOrderProductSum(1);
 
-        openBasketPage.openOrderPage();
-        openOrderPage.startEditingProductInBasket();
-        openBasketPage.decreaseProductCount();
-        changedOrderProductCount = openBasketPage.getProductCount();
-        changedOrderSum = openBasketPage.getOrderProductPrice();
+        int changedOrderProductCount = 0;
+        int changedOrderProductSum = 0;
+        openBasketPage.increaseProductCount(1);
+        changedOrderProductCount = openBasketPage.getProductCount(1);
+        changedOrderProductSum = openBasketPage.getOrderProductSum(1);
 
-        Assert.assertEquals(changedOrderProductCount, orderProductCount);
-        Assert.assertEquals(changedOrderSum, orderSum);
+        Assert.assertEquals(changedOrderProductCount, 2 * orderProductCount, "the new count for the product " +
+                        "must be twice as much as the previous one");
+        Assert.assertEquals(changedOrderProductSum, 2 * orderProductSum, "new amount for the product" +
+                        " must be twice as much as the previous one");
 
         openBasketPage.openOrderPage();
+        openOrderPage.startEditingProductsInBasket();
+
+        openBasketPage.decreaseProductCount(1);
+        changedOrderProductCount = openBasketPage.getProductCount(1);
+        changedOrderProductSum = openBasketPage.getOrderProductSum(1);
+
+        openBasketPage.openOrderPage();
+        Assert.assertEquals(changedOrderProductCount, orderProductCount, "the new count for the product " +
+                "must be twice less than the previous one");
+        Assert.assertEquals(changedOrderProductSum, orderProductSum, "the new amount for the product " +
+                "must be twice less than the previous one");
     }
 }

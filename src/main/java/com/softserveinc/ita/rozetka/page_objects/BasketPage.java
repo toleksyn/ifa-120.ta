@@ -1,8 +1,6 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-import com.codeborne.selenide.Condition;
-
-import static com.codeborne.selenide.Condition.not;
+import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class BasketPage {
@@ -27,17 +25,17 @@ public class BasketPage {
     }
 
     public int getProductCount(int numberOfProduct) {
-        $x(String.format("(//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid'])[%d]", numberOfProduct)).click();
-        return Integer.parseInt($x(String.format("(//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid'])[%d]", numberOfProduct))
-                .shouldBe(not(Condition.empty))
-                .val());
+        String ProductCount = $x(String.format("(//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid'])[%d]", numberOfProduct)).val();
+        return Integer.parseInt(String.valueOf($x(String.format("(//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid'])[%d]", numberOfProduct))
+                .shouldNotBe(empty)
+                .val()));
     }
 
     public int getOrderProductSum(int numberOfProduct) {
         $x(String.format("(//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid'])[%d]", numberOfProduct)).click();
-        String ProductPrice = ($x(String.format("(//*[@class='cart-product__price'])[%d]", numberOfProduct))
-                .shouldBe(not(Condition.empty))
-                .text());
+        String ProductPrice = $x(String.format("(//*[@class='cart-product__price'])[%d]", numberOfProduct))
+                .shouldNotBe(empty)
+                .text();
         return Integer.parseInt(ProductPrice.replace("₴", "").replace(" ", ""));
     }
 }
