@@ -1,10 +1,5 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.commands.ShouldBe;
-
-import java.time.Duration;
-
 import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Selenide.$x;
 
