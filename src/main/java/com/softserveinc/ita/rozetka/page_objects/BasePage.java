@@ -2,19 +2,14 @@ package com.softserveinc.ita.rozetka.page_objects;
 
 public abstract class BasePage {
 
-    private final HeaderPage headerPage;
-    private final FooterPage footerPage;
+    private final Header headerPage = new Header();
+    private final Footer footerPage = new Footer();
 
-    public BasePage() {
-        this.headerPage = new HeaderPage();
-        this.footerPage = new FooterPage();
-    }
-
-    public HeaderPage getHeaderPage() {
+    public Header getHeaderPage() {
         return headerPage;
     }
 
-    public FooterPage getFooterPage() {
+    public Footer getFooterPage() {
         return footerPage;
     }
 }

@@ -1,8 +1,10 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-import com.codeborne.selenide.*;
+import com.codeborne.selenide.CollectionCondition;
 
-import static com.codeborne.selenide.Selenide.*;
+import java.util.List;
+
+import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class ProductPage extends BasePage {
@@ -11,21 +13,20 @@ public class ProductPage extends BasePage {
         return $x("//h1[@class='product__title']").text();
     }
 
-    public ElementsCollection getListOfProductTabs() {
-        return $$x("//a[@class='tabs__link']").shouldBe(CollectionCondition.sizeGreaterThan(4));
+    public String getViewedProductName(int number) {
+        return $x(String.format("(//section[@class='recently-viewed']//a[@class='lite-tile__title'])[%d]", number))
+                .text();
     }
 
-    public SelenideElement getViewedProduct(int number) {
-        return $x(String.format("(//section[@class='recently-viewed']//a[@class='lite-tile__title'])[%d]", number));
-    }
-
-    public CategoryPage returnToCategoryPageByName(String categoryName) {
+    public CategoryPage openCategoryPageByName(String categoryName) {
         $x(String.format("//a[@class='breadcrumbs__link'] //span[contains(text(),'%s')]", categoryName)).click();
         return new CategoryPage();
     }
 
     public BasketPage addProductToBasket() {
-        $x("//button[@class='buy-button button button_with_icon button_color_green button_size_large']").hover().click();
+        $x("//button[@class='buy-button button button_with_icon button_color_green button_size_large']")
+                .hover()
+                .click();
         return new BasketPage();
     }
 
@@ -38,13 +39,15 @@ public class ProductPage extends BasePage {
         return $x("//h2[@class='product-tabs__heading']").text();
     }
 
-    public ElementsCollection getQuestionList(int amountQuestionsItem) {
+    public int getQuestionListSize() {
         return $$x("//div[@class='comment']")
-                .shouldBe(CollectionCondition.sizeGreaterThan(amountQuestionsItem));
+                .shouldHave(CollectionCondition.sizeGreaterThan(0))
+                .size();
     }
 
-    public ElementsCollection getCharagitcgitteristicListSize(int amountCharacteristicsItem) {
-        return $$x("//dd/ul/li")
-                .shouldBe(CollectionCondition.sizeGreaterThan(amountCharacteristicsItem));
+    public List<String> getCharacteristicsTexts() {
+        return $$x("//dd/ul/li/*")
+                .shouldHave(CollectionCondition.sizeGreaterThan(0))
+                .texts();
     }
 }
