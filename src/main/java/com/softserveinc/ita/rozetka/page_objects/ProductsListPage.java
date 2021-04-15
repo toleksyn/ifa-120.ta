@@ -33,13 +33,13 @@ public class ProductsListPage extends BasePage {
                 .replaceAll(" ", ""));
     }
 
-    public ProductsListPage openNextResultPage() {
+    public ProductsListPage openNextPage() {
         $x("//a[@class='button button_color_gray button_size_medium" +
                 " pagination__direction pagination__direction_type_forward']").click();
         return this;
     }
 
-    public ProductsListPage openPreviousResultPage() {
+    public ProductsListPage openPreviousPage() {
         $x("//a[@class='button button_color_gray button_size_medium" +
                 " pagination__direction']").click();
         return this;
