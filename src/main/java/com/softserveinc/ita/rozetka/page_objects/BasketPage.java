@@ -16,26 +16,26 @@ public class BasketPage {
         return new OrderPage();
     }
 
-    public BasketPage increaseProductCount() {
-        $x("(//*[@class='button button_color_white button_size_medium cart-counter__button'])[2]").click();
+    public BasketPage increaseProductCount(int number) {
+        $x(String.format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[2])[%d]", number)).click();
         return this;
     }
 
-    public BasketPage decreaseProductCount() {
-        $x("(//*[@class='button button_color_white button_size_medium cart-counter__button'])[1]").click();
+    public BasketPage decreaseProductCount(int number) {
+        $x(String.format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[1])[%d]", number)).click();
         return this;
     }
 
-    public int getProductCount() {
-        $x("//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid']").click();
-        return Integer.parseInt($x("//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid']")
+    public int getProductCount(int number) {
+        $x(String.format("(//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid'])[%d]", number)).click();
+        return Integer.parseInt($x(String.format("(//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid'])[%d]", number))
                 .shouldBe(not(Condition.empty))
                 .val());
     }
 
-    public int getOrderProductPrice() {
-        $x("//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid']").click();
-        String ProductPrice = ($x("//*[@class='cart-product__price']")
+    public int getOrderProductSum(int number) {
+        $x(String.format("(//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid'])[%d]", number)).click();
+        String ProductPrice = ($x(String.format("(//*[@class='cart-product__price'])[%d]", number))
                 .shouldBe(not(Condition.empty))
                 .text());
         return Integer.parseInt(ProductPrice.replace("₴", "").replace(" ", ""));
