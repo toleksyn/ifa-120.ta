@@ -18,11 +18,6 @@ public class ProductPage extends BasePage {
                 .text();
     }
 
-    public CategoryPage openCategoryPageByName(String categoryName) {
-        $x(String.format("//a[@class='breadcrumbs__link'] //span[contains(text(),'%s')]", categoryName)).click();
-        return new CategoryPage();
-    }
-
     public BasketPage addProductToBasket() {
         $x("//button[@class='buy-button button button_with_icon button_color_green button_size_large']")
                 .hover()
@@ -49,5 +44,10 @@ public class ProductPage extends BasePage {
         return $$x("//dd/ul/li/*")
                 .shouldHave(CollectionCondition.sizeGreaterThan(amountCharacteristicsItem))
                 .texts();
+    }
+
+    public  ProductPage openProductTab(ProductPageTab productPageTab) {
+        $x(String.format("//a[@class='tabs__link' and contains(text(),'%s')]", productPageTab.getTabName())).click();
+        return this;
     }
 }
