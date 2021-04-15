@@ -5,7 +5,7 @@ public enum ProductPageTab {
     GENERAL_DESCRIPTION(" Усе про товар "),
     CHARACTERISTICS(" Характеристики "),
     REVIEWS(" Відгуки "),
-    ADD_REVIEW("  Залишити відгук "),
+    ADD_REVIEW(" Залишити відгук "),
     QUESTIONS(" Питання "),
     ASK_QUESTION(" Поставити запитання ");
 
