@@ -26,16 +26,20 @@ public class ProductsListPage extends BasePage {
     }
 
     public int getProductPriceByNumber(int number) {
-        return Integer.parseInt($x(String.format("(//span[@class='goods-tile__price-value'])[%d]", number)).text().replaceAll(" ", ""));
+        return Integer.parseInt($x(String.format("(//span[@class='goods-tile__price-value'])[%d]", number))
+                .text()
+                .replaceAll(" ", ""));
     }
 
     public ProductsListPage openNextResultPage() {
-        $x("//a[@class='button button_color_gray button_size_medium pagination__direction pagination__direction_type_forward']").click();
+        $x("//a[@class='button button_color_gray button_size_medium" +
+                " pagination__direction pagination__direction_type_forward']").click();
         return this;
     }
 
     public ProductsListPage openPreviousResultPage() {
-        $x("//a[@class='button button_color_gray button_size_medium pagination__direction']").click();
+        $x("//a[@class='button button_color_gray button_size_medium" +
+                " pagination__direction']").click();
         return this;
     }
 

@@ -1,10 +1,10 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-import com.codeborne.selenide.*;
+import com.codeborne.selenide.CollectionCondition;
 
 import java.util.List;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class ProductPage extends BasePage {
@@ -41,11 +41,13 @@ public class ProductPage extends BasePage {
 
     public int getQuestionListSize(int amountQuestionsItem) {
         return $$x("//div[@class='comment']")
-                .shouldHave(CollectionCondition.sizeGreaterThan(amountQuestionsItem)).size();
+                .shouldHave(CollectionCondition.sizeGreaterThan(amountQuestionsItem))
+                .size();
     }
 
     public List<String> getCharacteristicsTexts(int amountCharacteristicsItem) {
         return $$x("//dd/ul/li/*")
-                .shouldHave(CollectionCondition.sizeGreaterThan(amountCharacteristicsItem)).texts();
+                .shouldHave(CollectionCondition.sizeGreaterThan(amountCharacteristicsItem))
+                .texts();
     }
 }
