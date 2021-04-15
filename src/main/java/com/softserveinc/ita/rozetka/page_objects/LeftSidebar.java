@@ -10,4 +10,11 @@ public class LeftSidebar {
         $x("//button[@class='search-form__microphone']").click();
         return new CategoryPage();
     }
+
+    public CategoryPage openSalesCategory() {
+        $x("//a[@class = 'menu-categories__link menu-categories__item_type_bordered']").click();
+        // click on microphone element to hide dropdown
+        $x("//button[@class='search-form__microphone']").click();
+        return new CategoryPage();
+    }
 }

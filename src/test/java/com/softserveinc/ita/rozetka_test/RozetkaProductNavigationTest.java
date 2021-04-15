@@ -21,18 +21,20 @@ public class RozetkaProductNavigationTest extends TestRunner {
     @Test
     public void testSelectProductByCatalog() {
         String pageCategoryName = "Ноутбуки";
-        CategoryPage catalogCategoryItem = rozetkaHomePage
+        String pageTitle = "Комп'ютери";
+        CategoryPage chosenCategoryByCataloge = rozetkaHomePage
                 .getLeftSidebar()
                 .openCategory(pageCategoryName);
-        Assert.assertTrue(catalogCategoryItem.getPageTitle().contains("Комп'ютери"),
+        Assert.assertTrue(chosenCategoryByCataloge.getPageTitle().contains(pageTitle),
                 "The page title should match the condition");
-        ProductPage chosenProduct = catalogCategoryItem
+        ProductPage chosenProduct = chosenCategoryByCataloge
                 .openProductsListPage(pageCategoryName)
                 .openProductByName("Ноутбук Apple MacBook Air 13");
         Assert.assertTrue(chosenProduct.getProductTitle().contains("Ноутбук Apple MacBook"),
                 "The product title should match the condition");
-        chosenProduct.openCategoryPageByName("ноутбуки");
-        Assert.assertTrue(catalogCategoryItem.getPageTitle().contains("Комп'ютери"),
+        CategoryPage chosenCategoryByLink = chosenProduct
+                .openCategoryPageByName(pageCategoryName.toLowerCase());
+        Assert.assertTrue(chosenCategoryByLink.getPageTitle().contains(pageTitle),
                 "The page title should match the condition");
     }
 }

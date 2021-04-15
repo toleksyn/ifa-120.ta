@@ -1,5 +1,7 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import com.codeborne.selenide.Selenide;
+
 import static com.codeborne.selenide.Selenide.$x;
 
 public class CategoryPage extends BasePage {
@@ -30,4 +32,7 @@ public class CategoryPage extends BasePage {
         return $x("//h1[@class='portal__heading']").text();
     }
 
+    public String getPageUrlTitle() {
+        return Selenide.title();
+    }
 }

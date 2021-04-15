@@ -50,4 +50,32 @@ public class ProductPage extends BasePage {
                 .shouldHave(CollectionCondition.sizeGreaterThan(0))
                 .texts();
     }
+
+    public ProductPage addProductToWishList() {
+        $x("//app-goods-wishlist[@class='product__favorites']//button[@class='wish-button js-wish-button']")
+                .doubleClick();
+        return this;
+    }
+
+    public WishListPage openWishListPage() {
+        return new WishListPage();
+    }
+
+    public Integer getProductOldPrice() {
+        String productOldPriceText = $x("//p[@class = 'product-prices__small']")
+                .text();
+        Integer productOldPrice = Integer.parseInt(productOldPriceText
+                .substring(0, productOldPriceText.length() - 1)
+                .replaceAll(" ", ""));
+        return productOldPrice;
+    }
+
+    public Integer getProductWithSale() {
+        String productWithSaleText = $x("//p[@class = 'product-prices__big product-prices__big_color_red']")
+                .text();
+        Integer productWithSale = Integer.parseInt(productWithSaleText
+                .substring(0, productWithSaleText.length() - 1)
+                .replaceAll(" ", ""));
+        return productWithSale;
+    }
 }
