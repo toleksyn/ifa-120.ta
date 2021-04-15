@@ -2,10 +2,7 @@ package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
-import com.softserveinc.ita.rozetka.page_objects.ProductPage;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 public class RozetkaProductNavigationTest extends TestRunner {
 
@@ -15,7 +12,8 @@ public class RozetkaProductNavigationTest extends TestRunner {
     //This added for future tests
     @BeforeMethod
     public void openHomepage() {
-        rozetkaHomePage = new HomePage().openHomePage();
+        rozetkaHomePage = new HomePage()
+                .openHomePage();
     }
 
     @Test
@@ -40,6 +38,5 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .getQuestionList(1)
                 .size();
         Assert.assertTrue(questionsRowsAmount > 0, "list size  should contain at least 1 text field");
-    }
 }
 
