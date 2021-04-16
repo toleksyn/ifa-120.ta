@@ -28,11 +28,7 @@ public class CategoryPage extends BasePage {
         return new ProductsListPage();
     }
 
-    public String getPageTitle() {
+    public String getCategoryTitle() {
         return $x("//h1[@class='portal__heading']").text();
-    }
-
-    public String getPageUrlTitle() {
-        return Selenide.title();
     }
 }
