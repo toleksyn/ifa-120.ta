@@ -46,7 +46,7 @@ public class ProductPage extends BasePage {
                 .texts();
     }
 
-    public  ProductPage openProductTab(ProductPageTab productPageTab) {
+    public ProductPage openProductTab(ProductPageTab productPageTab) {
         $x(String.format("//a[@class='tabs__link' and contains(text(),'%s')]", productPageTab.getTabName())).click();
         return this;
     }
