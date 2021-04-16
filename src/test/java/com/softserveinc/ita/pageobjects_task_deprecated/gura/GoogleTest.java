@@ -4,8 +4,9 @@ import com.codeborne.selenide.WebDriverRunner;
 import com.softserveinc.ita.deprecated.gura.GoogleHomePage;
 import com.softserveinc.ita.deprecated.gura.GoogleImagePage;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
 import java.util.List;
 import java.util.Locale;
 
