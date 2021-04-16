@@ -1,7 +1,11 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
 import static com.codeborne.selenide.Condition.empty;
+import static com.codeborne.selenide.Condition.not;
+import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Selenide.$x;
+import static java.lang.Integer.parseInt;
+import static java.lang.String.format;
 
 public class BasketPage {
 
@@ -15,13 +19,15 @@ public class BasketPage {
     }
 
     public BasketPage increaseProductCount(int numberOfProduct) {
-        $x(String.format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[2])[%d]",
+        $x(format("((//*[@class='button button_color_white" +
+                " button_size_medium cart-counter__button'])[2])[%d]",
                 numberOfProduct)).click();
         return this;
     }
 
     public BasketPage decreaseProductCount(int numberOfProduct) {
-        $x(String.format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[1])[%d]",
+        $x(format("((//*[@class='button button_color_white" +
+                " button_size_medium cart-counter__button'])[1])[%d]",
                 numberOfProduct)).click();
         return this;
     }

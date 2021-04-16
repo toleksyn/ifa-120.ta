@@ -10,12 +10,12 @@ import org.testng.annotations.Test;
 
 public class OrderTest extends TestRunner {
 
-    private OrderPage openOrderPage;
-    private BasketPage openBasketPage;
+    private OrderPage OrderPage;
+    private BasketPage BasketPage;
 
     @BeforeMethod
     public void addProductToBasketOpenOrder() {
-        openOrderPage = new HomePage()
+        OrderPage = new HomePage()
                 .openHomePage()
                 .openProductByNumber(1)
                 .addProductToBasket()

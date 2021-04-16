@@ -1,11 +1,12 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-import com.codeborne.selenide.CollectionCondition;
-
 import java.util.List;
 
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static java.lang.String.format;
 
 public class ProductPage extends BasePage {
 
@@ -14,13 +15,8 @@ public class ProductPage extends BasePage {
     }
 
     public String getViewedProductName(int number) {
-        return $x(String.format("(//section[@class='recently-viewed']//a[@class='lite-tile__title'])[%d]", number))
+        return $x(format("(//section[@class='recently-viewed']//a[@class='lite-tile__title'])[%d]", number))
                 .text();
-    }
-
-    public CategoryPage openCategoryPageByName(String categoryName) {
-        $x(String.format("//a[@class='breadcrumbs__link'] //span[contains(text(),'%s')]", categoryName)).click();
-        return new CategoryPage();
     }
 
     public BasketPage addProductToBasket() {
@@ -30,24 +26,24 @@ public class ProductPage extends BasePage {
         return new BasketPage();
     }
 
-    public ProductPage openProductTabByName(String tabName) {
-        $x(String.format("//a[@class='tabs__link' and contains(text(),'%s')]", tabName)).click();
-        return this;
-    }
-
     public String getProductTabsTitle() {
         return $x("//h2[@class='product-tabs__heading']").text();
     }
 
     public int getQuestionListSize() {
         return $$x("//div[@class='comment']")
-                .shouldHave(CollectionCondition.sizeGreaterThan(0))
+                .shouldHave(sizeGreaterThan(0))
                 .size();
     }
 
     public List<String> getCharacteristicsTexts() {
         return $$x("//dd/ul/li/*")
-                .shouldHave(CollectionCondition.sizeGreaterThan(0))
+                .shouldHave(sizeGreaterThan(0))
                 .texts();
+    }
+
+    public ProductPage openProductTab(ProductPageTab productPageTab) {
+        $x(format("//li//a[@href='%s%s']", getWebDriver().getCurrentUrl(), productPageTab.getTabPath())).click();
+        return this;
     }
 }

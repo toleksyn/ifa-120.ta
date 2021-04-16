@@ -2,6 +2,7 @@ package com.softserveinc.ita.deprecated.gura;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
