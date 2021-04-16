@@ -29,5 +29,16 @@ public class RozetkaProductNavigationTest extends TestRunner {
         Assert.assertEquals(basketPage.getProductTitleByName("Ванна"), productTitle,
                 "Product should be added to basket");
     }
+  
+    @Test
+    public void testSelectProductBySearch() {
+        String searchRequest = "гаманець";
+        String productTitle = rozetkaHomePage
+                .getHeaderPage()
+                .searchFor(searchRequest)
+                .openProductByNumber(1)
+                .getProductTitle();
+        Assert.assertTrue(productTitle.toLowerCase().contains(searchRequest), "Product title should contain search request");
+    }
 }
 
