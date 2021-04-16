@@ -41,6 +41,7 @@ public class OrderTest extends TestRunner {
 
     @Test
     public void testOpenOrderPage() {
+        Assert.assertTrue(!openOrderPage.getPageTitle().isEmpty(), "The title shouldn't found on page");
         Assert.assertTrue(openOrderPage.getPageTitle().equals("Оформлення замовлення"), "The page title shouldn't match the condition");
     }
 }
