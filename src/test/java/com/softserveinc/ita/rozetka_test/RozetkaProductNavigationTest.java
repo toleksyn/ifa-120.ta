@@ -25,16 +25,16 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .openCategory(pageCategoryName);
         var pageTitle = "Комп'ютери";
         assertTrue(chosenCategoryByCatalog.getCategoryTitle().contains(pageTitle),
-                "The page title should match the condition");
+                "Incorrect page title");
         var chosenProduct = chosenCategoryByCatalog
                 .openProductsListPage(pageCategoryName)
                 .openProductByName("Ноутбук Apple MacBook Air 13");
         assertTrue(chosenProduct.getProductTitle().contains("Ноутбук Apple MacBook"),
-                "Incorrect page title");
+                "Incorrect product title");
         var chosenCategoryByLink = chosenProduct
                 .openCategoryPageByName(pageCategoryName.toLowerCase());
         assertTrue(chosenCategoryByLink.getCategoryTitle().contains(pageTitle),
-                "The page title should match the condition");
+                "Incorrect page title");
     }
 }
 
