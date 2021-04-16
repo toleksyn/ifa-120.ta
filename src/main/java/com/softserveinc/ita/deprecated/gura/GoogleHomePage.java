@@ -1,6 +1,7 @@
 package com.softserveinc.ita.deprecated.gura;
 
 import com.codeborne.selenide.Selenide;
+
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 
