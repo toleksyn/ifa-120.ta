@@ -23,8 +23,8 @@ public class RozetkaProductNavigationTest extends TestRunner {
         var chosenCategoryByCatalog = rozetkaHomePage
                 .getLeftSidebar()
                 .openCategory(pageCategoryName);
-        var pageTitle = "Комп'ютери";
-        assertTrue(chosenCategoryByCatalog.getCategoryTitle().contains(pageTitle),
+        var categoryTitle = "Комп'ютери";
+        assertTrue(chosenCategoryByCatalog.getCategoryTitle().contains(categoryTitle),
                 "Incorrect page title");
         var chosenProduct = chosenCategoryByCatalog
                 .openProductsListPage(pageCategoryName)
@@ -33,7 +33,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 "Incorrect product title");
         var chosenCategoryByLink = chosenProduct
                 .openCategoryPageByName(pageCategoryName.toLowerCase());
-        assertTrue(chosenCategoryByLink.getCategoryTitle().contains(pageTitle),
+        assertTrue(chosenCategoryByLink.getCategoryTitle().contains(categoryTitle),
                 "Incorrect page title");
     }
 }
