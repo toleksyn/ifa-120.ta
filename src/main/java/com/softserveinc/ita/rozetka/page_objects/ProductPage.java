@@ -43,7 +43,7 @@ public class ProductPage extends BasePage {
     }
 
     public ProductPage openProductTab(ProductPageTab productPageTab) {
-        $x(format("//li//a[@href='%s%s/']", getWebDriver().getCurrentUrl(), productPageTab.getTabPath())).click();
+        $x(format("//li//a[@href='%s%s']", getWebDriver().getCurrentUrl(), productPageTab.getTabPath())).click();
         return this;
     }
 }
