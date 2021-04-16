@@ -1,11 +1,9 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-import static com.codeborne.selenide.Condition.empty;
-import static com.codeborne.selenide.Condition.not;
-import static com.codeborne.selenide.Condition.empty;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$x;
-import static java.lang.Integer.parseInt;
 import static java.lang.String.format;
+import static java.util.Objects.requireNonNull;
 
 public class BasketPage {
 
@@ -19,33 +17,34 @@ public class BasketPage {
     }
 
     public BasketPage increaseProductCount(int numberOfProduct) {
-        $x(format("((//*[@class='button button_color_white" +
-                " button_size_medium cart-counter__button'])[2])[%d]",
+        var productSum = requireNonNull($x(String.format("(//*[@class='cart-product__price'])[%d]", numberOfProduct))
+                .text());   //added for waiting the information in the window to be updated
+        $x(format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[2])[%d]",
                 numberOfProduct)).click();
+        $x(String.format("(//*[@class='cart-product__price'])[%d]", numberOfProduct))
+                .shouldNotHave(text(productSum));   //added for waiting the information in the window to be updated
         return this;
     }
 
     public BasketPage decreaseProductCount(int numberOfProduct) {
-        $x(format("((//*[@class='button button_color_white" +
-                " button_size_medium cart-counter__button'])[1])[%d]",
+        var productSum = requireNonNull($x(String.format("(//*[@class='cart-product__price'])[%d]", numberOfProduct))
+                .text());  //added for waiting the information in the window to be updated
+        $x(format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[1])[%d]",
                 numberOfProduct)).click();
+        $x(format("(//*[@class='cart-product__price'])[%d]", numberOfProduct))
+                .shouldNotHave(text(productSum));   //added for waiting the information in the window to be updated
         return this;
     }
 
     public int getProductCount(int numberOfProduct) {
-        return Integer.parseInt(String.valueOf($x(String.format("(//*[@class='cart-counter__input ng-untouched " +
+        return Integer.parseInt(requireNonNull($x(String.format("(//*[@class='cart-counter__input ng-untouched " +
                 "ng-pristine ng-valid'])[%d]", numberOfProduct))
-                .shouldNotBe(empty)
-                .hover()
-                .hover()
                 .val()));
     }
 
     public int getOrderProductSum(int numberOfProduct) {
-        String ProductPrice = $x(String.format("(//*[@class='cart-product__price'])[%d]", numberOfProduct))
-                .shouldNotBe(empty)
-                .hover()
-                .text();
-        return Integer.parseInt(ProductPrice.replace("₴", "").replace(" ", ""));
+        var productSum = requireNonNull($x(String.format("(//*[@class='cart-product__price'])[%d]", numberOfProduct))
+                .text());
+        return Integer.parseInt(productSum.replace("₴", "").replace(" ", ""));
     }
 }
