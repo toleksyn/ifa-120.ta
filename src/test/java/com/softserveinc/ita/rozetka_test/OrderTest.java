@@ -4,22 +4,23 @@ import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.page_objects.BasketPage;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import com.softserveinc.ita.rozetka.page_objects.OrderPage;
-
-import org.testng.Assert;
+import com.softserveinc.ita.rozetka.page_objects.ShippingAddress;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class OrderTest extends TestRunner {
 
     //This added for future tests
-    private OrderPage openOrderPage;
-    private BasketPage openBasketPage;
-    private String searchString;
+    private OrderPage orderPage;
+    private BasketPage basketPage;
 
     //This added for future tests
     @BeforeMethod
-    public void putProductToBasketOpenOrder() {
-        openOrderPage = new HomePage()
+    public void addProductToBasketOpenOrder() {
+        orderPage = new HomePage()
                 .openHomePage()
                 .openProductByNumber(1)
                 .addProductToBasket()
@@ -27,21 +28,21 @@ public class OrderTest extends TestRunner {
     }
 
     @Test
-    public void insertBuyersCredentialsTest() {
-        String surname = "Петренко";
-        String name = "Вася";
-        String city = "Львів";
-        String phone = "0997003330";
-        boolean isDisplayedConfirmOrderButton = openOrderPage
-                .setName(name)
-                .setSurname(surname)
-                .setCity(city)
-                .setPhone(phone)
-                .isDisplayedConfirmOrderButton();
-        Assert.assertTrue(isDisplayedConfirmOrderButton, "The Comfirm Button should be displayed");
-        Assert.assertEquals(openOrderPage.getSurname(), surname, "The surname should be " + surname);
-        Assert.assertEquals(openOrderPage.getName(), name, "The name should be " + name);
-        Assert.assertTrue(openOrderPage.getCity().contains(city.toLowerCase()), "The city should be " + city);
-        Assert.assertEquals(openOrderPage.getPhone(), "+38" + phone, "The phone should be +38" + phone);
+    public void testShippingAddressInsertion() {
+        var shippingAddress = new ShippingAddress("Петренко", "Вася", "Львів", "0997003330");
+
+        var isDisplayedConfirmOrderButton = orderPage
+                .setShippingAddress(shippingAddress)
+                .isConfirmOrderButtonDisplayed();
+
+        assertTrue(isDisplayedConfirmOrderButton, "The Confirm Button should be displayed");
+        assertEquals(OrderPage.getSurname(), shippingAddress.getSurname(), "The surname should be "
+                + shippingAddress.getSurname());
+        assertEquals(OrderPage.getName(), shippingAddress.getName(), "The name should be "
+                + shippingAddress.getName());
+        assertTrue(OrderPage.getCity().contains(shippingAddress.getCity().toLowerCase()), "The city should be "
+                + shippingAddress.getCity());
+        assertEquals(OrderPage.getPhone(), "+38" + shippingAddress.getPhone(), "The phone should be +38"
+                + shippingAddress.getPhone());
     }
 }
