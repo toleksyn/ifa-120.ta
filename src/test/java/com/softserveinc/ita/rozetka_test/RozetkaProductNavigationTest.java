@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertTrue;
 
 public class RozetkaProductNavigationTest extends TestRunner {
-
     private HomePage rozetkaHomePage;
 
     @BeforeMethod
