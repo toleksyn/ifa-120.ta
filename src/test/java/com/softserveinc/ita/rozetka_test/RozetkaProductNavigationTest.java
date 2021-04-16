@@ -8,12 +8,12 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertTrue;
 
 public class RozetkaProductNavigationTest extends TestRunner {
+
     private HomePage rozetkaHomePage;
 
     @BeforeMethod
     public void openHomepage() {
-        rozetkaHomePage = new HomePage()
-                .openHomePage();
+        rozetkaHomePage = new HomePage().openHomePage();
     }
 
     @Test
