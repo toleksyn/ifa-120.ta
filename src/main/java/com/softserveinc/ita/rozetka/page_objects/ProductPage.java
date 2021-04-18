@@ -6,6 +6,7 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
+import static java.lang.String.format;
 
 public class ProductPage extends BasePage {
 
@@ -14,12 +15,12 @@ public class ProductPage extends BasePage {
     }
 
     public String getViewedProductName(int number) {
-        return $x(String.format("(//section[@class='recently-viewed']//a[@class='lite-tile__title'])[%d]", number))
+        return $x(format("(//section[@class='recently-viewed']//a[@class='lite-tile__title'])[%d]", number))
                 .text();
     }
 
     public CategoryPage openCategoryPageByName(String categoryName) {
-        $x(String.format("//a[@class='breadcrumbs__link'] //span[contains(text(),'%s')]", categoryName)).click();
+        $x(format("//a[@class='breadcrumbs__link'] //span[contains(text(),'%s')]", categoryName)).click();
         return new CategoryPage();
     }
 
@@ -31,7 +32,7 @@ public class ProductPage extends BasePage {
     }
 
     public ProductPage openProductTabByName(String tabName) {
-        $x(String.format("//a[@class='tabs__link' and contains(text(),'%s')]", tabName)).click();
+        $x(format("//a[@class='tabs__link' and contains(text(),'%s')]", tabName)).click();
         return this;
     }
 

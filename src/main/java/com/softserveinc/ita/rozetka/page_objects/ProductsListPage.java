@@ -1,20 +1,22 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Selenide;
 
+import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
+import static java.lang.Integer.parseInt;
+import static java.lang.String.format;
 
 public class ProductsListPage extends BasePage {
 
     public int getProductListSize() {
-        return Selenide.$$x("//span[@class='goods-tile__title']")
+        return $$x("//span[@class='goods-tile__title']")
                 .shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1))
                 .size();
     }
 
     public ProductPage openProductByNumber(int number) {
-        $x(String.format("(//a[@class='goods-tile__picture'])[%d]", number)).click();
+        $x(format("(//a[@class='goods-tile__picture'])[%d]", number)).click();
         return new ProductPage();
     }
 
@@ -24,11 +26,11 @@ public class ProductsListPage extends BasePage {
     }
 
     public String getProductNameForProduct(int number) {
-        return $x(String.format("(//span[@class='goods-tile__title'])[%d]", number)).text();
+        return $x(format("(//span[@class='goods-tile__title'])[%d]", number)).text();
     }
 
     public int getProductPriceForProduct(int number) {
-        return Integer.parseInt($x(String.format("(//span[@class='goods-tile__price-value'])[%d]", number))
+        return parseInt($x(format("(//span[@class='goods-tile__price-value'])[%d]", number))
                 .text()
                 .replaceAll(" ", ""));
     }
@@ -46,16 +48,16 @@ public class ProductsListPage extends BasePage {
     }
 
     public int getCurrentPageNumber() {
-        return Integer.parseInt($x("//a[@class='pagination__link pagination__link_state_active']").text());
+        return parseInt($x("//a[@class='pagination__link pagination__link_state_active']").text());
     }
 
     public ProductsListPage filterProductsList(String filterName) {
-        $x(String.format("//label[contains(text(),'%s')]", filterName)).click();
+        $x(format("//label[contains(text(),'%s')]", filterName)).click();
         return this;
     }
 
     public ProductPage openProductByName(String productName) {
-        $x(String.format("//span[@class='goods-tile__title'and contains(text(), '%s')]", productName)).click();
+        $x(format("//span[@class='goods-tile__title'and contains(text(), '%s')]", productName)).click();
         return new ProductPage();
     }
 }
