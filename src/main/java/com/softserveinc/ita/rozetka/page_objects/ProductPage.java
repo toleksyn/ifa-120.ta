@@ -19,11 +19,6 @@ public class ProductPage extends BasePage {
                 .text();
     }
 
-    public CategoryPage openCategoryPageByName(String categoryName) {
-        $x(format("//a[@class='breadcrumbs__link'] //span[contains(text(),'%s')]", categoryName)).click();
-        return new CategoryPage();
-    }
-
     public BasketPage addProductToBasket() {
         $x("//button[@class='buy-button button button_with_icon button_color_green button_size_large']")
                 .hover()
