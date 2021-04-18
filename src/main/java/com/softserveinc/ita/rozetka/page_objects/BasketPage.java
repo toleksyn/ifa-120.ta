@@ -23,7 +23,7 @@ public class BasketPage {
         $x(format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[2])[%d]",
                 numberOfProduct)).click();
         $x(format("(//*[@class='cart-product__price'])[%d]", numberOfProduct))
-                .shouldNotHave(text(productSum));   //added for waiting the information in basket the window to be updated
+                .shouldNotHave(text(productSum));   //added for waiting the information in the basket window to be updated
         return this;
     }
 
