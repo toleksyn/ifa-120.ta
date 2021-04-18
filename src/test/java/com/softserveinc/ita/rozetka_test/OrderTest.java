@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotEquals;
 
 public class OrderTest extends TestRunner {
 
@@ -28,7 +29,6 @@ public class OrderTest extends TestRunner {
 
     @Test
     public void testEditOrder() {
-
         basketPage = orderPage.startEditingProductsInBasket();
 
         var orderProductCount = basketPage.getProductCount(1);
@@ -45,6 +45,7 @@ public class OrderTest extends TestRunner {
 
         basketPage.openOrderPage().startEditingProductsInBasket();
 
+        assertNotEquals(changedOrderProductCount, 1, "should not further reduction in the number of product items");
         basketPage.decreaseProductCount(1);
 
         changedOrderProductCount = basketPage.getProductCount(1);
