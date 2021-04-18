@@ -23,7 +23,7 @@ public class BasketPage {
         $x(format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[2])[%d]",
                 numberOfProduct)).click();
         $x(format("(//*[@class='cart-product__price'])[%d]", numberOfProduct))
-                .shouldNotHave(text(productSum));   //added for waiting the information in basket the window to be updated
+                .shouldNotHave(text(productSum));   //added for waiting the information in the basket window to be updated
         return this;
     }
 
@@ -31,7 +31,8 @@ public class BasketPage {
         var productSum = requireNonNull($x(format("(//*[@class='cart-product__price'])[%d]", numberOfProduct))
                 .text());  //added for waiting the information in the basket window to be updated
 
-        if (getProductCount(numberOfProduct) == 1) { return this; }
+        if (!$x(format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[1])[%d]",
+                numberOfProduct)).isEnabled()) { return this; }
 
         $x(format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[1])[%d]",
                 numberOfProduct)).click();
@@ -50,5 +51,10 @@ public class BasketPage {
         var productSum = requireNonNull($x(format("(//*[@class='cart-product__price'])[%d]", numberOfProduct))
                 .text());
         return parseInt(productSum.replace("₴", "").replace(" ", ""));
+    }
+
+    public boolean isDecreaseProductCountEnable(int numberOfProduct) {
+        return $x(format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[1])[%d]",
+                numberOfProduct)).isEnabled();
     }
 }

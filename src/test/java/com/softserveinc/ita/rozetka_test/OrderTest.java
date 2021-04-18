@@ -7,8 +7,7 @@ import com.softserveinc.ita.rozetka.page_objects.OrderPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotEquals;
+import static org.testng.Assert.*;
 
 public class OrderTest extends TestRunner {
 
@@ -38,16 +37,16 @@ public class OrderTest extends TestRunner {
         var changedOrderProductCount = basketPage.getProductCount(1);
         var changedOrderProductSum = basketPage.getOrderProductSum(1);
 
+        basketPage.openOrderPage();
         assertEquals(changedOrderProductCount, 2 * orderProductCount, "the new count for the product " +
                 "should be twice as much as the previous one");
         assertEquals(changedOrderProductSum, 2 * orderProductSum, "new amount for the product" +
                 " should be twice as much as the previous one");
 
-        basketPage.openOrderPage().startEditingProductsInBasket();
+        orderPage.startEditingProductsInBasket();
 
-        assertNotEquals(changedOrderProductCount, 1, "should not further reduction in the number of product items");
+        assertTrue(basketPage.isDecreaseProductCountEnable(1), "should not further reduction in the number of product items");
         basketPage.decreaseProductCount(1);
-
         changedOrderProductCount = basketPage.getProductCount(1);
         changedOrderProductSum = basketPage.getOrderProductSum(1);
 
