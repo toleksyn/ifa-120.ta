@@ -38,7 +38,7 @@ public class OrderPage {
     public HomePage openHomePage() {
         $x("//button[@class='button button_type_link']")
                 .click();
-        $x("(//article[@class='text']/p/a)[1]")
+        $x("//article[@class='text']/p/a")
                 .click();
         return new HomePage();
     }
