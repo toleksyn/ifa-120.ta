@@ -59,7 +59,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .openProductTab(ProductPageTab.CHARACTERISTICS)
                 .getCharacteristicText(characteristicType);
         assertEquals(characteristicTypeText, filterType, "Product characteristic " +
-                "should be equal to filter type");
+                "is incorrect");
     }
 }
 
