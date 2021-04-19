@@ -28,8 +28,10 @@ public class RozetkaProductNavigationTest extends TestRunner {
         var chosenProduct = chosenCategoryByCatalog
                 .openProductsListPage(pageCategoryName)
                 .openProductByName("Ноутбук Apple MacBook Air 13");
-        assertTrue(chosenProduct.getProductTitle().contains("Ноутбук Apple MacBook"),
-                "Incorrect product title");
+        var isProductTitleCorrect = chosenProduct
+                .getProductTitle()
+                .contains("Ноутбук Apple MacBook");
+        assertTrue(isProductTitleCorrect,"Incorrect product title");
         var chosenCategoryByLink = chosenProduct
                 .openCategoryPageByName(pageCategoryName.toLowerCase());
         assertTrue(chosenCategoryByLink.getCategoryTitle().contains(categoryTitle),
