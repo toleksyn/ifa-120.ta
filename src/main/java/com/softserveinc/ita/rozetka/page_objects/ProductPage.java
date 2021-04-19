@@ -5,6 +5,7 @@ import java.util.List;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
+import static java.lang.Integer.parseInt;
 import static java.lang.String.format;
 
 public class ProductPage extends BasePage {
@@ -57,5 +58,23 @@ public class ProductPage extends BasePage {
     public CategoryPage openCategoryPageByName(String categoryName) {
         $x(String.format("//a[@class='breadcrumbs__link'] //span[contains(text(),'%s')]", categoryName)).click();
         return new CategoryPage();
+    }
+
+    public Integer getProductWithPreDiscountPrice() {
+        var productWithPreDiscountPriceText = $x("//p[@class = 'product-prices__small']")
+                .text();
+        var productWithPreDiscountPrice = parseInt(productWithPreDiscountPriceText
+                .substring(0, productWithPreDiscountPriceText.length() - 1)
+                .replaceAll(" ", ""));
+        return productWithPreDiscountPrice;
+    }
+
+    public Integer getProductWithDiscountPrice() {
+        var productWithDiscountPriceText = $x("//p[@class = 'product-prices__big product-prices__big_color_red']")
+                .text();
+        var productWithDiscountPrice = parseInt(productWithDiscountPriceText
+                .substring(0, productWithDiscountPriceText.length() - 1)
+                .replaceAll(" ", ""));
+        return productWithDiscountPrice;
     }
 }

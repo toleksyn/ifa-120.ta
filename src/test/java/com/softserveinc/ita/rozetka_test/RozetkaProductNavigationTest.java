@@ -63,5 +63,21 @@ public class RozetkaProductNavigationTest extends TestRunner {
         assertTrue(chosenCategoryByLink.getCategoryTitle().contains(categoryTitle),
                 "Incorrect page title");
     }
+
+    @Test
+    public void testCompareProductPrices() {
+        var catalogCategoryItem = rozetkaHomePage
+                .getLeftSidebar()
+                .openSalesCategory();
+        var isPageTitleCorrect = catalogCategoryItem
+                .getPageTitle()
+                .contains("Знижки");
+        assertTrue(isPageTitleCorrect, "Incorrect page title");
+        var selectedProduct = catalogCategoryItem.openProductByNumber(1);
+        var productWithPreDiscountPrice = selectedProduct.getProductWithPreDiscountPrice();
+        var productWithDiscountPrice = selectedProduct.getProductWithDiscountPrice();
+        assertTrue(productWithPreDiscountPrice > productWithDiscountPrice,
+                "Pre discount price should be bigger than current price with discount");
+    }
 }
 
