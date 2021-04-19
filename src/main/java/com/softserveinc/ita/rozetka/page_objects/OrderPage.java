@@ -26,12 +26,14 @@ public class OrderPage {
     }
 
     public static String getPhone() {
-        return $x("//input[@type='tel']").getValue()
+        return $x("//input[@type='tel']")
+                .getValue()
                 .replaceAll(" ", "");
     }
 
     public static String getCity() {
-        return $x("//div[@class='form__row js-city']//input[@name='search']").getValue()
+        return $x("//div[@class='form__row js-city']//input[@name='search']")
+                .getValue()
                 .toLowerCase();
     }
 
@@ -39,7 +41,8 @@ public class OrderPage {
         $x("//div[@class='form__row js-surname']/input").setValue(shippingAddress.getSurname());
         $x("//div[@class='form__row js-name']/input").setValue(shippingAddress.getName());
         $x("//input[@type='tel']").setValue(shippingAddress.getPhone());
-        $x("//div[@class='form__row js-city']//input[@name='search']").setValue(shippingAddress.getCity())
+        $x("//div[@class='form__row js-city']//input[@name='search']")
+                .setValue(shippingAddress.getCity())
                 .click();
         $x("//div[@class='form__row js-city']//li[1]").click();
         return this;

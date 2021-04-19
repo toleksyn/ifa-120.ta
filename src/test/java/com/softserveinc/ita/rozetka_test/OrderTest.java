@@ -31,11 +31,11 @@ public class OrderTest extends TestRunner {
     public void testShippingAddressInsertion() {
         var shippingAddress = new ShippingAddress("Петренко", "Вася", "Львів", "0997003330");
 
-        var isDisplayedConfirmOrderButton = orderPage
+        var isConfirmOrderButtonDisplayed = orderPage
                 .setShippingAddress(shippingAddress)
                 .isConfirmOrderButtonDisplayed();
 
-        assertTrue(isDisplayedConfirmOrderButton, "The Confirm Button should be displayed");
+        assertTrue(isConfirmOrderButtonDisplayed, "The Confirm Button should be displayed");
         assertEquals(OrderPage.getSurname(), shippingAddress.getSurname(), "The surname should be "
                 + shippingAddress.getSurname());
         assertEquals(OrderPage.getName(), shippingAddress.getName(), "The name should be "
