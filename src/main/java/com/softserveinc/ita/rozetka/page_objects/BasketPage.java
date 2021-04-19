@@ -3,6 +3,7 @@ package com.softserveinc.ita.rozetka.page_objects;
 import com.codeborne.selenide.Condition;
 
 import static com.codeborne.selenide.Condition.not;
+import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class BasketPage {
@@ -39,5 +40,18 @@ public class BasketPage {
                 .shouldBe(not(Condition.empty))
                 .text());
         return Integer.parseInt(ProductPrice.replace("₴", "").replace(" ", ""));
+    }
+
+    public BasketPage restoreDeletedGoods(int indexOfGoods) {
+        $$x("//app-buy-button[@class='toOrder']").get(indexOfGoods).click();
+        return new BasketPage();
+    }
+
+    public String getGoodsLink(int indexOfGoods) {
+        return $$x("//a[@class='lite-tile__title']").get(indexOfGoods).getAttribute("href");
+    }
+
+    public String getGoodsOrderedLink() {
+        return $x("//a[@class='cart-product__title']").attr("href");
     }
 }
