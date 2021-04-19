@@ -39,8 +39,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .searchFor(searchText)
                 .openProductByNumber(1)
                 .getProductTitle();
-        assertTrue(productTitle.contains(searchText),
-                "Product title should contain search request");
+        assertTrue(productTitle.contains(searchText), "Product title should contain search request");
     }
 
     @Test
