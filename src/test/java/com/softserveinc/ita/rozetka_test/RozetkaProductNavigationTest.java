@@ -1,15 +1,14 @@
 package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
-import com.softserveinc.ita.rozetka.page_objects.BasketPage;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
-import com.softserveinc.ita.rozetka.page_objects.ProductPage;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
 import static java.lang.String.format;
-import static org.testng.Assert.*;
 
 public class RozetkaProductNavigationTest extends TestRunner {
 
@@ -22,26 +21,26 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     @Test
     public void testAddingProductToBasket() {
-        ProductPage productPage = rozetkaHomePage
+        var productPage = rozetkaHomePage
                 .getLeftSidebar()
                 .openCategory("Сантехніка")
                 .openProductsListPage("Ванни")
                 .openProductByNumber(1);
-        String productTitle = productPage.getProductTitle();
-        BasketPage basketPage = productPage.addProductToBasket();
+        var productTitle = productPage.getProductTitle();
+        var basketPage = productPage.addProductToBasket();
         assertEquals(basketPage.getProductTitleByName("Ванна"), productTitle,
                 "Product should be added to basket");
     }
 
     @Test
     public void testSelectProductBySearch() {
-        String searchRequest = "гаманець";
-        String productTitle = rozetkaHomePage
+        var searchRequest = "гаманець";
+        var productTitle = rozetkaHomePage
                 .getHeaderPage()
                 .searchFor(searchRequest)
                 .openProductByNumber(1)
                 .getProductTitle();
-        assertTrue(productTitle.toLowerCase().contains(searchRequest),
+        assertTrue(productTitle.contains(searchRequest),
                 "Product title should contain search request");
     }
 
