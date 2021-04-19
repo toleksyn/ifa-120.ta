@@ -1,6 +1,7 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
 import static com.codeborne.selenide.Selenide.$x;
+import static java.lang.String.format;
 
 public class OrderPage {
 
@@ -19,7 +20,7 @@ public class OrderPage {
         return new BasketPage();
     }
 
-    public String getPageTitle() {
+    public String getHeaderText() {
         return $x("//h1[@class='checkout-heading']").text();
     }
 
@@ -30,7 +31,7 @@ public class OrderPage {
 
     public OrderPage setCity(String city) {
         $x("//div[@class='form__row js-city']//input[@name='search']").setValue(city).click();
-        $x(String.format("(//li[contains(text(),'%s')])[1]", city)).click();
+        $x(format("(//li[contains(text(),'%s')])[1]", city)).click();
         return this;
     }
 }
