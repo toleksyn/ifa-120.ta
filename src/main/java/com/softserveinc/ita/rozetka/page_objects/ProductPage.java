@@ -46,4 +46,9 @@ public class ProductPage extends BasePage {
         $x(format("//li//a[@href='%s%s']", getWebDriver().getCurrentUrl(), productPageTab.getTabPath())).click();
         return this;
     }
+
+    public String getCharacteristicText(String characteristicType) {
+        return $x(format("//div[@class='characteristics-full__item' " +
+                "and .//span/text()='%s']/dd//ul//li//*", characteristicType)).text();
+    }
 }

@@ -43,5 +43,20 @@ public class RozetkaProductNavigationTest extends TestRunner {
         assertTrue(productTitle.contains(searchRequest),
                 "Product title should contain search request");
     }
+
+    @Test
+    public void testFilterProductsList() {
+        var searchRequest = "віскі";
+        var filterType = "Віскі односолодовий";
+        var characteristicType = "Вид";
+        var characteristicTypeText = rozetkaHomePage.getHeaderPage()
+                .searchFor(searchRequest)
+                .filterProductsList(filterType)
+                .openProductByNumber(1)
+                .openProductTab(ProductPageTab.CHARACTERISTICS)
+                .getCharacteristicText(characteristicType);
+        assertEquals(characteristicTypeText, filterType, "Product characteristic " +
+                "should be equal to filter type");
+    }
 }
 
