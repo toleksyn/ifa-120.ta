@@ -14,8 +14,7 @@ public class ProductPage extends BasePage {
     }
 
     public String getViewedProductName(int number) {
-        return $x(format("(//section[@class='recently-viewed']//a[@class='lite-tile__title'])[%d]", number))
-                .text();
+        return $x(format("(//section[@class='recently-viewed']//a[@class='lite-tile__title'])[%d]", number)).text();
     }
 
     public BasketPage addProductToBasket() {
