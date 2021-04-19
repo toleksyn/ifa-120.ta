@@ -49,32 +49,25 @@ public class ProductPage extends BasePage {
         return this;
     }
 
-    public ProductPage addProductToWishList() {
-        $x("//app-goods-wishlist[@class='product__favorites']//button[@class='wish-button js-wish-button']")
-                .doubleClick();
-        return this;
-    }
-
     public CategoryPage openCategoryPageByName(String categoryName) {
-        $x(String.format("//a[@class='breadcrumbs__link'] //span[contains(text(),'%s')]", categoryName)).click();
+        $x(format("//a[@class='breadcrumbs__link'] //span[contains(text(),'%s')]", categoryName)).click();
         return new CategoryPage();
     }
 
-    public Integer getProductWithPreDiscountPrice() {
-        var productWithPreDiscountPriceText = $x("//p[@class = 'product-prices__small']")
-                .text();
-        var productWithPreDiscountPrice = parseInt(productWithPreDiscountPriceText
-                .substring(0, productWithPreDiscountPriceText.length() - 1)
+    public Integer getPreDiscountPrice() {
+        var preDiscountPriceText = $x("//p[@class = 'product-prices__small']").text();
+        var preDiscountPrice = parseInt(preDiscountPriceText
+                .substring(0, preDiscountPriceText.length() - 1)
                 .replaceAll(" ", ""));
-        return productWithPreDiscountPrice;
+        return preDiscountPrice;
     }
 
-    public Integer getProductWithDiscountPrice() {
-        var productWithDiscountPriceText = $x("//p[@class = 'product-prices__big product-prices__big_color_red']")
-                .text();
-        var productWithDiscountPrice = parseInt(productWithDiscountPriceText
-                .substring(0, productWithDiscountPriceText.length() - 1)
+    public Integer getDiscountPrice() {
+        var discountPriceText = $x("//p[@class = 'product-prices__big " +
+                "product-prices__big_color_red']").text();
+        var discountPrice = parseInt(discountPriceText
+                .substring(0, discountPriceText.length() - 1)
                 .replaceAll(" ", ""));
-        return productWithDiscountPrice;
+        return discountPrice;
     }
 }

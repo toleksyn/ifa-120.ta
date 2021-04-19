@@ -73,9 +73,9 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .getPageTitle()
                 .contains("Знижки");
         assertTrue(isPageTitleCorrect, "Incorrect page title");
-        var selectedProduct = catalogCategoryItem.openProductByNumber(1);
-        var productWithPreDiscountPrice = selectedProduct.getProductWithPreDiscountPrice();
-        var productWithDiscountPrice = selectedProduct.getProductWithDiscountPrice();
+        var productPage = catalogCategoryItem.openProductByNumber(1);
+        var productWithPreDiscountPrice = productPage.getPreDiscountPrice();
+        var productWithDiscountPrice = productPage.getDiscountPrice();
         assertTrue(productWithPreDiscountPrice > productWithDiscountPrice,
                 "Pre discount price should be bigger than current price with discount");
     }
