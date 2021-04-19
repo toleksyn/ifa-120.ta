@@ -52,6 +52,8 @@ public class RozetkaProductNavigationTest extends TestRunner {
         var characteristicTypeText = rozetkaHomePage
                 .getHeaderPage()
                 .searchFor(searchText)
+                .getAgeConfirmation()
+                .acceptAdultAge()
                 .filterProductsList(filterType)
                 .openProductByNumber(1)
                 .openProductTab(ProductPageTab.CHARACTERISTICS)
