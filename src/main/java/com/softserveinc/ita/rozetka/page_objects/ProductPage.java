@@ -42,9 +42,9 @@ public class ProductPage extends BasePage {
     }
 
     public ProductPage openProductTab(ProductPageTab productPageTab) {
-        var tabButton = productPageTab.equals(ProductPageTab.DESCRIPTION) ?
-                $x(format("//ul[@class='tabs__list']//a[contains(text(), '%s')]", "Усе про товар")) :
-                $x(format("//ul[@class='tabs__list']//a[contains(@href, '%s')]", productPageTab.getTabName()));
+        var tabButton = productPageTab == ProductPageTab.DESCRIPTION ?
+                $x("(//ul[@class='tabs__list']//a)[1]") :
+                $x(format("//ul[@class='tabs__list']//a[contains(@href, '%s')]", productPageTab.getTabHrefIdentifier()));
         tabButton.click();
         return this;
     }
