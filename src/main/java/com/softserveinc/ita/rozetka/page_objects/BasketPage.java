@@ -47,11 +47,11 @@ public class BasketPage {
         return new BasketPage();
     }
 
-    public String getGoodsLink(int indexOfGoods) {
+    public String getDeletedFromBasketGoodsLink(int indexOfGoods) {
         return $$x("//a[@class='lite-tile__title']").get(indexOfGoods).getAttribute("href");
     }
 
-    public String getGoodsOrderedLink() {
-        return $x("//a[@class='cart-product__title']").attr("href");
+    public String getGoodsInBasketLink(int indexOfGoods) {
+        return $$x("//a[@class='cart-product__title']").get(indexOfGoods).attr("href");
     }
 }
