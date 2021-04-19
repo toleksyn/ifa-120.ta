@@ -2,6 +2,7 @@ package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
+import com.softserveinc.ita.rozetka.page_objects.ProductPageTab;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -59,7 +60,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
         var productTabsTitle = productPage
                 .openProductTab(ProductPageTab.COMMENTS)
                 .getProductTabsTitle();
-        assertTrue(productTabsTitle.contains("Відгуки"), "product tabs title should contains 'Відгуки'");
+        assertTrue(productTabsTitle.contains("Відгуки"), "incorrect tab's title");
         var questionsRowsAmount = productPage
                 .openProductTab(ProductPageTab.QUESTIONS)
                 .getQuestionListSize();
