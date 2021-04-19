@@ -2,19 +2,20 @@ package com.softserveinc.ita.rozetka.page_objects;
 
 public enum ProductPageTab {
 
-    GENERAL_DESCRIPTION(""),
-    CHARACTERISTICS("characteristics/"),
-    COMMENTS("comments/"),
-    QUESTIONS("questions/"),
-    PHOTO("photo/");
+    DESCRIPTION("description"),
+    CHARACTERISTICS("characteristics"),
+    COMMENTS("comments"),
+    QUESTIONS("questions"),
+    PHOTO("photo");
 
-    private final String tabPath;
+    private final String tabHrefIdentifier;
 
-    ProductPageTab(String tabPath) {
-        this.tabPath = tabPath;
+    ProductPageTab(String tabHrefIdentifier) {
+        this.tabHrefIdentifier = tabHrefIdentifier;
     }
 
-    public String getTabPath() {
-        return tabPath;
+    public String getTabHrefIdentifier() {
+        return tabHrefIdentifier;
     }
 }
+
