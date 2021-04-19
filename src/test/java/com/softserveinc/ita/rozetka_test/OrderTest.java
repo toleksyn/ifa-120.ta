@@ -11,33 +11,19 @@ import static org.testng.Assert.assertTrue;
 
 public class OrderTest extends TestRunner {
 
+    //This added for future tests
     private OrderPage openOrderPage;
     private BasketPage openBasketPage;
-    private String searchString;
 
+    //This added for future tests
     @BeforeMethod
-    public void putProductToBasketOpenOrder() {
-
+    public void addProductToBasketOpenOrder() {
         openOrderPage = new HomePage()
                 .openHomePage()
-                .navigateToFirstProduct()
-                .putProductOpenBasket()
+                .openProductByNumber(1)
+                .addProductToBasket()
                 .openOrderPage();
 
-    }
-
-    @Test
-    public void testEditOrder() {
-        int orderQuantity;
-        int orderSum;
-        openOrderPage.editItemInBasket();
-        openBasketPage = new BasketPage();
-        orderSum = openBasketPage.getOrderItemPrice();
-        openBasketPage.pushPlusItem();
-        openBasketPage.openOrderPage();
-        openOrderPage.editItemInBasket();
-        openBasketPage.pushMinusItem();
-        openBasketPage.openOrderPage();
     }
 
     @Test

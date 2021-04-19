@@ -1,8 +1,12 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import com.codeborne.selenide.Condition;
+
+import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class BasketPage {
+
     public String getProductTitleByName(String productName) {
         return $x(String.format("//a[@class='cart-product__title' and contains(text(), '%s')]", productName)).text();
     }
@@ -12,17 +16,28 @@ public class BasketPage {
         return new OrderPage();
     }
 
-    public void pushPlusItem() {
-        $x("(//*[@class='button button_color_white button_size_medium cart-counter__button'])[2]").click();
+    public BasketPage increaseProductCount(int numberOfProduct) {
+        $x(String.format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[2])[%d]", numberOfProduct)).click();
+        return this;
     }
 
-    public void pushMinusItem() {
-        $x("(//*[@class='button button_color_white button_size_medium cart-counter__button'])[1]").click();
+    public BasketPage decreaseProductCount(int numberOfProduct) {
+        $x(String.format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[1])[%d]", numberOfProduct)).click();
+        return this;
     }
 
-    public int getOrderItemPrice() {
-        String ItemPrice = ($x("//*[@class='cart-product__price']").text());
-        return Integer.parseInt(ItemPrice.replace("₴", "").replace(" ", ""));
+    public int getProductCount(int numberOfProduct) {
+        $x(String.format("(//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid'])[%d]", numberOfProduct)).click();
+        return Integer.parseInt($x(String.format("(//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid'])[%d]", numberOfProduct))
+                .shouldBe(not(Condition.empty))
+                .val());
+    }
 
+    public int getOrderProductSum(int numberOfProduct) {
+        $x(String.format("(//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid'])[%d]", numberOfProduct)).click();
+        String ProductPrice = ($x(String.format("(//*[@class='cart-product__price'])[%d]", numberOfProduct))
+                .shouldBe(not(Condition.empty))
+                .text());
+        return Integer.parseInt(ProductPrice.replace("₴", "").replace(" ", ""));
     }
 }
