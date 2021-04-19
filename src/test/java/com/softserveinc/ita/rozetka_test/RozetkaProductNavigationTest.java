@@ -38,7 +38,6 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .getHeaderPage()
                 .searchFor(searchText)
                 .openProductByNumber(1)
-                .openProductTab(ProductPageTab.PHOTO)
                 .getProductTitle();
         assertTrue(productTitle.contains(searchText),
                 "Product title should contain search request");
@@ -58,8 +57,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .openProductByNumber(1)
                 .openProductTab(ProductPageTab.CHARACTERISTICS)
                 .getCharacteristicText(characteristicType);
-        assertEquals(characteristicTypeText, filterType, "Product characteristic " +
-                "is incorrect");
+        assertEquals(characteristicTypeText, filterType, "Product characteristic is incorrect");
     }
 }
 
