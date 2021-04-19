@@ -2,19 +2,20 @@ package com.softserveinc.ita.rozetka.page_objects;
 
 public enum ProductPageTab {
 
-    GENERAL_DESCRIPTION(""),
-    CHARACTERISTICS("characteristics/"),
-    COMMENTS("comments/"),
-    QUESTIONS("questions/"),
-    PHOTO("photo/");
+    DESCRIPTION("description"),
+    CHARACTERISTICS("characteristics"),
+    COMMENTS("comments"),
+    QUESTIONS("questions"),
+    PHOTO("photo");
 
-    private final String tabPath;
+    private final String tabName;
 
-    ProductPageTab(String tabPath) {
-        this.tabPath = tabPath;
+    ProductPageTab(String tabName) {
+        this.tabName = tabName;
     }
 
-    public String getTabPath() {
-        return tabPath;
+    public String getTabName() {
+        return tabName;
     }
 }
+
