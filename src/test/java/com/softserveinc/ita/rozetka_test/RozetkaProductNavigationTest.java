@@ -33,25 +33,25 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     @Test
     public void testSelectProductBySearch() {
-        var searchRequest = "гаманець";
+        var searchText = "гаманець";
         var productTitle = rozetkaHomePage
                 .getHeaderPage()
-                .searchFor(searchRequest)
+                .searchFor(searchText)
                 .openProductByNumber(1)
                 .openProductTab(ProductPageTab.PHOTO)
                 .getProductTitle();
-        assertTrue(productTitle.contains(searchRequest),
+        assertTrue(productTitle.contains(searchText),
                 "Product title should contain search request");
     }
 
     @Test
     public void testFilterProductsList() {
-        var searchRequest = "віскі";
+        var searchText = "віскі";
         var filterType = "Віскі односолодовий";
         var characteristicType = "Вид";
         var characteristicTypeText = rozetkaHomePage
                 .getHeaderPage()
-                .searchFor(searchRequest)
+                .searchFor(searchText)
                 .filterProductsList(filterType)
                 .openProductByNumber(1)
                 .openProductTab(ProductPageTab.CHARACTERISTICS)
