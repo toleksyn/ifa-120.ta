@@ -8,14 +8,14 @@ public enum ProductPageTab {
     QUESTIONS("questions"),
     PHOTO("photo");
 
-    private final String tabName;
+    private final String tabHrefIdentifier;
 
-    ProductPageTab(String tabName) {
-        this.tabName = tabName;
+    ProductPageTab(String tabHrefIdentifier) {
+        this.tabHrefIdentifier = tabHrefIdentifier;
     }
 
-    public String getTabName() {
-        return tabName;
+    public String getTabHrefIdentifier() {
+        return tabHrefIdentifier;
     }
 }
 
