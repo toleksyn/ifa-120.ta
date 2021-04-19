@@ -57,10 +57,10 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .size();
         assertTrue(characteristicsListSize > 0, "product characteristic description" +
                 " should contain at least 1 row");
-        var productTabsTitle = productPage
+        var productTabTitle = productPage
                 .openProductTab(ProductPageTab.COMMENTS)
-                .getProductTabsTitle();
-        assertTrue(productTabsTitle.contains("Відгуки"), "incorrect tab's title");
+                .getProductTabTitle();
+        assertTrue(productTabTitle.contains("Відгуки"), "incorrect tab's title");
         var questionsRowsAmount = productPage
                 .openProductTab(ProductPageTab.QUESTIONS)
                 .getQuestionListSize();

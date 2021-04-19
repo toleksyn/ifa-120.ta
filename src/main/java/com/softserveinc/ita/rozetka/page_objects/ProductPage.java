@@ -24,7 +24,7 @@ public class ProductPage extends BasePage {
         return new BasketPage();
     }
 
-    public String getProductTabsTitle() {
+    public String getProductTabTitle() {
         return $x("//h2[@class='product-tabs__heading']").text();
     }
 
