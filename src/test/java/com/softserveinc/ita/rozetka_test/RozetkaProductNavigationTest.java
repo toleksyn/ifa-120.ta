@@ -49,7 +49,8 @@ public class RozetkaProductNavigationTest extends TestRunner {
         var searchRequest = "віскі";
         var filterType = "Віскі односолодовий";
         var characteristicType = "Вид";
-        var characteristicTypeText = rozetkaHomePage.getHeaderPage()
+        var characteristicTypeText = rozetkaHomePage
+                .getHeaderPage()
                 .searchFor(searchRequest)
                 .filterProductsList(filterType)
                 .openProductByNumber(1)
