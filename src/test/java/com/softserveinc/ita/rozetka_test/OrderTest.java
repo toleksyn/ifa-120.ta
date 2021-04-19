@@ -27,7 +27,7 @@ public class OrderTest extends TestRunner {
     }
 
     @Test
-    public void testEditOrder() {
+    public void testEditOrder() throws Exception {
         basketPage = orderPage.startEditingProductsInBasket();
 
         var orderProductCount = basketPage.getProductCount(1);
@@ -38,22 +38,23 @@ public class OrderTest extends TestRunner {
         var changedOrderProductSum = basketPage.getOrderProductSum(1);
 
         basketPage.openOrderPage();
-        assertEquals(changedOrderProductCount, 2 * orderProductCount, "the new count for the product " +
+        assertEquals(changedOrderProductCount, orderProductCount * 2, "the new count for the product " +
                 "should be twice as much as the previous one");
-        assertEquals(changedOrderProductSum, 2 * orderProductSum, "new amount for the product" +
+        assertEquals(changedOrderProductSum, orderProductSum * 2, "new amount for the product" +
                 " should be twice as much as the previous one");
 
+        orderProductCount = changedOrderProductCount;
+        orderProductSum = changedOrderProductSum;
         orderPage.startEditingProductsInBasket();
 
-        assertTrue(basketPage.isDecreaseProductCountEnable(1), "should not further reduction in the number of product items");
         basketPage.decreaseProductCount(1);
         changedOrderProductCount = basketPage.getProductCount(1);
         changedOrderProductSum = basketPage.getOrderProductSum(1);
 
         basketPage.openOrderPage();
-        assertEquals(changedOrderProductCount, orderProductCount, "the new count for the product " +
+        assertEquals(changedOrderProductCount, orderProductCount / 2, "the new count for the product " +
                 "should be twice less than the previous one");
-        assertEquals(changedOrderProductSum, orderProductSum, "the new amount for the product " +
+        assertEquals(changedOrderProductSum, orderProductSum / 2, "the new amount for the product " +
                 "should be twice less than the previous one");
     }
 }

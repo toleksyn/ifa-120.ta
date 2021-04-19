@@ -4,7 +4,6 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.Integer.parseInt;
 import static java.lang.String.format;
-import static java.util.Objects.requireNonNull;
 
 public class BasketPage {
 
@@ -17,44 +16,40 @@ public class BasketPage {
         return new OrderPage();
     }
 
-    public BasketPage increaseProductCount(int numberOfProduct) {
-        var productSum = requireNonNull($x(format("(//*[@class='cart-product__price'])[%d]", numberOfProduct))
-                .text());   //added for waiting the information in the basket window to be updated
+    public BasketPage increaseProductCount(int productNumber) {
+        var productSum = $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).text();
         $x(format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[2])[%d]",
-                numberOfProduct)).click();
-        $x(format("(//*[@class='cart-product__price'])[%d]", numberOfProduct))
-                .shouldNotHave(text(productSum));   //added for waiting the information in the basket window to be updated
+                productNumber)).click();
+        /* checking var "productSum" in the next statement have been added to ensure updating information in the basket window */
+        $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).shouldNotHave(text(productSum));
         return this;
     }
 
-    public BasketPage decreaseProductCount(int numberOfProduct) {
-        var productSum = requireNonNull($x(format("(//*[@class='cart-product__price'])[%d]", numberOfProduct))
-                .text());  //added for waiting the information in the basket window to be updated
+    public BasketPage decreaseProductCount(int productNumber) throws Exception {
+        if (!isDecreaseProductCountEnabled(productNumber)) {
+            throw new Exception("should not further reduction in the count of product items");
+        }
 
-        if (!$x(format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[1])[%d]",
-                numberOfProduct)).isEnabled()) { return this; }
-
+        var productSum = $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).text();
         $x(format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[1])[%d]",
-                numberOfProduct)).click();
-        $x(format("(//*[@class='cart-product__price'])[%d]", numberOfProduct))
-                .shouldNotHave(text(productSum));   //added for waiting the information in the basket window to be updated
+                productNumber)).click();
+        /* checking var "productSum" in the next statement have been added to ensure updating information in the basket window */
+        $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).shouldNotHave(text(productSum));
         return this;
     }
 
-    public int getProductCount(int numberOfProduct) {
-        return parseInt(requireNonNull($x(format("(//*[@class='cart-counter__input ng-untouched " +
-                "ng-pristine ng-valid'])[%d]", numberOfProduct))
-                .val()));
+    public int getProductCount(int productNumber) {
+        return parseInt($x(format("(//*[@class='cart-counter__input ng-untouched " +
+                "ng-pristine ng-valid'])[%d]", productNumber)).val());
     }
 
-    public int getOrderProductSum(int numberOfProduct) {
-        var productSum = requireNonNull($x(format("(//*[@class='cart-product__price'])[%d]", numberOfProduct))
-                .text());
+    public int getOrderProductSum(int productNumber) {
+        var productSum = $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).text();
         return parseInt(productSum.replace("₴", "").replace(" ", ""));
     }
 
-    public boolean isDecreaseProductCountEnable(int numberOfProduct) {
+    public boolean isDecreaseProductCountEnabled(int productNumber) {
         return $x(format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[1])[%d]",
-                numberOfProduct)).isEnabled();
+                productNumber)).isEnabled();
     }
 }
