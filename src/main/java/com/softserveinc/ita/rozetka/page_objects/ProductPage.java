@@ -5,7 +5,6 @@ import java.util.List;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static java.lang.String.format;
 
 public class ProductPage extends BasePage {
@@ -15,8 +14,7 @@ public class ProductPage extends BasePage {
     }
 
     public String getViewedProductName(int number) {
-        return $x(format("(//section[@class='recently-viewed']//a[@class='lite-tile__title'])[%d]", number))
-                .text();
+        return $x(format("(//section[@class='recently-viewed']//a[@class='lite-tile__title'])[%d]", number)).text();
     }
 
     public BasketPage addProductToBasket() {
@@ -43,7 +41,10 @@ public class ProductPage extends BasePage {
     }
 
     public ProductPage openProductTab(ProductPageTab productPageTab) {
-        $x(format("//li//a[@href='%s%s']", getWebDriver().getCurrentUrl(), productPageTab.getTabPath())).click();
+        var tabButton = productPageTab == ProductPageTab.DESCRIPTION ?
+                $x("(//ul[@class='tabs__list']//a)[1]") :
+                $x(format("//ul[@class='tabs__list']//a[contains(@href, '%s')]", productPageTab.getTabHrefIdentifier()));
+        tabButton.click();
         return this;
     }
 }
