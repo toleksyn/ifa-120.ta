@@ -49,7 +49,7 @@ public class BasketPage {
     }
 
     public BasketPage restoreDeletedProduct(int productIndex) {
-        $$x("//app-buy-button[@class='toOrder']").get(productIndex).click();
+        $$x("//svg[@xlink:href='#icon-basket']").get(productIndex).click();
         return new BasketPage();
     }
 
