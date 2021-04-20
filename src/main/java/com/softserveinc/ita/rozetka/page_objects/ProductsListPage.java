@@ -63,4 +63,9 @@ public class ProductsListPage extends BasePage {
     public String getPageTitle() {
         return $x("//h1[@class='catalog-heading']").text();
     }
+
+    public ProductsListPage showMoreProducts() {
+        $x("//a[@class='show-more show-more--horizontal']").click();
+        return this;
+    }
 }

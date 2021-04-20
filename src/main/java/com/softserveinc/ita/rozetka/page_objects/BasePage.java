@@ -1,5 +1,4 @@
 package com.softserveinc.ita.rozetka.page_objects;
-
 import lombok.Getter;
 
 @Getter
