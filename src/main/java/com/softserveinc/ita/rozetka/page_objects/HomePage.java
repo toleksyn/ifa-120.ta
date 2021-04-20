@@ -2,8 +2,8 @@ package com.softserveinc.ita.rozetka.page_objects;
 
 import lombok.Getter;
 
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.open;
 import static java.lang.String.format;
 
 @Getter
@@ -19,11 +19,5 @@ public class HomePage extends BasePage {
     public ProductPage openProductByNumber(int number) {
         $x(format("(//li[@class='main-goods__cell'])[%d]", number)).click();
         return new ProductPage();
-    }
-
-    public int getHomePageProductsListSize() {
-        return $$x("//li[@class='main-goods__cell']")
-                .shouldHave(sizeGreaterThan(4))
-                .size();
     }
 }
