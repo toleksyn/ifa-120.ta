@@ -46,12 +46,12 @@ public class BasketPage {
         return parseInt(productPrice.replaceAll("[^0-9]", ""));
     }
 
-    public BasketPage deleteProduct(int numberOfProduct) {
-        var totalOrderPriceLocator = "//div[@class='cart-receipt__sum-price']";
-        var deleteButtonLocator = "//button[@class='button button--medium button--with-icon button--link context-menu-actions__button']";
+    public BasketPage deleteProduct(int productNumber) {
+        var totalOrderPriceLocator = "//*[contains(@class,'m-p')]";
+        var deleteButtonLocator = "//*[contains(@class,'k c')]";
         if (getUniqueProductsAmount() > 1) {
             var priceBeforeDeleting = $x(totalOrderPriceLocator).text();
-            $x(format("//button[@id='cartProductActions%d']", numberOfProduct - 1))
+            $x(format("//button[@id='cartProductActions%d']", productNumber - 1))
                     .click();
             $x(deleteButtonLocator)
                     .click();
@@ -71,18 +71,17 @@ public class BasketPage {
     }
 
     public BasketPage deleteAllProducts() {
-        if (!isBasketEmpty()) {
+        int limiter = 50;
+        while (limiter > 0 && !isBasketEmpty()) {
             deleteProduct(1);
-        }
-        if (!isBasketEmpty()) {
-            deleteAllProducts();
+            limiter--;
         }
         return this;
     }
 
     public int getUniqueProductsAmount() {
         if (!isBasketEmpty()) {
-            return $$x("//button[@class='button button--white button--small context-menu__toggle']").size();
+            return $$x("//*[contains(@class,'l c')]").size();
         } else {
             return 0;
         }
@@ -90,7 +89,7 @@ public class BasketPage {
 
     public int getTotalOrderSum() {
         if (!isBasketEmpty()) {
-            return parseInt($x("//div[@class='cart-receipt__sum-price']").text()
+            return parseInt($x("//*[contains(@class,'m-p')]").text()
                     .replaceAll("[^0-9]", ""));
         } else {
             return 0;
