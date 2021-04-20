@@ -63,8 +63,7 @@ public class ProductPage extends BasePage {
     }
 
     public Integer getDiscountPrice() {
-        var discountPriceText = $x("//p[@class = 'product-prices__big " +
-                "product-prices__big_color_red']").text();
+        var discountPriceText = $x("//p[@class = 'product-prices__big " + "product-prices__big_color_red']").text();
         var discountPrice = parseInt(discountPriceText
                 .substring(0, discountPriceText.length() - 1)
                 .replaceAll(" ", ""));
