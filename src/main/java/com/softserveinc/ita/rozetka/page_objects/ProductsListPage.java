@@ -60,6 +60,10 @@ public class ProductsListPage extends BasePage {
         return new ProductPage();
     }
 
+    public String getPageTitle() {
+        return $x("//h1[@class='catalog-heading']").text();
+    }
+
     public AgeConfirmationPopup getAgeConfirmationPopup() {
         return new AgeConfirmationPopup();
     }
