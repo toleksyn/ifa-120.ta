@@ -9,4 +9,13 @@ public class Header {
         $x("//button[@class='button button_color_green button_size_medium search-form__submit']").click();
         return new ProductsListPage();
     }
+
+    public HamburgerPage openHamburgerPage() {
+        $x("(//button[@class='header__button'])[1]").click();
+        return new HamburgerPage();
+    }
+
+    public boolean isSearchButtonVisible() {
+        return $x("//button[contains(@class, 'search-form__submit')]").isDisplayed();
+    }
 }
