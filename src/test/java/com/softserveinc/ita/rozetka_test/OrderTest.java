@@ -21,8 +21,6 @@ public class OrderTest extends TestRunner {
                 .openProductByNumber(1)
                 .addProductToBasket()
                 .openOrderPage();
-
-        assertEquals(orderPage.getHeaderText(), "Оформлення замовлення", "Incorrect page header");
     }
 
     @Test
@@ -38,9 +36,9 @@ public class OrderTest extends TestRunner {
 
         basketPage.openOrderPage();
         assertEquals(changedOrderProductCount, orderProductCount * 2,
-                "the new count for the product should be twice as much as the previous one");
+                "The new count for the product should be twice as much as the previous one");
         assertEquals(changedOrderProductSum, orderProductSum * 2,
-                "new amount for the product should be twice as much as the previous one");
+                "New amount for the product should be twice as much as the previous one");
 
         orderProductCount = changedOrderProductCount;
         orderProductSum = changedOrderProductSum;
@@ -52,8 +50,8 @@ public class OrderTest extends TestRunner {
 
         basketPage.openOrderPage();
         assertEquals(changedOrderProductCount, orderProductCount / 2,
-                "the new count for the product should be twice less than the previous one");
+                "The new count for the product should be twice less than the previous one");
         assertEquals(changedOrderProductSum, orderProductSum / 2,
-                "the new amount for the product should be twice less than the previous one");
+                "The new amount for the product should be twice less than the previous one");
     }
 }

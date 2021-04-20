@@ -18,20 +18,18 @@ public class BasketPage {
 
     public BasketPage increaseProductCount(int productNumber) {
         var preIncreaseProductSum = $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).text();
-        $x(format("((//*[contains(@class, 'cart-counter__button')])[2])[%d]",
-                productNumber)).click();
+        $x(format("((//*[contains(@class, 'cart-counter__button')])[2])[%d]", productNumber)).click();
         $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).shouldNotHave(text(preIncreaseProductSum));
         return this;
     }
 
     public BasketPage decreaseProductCount(int productNumber) {
         if (!isDecreaseProductCountEnabled(productNumber)) {
-            throw new IllegalStateException("product count decreasing is disabled");
+            throw new IllegalStateException("Product count decreasing is disabled");
         }
 
         var preDecreaseProductSum = $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).text();
-        $x(format("((//*[contains(@class, 'cart-counter__button')])[1])[%d]",
-                productNumber)).click();
+        $x(format("((//*[contains(@class, 'cart-counter__button')])[1])[%d]", productNumber)).click();
         $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).shouldNotHave(text(preDecreaseProductSum));
         return this;
     }
@@ -46,7 +44,6 @@ public class BasketPage {
     }
 
     public boolean isDecreaseProductCountEnabled(int productNumber) {
-        return $x(format("((//*[contains(@class, 'cart-counter__button')])[1])[%d]",
-                productNumber)).isEnabled();
+        return $x(format("((//*[contains(@class, 'cart-counter__button')])[1])[%d]", productNumber)).isEnabled();
     }
 }
