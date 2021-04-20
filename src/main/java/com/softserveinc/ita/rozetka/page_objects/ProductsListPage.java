@@ -24,30 +24,28 @@ public class ProductsListPage extends BasePage {
         return this;
     }
 
-    public String getProductNameForProduct(int number) {
+    public String getProductName(int number) {
         return $x(format("(//span[@class='goods-tile__title'])[%d]", number)).text();
     }
 
-    public int getProductPriceForProduct(int number) {
+    public int getProductPrice(int number) {
         return parseInt($x(format("(//span[@class='goods-tile__price-value'])[%d]", number))
                 .text()
                 .replaceAll(" ", ""));
     }
 
     public ProductsListPage openNextPage() {
-        $x("//a[@class='button button_color_gray button_size_medium" +
-                " pagination__direction pagination__direction_type_forward']").click();
+        $x("//a[contains(@class, 'pagination__direction_type_forward')]").click();
         return this;
     }
 
     public ProductsListPage openPreviousPage() {
-        $x("//a[@class='button button_color_gray button_size_medium" +
-                " pagination__direction']").click();
+        $x("//a[contains(@class, 'pagination__direction')]").click();
         return this;
     }
 
     public int getCurrentPageNumber() {
-        return parseInt($x("//a[@class='pagination__link pagination__link_state_active']").text());
+        return parseInt($x("//a[contains(@class, 'pagination__link_state_active')]").text());
     }
 
     public ProductsListPage filterProductsList(String filterName) {
@@ -58,11 +56,5 @@ public class ProductsListPage extends BasePage {
     public ProductPage openProductByName(String productName) {
         $x(format("//span[@class='goods-tile__title'and contains(text(), '%s')]", productName)).click();
         return new ProductPage();
-    }
-
-    public ProductsListPage filterProductsListByFilterSearch(String filterName, String filterKeyword){
-        $x(format("//div[@data-filter-name='%s']//input[@name='searchline']",filterName)).setValue(filterKeyword);
-        $x(format("//div[@data-filter-name='%s']//li[@class='checkbox-filter__item']/a",filterName)).click();
-        return new ProductsListPage();
     }
 }

@@ -1,5 +1,10 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public enum ProductPageTab {
 
     DESCRIPTION("description"),
@@ -9,13 +14,5 @@ public enum ProductPageTab {
     PHOTO("photo");
 
     private final String tabHrefIdentifier;
-
-    ProductPageTab(String tabHrefIdentifier) {
-        this.tabHrefIdentifier = tabHrefIdentifier;
-    }
-
-    public String getTabHrefIdentifier() {
-        return tabHrefIdentifier;
-    }
 }
 
