@@ -60,5 +60,62 @@ public class RozetkaProductNavigationTest extends TestRunner {
         assertTrue(productListPage.getProductName(productCount).contains(expectedProductType),
                 format("Last product should be '%s'", expectedProductType));
     }
+
+    @Test
+    public void testSelectProductByCatalog() {
+        var pageCategoryName = "Ноутбуки";
+        var chosenCategoryPageByCatalog = rozetkaHomePage
+                .getLeftSidebar()
+                .openCategory(pageCategoryName);
+        var categoryTitle = "Комп'ютери";
+        assertTrue(chosenCategoryPageByCatalog.getCategoryTitle().contains(categoryTitle),
+                "Incorrect page title");
+        var chosenProductPage = chosenCategoryPageByCatalog
+                .openProductsListPage(pageCategoryName)
+                .openProductByName("Ноутбук Apple MacBook Air 13");
+        var isProductTitleCorrect = chosenProductPage
+                .getProductTitle()
+                .contains("Ноутбук Apple MacBook");
+        assertTrue(isProductTitleCorrect, "Incorrect product title");
+        var chosenCategoryPageByLink = chosenProductPage
+                .openCategoryPageByName(pageCategoryName.toLowerCase());
+        assertTrue(chosenCategoryPageByLink.getCategoryTitle().contains(categoryTitle),
+                "Incorrect page title");
+    }
+
+    @Test
+    public void testCompareProductPrices() {
+        var catalogCategoryPage = rozetkaHomePage
+                .getLeftSidebar()
+                .openCategory("Знижки");
+        var isPageTitleCorrect = catalogCategoryPage
+                .getPageTitle()
+                .contains("Знижки");
+        assertTrue(isPageTitleCorrect, "Incorrect page title");
+        var productPage = catalogCategoryPage.openProductByNumber(1);
+        var preDiscountPrice = productPage.getPreDiscountPrice();
+        var discountPrice = productPage.getDiscountPrice();
+        assertTrue(preDiscountPrice > discountPrice,
+                "Pre discount price should be bigger than current price with discount");
+    }
+
+    @Test
+    public void testShowMoreProducts() {
+        var chosenProductPage = rozetkaHomePage
+                .getLeftSidebar()
+                .openCategory("Товари для дому")
+                .openProductsListPage("Домашній текстиль");
+        var productCount = chosenProductPage.getProductListSize();
+        var firstProductName = chosenProductPage.getProductName(1);
+        var lastProductName = chosenProductPage.getProductName(productCount);
+        chosenProductPage.showMoreProducts();
+        var extendedProductCount = chosenProductPage.getProductListSize();
+        var extendedFirstProductName = chosenProductPage.getProductName(1);
+        var extendedLastProductName = chosenProductPage.getProductName(extendedProductCount);
+        assertTrue(firstProductName.equals(extendedFirstProductName),
+                "First product name should be the same to the first product name after the extended page");
+        assertTrue(!lastProductName.equals(extendedLastProductName),
+                "Last product name should be different to the last product name after the extended page");
+    }
 }
 
