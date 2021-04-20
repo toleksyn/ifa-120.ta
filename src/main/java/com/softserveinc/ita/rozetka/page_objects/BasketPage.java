@@ -50,7 +50,7 @@ public class BasketPage {
 
     public BasketPage restoreDeletedProduct(int productIndex) {
         $$x("//svg[@xlink:href='#icon-basket']").get(productIndex).click();
-        return new BasketPage();
+        return this;
     }
 
     public String getDeletedFromBasketProductLink(int productIndex) {
