@@ -19,7 +19,7 @@ public class HamburgerTest extends TestRunner {
     public void openHamburgerPage() {
         hamburgerPage = new HomePage()
                 .openHomePage()
-                .getHeaderPage()
+                .getHeader()
                 .openHamburgerPage();
     }
 
