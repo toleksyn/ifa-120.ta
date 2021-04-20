@@ -3,6 +3,7 @@ package com.softserveinc.ita.rozetka_test;
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import com.softserveinc.ita.rozetka.page_objects.ProductPageTab;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -33,30 +34,30 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     @Test
     public void testSelectProductBySearch() {
-        var searchText = "гаманець";
+        var productName = "гаманець";
         var productTitle = rozetkaHomePage
                 .getHeaderPage()
-                .searchFor(searchText)
+                .searchFor(productName)
                 .openProductByNumber(1)
                 .getProductTitle();
-        assertTrue(productTitle.contains(searchText), "Product title should contain search request");
+        assertTrue(productTitle.contains(productName), "Product title should contain search request");
     }
 
     @Test
     public void testFilterProductsList() {
-        var searchText = "віскі";
+        var productName = "віскі";
         var filterType = "Віскі односолодовий";
         var characteristicType = "Вид";
         var characteristicTypeText = rozetkaHomePage
                 .getHeaderPage()
-                .searchFor(searchText)
-                .getAgeConfirmation()
+                .searchFor(productName)
+                .getAgeConfirmationPopup()
                 .acceptAdultAge()
                 .filterProductsList(filterType)
                 .openProductByNumber(1)
                 .openProductTab(ProductPageTab.CHARACTERISTICS)
                 .getCharacteristicText(characteristicType);
-        assertEquals(characteristicTypeText, filterType, "Product characteristic is incorrect");
+        assertEquals(characteristicTypeText, filterType, "Incorrect product characteristic");
     }
 }
 

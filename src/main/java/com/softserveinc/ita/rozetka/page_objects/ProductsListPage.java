@@ -60,7 +60,7 @@ public class ProductsListPage extends BasePage {
         return new ProductPage();
     }
 
-    public AgeConfirmationBanner getAgeConfirmation() {
-        return new AgeConfirmationBanner();
+    public AgeConfirmationPopup getAgeConfirmationPopup() {
+        return new AgeConfirmationPopup();
     }
 }
