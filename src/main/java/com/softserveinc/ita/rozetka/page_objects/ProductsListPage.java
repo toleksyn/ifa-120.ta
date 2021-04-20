@@ -59,4 +59,8 @@ public class ProductsListPage extends BasePage {
         $x(format("//span[@class='goods-tile__title'and contains(text(), '%s')]", productName)).click();
         return new ProductPage();
     }
+
+    public String getPageTitle() {
+        return $x("//h1[@class='catalog-heading']").text();
+    }
 }

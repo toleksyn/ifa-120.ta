@@ -8,6 +8,8 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
+import static java.lang.String.format;
+
 public class RozetkaProductNavigationTest extends TestRunner {
 
     private HomePage rozetkaHomePage;
@@ -40,6 +42,24 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .getProductTitle();
         assertTrue(productTitle.contains(searchRequest),
                 "Product title should contain search request");
+    }
+
+    @Test
+    public void testResultsOnProductsListPage() {
+        var productCategoryName = "Ноутбуки";
+        var productListPage = rozetkaHomePage
+                .getLeftSidebar()
+                .openCategory("Ноутбуки та комп’ютери")
+                .openProductsListPage(productCategoryName);
+        assertEquals(productListPage.getPageTitle(), productCategoryName, format("Title should be '%s'", productCategoryName));
+        var expectedProductType = "Ноутбук";
+        assertTrue(productListPage.getProductNameForProduct(1).contains(expectedProductType),
+                format("First product should be '%s'", expectedProductType));
+        var productCount = productListPage.getProductListSize();
+        assertTrue(productListPage.getProductNameForProduct(productCount / 2).contains(expectedProductType),
+                format("Middle product should be '%s'", expectedProductType));
+        assertTrue(productListPage.getProductNameForProduct(productCount).contains(expectedProductType),
+                format("Last product should be '%s'", expectedProductType));
     }
 }
 
