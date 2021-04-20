@@ -101,15 +101,14 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     @Test
     public void testShowMoreProducts() {
-        var pageCategoryName = "Товари для дому";
         var chosenProductPage = rozetkaHomePage
                 .getLeftSidebar()
-                .openCategory(pageCategoryName)
+                .openCategory("Товари для дому")
                 .openProductsListPage("Домашній текстиль");
         var productCount = chosenProductPage.getProductListSize();
         var firstProductName = chosenProductPage.getProductNameForProduct(1);
         var lastProductName = chosenProductPage.getProductNameForProduct(productCount);
-        chosenProductPage.getMoreProducts();
+        chosenProductPage.showMoreProducts();
         var extendedProductCount = chosenProductPage.getProductListSize();
         var extendedFirstProductName = chosenProductPage.getProductNameForProduct(1);
         var extendedLastProductName = chosenProductPage.getProductNameForProduct(extendedProductCount);
