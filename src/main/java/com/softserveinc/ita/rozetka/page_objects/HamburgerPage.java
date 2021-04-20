@@ -10,7 +10,7 @@ public class HamburgerPage {
     }
 
     public ContactsPage openContactsPage() {
-        $x("(//a[@class='button button--large side-menu__button'])[3]").click();
+        $x("(//a[contains(@class, 'side-menu__button')])[3]").click();
         return new ContactsPage();
     }
 }
