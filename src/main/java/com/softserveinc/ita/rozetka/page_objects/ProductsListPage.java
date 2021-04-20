@@ -35,19 +35,17 @@ public class ProductsListPage extends BasePage {
     }
 
     public ProductsListPage openNextPage() {
-        $x("//a[@class='button button_color_gray button_size_medium" +
-                " pagination__direction pagination__direction_type_forward']").click();
+        $x("//a[contains(@class, 'pagination__direction_type_forward')]").click();
         return this;
     }
 
     public ProductsListPage openPreviousPage() {
-        $x("//a[@class='button button_color_gray button_size_medium" +
-                " pagination__direction']").click();
+        $x("//a[contains(@class, 'pagination__direction')]").click();
         return this;
     }
 
     public int getCurrentPageNumber() {
-        return parseInt($x("//a[@class='pagination__link pagination__link_state_active']").text());
+        return parseInt($x("//a[contains(@class, 'pagination__link_state_active')]").text());
     }
 
     public ProductsListPage filterProductsList(String filterName) {

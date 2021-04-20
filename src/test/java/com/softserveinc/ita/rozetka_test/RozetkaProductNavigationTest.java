@@ -35,7 +35,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
     public void testSelectProductBySearch() {
         var searchRequest = "гаманець";
         var productTitle = rozetkaHomePage
-                .getHeaderPage()
+                .getHeader()
                 .searchFor(searchRequest)
                 .openProductByNumber(1)
                 .getProductTitle();
