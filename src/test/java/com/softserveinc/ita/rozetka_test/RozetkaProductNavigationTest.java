@@ -52,12 +52,12 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .openProductsListPage(productCategoryName);
         assertEquals(productListPage.getPageTitle(), productCategoryName, format("Title should be '%s'", productCategoryName));
         var expectedProductType = "Ноутбук";
-        assertTrue(productListPage.getProductNameForProduct(1).contains(expectedProductType),
+        assertTrue(productListPage.getProductName(1).contains(expectedProductType),
                 format("First product should be '%s'", expectedProductType));
         var productCount = productListPage.getProductListSize();
-        assertTrue(productListPage.getProductNameForProduct(productCount / 2).contains(expectedProductType),
+        assertTrue(productListPage.getProductName(productCount / 2).contains(expectedProductType),
                 format("Middle product should be '%s'", expectedProductType));
-        assertTrue(productListPage.getProductNameForProduct(productCount).contains(expectedProductType),
+        assertTrue(productListPage.getProductName(productCount).contains(expectedProductType),
                 format("Last product should be '%s'", expectedProductType));
     }
 
@@ -106,12 +106,12 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .openCategory("Товари для дому")
                 .openProductsListPage("Домашній текстиль");
         var productCount = chosenProductPage.getProductListSize();
-        var firstProductName = chosenProductPage.getProductNameForProduct(1);
-        var lastProductName = chosenProductPage.getProductNameForProduct(productCount);
+        var firstProductName = chosenProductPage.getProductName(1);
+        var lastProductName = chosenProductPage.getProductName(productCount);
         chosenProductPage.showMoreProducts();
         var extendedProductCount = chosenProductPage.getProductListSize();
-        var extendedFirstProductName = chosenProductPage.getProductNameForProduct(1);
-        var extendedLastProductName = chosenProductPage.getProductNameForProduct(extendedProductCount);
+        var extendedFirstProductName = chosenProductPage.getProductName(1);
+        var extendedLastProductName = chosenProductPage.getProductName(extendedProductCount);
         assertTrue(firstProductName.equals(extendedFirstProductName),
                 "First product name should be the same to the first product name after the extended page");
         assertTrue(!lastProductName.equals(extendedLastProductName),

@@ -24,11 +24,11 @@ public class ProductsListPage extends BasePage {
         return this;
     }
 
-    public String getProductNameForProduct(int number) {
+    public String getProductName(int number) {
         return $x(format("(//span[@class='goods-tile__title'])[%d]", number)).text();
     }
 
-    public int getProductPriceForProduct(int number) {
+    public int getProductPrice(int number) {
         return parseInt($x(format("(//span[@class='goods-tile__price-value'])[%d]", number))
                 .text()
                 .replaceAll(" ", ""));
