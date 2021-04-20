@@ -15,5 +15,4 @@ public enum SortingOption {
     RANK("6: rank");
 
     private final String sortingOptionValue;
-
 }

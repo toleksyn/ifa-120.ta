@@ -4,14 +4,12 @@ import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import com.softserveinc.ita.rozetka.page_objects.ProductPageTab;
 import com.softserveinc.ita.rozetka.page_objects.SortingOption;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static java.lang.String.format;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-
-import static java.lang.String.format;
 
 public class RozetkaProductNavigationTest extends TestRunner {
 
@@ -43,7 +41,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .searchFor(productName)
                 .openProductByNumber(1)
                 .getProductTitle();
-        assertTrue(productTitle.contains(productName), "Product title should contain search request");
+        assertTrue(productTitle.contains(productName), "Incorrect product title");
     }
 
     @Test
@@ -91,7 +89,8 @@ public class RozetkaProductNavigationTest extends TestRunner {
         var firstProductPrice = productListPage.getProductPriceForProduct(1);
         var lastProductPrice = productListPage.getProductPriceForProduct(productsAmount);
         var middleProductPrice = productListPage.getProductPriceForProduct(productsAmount / 2);
-        assertTrue(middleProductPrice < lastProductPrice && firstProductPrice < middleProductPrice);
+        assertTrue(middleProductPrice < lastProductPrice && firstProductPrice < middleProductPrice,
+                "Incorrect products sorting by price");
     }
 }
 
