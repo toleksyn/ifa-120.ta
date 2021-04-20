@@ -24,11 +24,11 @@ public class ProductsListPage extends BasePage {
         return this;
     }
 
-    public String getProductNameForProduct(int number) {
+    public String getProductName(int number) {
         return $x(format("(//span[@class='goods-tile__title'])[%d]", number)).text();
     }
 
-    public int getProductPriceForProduct(int number) {
+    public int getProductPrice(int number) {
         return parseInt($x(format("(//span[@class='goods-tile__price-value'])[%d]", number))
                 .text()
                 .replaceAll(" ", ""));
@@ -45,7 +45,7 @@ public class ProductsListPage extends BasePage {
     }
 
     public int getCurrentPageNumber() {
-        return parseInt($x("//a[@class='pagination__link pagination__link_state_active']").text());
+        return parseInt($x("//a[contains(@class, 'pagination__link_state_active')]").text());
     }
 
     public ProductsListPage filterProductsList(String filterName) {
@@ -60,6 +60,11 @@ public class ProductsListPage extends BasePage {
 
     public String getPageTitle() {
         return $x("//h1[@class='catalog-heading']").text();
+    }
+
+    public ProductsListPage showMoreProducts() {
+        $x("//a[@class='show-more show-more--horizontal']").click();
+        return this;
     }
 
     public AgeConfirmationPopup getAgeConfirmationPopup() {
