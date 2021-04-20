@@ -49,7 +49,7 @@ public class BasketPage {
     }
 
     public BasketPage restoreDeletedProduct(int productIndex) {
-        $x(String.format("(//svg[@xlink:href='#icon-basket'])[%d]", productIndex));
+        $x(String.format("(//use[@button='buy-button lite-tile__buy-button'])[%d]", productIndex)).click();
         return this;
     }
 
