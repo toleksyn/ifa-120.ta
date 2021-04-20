@@ -23,7 +23,6 @@ public class OrderTest extends TestRunner {
                 .openProductByNumber(1)
                 .addProductToBasket()
                 .openOrderPage();
-
     }
 
     @Test

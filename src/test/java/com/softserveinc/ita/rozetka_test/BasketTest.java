@@ -19,14 +19,9 @@ public class BasketTest extends TestRunner {
                 .addProductToBasket();
     }
 
+    //In progress
     @Test
     public void testRestoreDeletedOrder() {
-        openBasketPage.deleteGoods(0);
-//        var deletedGoodsLink = openBasketPage.getDeletedFromBasketGoodsLink(0);
-//        var restoredGoodsLink = openBasketPage.restoreDeletedGoods(0).getGoodsInBasketLink(0);
 
-        assertTrue(openBasketPage.getDeletedFromBasketGoodsLink(0).equals(
-                openBasketPage.restoreDeletedGoods(0).getGoodsInBasketLink(0)
-        ));
     }
 }
