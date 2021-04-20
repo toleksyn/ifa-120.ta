@@ -22,12 +22,11 @@ public class OrderTest extends TestRunner {
                 .addProductToBasket()
                 .openOrderPage();
 
-        assertEquals(orderPage.getHeaderText(), "Оформлення замовлення", "Page header should be" +
-                " 'Оформлення замовлення'");
+        assertEquals(orderPage.getHeaderText(), "Оформлення замовлення", "Incorrect page header");
     }
 
     @Test
-    public void testEditOrder() throws Exception {
+    public void testEditOrder() {
         basketPage = orderPage.startEditingProductsInBasket();
 
         var orderProductCount = basketPage.getProductCount(1);
@@ -38,10 +37,10 @@ public class OrderTest extends TestRunner {
         var changedOrderProductSum = basketPage.getOrderProductSum(1);
 
         basketPage.openOrderPage();
-        assertEquals(changedOrderProductCount, orderProductCount * 2, "the new count for the product " +
-                "should be twice as much as the previous one");
-        assertEquals(changedOrderProductSum, orderProductSum * 2, "new amount for the product" +
-                " should be twice as much as the previous one");
+        assertEquals(changedOrderProductCount, orderProductCount * 2,
+                "the new count for the product should be twice as much as the previous one");
+        assertEquals(changedOrderProductSum, orderProductSum * 2,
+                "new amount for the product should be twice as much as the previous one");
 
         orderProductCount = changedOrderProductCount;
         orderProductSum = changedOrderProductSum;
@@ -52,9 +51,9 @@ public class OrderTest extends TestRunner {
         changedOrderProductSum = basketPage.getOrderProductSum(1);
 
         basketPage.openOrderPage();
-        assertEquals(changedOrderProductCount, orderProductCount / 2, "the new count for the product " +
-                "should be twice less than the previous one");
-        assertEquals(changedOrderProductSum, orderProductSum / 2, "the new amount for the product " +
-                "should be twice less than the previous one");
+        assertEquals(changedOrderProductCount, orderProductCount / 2,
+                "the new count for the product should be twice less than the previous one");
+        assertEquals(changedOrderProductSum, orderProductSum / 2,
+                "the new amount for the product should be twice less than the previous one");
     }
 }

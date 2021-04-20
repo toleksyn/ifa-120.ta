@@ -12,35 +12,32 @@ public class BasketPage {
     }
 
     public OrderPage openOrderPage() {
-        $x("//*[@class='button button_size_large button_color_green cart-receipt__submit']").click();
+        $x("//*[contains(@class,'cart-receipt__submit')]").click();
         return new OrderPage();
     }
 
     public BasketPage increaseProductCount(int productNumber) {
-        var productSum = $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).text();
-        $x(format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[2])[%d]",
+        var preIncreaseProductSum = $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).text();
+        $x(format("((//*[contains(@class, 'cart-counter__button')])[2])[%d]",
                 productNumber)).click();
-        /* checking var "productSum" in the next statement have been added to ensure updating information in the basket window */
-        $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).shouldNotHave(text(productSum));
+        $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).shouldNotHave(text(preIncreaseProductSum));
         return this;
     }
 
-    public BasketPage decreaseProductCount(int productNumber) throws Exception {
+    public BasketPage decreaseProductCount(int productNumber) {
         if (!isDecreaseProductCountEnabled(productNumber)) {
-            throw new Exception("should not further reduction in the count of product items");
+            throw new IllegalStateException("product count decreasing is disabled");
         }
 
-        var productSum = $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).text();
-        $x(format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[1])[%d]",
+        var preDecreaseProductSum = $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).text();
+        $x(format("((//*[contains(@class, 'cart-counter__button')])[1])[%d]",
                 productNumber)).click();
-        /* checking var "productSum" in the next statement have been added to ensure updating information in the basket window */
-        $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).shouldNotHave(text(productSum));
+        $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).shouldNotHave(text(preDecreaseProductSum));
         return this;
     }
 
     public int getProductCount(int productNumber) {
-        return parseInt($x(format("(//*[@class='cart-counter__input ng-untouched " +
-                "ng-pristine ng-valid'])[%d]", productNumber)).val());
+        return parseInt($x(format("(//*[contains(@class, 'cart-counter__input')])[%d]", productNumber)).val());
     }
 
     public int getOrderProductSum(int productNumber) {
@@ -49,7 +46,7 @@ public class BasketPage {
     }
 
     public boolean isDecreaseProductCountEnabled(int productNumber) {
-        return $x(format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[1])[%d]",
+        return $x(format("((//*[contains(@class, 'cart-counter__button')])[1])[%d]",
                 productNumber)).isEnabled();
     }
 }
