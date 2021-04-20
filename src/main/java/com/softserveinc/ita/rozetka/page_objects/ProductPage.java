@@ -47,4 +47,9 @@ public class ProductPage extends BasePage {
         tabButton.click();
         return this;
     }
+
+    public HomePage openHomePageByLogo() {
+        $x("//*[@class='header__logo']").click();
+        return new HomePage();
+    }
 }

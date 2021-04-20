@@ -28,7 +28,8 @@ public class OrderTest extends TestRunner {
     @Test
     public void testDeletingProductFromBasket() {   // Popup basket
         basketPage = orderPage
-                .openHomePage()
+                .openProductPage(1)
+                .openHomePageByLogo()
                 .openBasketPage()
                 .deleteAllProducts();
         assertTrue(basketPage.isBasketEmpty(), "Basket should be empty");

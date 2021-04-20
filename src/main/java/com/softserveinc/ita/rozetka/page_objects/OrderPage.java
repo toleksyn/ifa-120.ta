@@ -1,6 +1,7 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.switchTo;
 import static java.lang.String.format;
 
 public class OrderPage {
@@ -35,11 +36,9 @@ public class OrderPage {
         return this;
     }
 
-    public HomePage openHomePage() {
-        $x("//button[@class='button button_type_link']")
-                .click();
-        $x("//article[@class='text']/p/a")
-                .click();
-        return new HomePage();
+    public ProductPage openProductPage(int productNumber) {
+        $x(format("(//*[@class='checkout-product__title-product'])[%d]", productNumber)).click();
+        switchTo().window(1);
+        return new ProductPage();
     }
 }

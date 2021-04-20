@@ -51,23 +51,19 @@ public class BasketPage {
         var deleteButtonLocator = "//*[contains(@class,'k c')]";
         if (getUniqueProductsAmount() > 1) {
             var priceBeforeDeleting = $x(totalOrderPriceLocator).text();
-            $x(format("//button[@id='cartProductActions%d']", productNumber - 1))
-                    .click();
-            $x(deleteButtonLocator)
-                    .click();
+            $x(format("//button[@id='cartProductActions%d']", productNumber - 1)).click();
+            $x(deleteButtonLocator).click();
             $x(totalOrderPriceLocator).shouldNotHave(text(priceBeforeDeleting));
         } else if (getUniqueProductsAmount() == 1) {
-            $x(format("//button[@id='cartProductActions0']"))
-                    .click();
-            $x(deleteButtonLocator)
-                    .click();
+            $x(format("//button[@id='cartProductActions0']")).click();
+            $x(deleteButtonLocator).click();
             $x("//div[@class='cart-dummy']").shouldBe(visible);
         }
         return this;
     }
 
     public boolean isBasketEmpty() {
-        return ($x("//div[@class='cart-dummy']").exists());
+        return $x("//div[@class='cart-dummy']").exists();
     }
 
     public BasketPage deleteAllProducts() {
@@ -89,10 +85,14 @@ public class BasketPage {
 
     public int getTotalOrderSum() {
         if (!isBasketEmpty()) {
-            return parseInt($x("//*[contains(@class,'m-p')]").text()
-                    .replaceAll("[^0-9]", ""));
+            return parseInt($x("//*[contains(@class,'m-p')]").text().replaceAll("[^0-9]", ""));
         } else {
             return 0;
         }
+    }
+
+    public ProductPage openProductPage(int productNumber) {
+        $x(format("(//*[@class='cart-product__title'])[%d]", productNumber)).click();
+        return new ProductPage();
     }
 }
