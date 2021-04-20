@@ -4,6 +4,7 @@ import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import com.softserveinc.ita.rozetka.page_objects.ProductPageTab;
 import com.softserveinc.ita.rozetka.page_objects.SortingOption;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -83,7 +84,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
     public void testSortByPrice() {
         var productListPage = rozetkaHomePage
                 .getHeaderPage()
-                .searchFor("цукерки")
+                .searchFor("сокира")
                 .setSortingType(SortingOption.CHEAP);
         var productsAmount = productListPage.getProductListSize();
         var firstProductPrice = productListPage.getProductPriceForProduct(1);
@@ -91,6 +92,40 @@ public class RozetkaProductNavigationTest extends TestRunner {
         var middleProductPrice = productListPage.getProductPriceForProduct(productsAmount / 2);
         assertTrue(middleProductPrice < lastProductPrice && firstProductPrice < middleProductPrice,
                 "Incorrect products sorting by price");
+    }
+
+    @Test
+    public void testViewedProducts() {
+        var productPage = rozetkaHomePage
+                .getHeaderPage()
+                .searchFor("галстук");
+        var productName = productPage.getProductNameForProduct(1);
+        var firstViewedProductName = productPage
+                .openProductByNumber(1)
+                .getViewedProductName(1);
+        Assert.assertTrue(productName.contains(firstViewedProductName), "First viewed product name is incorrect");
+    }
+
+    @Test
+    public void testPageSwitching() {
+        var productListPage = rozetkaHomePage
+                .getHeaderPage()
+                .searchFor("мисливський ніж");
+        var productsAmount = productListPage.getProductListSize();
+        var firstProductName = productListPage.getProductNameForProduct(1);
+        var lastProductName = productListPage.getProductNameForProduct(productsAmount);
+        var middleProductName = productListPage.getProductNameForProduct(productsAmount/2);
+        var currentPageNumber = productListPage.getCurrentPageNumber();
+        resultsPage.openNextResultPage();
+        Assert.assertFalse(resultsPage.getResultNameByNumber(1).equals(firstResultName) &&
+                resultsPage.getResultNameByNumber(lastNumber).equals(lastResultName) &&
+                resultsPage.getResultNameByNumber(lastNumber / 2).equals(middleResultName) &&
+                currentPageNumber == resultsPage.getCurrentPageNumber());
+        resultsPage.openPreviousResultPage();
+        Assert.assertTrue(resultsPage.getResultNameByNumber(1).equals(firstResultName) &&
+                resultsPage.getResultNameByNumber(lastNumber).equals(lastResultName) &&
+                resultsPage.getResultNameByNumber(lastNumber / 2).equals(middleResultName) &&
+                currentPageNumber == resultsPage.getCurrentPageNumber());
     }
 }
 
