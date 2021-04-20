@@ -122,9 +122,9 @@ public class RozetkaProductNavigationTest extends TestRunner {
         var currentPageNumber = productListPage.getCurrentPageNumber();
         productListPage.openNextPage();
         assertFalse(productListPage.getProductName(1).equals(firstProductName) &&
-                productListPage.getProductName(productsAmount).equals(lastProductName) &&
-                productListPage.getProductName(productsAmount/2).equals(middleProductName) &&
-                currentPageNumber == productListPage.getCurrentPageNumber(),
+                        productListPage.getProductName(productsAmount).equals(lastProductName) &&
+                        productListPage.getProductName(productsAmount/2).equals(middleProductName) &&
+                        currentPageNumber == productListPage.getCurrentPageNumber(),
                 "Next page products are incorrect");
         productListPage.openPreviousPage();
         assertTrue(productListPage.getProductName(1).equals(firstProductName) &&
