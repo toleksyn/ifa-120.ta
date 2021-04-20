@@ -29,8 +29,13 @@ public class OrderTest extends TestRunner {
 
     @Test
     public void testShippingAddressInsertion() {
-        var shippingAddress = new ShippingAddress("Петренко", "Вася", "Львів", "0997003330");
-
+        var shippingAddress = ShippingAddress
+                .builder()
+                .city("Львів")
+                .name("Вася")
+                .surname("Петренко")
+                .phone("0997003330")
+                .build();
         var isConfirmOrderButtonDisplayed = orderPage
                 .setShippingAddress(shippingAddress)
                 .isConfirmOrderButtonDisplayed();

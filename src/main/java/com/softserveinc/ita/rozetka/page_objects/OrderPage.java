@@ -38,11 +38,31 @@ public class OrderPage {
     }
 
     public OrderPage setShippingAddress(ShippingAddress shippingAddress) {
-        $x("//div[@class='form__row js-surname']/input").setValue(shippingAddress.getSurname());
-        $x("//div[@class='form__row js-name']/input").setValue(shippingAddress.getName());
-        $x("//input[@type='tel']").setValue(shippingAddress.getPhone());
+        setName(shippingAddress.getName())
+                .setSurName(shippingAddress.getSurname())
+                .setPhoneNumber(shippingAddress.getPhone())
+                .setCity(shippingAddress.getCity());
+        return this;
+    }
+
+    private OrderPage setName(String name) {
+        $x("//div[@class='form__row js-name']/input").setValue(name);
+        return this;
+    }
+
+    private OrderPage setSurName(String surName) {
+        $x("//div[@class='form__row js-surname']/input").setValue(surName);
+        return this;
+    }
+
+    private OrderPage setPhoneNumber(String phoneNumber) {
+        $x("//input[@type='tel']").setValue(phoneNumber);
+        return this;
+    }
+
+    private OrderPage setCity(String city) {
         $x("//div[@class='form__row js-city']//input[@name='search']")
-                .setValue(shippingAddress.getCity())
+                .setValue(city)
                 .click();
         $x("//div[@class='form__row js-city']//li[1]").click();
         return this;
