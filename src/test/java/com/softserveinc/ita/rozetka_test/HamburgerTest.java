@@ -7,6 +7,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.title;
+import static java.lang.String.*;
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class HamburgerTest extends TestRunner {
@@ -24,7 +26,16 @@ public class HamburgerTest extends TestRunner {
     @Test
     public void testLanguageChanging() {
         var homePage = hamburgerPage.changeLanguage();
-        assertTrue(title().contains("Интернет-магазин"), "Title should contains 'Интернет-магазин'");
+        var expectedTitle = "Интернет-магазин";
+        assertTrue(title().contains(expectedTitle), format("Title should contains '%s'", expectedTitle));
         assertTrue(homePage.getHeaderPage().isSearchButtonVisible(), "Search button should be visible");
+    }
+
+    @Test
+    public void testContactsButton() {
+        var contactsPage = hamburgerPage.openContactsPage();
+        var expectedTitle = "Контакти";
+        assertEquals(contactsPage.getPageTitle(), expectedTitle, format("Page title should be '%s'", expectedTitle));
+        assertTrue(contactsPage.isContactsSectionVisible(), "Contacts section should be visible");
     }
 }

@@ -8,4 +8,9 @@ public class HamburgerPage {
         $x("(//a[@class='lang__link'])[2]").click();
         return new HomePage();
     }
+
+    public ContactsPage openContactsPage() {
+        $x("(//a[contains(@href, 'contacts')])[1]").click();
+        return new ContactsPage();
+    }
 }
