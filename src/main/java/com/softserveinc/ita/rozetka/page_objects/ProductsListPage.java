@@ -59,4 +59,10 @@ public class ProductsListPage extends BasePage {
         $x(format("//span[@class='goods-tile__title'and contains(text(), '%s')]", productName)).click();
         return new ProductPage();
     }
+
+    public ProductsListPage filterProductsListByFilterSearch(String filterName, String filterKeyword){
+        $x(format("//div[@data-filter-name='%s']//input[@name='searchline']",filterName)).setValue(filterKeyword);
+        $x(format("//div[@data-filter-name='%s']//li[@class='checkbox-filter__item']/a",filterName)).click();
+        return new ProductsListPage();
+    }
 }

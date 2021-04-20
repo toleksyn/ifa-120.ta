@@ -2,7 +2,6 @@ package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
-import com.softserveinc.ita.rozetka.page_objects.ProductPageTab;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -42,29 +41,6 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .getProductTitle();
         assertTrue(productTitle.contains(searchRequest),
                 "Product title should contain search request");
-    }
-
-    @Test
-    public void testPossibilityViewingProductDescriptions() {
-        var productPage = rozetkaHomePage
-                .getLeftSidebar()
-                .openCategory("Ноутбуки")
-                .openProductsListPage("Планшети")
-                .openProductByNumber(1)
-                .openProductTab(ProductPageTab.CHARACTERISTICS);
-        var characteristicsListSize = productPage
-                .getCharacteristicsTexts()
-                .size();
-        assertTrue(characteristicsListSize > 0, "product characteristic description" +
-                " should contain at least 1 row");
-        var productTabTitle = productPage
-                .openProductTab(ProductPageTab.COMMENTS)
-                .getProductTabTitle();
-        assertTrue(productTabTitle.contains("Відгуки"), "incorrect tab's title");
-        var questionsRowsAmount = productPage
-                .openProductTab(ProductPageTab.QUESTIONS)
-                .getQuestionListSize();
-        assertTrue(questionsRowsAmount > 0, "list size  should contain at least 1 text field");
     }
 }
 
