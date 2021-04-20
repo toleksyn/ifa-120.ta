@@ -24,8 +24,7 @@ public class CategoryPage extends BasePage {
     }
 
     public ProductsListPage openProductsListPage(String productCategoryName) {
-        $x(format("//a[@class='tile-cats__heading tile-cats__heading_type_center'" +
-                " and contains(text(), '%s')]", productCategoryName)).click();
+        $x(format("//a[contains(@class, 'tile-cats__heading') and contains(text(), '%s')]", productCategoryName)).click();
         return new ProductsListPage();
     }
 
