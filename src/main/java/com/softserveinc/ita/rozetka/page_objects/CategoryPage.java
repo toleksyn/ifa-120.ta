@@ -1,6 +1,9 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import com.codeborne.selenide.Selenide;
+
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.title;
 import static java.lang.String.format;
 
 public class CategoryPage extends BasePage {
@@ -22,8 +25,7 @@ public class CategoryPage extends BasePage {
     }
 
     public ProductsListPage openProductsListPage(String productCategoryName) {
-        $x(format("//a[@class='tile-cats__heading tile-cats__heading_type_center'" +
-                " and contains(text(), '%s')]", productCategoryName)).click();
+        $x(format("//a[contains(@class, 'tile-cats__heading') and contains(text(), '%s')]", productCategoryName)).click();
         return new ProductsListPage();
     }
 
@@ -31,4 +33,7 @@ public class CategoryPage extends BasePage {
         return $x("//h1[@class='portal__heading']").text();
     }
 
+    public String getPageTitle() {
+        return title();
+    }
 }
