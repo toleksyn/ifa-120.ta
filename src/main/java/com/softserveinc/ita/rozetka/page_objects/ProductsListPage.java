@@ -19,8 +19,8 @@ public class ProductsListPage extends BasePage {
         return new ProductPage();
     }
 
-    public ProductsListPage setSortingType(String sortingTypeKey) {
-        $x("//select").selectOptionContainingText(sortingTypeKey);
+    public ProductsListPage setSortingType(SortingOption sortingOption) {
+        $x("//select").selectOptionByValue(sortingOption.getSortingOptionValue());
         return this;
     }
 

@@ -3,6 +3,7 @@ package com.softserveinc.ita.rozetka_test;
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import com.softserveinc.ita.rozetka.page_objects.ProductPageTab;
+import com.softserveinc.ita.rozetka.page_objects.SortingOption;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -78,6 +79,19 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 format("Middle product should be '%s'", expectedProductType));
         assertTrue(productListPage.getProductNameForProduct(productCount).contains(expectedProductType),
                 format("Last product should be '%s'", expectedProductType));
+    }
+
+    @Test
+    public void testSortByPrice() {
+        var productListPage = rozetkaHomePage
+                .getHeaderPage()
+                .searchFor("цукерки")
+                .setSortingType(SortingOption.CHEAP);
+        var productsAmount = productListPage.getProductListSize();
+        var firstProductPrice = productListPage.getProductPriceForProduct(1);
+        var lastProductPrice = productListPage.getProductPriceForProduct(productsAmount);
+        var middleProductPrice = productListPage.getProductPriceForProduct(productsAmount / 2);
+        assertTrue(middleProductPrice < lastProductPrice && firstProductPrice < middleProductPrice);
     }
 }
 
