@@ -1,7 +1,6 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-import com.codeborne.selenide.CollectionCondition;
-
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.Integer.parseInt;
@@ -11,7 +10,7 @@ public class ProductsListPage extends BasePage {
 
     public int getProductListSize() {
         return $$x("//span[@class='goods-tile__title']")
-                .shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1))
+                .shouldHave(sizeGreaterThanOrEqual(1))
                 .size();
     }
 
@@ -59,5 +58,9 @@ public class ProductsListPage extends BasePage {
     public ProductPage openProductByName(String productName) {
         $x(format("//span[@class='goods-tile__title'and contains(text(), '%s')]", productName)).click();
         return new ProductPage();
+    }
+
+    public String getPageTitle() {
+        return $x("//h1[@class='catalog-heading']").text();
     }
 }

@@ -20,7 +20,7 @@ public class OrderPage {
         return new BasketPage();
     }
 
-    public String getPageTitle() {
+    public String getHeaderText() {
         return $x("//h1[@class='checkout-heading']").text();
     }
 

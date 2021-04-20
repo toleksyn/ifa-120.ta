@@ -1,7 +1,5 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-import com.codeborne.selenide.Condition;
-
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
@@ -19,29 +17,33 @@ public class BasketPage {
         return new OrderPage();
     }
 
-    public BasketPage increaseProductCount(int numberOfProduct) {
-        $x(format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[2])[%d]", numberOfProduct)).click();
+    public BasketPage increaseProductCount(int productNumber) {
+        $x(format("((//*[@class='button button_color_white" +
+                " button_size_medium cart-counter__button'])[2])[%d]", productNumber)).click();
         return this;
     }
 
-    public BasketPage decreaseProductCount(int numberOfProduct) {
-        $x(format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[1])[%d]", numberOfProduct)).click();
+    public BasketPage decreaseProductCount(int productNumber) {
+        $x(format("((//*[@class='button button_color_white" +
+                " button_size_medium cart-counter__button'])[1])[%d]", productNumber)).click();
         return this;
     }
 
-    public int getProductCount(int numberOfProduct) {
-        $x(format("(//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid'])[%d]", numberOfProduct)).click();
-        return parseInt($x(format("(//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid'])[%d]", numberOfProduct))
-                .shouldBe(not(Condition.empty))
+    public int getProductCount(int productNumber) {
+        $x(format("(//*[@class='cart-counter__input" +
+                " ng-untouched ng-pristine ng-valid'])[%d]", productNumber)).click();
+        return parseInt($x(format("(//*[@class='cart-counter__input" +
+                " ng-untouched ng-pristine ng-valid'])[%d]", productNumber))
+                .shouldBe(not(empty))
                 .val());
     }
 
-    public int getOrderProductSum(int numberOfProduct) {
-        $x(format("(//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid'])[%d]", numberOfProduct)).click();
-        String ProductPrice = ($x(format("(//*[@class='cart-product__price'])[%d]", numberOfProduct))
-                .shouldBe(not(Condition.empty))
+    public int getOrderProductSum(int productNumber) {
+        $x(format("(//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid'])[%d]", productNumber)).click();
+        var productPrice = ($x(format("(//*[@class='cart-product__price'])[%d]", productNumber))
+                .shouldBe(not(empty))
                 .text());
-        return parseInt(ProductPrice.replaceAll("[^0-9]", ""));
+        return parseInt(productPrice.replaceAll("[^0-9]", ""));
     }
 
     public BasketPage deleteProduct(int numberOfProduct) {
