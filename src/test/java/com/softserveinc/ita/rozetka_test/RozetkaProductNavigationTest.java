@@ -45,38 +45,38 @@ public class RozetkaProductNavigationTest extends TestRunner {
     @Test
     public void testSelectProductByCatalog() {
         var pageCategoryName = "Ноутбуки";
-        var chosenCategoryByCatalog = rozetkaHomePage
+        var chosenCategoryPageByCatalog = rozetkaHomePage
                 .getLeftSidebar()
                 .openCategory(pageCategoryName);
         var categoryTitle = "Комп'ютери";
-        assertTrue(chosenCategoryByCatalog.getCategoryTitle().contains(categoryTitle),
+        assertTrue(chosenCategoryPageByCatalog.getCategoryTitle().contains(categoryTitle),
                 "Incorrect page title");
-        var chosenProduct = chosenCategoryByCatalog
+        var chosenProductPage = chosenCategoryPageByCatalog
                 .openProductsListPage(pageCategoryName)
                 .openProductByName("Ноутбук Apple MacBook Air 13");
-        var isProductTitleCorrect = chosenProduct
+        var isProductTitleCorrect = chosenProductPage
                 .getProductTitle()
                 .contains("Ноутбук Apple MacBook");
         assertTrue(isProductTitleCorrect, "Incorrect product title");
-        var chosenCategoryByLink = chosenProduct
+        var chosenCategoryPageByLink = chosenProductPage
                 .openCategoryPageByName(pageCategoryName.toLowerCase());
-        assertTrue(chosenCategoryByLink.getCategoryTitle().contains(categoryTitle),
+        assertTrue(chosenCategoryPageByLink.getCategoryTitle().contains(categoryTitle),
                 "Incorrect page title");
     }
 
     @Test
     public void testCompareProductPrices() {
-        var catalogCategoryItem = rozetkaHomePage
+        var catalogCategoryPage = rozetkaHomePage
                 .getLeftSidebar()
-                .openSalesCategory();
-        var isPageTitleCorrect = catalogCategoryItem
+                .openCategory("Знижки");
+        var isPageTitleCorrect = catalogCategoryPage
                 .getPageTitle()
                 .contains("Знижки");
         assertTrue(isPageTitleCorrect, "Incorrect page title");
-        var productPage = catalogCategoryItem.openProductByNumber(1);
-        var productWithPreDiscountPrice = productPage.getPreDiscountPrice();
-        var productWithDiscountPrice = productPage.getDiscountPrice();
-        assertTrue(productWithPreDiscountPrice > productWithDiscountPrice,
+        var productPage = catalogCategoryPage.openProductByNumber(1);
+        var preDiscountPrice = productPage.getPreDiscountPrice();
+        var discountPrice = productPage.getDiscountPrice();
+        assertTrue(preDiscountPrice > discountPrice,
                 "Pre discount price should be bigger than current price with discount");
     }
 }
