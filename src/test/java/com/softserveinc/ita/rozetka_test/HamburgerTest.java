@@ -18,5 +18,4 @@ public class HamburgerTest extends TestRunner {
                 .getHeaderPage()
                 .openHamburgerPage();
     }
-
 }
