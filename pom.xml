@@ -15,6 +15,8 @@
         <selenium.java.version>3.141.59</selenium.java.version>
         <chrome.driver.version>3.141.59</chrome.driver.version>
         <selenide.version>5.20.1</selenide.version>
+        <org.projectlombok.version>1.18.20</org.projectlombok.version>
+        <io.qameta.allure.version>2.10.0</io.qameta.allure.version>
     </properties>
 
     <dependencies>
@@ -37,6 +39,17 @@
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
             <version>${selenide.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${org.projectlombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-maven</artifactId>
+            <version>${io.qameta.allure.version}</version>
         </dependency>
     </dependencies>
 
