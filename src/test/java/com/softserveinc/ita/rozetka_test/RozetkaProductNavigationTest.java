@@ -35,7 +35,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
     public void testSelectProductBySearch() {
         var searchRequest = "гаманець";
         var productTitle = rozetkaHomePage
-                .getHeaderPage()
+                .getHeader()
                 .searchFor(searchRequest)
                 .openProductByNumber(1)
                 .getProductTitle();
@@ -52,12 +52,12 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .openProductsListPage(productCategoryName);
         assertEquals(productListPage.getPageTitle(), productCategoryName, format("Title should be '%s'", productCategoryName));
         var expectedProductType = "Ноутбук";
-        assertTrue(productListPage.getProductNameForProduct(1).contains(expectedProductType),
+        assertTrue(productListPage.getProductName(1).contains(expectedProductType),
                 format("First product should be '%s'", expectedProductType));
         var productCount = productListPage.getProductListSize();
-        assertTrue(productListPage.getProductNameForProduct(productCount / 2).contains(expectedProductType),
+        assertTrue(productListPage.getProductName(productCount / 2).contains(expectedProductType),
                 format("Middle product should be '%s'", expectedProductType));
-        assertTrue(productListPage.getProductNameForProduct(productCount).contains(expectedProductType),
+        assertTrue(productListPage.getProductName(productCount).contains(expectedProductType),
                 format("Last product should be '%s'", expectedProductType));
     }
 }
