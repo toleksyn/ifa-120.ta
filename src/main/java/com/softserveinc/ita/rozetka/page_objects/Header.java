@@ -16,7 +16,6 @@ public class Header {
     }
 
     public boolean isSearchButtonVisible() {
-        return $x("//button[@class='button button_color_green button_size_medium search-form__submit']")
-                .isDisplayed();
+        return $x("//button[contains(@class, 'search-form__submit')]").isDisplayed();
     }
 }
