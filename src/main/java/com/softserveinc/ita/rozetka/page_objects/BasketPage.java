@@ -17,9 +17,10 @@ public class BasketPage {
     }
 
     public BasketPage increaseProductCount(int productNumber) {
-        var preIncreaseProductSum = $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).text();
+        var preIncreaseProductSumText = $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).text();
         $x(format("((//*[contains(@class, 'cart-counter__button')])[2])[%d]", productNumber)).click();
-        $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).shouldNotHave(text(preIncreaseProductSum));
+        // checking var "preIncreaseProductSumText" in the next statement have been added to ensure updating information in the basket window
+        $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).shouldNotHave(text(preIncreaseProductSumText));
         return this;
     }
 
@@ -28,9 +29,10 @@ public class BasketPage {
             throw new IllegalStateException("Product count decreasing is disabled");
         }
 
-        var preDecreaseProductSum = $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).text();
+        var preDecreaseProductSumText = $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).text();
         $x(format("((//*[contains(@class, 'cart-counter__button')])[1])[%d]", productNumber)).click();
-        $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).shouldNotHave(text(preDecreaseProductSum));
+        // checking var "preDecreaseProductSumText" in the next statement have been added to ensure updating information in the basket window
+        $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).shouldNotHave(text(preDecreaseProductSumText));
         return this;
     }
 
