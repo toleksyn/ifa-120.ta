@@ -42,13 +42,19 @@ public class BasketPage {
         return Integer.parseInt(ProductPrice.replace("₴", "").replace(" ", ""));
     }
 
+    public BasketPage deleteGoods(int indexOfGoods) {
+        $x(String.format("//button[@aria-controls='cartProductActions[%d]']", indexOfGoods)).click();
+        $x("//button[@class='button button--medium button--with-icon button--link context-menu-actions__button']").click();
+        return new BasketPage();
+    }
+
     public BasketPage restoreDeletedGoods(int indexOfGoods) {
         $$x("//app-buy-button[@class='toOrder']").get(indexOfGoods).click();
         return new BasketPage();
     }
 
     public String getDeletedFromBasketGoodsLink(int indexOfGoods) {
-        return $$x("//a[@class='lite-tile__title']").get(indexOfGoods).getAttribute("href");
+        return $$x("//a[@class='lite-tile__title']").get(indexOfGoods).attr("href");
     }
 
     public String getGoodsInBasketLink(int indexOfGoods) {
