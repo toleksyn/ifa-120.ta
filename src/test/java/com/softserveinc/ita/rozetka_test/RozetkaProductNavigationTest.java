@@ -98,5 +98,25 @@ public class RozetkaProductNavigationTest extends TestRunner {
         assertTrue(preDiscountPrice > discountPrice,
                 "Pre discount price should be bigger than current price with discount");
     }
+
+    @Test
+    public void testShowMoreProducts() {
+        var pageCategoryName = "Товари для дому";
+        var chosenProductPage = rozetkaHomePage
+                .getLeftSidebar()
+                .openCategory(pageCategoryName)
+                .openProductsListPage("Домашній текстиль");
+        var productCount = chosenProductPage.getProductListSize();
+        var firstProductName = chosenProductPage.getProductNameForProduct(1);
+        var lastProductName = chosenProductPage.getProductNameForProduct(productCount);
+        chosenProductPage.getMoreProducts();
+        var extendedProductCount = chosenProductPage.getProductListSize();
+        var extendedFirstProductName = chosenProductPage.getProductNameForProduct(1);
+        var extendedLastProductName = chosenProductPage.getProductNameForProduct(extendedProductCount);
+        assertTrue(firstProductName.equals(extendedFirstProductName),
+                "First product name should be the same to the first product name after the extended page");
+        assertTrue(!lastProductName.equals(extendedLastProductName),
+                "Last product name should be different to the last product name after the extended page");
+    }
 }
 
