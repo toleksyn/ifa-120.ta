@@ -1,45 +1,52 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-import com.codeborne.selenide.Condition;
-
-import static com.codeborne.selenide.Condition.not;
-import static com.codeborne.selenide.Selenide.$$x;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$x;
+import static java.lang.Integer.parseInt;
+import static java.lang.String.format;
 
 public class BasketPage {
 
     public String getProductTitleByName(String productName) {
-        return $x(String.format("//a[@class='cart-product__title' and contains(text(), '%s')]", productName)).text();
+        return $x(format("//a[@class='cart-product__title' and contains(text(), '%s')]", productName)).text();
     }
 
     public OrderPage openOrderPage() {
-        $x("//*[@class='button button_size_large button_color_green cart-receipt__submit']").click();
+        $x("//*[contains(@class,'cart-receipt__submit')]").click();
         return new OrderPage();
     }
 
-    public BasketPage increaseProductCount(int numberOfProduct) {
-        $x(String.format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[2])[%d]", numberOfProduct)).click();
+    public BasketPage increaseProductCount(int productNumber) {
+        var preIncreaseProductSumText = $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).text();
+        $x(format("((//*[contains(@class, 'cart-counter__button')])[2])[%d]", productNumber)).click();
+        // checking var "preIncreaseProductSumText" in the next statement have been added to ensure updating information in the basket window
+        $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).shouldNotHave(text(preIncreaseProductSumText));
         return this;
     }
 
-    public BasketPage decreaseProductCount(int numberOfProduct) {
-        $x(String.format("((//*[@class='button button_color_white button_size_medium cart-counter__button'])[1])[%d]", numberOfProduct)).click();
+    public BasketPage decreaseProductCount(int productNumber) {
+        if (!isDecreaseProductCountEnabled(productNumber)) {
+            throw new IllegalStateException("Product count decreasing is disabled");
+        }
+
+        var preDecreaseProductSumText = $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).text();
+        $x(format("((//*[contains(@class, 'cart-counter__button')])[1])[%d]", productNumber)).click();
+        // checking var "preDecreaseProductSumText" in the next statement have been added to ensure updating information in the basket window
+        $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).shouldNotHave(text(preDecreaseProductSumText));
         return this;
     }
 
-    public int getProductCount(int numberOfProduct) {
-        $x(String.format("(//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid'])[%d]", numberOfProduct)).click();
-        return Integer.parseInt($x(String.format("(//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid'])[%d]", numberOfProduct))
-                .shouldBe(not(Condition.empty))
-                .val());
+    public int getProductCount(int productNumber) {
+        return parseInt($x(format("(//*[contains(@class, 'cart-counter__input')])[%d]", productNumber)).val());
     }
 
-    public int getOrderProductSum(int numberOfProduct) {
-        $x(String.format("(//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid'])[%d]", numberOfProduct)).click();
-        String ProductPrice = ($x(String.format("(//*[@class='cart-product__price'])[%d]", numberOfProduct))
-                .shouldBe(not(Condition.empty))
-                .text());
-        return Integer.parseInt(ProductPrice.replace("₴", "").replace(" ", ""));
+    public int getOrderProductSum(int productNumber) {
+        var productSum = $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).text();
+        return parseInt(productSum.replace("₴", "").replace(" ", ""));
+    }
+
+    public boolean isDecreaseProductCountEnabled(int productNumber) {
+        return $x(format("((//*[contains(@class, 'cart-counter__button')])[1])[%d]", productNumber)).isEnabled();
     }
 
     public BasketPage deleteProduct(int productIndex) {
