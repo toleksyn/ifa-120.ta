@@ -28,7 +28,7 @@ public class OrderTest extends TestRunner {
     }
 
     @Test
-    public void testShippingAddressInsertion() {
+    public void testAddingShippingAddress() {
         var shippingAddress = ShippingAddress
                 .builder()
                 .city("Львів")
@@ -41,13 +41,9 @@ public class OrderTest extends TestRunner {
                 .isConfirmOrderButtonDisplayed();
 
         assertTrue(isConfirmOrderButtonDisplayed, "The Confirm Button should be displayed");
-        assertEquals(OrderPage.getSurname(), shippingAddress.getSurname(), "The surname should be "
-                + shippingAddress.getSurname());
-        assertEquals(OrderPage.getName(), shippingAddress.getName(), "The name should be "
-                + shippingAddress.getName());
-        assertTrue(OrderPage.getCity().contains(shippingAddress.getCity().toLowerCase()), "The city should be "
-                + shippingAddress.getCity());
-        assertEquals(OrderPage.getPhone(), "+38" + shippingAddress.getPhone(), "The phone should be +38"
-                + shippingAddress.getPhone());
+        assertEquals(OrderPage.getSurname(), shippingAddress.getSurname(), "Incorrect surname");
+        assertEquals(OrderPage.getName(), shippingAddress.getName(), "Incorrect name");
+        assertTrue(OrderPage.getCity().contains(shippingAddress.getCity().toLowerCase()), "Incorrect city");
+        assertEquals(OrderPage.getPhone(), "+38" + shippingAddress.getPhone(), "Incorrect phone");
     }
 }
