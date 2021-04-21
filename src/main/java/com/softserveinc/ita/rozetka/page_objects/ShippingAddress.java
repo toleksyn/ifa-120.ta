@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class ShippingAddress {
-    private String surname ;
+    private String surname;
     private String name;
     private String city;
     private String phone;

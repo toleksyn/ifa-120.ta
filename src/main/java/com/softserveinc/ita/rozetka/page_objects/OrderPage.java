@@ -1,15 +1,16 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
 import static com.codeborne.selenide.Selenide.$x;
+import static java.lang.String.format;
 
 public class OrderPage {
 
     public BasketPage startEditingProductsInBasket() {
-        $x("//*[@class='button button_with_icon button_type_link checkout-product__edit-button']").click();
+        $x("//*[contains(@class, 'edit-button')]").click();
         return new BasketPage();
     }
 
-    public String getPageTitle() {
+    public String getHeaderText() {
         return $x("//h1[@class='checkout-heading']").text();
     }
 
