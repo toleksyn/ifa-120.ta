@@ -67,10 +67,10 @@ public class BasketPage {
     }
 
     public BasketPage deleteAllProducts() {
-        int limiter = 50;
-        while (limiter > 0 && !isBasketEmpty()) {
+        int tries = 50;
+        while (tries > 0 && !isBasketEmpty()) {
             deleteProduct(1);
-            limiter--;
+            tries--;
         }
         return this;
     }
