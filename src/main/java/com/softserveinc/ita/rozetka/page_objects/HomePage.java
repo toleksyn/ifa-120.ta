@@ -6,9 +6,9 @@ import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 import static java.lang.String.format;
 
-@Getter
 public class HomePage extends BasePage {
 
+    @Getter
     private final LeftSidebar leftSidebar = new LeftSidebar();
 
     public HomePage openHomePage() {
