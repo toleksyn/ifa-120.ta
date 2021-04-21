@@ -70,7 +70,7 @@ public class ProductPage extends BasePage {
     }
 
     public String getCharacteristicText(String characteristicType) {
-        return $x(format("//div[@class='characteristics-full__item' " +
-                "and .//span/text()='%s']/dd//ul//li//*", characteristicType)).text();
+        return $x(format("//div[@class='characteristics-full__item' and .//span/text()='%s']//li/*",
+                characteristicType)).text();
     }
 }
