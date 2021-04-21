@@ -50,14 +50,12 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     @Test
     public void testFilterProductsList() {
-        var productName = "віскі";
-        var filterType = "Віскі односолодовий";
+        var productName = "бензопила";
+        var filterType = "Ланцюгова пила";
         var characteristicType = "Вид";
         var characteristicTypeText = rozetkaHomePage
                 .getHeader()
                 .searchFor(productName)
-                .getAgeConfirmationPopup()
-                .confirmAdultAge()
                 .filterProductsList(filterType)
                 .openProductByNumber(1)
                 .openProductTab(ProductPageTab.CHARACTERISTICS)
