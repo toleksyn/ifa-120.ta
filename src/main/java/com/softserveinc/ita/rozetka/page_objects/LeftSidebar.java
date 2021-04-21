@@ -2,6 +2,7 @@ package com.softserveinc.ita.rozetka.page_objects;
 
 import java.util.List;
 
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
@@ -17,6 +18,7 @@ public class LeftSidebar {
 
     public List<String> getCategoryNames() {
         return $$x("//ul[contains(@class, 'menu-categories_type_main')] //a[contains(@class, 'menu-categories__link')]")
+                .shouldHave(sizeGreaterThanOrEqual(1))
                 .texts();
     }
 }

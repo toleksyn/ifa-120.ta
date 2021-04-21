@@ -26,7 +26,7 @@ public class HamburgerTest extends TestRunner {
     public void testLanguageSwitching() {
         var homePage = hamburgerBar.switchLanguage(LanguageOption.RU);
         var searchFieldText = homePage.getHeader().getSearchFieldText();
-        assertEquals(searchFieldText, "Я ищу...", "Search field text should be translated");
+        assertEquals(searchFieldText, "Я ищу...", "Incorrect search field text");
         var categoryNames = homePage
                 .getLeftSidebar()
                 .getCategoryNames();
@@ -39,6 +39,10 @@ public class HamburgerTest extends TestRunner {
         var contactsPage = hamburgerBar.openContactsPage();
         var expectedTitle = "Контакти";
         assertEquals(contactsPage.getPageTitle(), expectedTitle, format("Page title should be '%s'", expectedTitle));
-        assertTrue(contactsPage.isContactsSectionDisplayed(), "Contacts section should be visible");
+        var isPhoneNumbersCorrect = contactsPage
+                .getPhoneNumbers()
+                .stream()
+                .allMatch(phoneNumber -> phoneNumber.contains("044"));
+        assertTrue(isPhoneNumbersCorrect, "Phone numbers should be correct");
     }
 }
