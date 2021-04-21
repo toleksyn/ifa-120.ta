@@ -1,8 +1,9 @@
 package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
-import com.softserveinc.ita.rozetka.page_objects.HamburgerPage;
+import com.softserveinc.ita.rozetka.page_objects.HamburgerBar;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
+import com.softserveinc.ita.rozetka.page_objects.LanguageOption;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -13,29 +14,29 @@ import static org.testng.Assert.assertTrue;
 
 public class HamburgerTest extends TestRunner {
 
-    private HamburgerPage hamburgerPage;
+    private HamburgerBar hamburgerBar;
 
     @BeforeMethod
-    public void openHamburgerPage() {
-        hamburgerPage = new HomePage()
+    public void openHamburgerBar() {
+        hamburgerBar = new HomePage()
                 .openHomePage()
                 .getHeader()
-                .openHamburgerPage();
+                .openHamburgerBar();
     }
 
     @Test
     public void testLanguageChanging() {
-        var homePage = hamburgerPage.switchLanguage();
+        var homePage = hamburgerBar.switchLanguage(LanguageOption.RU);
         var expectedTitle = "Интернет-магазин";
         assertTrue(title().contains(expectedTitle), format("Title should contains '%s'", expectedTitle));
-        assertTrue(homePage.getHeader().isSearchButtonVisible(), "Search button should be visible");
+        assertTrue(homePage.getHeader().isSearchButtonDisplayed(), "Search button should be visible");
     }
 
     @Test
     public void testContactsButton() {
-        var contactsPage = hamburgerPage.openContactsPage();
+        var contactsPage = hamburgerBar.openContactsPage();
         var expectedTitle = "Контакти";
         assertEquals(contactsPage.getPageTitle(), expectedTitle, format("Page title should be '%s'", expectedTitle));
-        assertTrue(contactsPage.isContactsSectionVisible(), "Contacts section should be visible");
+        assertTrue(contactsPage.isContactsSectionDisplayed(), "Contacts section should be visible");
     }
 }

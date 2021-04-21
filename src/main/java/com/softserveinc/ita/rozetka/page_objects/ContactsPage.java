@@ -7,7 +7,7 @@ public class ContactsPage extends BasePage {
         return $x("//h1[@class='static-page__heading']").text();
     }
 
-    public boolean isContactsSectionVisible() {
+    public boolean isContactsSectionDisplayed() {
         return $x("(//section[@class='contacts-section'])[1]").isDisplayed();
     }
 }
