@@ -1,5 +1,6 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
@@ -67,5 +68,20 @@ public class ProductPage extends BasePage {
                 .substring(0, discountPriceText.length() - 1)
                 .replaceAll(" ", ""));
         return discountPrice;
+    }
+
+    public List<String> getProductSectionsTitleList(int minSectionsCount) {
+        return $$x("//*[@class='product-tabs__heading']")
+                .shouldHave(sizeGreaterThan(minSectionsCount))
+                .texts();
+    }
+
+    public String getProductReviewCount() {
+        return $x("//product-comments-tab-main//span[@class='product-tabs__heading_color_gray']").text();
+    }
+
+    public DeliveryCityPage openDeliveryCityPage() {
+        $x("(//button [@class='button button_type_link'])[2]").click();
+        return new DeliveryCityPage();
     }
 }
