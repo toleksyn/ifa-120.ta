@@ -5,8 +5,8 @@ import static java.lang.String.*;
 
 public class HamburgerBar {
 
-    public HomePage switchLanguage() {
-        $x("//div[@class='side-menu__switch']//a[@class='lang__link']").click();
+    public HomePage switchLanguage(LanguageOption language) {
+        $x(format("//div[@class='side-menu__switch']//a[contains(text(), '%s')]", language.getLanguageKey())).click();
         return new HomePage();
     }
 }
