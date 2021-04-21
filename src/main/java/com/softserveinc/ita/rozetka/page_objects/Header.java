@@ -1,6 +1,7 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
 import static com.codeborne.selenide.Selenide.$x;
+import static java.lang.String.format;
 
 public class Header {
 
@@ -17,5 +18,10 @@ public class Header {
 
     public boolean isSearchButtonDisplayed() {
         return $x("//button[contains(@class, 'search-form__submit')]").isDisplayed();
+    }
+
+    public Catalog openCatalog() {
+        $x(format("//button[contains(@class, 'menu__toggle')]")).click();
+        return new Catalog();
     }
 }

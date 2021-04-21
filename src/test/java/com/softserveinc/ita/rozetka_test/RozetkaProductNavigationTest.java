@@ -62,7 +62,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
     }
 
     @Test
-    public void testSelectProductByCatalog() {
+    public void testSelectProductByLeftSidebar() {
         var pageCategoryName = "Ноутбуки";
         var laptopCategoryPage = rozetkaHomePage
                 .getLeftSidebar()
@@ -71,7 +71,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
         var isLaptopCategoryPageCorrect = laptopCategoryPage
                 .getCategoryTitle()
                 .contains(categoryTitle);
-        assertTrue(isLaptopCategoryPageCorrect,"Incorrect page title");
+        assertTrue(isLaptopCategoryPageCorrect, "Incorrect page title");
         var laptopProductPage = laptopCategoryPage
                 .openProductsListPage(pageCategoryName)
                 .openProductByName("Ноутбук Apple MacBook Air 13");
@@ -84,7 +84,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
         isLaptopCategoryPageCorrect = laptopCategoryPageByLink
                 .getCategoryTitle()
                 .contains(categoryTitle);
-        assertTrue(isLaptopCategoryPageCorrect,"Incorrect page title");
+        assertTrue(isLaptopCategoryPageCorrect, "Incorrect page title");
     }
 
     @Test
@@ -110,9 +110,9 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .getLeftSidebar()
                 .openCategory("Товари для дому")
                 .openProductsListPage("Домашній текстиль");
-        var productCount = chosenProductPage.getProductListSize();
+        var productsCount = chosenProductPage.getProductListSize();
         var firstProductName = chosenProductPage.getProductName(1);
-        var lastProductName = chosenProductPage.getProductName(productCount);
+        var lastProductName = chosenProductPage.getProductName(productsCount);
         chosenProductPage.showMoreProducts();
         var extendedProductCount = chosenProductPage.getProductListSize();
         var extendedFirstProductName = chosenProductPage.getProductName(1);
@@ -121,6 +121,21 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 "First product name should be the same to the first product name after the extended page");
         assertTrue(!lastProductName.equals(extendedLastProductName),
                 "Last product name should be different to the last product name after the extended page");
+    }
+
+    @Test
+    public void testSelectProductByCatalog() {
+        var catalogDropDownMenu = rozetkaHomePage
+                .getHeader()
+                .openCatalog();
+        var makeUpCategory = catalogDropDownMenu.scrollToCategory("Краса");
+        var subcategoryCount = makeUpCategory.getCategoryListSize();
+        assertTrue(subcategoryCount > 0, "Category should contains at least one subcategory");
+        var productsListPage = makeUpCategory.openProductsListPage("Догляд за обличчям");
+        var isProductListPageCorrect = productsListPage
+                .getPageTitle()
+                .contains("Косметика для догляду за обличчям");
+        assertTrue(isProductListPageCorrect, "Incorrect page title");
     }
 }
 

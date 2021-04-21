@@ -10,6 +10,7 @@ public class HomePage extends BasePage {
 
     @Getter
     private final LeftSidebar leftSidebar = new LeftSidebar();
+    private final Header header = new Header();
 
     public HomePage openHomePage() {
         open("https://rozetka.com.ua/ua/");
