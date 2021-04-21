@@ -6,7 +6,7 @@ import static java.lang.String.*;
 public class HamburgerBar {
 
     public HomePage changeLanguage(String language) {
-        $x(format("//a[@class='lang__link' and contains(text(), '%s')]", language)).click();
+        $x(format("(//a[@class='lang__link' and contains(text(), '%s')])[2]", language)).click();
         return new HomePage();
     }
 }
