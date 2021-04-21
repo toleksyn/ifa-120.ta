@@ -49,7 +49,7 @@ public class ProductsListPage extends BasePage {
     }
 
     public ProductsListPage filterProductsList(String filterName) {
-        $x(format("//label[contains(text(),'%s')]", filterName)).click();
+        $x(format("//label[text() = '%s']", filterName)).click();
         return this;
     }
 
