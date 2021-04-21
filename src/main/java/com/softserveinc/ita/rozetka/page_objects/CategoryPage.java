@@ -2,8 +2,7 @@ package com.softserveinc.ita.rozetka.page_objects;
 
 import com.codeborne.selenide.Selenide;
 
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.title;
+import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 
 public class CategoryPage extends BasePage {
@@ -35,5 +34,14 @@ public class CategoryPage extends BasePage {
 
     public String getPageTitle() {
         return title();
+    }
+
+    public int getCategoriesNumber() {
+        return $$x("//li[@class='portal-grid__cell']").size();
+    }
+
+    public ProductsListPage openSubcategoriesAndProductsListPage(int index) {
+        $x(format("(//li[@class='portal-grid__cell'])[%d]", index)).click();
+        return new ProductsListPage();
     }
 }

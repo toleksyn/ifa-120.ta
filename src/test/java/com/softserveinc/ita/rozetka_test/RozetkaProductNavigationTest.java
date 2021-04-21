@@ -87,24 +87,41 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     @Test
     public void testFilterProductsUsingFilterSearch() {
-        var filterCategory="producer";
-        var filterName="Buro";
+        var filterCategory = "producer";
+        var filterName = "buro";
         var productListPage = rozetkaHomePage
                 .getLeftSidebar()
                 .openCategory("Товари для бізнесу")
                 .openProductsListPage(1);
-        var filteredProductListPage=productListPage
+        var filteredProductListPage = productListPage
                 .searchInFilterMenu(filterCategory, filterName)
                 .filterProductsList(filterName);
         var productsAmount = filteredProductListPage.getProductListSize();
         var firstProductTitle = filteredProductListPage
-                .getProductName(1);
+                .getProductName(1)
+                .toLowerCase();
         var middleProductTitle = filteredProductListPage
-                .getProductName(productsAmount / 2);
+                .getProductName(productsAmount / 2)
+                .toLowerCase();
         var lastProductTitle = filteredProductListPage
-                .getProductName(productsAmount);
+                .getProductName(productsAmount)
+                .toLowerCase();
         assertTrue(firstProductTitle.contains(filterName), "incorrect filter result");
         assertTrue(middleProductTitle.contains(filterName), "incorrect filter result");
         assertTrue(lastProductTitle.contains(filterName), "incorrect filter result");
+    }
+
+    @Test
+    public void testNavigatingFromCategoryToSubcategory() {
+        var sportAndHobbiesCategoryPage = rozetkaHomePage
+                .getLeftSidebar()
+                .openCategory("Спорт і захоплення");
+        var categoriesNumberOnPage = sportAndHobbiesCategoryPage.getCategoriesNumber();
+        assertTrue(categoriesNumberOnPage > 0, "page should contains at least 1 category");
+        var velobikesPageProductsNumber = sportAndHobbiesCategoryPage
+                .openSubcategoriesAndProductsListPage(1)
+                .getProductListSize();
+        assertTrue(velobikesPageProductsNumber > 0,
+                "velobikes page should contains at least 1 product");
     }
 }
