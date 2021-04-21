@@ -13,37 +13,41 @@ public class BasketPage {
     }
 
     public OrderPage openOrderPage() {
-        $x("//*[@class='button button_size_large button_color_green cart-receipt__submit']").click();
+        $x("//*[contains(@class,'cart-receipt__submit')]").click();
         return new OrderPage();
     }
 
     public BasketPage increaseProductCount(int productNumber) {
-        $x(format("((//*[@class='button button_color_white" +
-                " button_size_medium cart-counter__button'])[2])[%d]", productNumber)).click();
+        var preIncreaseProductSumText = $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).text();
+        $x(format("((//*[contains(@class, 'cart-counter__button')])[2])[%d]", productNumber)).click();
+        // checking var "preIncreaseProductSumText" in the next statement have been added to ensure updating information in the basket window
+        $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).shouldNotHave(text(preIncreaseProductSumText));
         return this;
     }
 
     public BasketPage decreaseProductCount(int productNumber) {
-        $x(format("((//*[@class='button button_color_white" +
-                " button_size_medium cart-counter__button'])[1])[%d]", productNumber)).click();
+        if (!isDecreaseProductCountEnabled(productNumber)) {
+            throw new IllegalStateException("Product count decreasing is disabled");
+        }
+
+        var preDecreaseProductSumText = $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).text();
+        $x(format("((//*[contains(@class, 'cart-counter__button')])[1])[%d]", productNumber)).click();
+        // checking var "preDecreaseProductSumText" in the next statement have been added to ensure updating information in the basket window
+        $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).shouldNotHave(text(preDecreaseProductSumText));
         return this;
     }
 
     public int getProductCount(int productNumber) {
-        $x(format("(//*[@class='cart-counter__input" +
-                " ng-untouched ng-pristine ng-valid'])[%d]", productNumber)).click();
-        return parseInt($x(format("(//*[@class='cart-counter__input" +
-                " ng-untouched ng-pristine ng-valid'])[%d]", productNumber))
-                .shouldBe(not(empty))
-                .val());
+        return parseInt($x(format("(//*[contains(@class, 'cart-counter__input')])[%d]", productNumber)).val());
     }
 
     public int getOrderProductSum(int productNumber) {
-        $x(format("(//*[@class='cart-counter__input ng-untouched ng-pristine ng-valid'])[%d]", productNumber)).click();
-        var productPrice = ($x(format("(//*[@class='cart-product__price'])[%d]", productNumber))
-                .shouldBe(not(empty))
-                .text());
-        return parseInt(productPrice.replaceAll("[^0-9]", ""));
+        var productSum = $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).text();
+        return parseInt(productSum.replaceAll("[^0-9]", ""));
+    }
+
+    public boolean isDecreaseProductCountEnabled(int productNumber) {
+        return $x(format("((//*[contains(@class, 'cart-counter__button')])[1])[%d]", productNumber)).isEnabled();
     }
 
     public BasketPage deleteProduct(int productNumber) {
