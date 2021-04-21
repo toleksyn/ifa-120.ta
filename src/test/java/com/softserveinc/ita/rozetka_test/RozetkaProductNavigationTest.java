@@ -64,35 +64,40 @@ public class RozetkaProductNavigationTest extends TestRunner {
     @Test
     public void testSelectProductByCatalog() {
         var pageCategoryName = "Ноутбуки";
-        var chosenCategoryPageByCatalog = rozetkaHomePage
+        var laptopCategoryPage = rozetkaHomePage
                 .getLeftSidebar()
                 .openCategory(pageCategoryName);
         var categoryTitle = "Комп'ютери";
-        assertTrue(chosenCategoryPageByCatalog.getCategoryTitle().contains(categoryTitle),
-                "Incorrect page title");
-        var chosenProductPage = chosenCategoryPageByCatalog
+        var isLaptopCategoryPageCorrect = laptopCategoryPage
+                .getCategoryTitle()
+                .contains(categoryTitle);
+        assertTrue(isLaptopCategoryPageCorrect,"Incorrect page title");
+        var laptopProductPage = laptopCategoryPage
                 .openProductsListPage(pageCategoryName)
                 .openProductByName("Ноутбук Apple MacBook Air 13");
-        var isProductTitleCorrect = chosenProductPage
+        var isProductTitleCorrect = laptopProductPage
                 .getProductTitle()
                 .contains("Ноутбук Apple MacBook");
         assertTrue(isProductTitleCorrect, "Incorrect product title");
-        var chosenCategoryPageByLink = chosenProductPage
+        var laptopCategoryPageByLink = laptopProductPage
                 .openCategoryPageByName(pageCategoryName.toLowerCase());
-        assertTrue(chosenCategoryPageByLink.getCategoryTitle().contains(categoryTitle),
-                "Incorrect page title");
+        isLaptopCategoryPageCorrect = laptopCategoryPageByLink
+                .getCategoryTitle()
+                .contains(categoryTitle);
+        assertTrue(isLaptopCategoryPageCorrect,"Incorrect page title");
     }
 
     @Test
-    public void testCompareProductPrices() {
-        var catalogCategoryPage = rozetkaHomePage
+    public void testCompareDiscountWithPreDiscountPrices() {
+        var pageCategoryName = "Знижки";
+        var salesCategoryPage = rozetkaHomePage
                 .getLeftSidebar()
-                .openCategory("Знижки");
-        var isPageTitleCorrect = catalogCategoryPage
+                .openCategory(pageCategoryName);
+        var isPageTitleCorrect = salesCategoryPage
                 .getPageTitle()
-                .contains("Знижки");
+                .contains(pageCategoryName);
         assertTrue(isPageTitleCorrect, "Incorrect page title");
-        var productPage = catalogCategoryPage.openProductByNumber(1);
+        var productPage = salesCategoryPage.openProductByNumber(1);
         var preDiscountPrice = productPage.getPreDiscountPrice();
         var discountPrice = productPage.getDiscountPrice();
         assertTrue(preDiscountPrice > discountPrice,
