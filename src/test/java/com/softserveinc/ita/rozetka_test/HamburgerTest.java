@@ -25,7 +25,7 @@ public class HamburgerTest extends TestRunner {
 
     @Test
     public void testLanguageChanging() {
-        var homePage = hamburgerPage.changeLanguage();
+        var homePage = hamburgerPage.changeLanguage("RU");
         var expectedTitle = "Интернет-магазин";
         assertTrue(title().contains(expectedTitle), format("Title should contains '%s'", expectedTitle));
         assertTrue(homePage.getHeader().isSearchButtonVisible(), "Search button should be visible");
