@@ -5,8 +5,8 @@ import static java.lang.String.*;
 
 public class HamburgerPage {
 
-    public HomePage changeLanguage(String language) {
-        $x(format("(//a[@class='lang__link' and contains(text(), '%s')])[2]", language)).click();
+    public HomePage switchLanguage() {
+        $x("//div[@class='side-menu__switch']//a[@class='lang__link']").click();
         return new HomePage();
     }
 
