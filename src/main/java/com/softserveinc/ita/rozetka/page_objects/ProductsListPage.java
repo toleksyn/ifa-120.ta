@@ -50,7 +50,7 @@ public class ProductsListPage extends BasePage {
 
     public ProductsListPage filterProductsList(String filterName) {
         $x(format("//label[text() = '%s']", filterName)).click();
-        return this;
+        return new ProductsListPage();
     }
 
     public ProductPage openProductByName(String productName) {
