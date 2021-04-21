@@ -7,10 +7,8 @@ import com.softserveinc.ita.rozetka.page_objects.LanguageOption;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Selenide.title;
 import static java.lang.String.*;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 public class HamburgerTest extends TestRunner {
 
@@ -25,11 +23,15 @@ public class HamburgerTest extends TestRunner {
     }
 
     @Test
-    public void testLanguageChanging() {
+    public void testLanguageSwitching() {
         var homePage = hamburgerBar.switchLanguage(LanguageOption.RU);
-        var expectedTitle = "Интернет-магазин";
-        assertTrue(title().contains(expectedTitle), format("Title should contains '%s'", expectedTitle));
-        assertTrue(homePage.getHeader().isSearchButtonDisplayed(), "Search button should be visible");
+        var searchFieldText = homePage.getHeader().getSearchFieldText();
+        assertEquals(searchFieldText, "Я ищу...", "Search field text should be translated");
+        var categoryNames = homePage
+                .getLeftSidebar()
+                .getCategoryNames();
+        var isUkrainian = categoryNames.stream().anyMatch(character -> character.contains("і"));
+        assertFalse(isUkrainian, "Category names should be translated");
     }
 
     @Test
