@@ -11,7 +11,7 @@ public class HamburgerBar {
     }
 
     public ContactsPage openContactsPage() {
-        $x("(//a[contains(@class, 'side-menu__button')])[3]").click();
+        $x("//a[contains(@class, 'side-menu__button') and contains(@href, 'contacts')]").click();
         return new ContactsPage();
     }
 }

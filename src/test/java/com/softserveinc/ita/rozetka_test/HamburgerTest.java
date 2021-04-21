@@ -25,17 +25,21 @@ public class HamburgerTest extends TestRunner {
     @Test
     public void testLanguageSwitching() {
         var homePage = hamburgerBar.switchLanguage(LanguageOption.RU);
-        var searchFieldText = homePage.getHeader().getSearchFieldText();
+        var searchFieldText = homePage
+                .getHeader()
+                .getSearchFieldText();
         assertEquals(searchFieldText, "Я ищу...", "Incorrect search field text");
         var categoryNames = homePage
                 .getLeftSidebar()
                 .getCategoryNames();
-        var isUkrainian = categoryNames.stream().anyMatch(character -> character.contains("і"));
-        assertFalse(isUkrainian, "Category names should be translated");
+        var isCategoryNamesUkrainian = categoryNames
+                .stream()
+                .anyMatch(name -> name.contains("і"));
+        assertFalse(isCategoryNamesUkrainian, "Category names should be translated");
     }
 
     @Test
-    public void testContactsButton() {
+    public void testContactsInformation() {
         var contactsPage = hamburgerBar.openContactsPage();
         var expectedTitle = "Контакти";
         assertEquals(contactsPage.getPageTitle(), expectedTitle, format("Page title should be '%s'", expectedTitle));
