@@ -10,12 +10,12 @@ public class Header {
         return new ProductsListPage();
     }
 
-    public HamburgerPage openHamburgerPage() {
+    public HamburgerBar openHamburgerBar() {
         $x("(//button[@class='header__button'])[1]").click();
-        return new HamburgerPage();
+        return new HamburgerBar();
     }
 
-    public boolean isSearchButtonVisible() {
+    public boolean isSearchButtonDisplayed() {
         return $x("//button[contains(@class, 'search-form__submit')]").isDisplayed();
     }
 }

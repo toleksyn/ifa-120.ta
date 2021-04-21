@@ -17,7 +17,7 @@ public class HomePage extends BasePage {
     }
 
     public ProductPage openProductByNumber(int number) {
-        $x(format("//li[@class='main-goods__cell'][%d]", number)).click();
+        $x(format("(//li[@class='main-goods__cell'])[%d]", number)).click();
         return new ProductPage();
     }
 }
