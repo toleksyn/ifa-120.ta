@@ -50,7 +50,7 @@ public class ProductsListPage extends BasePage {
 
     public ProductsListPage filterProductsList(String filterName) {
         $x(format("//label[contains(text(),'%s')]", filterName)).click();
-        return this;
+        return new ProductsListPage();
     }
 
     public ProductPage openProductByName(String productName) {
@@ -64,6 +64,11 @@ public class ProductsListPage extends BasePage {
 
     public ProductsListPage showMoreProducts() {
         $x("//a[@class='show-more show-more--horizontal']").click();
+        return this;
+    }
+
+    public ProductsListPage searchInFilterMenu(String filterCategory, String filterName) {
+        $x(format("//div[@data-filter-name='%s']//input[@name='searchline']", filterCategory)).setValue(filterName);
         return this;
     }
 }

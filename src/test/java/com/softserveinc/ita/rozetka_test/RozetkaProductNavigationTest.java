@@ -84,5 +84,27 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .getQuestionListSize();
         assertTrue(questionsRowsAmount > 0, "list size  should contain at least 1 text field");
     }
-}
 
+    @Test
+    public void testFilterProductsUsingFilterSearch() {
+        var filterCategory="producer";
+        var filterName="Buro";
+        var productListPage = rozetkaHomePage
+                .getLeftSidebar()
+                .openCategory("Товари для бізнесу")
+                .openProductsListPage(1);
+        var filteredProductListPage=productListPage
+                .searchInFilterMenu(filterCategory, filterName)
+                .filterProductsList(filterName);
+        var productsAmount = filteredProductListPage.getProductListSize();
+        var firstProductTitle = filteredProductListPage
+                .getProductName(1);
+        var middleProductTitle = filteredProductListPage
+                .getProductName(productsAmount / 2);
+        var lastProductTitle = filteredProductListPage
+                .getProductName(productsAmount);
+        assertTrue(firstProductTitle.contains(filterName), "incorrect filter result");
+        assertTrue(middleProductTitle.contains(filterName), "incorrect filter result");
+        assertTrue(lastProductTitle.contains(filterName), "incorrect filter result");
+    }
+}
