@@ -2,6 +2,7 @@ package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
+import com.softserveinc.ita.rozetka.page_objects.ProductPageTab;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -59,6 +60,29 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 format("Middle product should be '%s'", expectedProductType));
         assertTrue(productListPage.getProductName(productCount).contains(expectedProductType),
                 format("Last product should be '%s'", expectedProductType));
+    }
+
+    @Test
+    public void testPossibilityViewingProductDescriptions() {
+        var productCharacteristicPage = rozetkaHomePage
+                .getLeftSidebar()
+                .openCategory("Ноутбуки")
+                .openProductsListPage("Планшети")
+                .openProductByNumber(1)
+                .openProductTab(ProductPageTab.CHARACTERISTICS);
+        var characteristicsListSize = productCharacteristicPage
+                .getCharacteristicsTexts()
+                .size();
+        assertTrue(characteristicsListSize > 0,
+                "product characteristic description should contains at least 1 row");
+        var productCommentPageTitle = productCharacteristicPage
+                .openProductTab(ProductPageTab.COMMENTS)
+                .getProductTabTitle();
+        assertTrue(productCommentPageTitle.contains("Відгуки"), "incorrect tab's title");
+        var questionsRowsAmount = productCharacteristicPage
+                .openProductTab(ProductPageTab.QUESTIONS)
+                .getQuestionListSize();
+        assertTrue(questionsRowsAmount > 0, "list size  should contain at least 1 text field");
     }
 }
 
