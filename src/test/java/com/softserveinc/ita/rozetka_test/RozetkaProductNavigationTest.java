@@ -4,7 +4,6 @@ import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import com.softserveinc.ita.rozetka.page_objects.ProductPageTab;
 import com.softserveinc.ita.rozetka.page_objects.SortingOption;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -58,7 +57,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .getHeader()
                 .searchFor(productName)
                 .getAgeConfirmationPopup()
-                .acceptAdultAge()
+                .confirmAdultAge()
                 .filterProductsList(filterType)
                 .openProductByNumber(1)
                 .openProductTab(ProductPageTab.CHARACTERISTICS)
@@ -94,8 +93,10 @@ public class RozetkaProductNavigationTest extends TestRunner {
         var firstProductPrice = productListPage.getProductPrice(1);
         var lastProductPrice = productListPage.getProductPrice(productsAmount);
         var middleProductPrice = productListPage.getProductPrice(productsAmount / 2);
-        assertTrue(middleProductPrice < lastProductPrice && firstProductPrice < middleProductPrice,
-                "Incorrect products sorting by price");
+        assertTrue(middleProductPrice < lastProductPrice,
+                "Incorrect products sorting by price at the end of list");
+        assertTrue(firstProductPrice < middleProductPrice,
+                "Incorrect product sorting by price at the beginning of list");
     }
 
     @Test
@@ -121,17 +122,23 @@ public class RozetkaProductNavigationTest extends TestRunner {
         var middleProductName = productListPage.getProductName(productsAmount/2);
         var currentPageNumber = productListPage.getCurrentPageNumber();
         productListPage.openNextPage();
-        assertFalse(productListPage.getProductName(1).equals(firstProductName) &&
-                        productListPage.getProductName(productsAmount).equals(lastProductName) &&
-                        productListPage.getProductName(productsAmount/2).equals(middleProductName) &&
-                        currentPageNumber == productListPage.getCurrentPageNumber(),
-                "Next page products are incorrect");
+        assertNotEquals(firstProductName, productListPage.getProductName(1),
+                "First product name on the next page is incorrect");
+        assertNotEquals(lastProductName, productListPage.getProductName(productsAmount),
+                "Last product name on the next page is incorrect");
+        assertNotEquals(middleProductName, productListPage.getProductName(productsAmount / 2),
+                "Middle product name on the next page is incorrect");
+        assertNotEquals(productListPage.getCurrentPageNumber(), currentPageNumber,
+                "Next page number is incorrect");
         productListPage.openPreviousPage();
-        assertTrue(productListPage.getProductName(1).equals(firstProductName) &&
-                        productListPage.getProductName(productsAmount).equals(lastProductName) &&
-                        productListPage.getProductName(productsAmount/2).equals(middleProductName) &&
-                        currentPageNumber == productListPage.getCurrentPageNumber(),
-                "Previous page products are incorrect");
+        assertEquals(firstProductName, productListPage.getProductName(1),
+                "First product name on the previous page is incorrect");
+        assertEquals(lastProductName, productListPage.getProductName(productsAmount),
+                "Last product name on the previous page is incorrect");
+        assertEquals(middleProductName, productListPage.getProductName(productsAmount / 2),
+                "Middle product name on the previous page is incorrect");
+        assertEquals(productListPage.getCurrentPageNumber(), currentPageNumber,
+                "Previous page number is incorrect");
     }
 }
 

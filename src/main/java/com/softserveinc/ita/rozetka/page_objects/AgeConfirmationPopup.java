@@ -4,7 +4,7 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class AgeConfirmationPopup {
 
-    public ProductsListPage acceptAdultAge() {
+    public ProductsListPage confirmAdultAge() {
         $x("//a[class='btn-link-i exponea-close']").click();
         return new ProductsListPage();
     }
