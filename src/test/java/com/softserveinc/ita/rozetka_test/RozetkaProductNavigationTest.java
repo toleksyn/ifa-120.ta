@@ -162,7 +162,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     @Test
     public void testCompareDiscountWithPreDiscountPrices() {
-        var categoryName = "Знижки";
+        var categoryName = "Ціни";
         var salesCategoryPage = rozetkaHomePage
                 .getCatalogMenu()
                 .openCategoryPage(categoryName);
