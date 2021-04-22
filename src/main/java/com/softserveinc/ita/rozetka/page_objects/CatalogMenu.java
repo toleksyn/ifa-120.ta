@@ -36,5 +36,4 @@ public class CatalogMenu {
                 .shouldHave(sizeGreaterThanOrEqual(1))
                 .texts();
     }
-
 }
