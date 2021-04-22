@@ -20,8 +20,8 @@ public class Header {
         return $x("//button[contains(@class, 'search-form__submit')]").isDisplayed();
     }
 
-    public Catalog openCatalog() {
+    public CatalogMenu openCatalogMenu() {
         $x(format("//button[contains(@class, 'menu__toggle')]")).click();
-        return new Catalog();
+        return new CatalogMenu();
     }
 }

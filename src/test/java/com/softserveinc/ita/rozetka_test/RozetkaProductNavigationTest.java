@@ -21,7 +21,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
     @Test
     public void testAddingProductToBasket() {
         var productPage = rozetkaHomePage
-                .getLeftSidebar()
+                .getCatalogMenu()
                 .openCategory("Сантехніка")
                 .openProductsListPage("Ванни")
                 .openProductByNumber(1);
@@ -47,7 +47,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
     public void testResultsOnProductsListPage() {
         var productCategoryName = "Ноутбуки";
         var productListPage = rozetkaHomePage
-                .getLeftSidebar()
+                .getCatalogMenu()
                 .openCategory("Ноутбуки та комп’ютери")
                 .openProductsListPage(productCategoryName);
         assertEquals(productListPage.getPageTitle(), productCategoryName, format("Title should be '%s'", productCategoryName));
@@ -65,7 +65,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
     public void testSelectProductByLeftSidebar() {
         var pageCategoryName = "Ноутбуки";
         var laptopCategoryPage = rozetkaHomePage
-                .getLeftSidebar()
+                .getCatalogMenu()
                 .openCategory(pageCategoryName);
         var categoryTitle = "Комп'ютери";
         var isLaptopCategoryPageCorrect = laptopCategoryPage
@@ -89,34 +89,34 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     @Test
     public void testCompareDiscountWithPreDiscountPrices() {
-        var pageCategoryName = "Знижки";
+        var categoryName = "Знижки";
         var salesCategoryPage = rozetkaHomePage
-                .getLeftSidebar()
-                .openCategory(pageCategoryName);
+                .getCatalogMenu()
+                .openCategory(categoryName);
         var isPageTitleCorrect = salesCategoryPage
                 .getPageTitle()
-                .contains(pageCategoryName);
+                .contains(categoryName);
         assertTrue(isPageTitleCorrect, "Incorrect page title");
-        var productPage = salesCategoryPage.openProductByNumber(1);
-        var preDiscountPrice = productPage.getPreDiscountPrice();
-        var discountPrice = productPage.getDiscountPrice();
+        var firstProductPage = salesCategoryPage.openProductByNumber(1);
+        var preDiscountPrice = firstProductPage.getPreDiscountPrice();
+        var discountPrice = firstProductPage.getDiscountPrice();
         assertTrue(preDiscountPrice > discountPrice,
                 "Pre discount price should be bigger than current price with discount");
     }
 
     @Test
     public void testShowMoreProducts() {
-        var chosenProductPage = rozetkaHomePage
-                .getLeftSidebar()
+        var productPage = rozetkaHomePage
+                .getCatalogMenu()
                 .openCategory("Товари для дому")
                 .openProductsListPage("Домашній текстиль");
-        var productsCount = chosenProductPage.getProductListSize();
-        var firstProductName = chosenProductPage.getProductName(1);
-        var lastProductName = chosenProductPage.getProductName(productsCount);
-        chosenProductPage.showMoreProducts();
-        var extendedProductCount = chosenProductPage.getProductListSize();
-        var extendedFirstProductName = chosenProductPage.getProductName(1);
-        var extendedLastProductName = chosenProductPage.getProductName(extendedProductCount);
+        var productsCount = productPage.getProductListSize();
+        var firstProductName = productPage.getProductName(1);
+        var lastProductName = productPage.getProductName(productsCount);
+        productPage.showMoreProducts();
+        var extendedProductCount = productPage.getProductListSize();
+        var extendedFirstProductName = productPage.getProductName(1);
+        var extendedLastProductName = productPage.getProductName(extendedProductCount);
         assertTrue(firstProductName.equals(extendedFirstProductName),
                 "First product name should be the same to the first product name after the extended page");
         assertTrue(!lastProductName.equals(extendedLastProductName),
@@ -125,10 +125,10 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     @Test
     public void testSelectProductByCatalog() {
-        var catalogDropDownMenu = rozetkaHomePage
+        var catalogMenu = rozetkaHomePage
                 .getHeader()
-                .openCatalog();
-        var makeUpCategory = catalogDropDownMenu.scrollToCategory("Краса");
+                .openCatalogMenu();
+        var makeUpCategory = catalogMenu.scrollToCategory("Краса");
         var subcategoryCount = makeUpCategory.getCategoryListSize();
         assertTrue(subcategoryCount > 0, "Category should contains at least one subcategory");
         var productsListPage = makeUpCategory.openProductsListPage("Догляд за обличчям");

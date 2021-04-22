@@ -9,7 +9,7 @@ import static java.lang.String.format;
 public class HomePage extends BasePage {
 
     @Getter
-    private final LeftSidebar leftSidebar = new LeftSidebar();
+    private final CatalogMenu catalogMenu = new CatalogMenu();
     private final Header header = new Header();
 
     public HomePage openHomePage() {

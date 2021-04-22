@@ -1,15 +1,19 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-import com.codeborne.selenide.SelenideElement;
-
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 
-public class Catalog {
+public class CatalogMenu {
+    public CategoryPage openCategory(String categoryName) {
+        $x(format("//ul[contains(@class, 'menu-categories_type_main')] //a[contains(@class, 'menu-categories__link') and contains(text(), '%s')]", categoryName)).click();
+        // click on microphone element to hide dropdown
+        $x("//button[@class='search-form__microphone']").click();
+        return new CategoryPage();
+    }
 
-    public Catalog scrollToCategory(String categoryName) {
-        SelenideElement category = $x(format("//ul[@class='menu-categories'] //a[contains(@class, 'menu-categories__link') and contains(text(), '%s')]", categoryName));
+    public CatalogMenu scrollToCategory(String categoryName) {
+        var category = $x(format("//ul[@class='menu-categories'] //a[contains(@class, 'menu-categories__link') and contains(text(), '%s')]", categoryName));
         actions().moveToElement(category).perform();
         return this;
     }
