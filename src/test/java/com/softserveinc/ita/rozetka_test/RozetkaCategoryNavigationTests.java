@@ -40,7 +40,7 @@ public class RozetkaCategoryNavigationTests {
         var expectedProductType = "Ноутбук";
         assertTrue(productListPage.getProductName(1).contains(expectedProductType),
                 format("First product should be '%s'", expectedProductType));
-        var productCount = productListPage.getProductListSize();
+        var productCount = productListPage.getProductsAmount();
         assertTrue(productListPage.getProductName(productCount / 2).contains(expectedProductType),
                 format("Middle product should be '%s'", expectedProductType));
         assertTrue(productListPage.getProductName(productCount).contains(expectedProductType),
