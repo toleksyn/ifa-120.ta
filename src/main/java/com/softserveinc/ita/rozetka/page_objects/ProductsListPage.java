@@ -49,8 +49,11 @@ public class ProductsListPage extends BasePage {
     }
 
     public ProductsListPage filterProductsList(String filterName) {
-        String filterNameCaps = filterName.toUpperCase().charAt(0)+filterName.substring(1,filterName.length());
-        $x(format("//label[contains(text(),'%s')]", filterNameCaps)).click();
+        String capitalizedFirstLetterFilterName = filterName
+                .toUpperCase()
+                .charAt(0) + filterName
+                .substring(1, filterName.length());
+        $x(format("//label[contains(text(),'%s')]", capitalizedFirstLetterFilterName)).click();
         return new ProductsListPage();
     }
 

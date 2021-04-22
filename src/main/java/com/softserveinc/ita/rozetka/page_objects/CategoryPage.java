@@ -36,12 +36,12 @@ public class CategoryPage extends BasePage {
         return title();
     }
 
-    public int getCategoriesNumber() {
+    public int getCategoriesCount() {
         return $$x("//li[@class='portal-grid__cell']").size();
     }
 
-    public ProductsListPage openSubcategoriesAndProductsListPage(int index) {
-        $x(format("(//li[@class='portal-grid__cell'])[%d]", index)).click();
+    public ProductsListPage openSubcategoriesAndProductsListPage(int number) {
+        $x(format("(//li[@class='portal-grid__cell'])[%d]", number)).click();
         return new ProductsListPage();
     }
 }

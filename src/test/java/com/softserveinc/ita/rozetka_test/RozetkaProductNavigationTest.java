@@ -74,15 +74,15 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .getCharacteristicsTexts()
                 .size();
         assertTrue(characteristicsListSize > 0,
-                "product characteristic description should contains at least 1 row");
+                "product characteristic description should contains at least 1 item");
         var productCommentPageTitle = productCharacteristicPage
                 .openProductTab(ProductPageTab.COMMENTS)
                 .getProductTabTitle();
         assertTrue(productCommentPageTitle.contains("Відгуки"), "incorrect tab's title");
-        var questionsRowsAmount = productCharacteristicPage
+        var questionsCount = productCharacteristicPage
                 .openProductTab(ProductPageTab.QUESTIONS)
                 .getQuestionListSize();
-        assertTrue(questionsRowsAmount > 0, "list size  should contain at least 1 text field");
+        assertTrue(questionsCount > 0, "list size  should contain at least 1 item");
     }
 
     @Test
@@ -116,12 +116,12 @@ public class RozetkaProductNavigationTest extends TestRunner {
         var sportAndHobbiesCategoryPage = rozetkaHomePage
                 .getLeftSidebar()
                 .openCategory("Спорт і захоплення");
-        var categoriesNumberOnPage = sportAndHobbiesCategoryPage.getCategoriesNumber();
-        assertTrue(categoriesNumberOnPage > 0, "page should contains at least 1 category");
-        var velobikesPageProductsNumber = sportAndHobbiesCategoryPage
+        var categoriesCountOnPage = sportAndHobbiesCategoryPage.getCategoriesCount();
+        assertTrue(categoriesCountOnPage > 0, "page should contains at least 1 category");
+        var bicyclesPageProductsNumber = sportAndHobbiesCategoryPage
                 .openSubcategoriesAndProductsListPage(1)
                 .getProductListSize();
-        assertTrue(velobikesPageProductsNumber > 0,
-                "velobikes page should contains at least 1 product");
+        assertTrue(bicyclesPageProductsNumber > 0,
+                "bicycles page should contains at least 1 product");
     }
 }
