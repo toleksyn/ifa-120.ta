@@ -70,6 +70,11 @@ public class ProductPage extends BasePage {
         return discountPrice;
     }
 
+    public HomePage openHomePageByLogo() {
+        $x("//*[@class='header__logo']").click();
+        return new HomePage();
+    }
+
     public List<String> getProductSectionsTitleList(int minSectionsCount) {
         return $$x("//*[@class='product-tabs__heading']")
                 .shouldHave(sizeGreaterThan(minSectionsCount))

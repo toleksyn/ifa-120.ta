@@ -4,8 +4,8 @@ import lombok.Getter;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.KeyDownAction;
 
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.open;
 import static java.lang.String.format;
 
 public class HomePage extends BasePage {
@@ -21,6 +21,11 @@ public class HomePage extends BasePage {
     public ProductPage openProductByNumber(int number) {
         $x(format("(//li[@class='main-goods__cell'])[%d]", number)).click();
         return new ProductPage();
+    }
+
+    public BasketPage openBasketPage() {
+        $x("//button[@class='header__button header__button--active']").click();
+        return new BasketPage();
     }
 
     public int getHomePageProductsListSize(int minProductsListSize) {
