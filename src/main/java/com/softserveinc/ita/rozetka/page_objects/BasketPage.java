@@ -1,7 +1,11 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import com.codeborne.selenide.Selenide;
+import org.openqa.selenium.Keys;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.switchTo;
 import static java.lang.Integer.parseInt;
 import static java.lang.String.format;
 
@@ -56,15 +60,22 @@ public class BasketPage {
     }
 
     public BasketPage restoreProduct(int productIndex) {
-        $x(format("(//button[@class='buy-button lite-tile__buy-button'])[%d]", productIndex)).click();
+        Selenide.actions().moveToElement($x(format("(//button[@class='buy-button lite-tile__buy-button'])[%d]", productIndex))).click();
+//        $x(format("(//button[@class='buy-button lite-tile__buy-button'])[%d]", productIndex)).click();
         return this;
     }
 
     public String getRecentlyViewedProductLink(int productIndex) {
-        return $x(format("(//a[@class='lite-tile__title'])[%d]", productIndex)).getText();
+        return $x(format("(//a[@class='lite-tile__title'])[%d]", productIndex)).text();
     }
 
     public String getProductLink(int productIndex) {
-        return $x(format("(//a[@class='cart-product__title'])[%d]", productIndex)).getText();
+        return $x(format("(//a[@class='cart-product__title'])[%d]", productIndex)).text();
+    }
+
+    public BasketPage scrollDown() {
+        switchTo();
+        Selenide.executeJavaScript("window.scrollBy(0,1000)");
+        return this;
     }
 }
