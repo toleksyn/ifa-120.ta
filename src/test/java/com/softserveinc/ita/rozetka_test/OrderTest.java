@@ -5,6 +5,9 @@ import com.softserveinc.ita.rozetka.page_objects.BasketPage;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import com.softserveinc.ita.rozetka.page_objects.OrderPage;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertTrue;
 
 public class OrderTest extends TestRunner {
 
@@ -20,5 +23,15 @@ public class OrderTest extends TestRunner {
                 .openProductByNumber(1)
                 .addProductToBasket()
                 .openOrderPage();
+    }
+
+    @Test
+    public void testDeletingProductFromBasket() {   // Popup basket
+        basketPage = orderPage
+                .openProductPage(1)
+                .openHomePageByLogo()
+                .openBasketPage()
+                .deleteAllProducts();
+        assertTrue(basketPage.isBasketEmpty(), "Basket should be empty");
     }
 }

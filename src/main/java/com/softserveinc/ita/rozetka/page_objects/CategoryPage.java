@@ -1,7 +1,5 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-import com.codeborne.selenide.Selenide;
-
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.title;
 import static java.lang.String.format;

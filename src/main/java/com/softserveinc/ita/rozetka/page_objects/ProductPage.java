@@ -68,4 +68,9 @@ public class ProductPage extends BasePage {
                 .replaceAll(" ", ""));
         return discountPrice;
     }
+
+    public HomePage openHomePageByLogo() {
+        $x("//*[@class='header__logo']").click();
+        return new HomePage();
+    }
 }
