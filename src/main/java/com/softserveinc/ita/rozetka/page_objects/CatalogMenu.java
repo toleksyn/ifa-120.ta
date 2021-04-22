@@ -1,5 +1,7 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import java.util.List;
+
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
@@ -27,6 +29,12 @@ public class CatalogMenu {
     public ProductsListPage openProductsListPage(String productCategoryName) {
         $x(format("//li//a[@class='menu__hidden-title' and contains(text(), '%s')]", productCategoryName)).click();
         return new ProductsListPage();
+    }
+
+    public List<String> getCategoryNames() {
+        return $$x("//ul[contains(@class, 'menu-categories_type_main')] //a[contains(@class, 'menu-categories__link')]")
+                .shouldHave(sizeGreaterThanOrEqual(1))
+                .texts();
     }
 
 }

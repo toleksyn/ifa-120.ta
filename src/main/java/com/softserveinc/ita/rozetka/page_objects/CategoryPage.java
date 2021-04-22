@@ -34,4 +34,6 @@ public class CategoryPage extends BasePage {
     public String getPageTitle() {
         return title();
     }
+
+
 }
