@@ -5,11 +5,11 @@ import lombok.Getter;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 import static java.lang.String.format;
-import static com.codeborne.selenide.Selenide.*;
 
 @Getter
 public class HomePage extends BasePage {
 
+    @Getter
     private final LeftSidebar leftSidebar = new LeftSidebar();
 
     public HomePage openHomePage() {
@@ -23,7 +23,7 @@ public class HomePage extends BasePage {
     }
 
     public BasketPage openBasketPage() {
-        $x("//use[@href='#icon-header-basket']").click();
+        $x("//button[@class='header__button header__button--active']").click();
         return new BasketPage();
     }
 }

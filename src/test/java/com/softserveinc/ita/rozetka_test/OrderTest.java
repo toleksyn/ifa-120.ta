@@ -26,6 +26,16 @@ public class OrderTest extends TestRunner {
     }
 
     @Test
+    public void testDeletingProductFromBasket() {   // Popup basket
+        basketPage = orderPage
+                .openProductPage(1)
+                .openHomePageByLogo()
+                .openBasketPage()
+                .deleteAllProducts();
+        assertTrue(basketPage.isBasketEmpty(), "Basket should be empty");
+    }
+
+    @Test
     public void testOpenOrderPage() {
         var pageTitle = orderPage.getPageTitle();
         assertTrue(!pageTitle.isEmpty(), "The title shouldn't be empty");
