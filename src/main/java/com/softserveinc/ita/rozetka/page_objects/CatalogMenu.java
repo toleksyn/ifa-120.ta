@@ -5,7 +5,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 
 public class CatalogMenu {
-    public CategoryPage openCategory(String categoryName) {
+    public CategoryPage openCategoryPage(String categoryName) {
         $x(format("//ul[contains(@class, 'menu-categories_type_main')] //a[contains(@class, 'menu-categories__link') and contains(text(), '%s')]", categoryName)).click();
         // click on microphone element to hide dropdown
         $x("//button[@class='search-form__microphone']").click();
@@ -18,7 +18,7 @@ public class CatalogMenu {
         return this;
     }
 
-    public int getCategoryListSize() {
+    public int getCategoriesSize() {
         return $$x("//li//a[@class='menu__hidden-title']")
                 .shouldHave(sizeGreaterThanOrEqual(1))
                 .size();

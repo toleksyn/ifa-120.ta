@@ -22,7 +22,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
     public void testAddingProductToBasket() {
         var productPage = rozetkaHomePage
                 .getCatalogMenu()
-                .openCategory("Сантехніка")
+                .openCategoryPage("Сантехніка")
                 .openProductsListPage("Ванни")
                 .openProductByNumber(1);
         var productTitle = productPage.getProductTitle();
@@ -48,7 +48,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
         var productCategoryName = "Ноутбуки";
         var productListPage = rozetkaHomePage
                 .getCatalogMenu()
-                .openCategory("Ноутбуки та комп’ютери")
+                .openCategoryPage("Ноутбуки та комп’ютери")
                 .openProductsListPage(productCategoryName);
         assertEquals(productListPage.getPageTitle(), productCategoryName, format("Title should be '%s'", productCategoryName));
         var expectedProductType = "Ноутбук";
@@ -63,24 +63,24 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     @Test
     public void testSelectProductByLeftSidebar() {
-        var pageCategoryName = "Ноутбуки";
+        var categoryName = "Ноутбуки";
         var laptopCategoryPage = rozetkaHomePage
                 .getCatalogMenu()
-                .openCategory(pageCategoryName);
+                .openCategoryPage(categoryName);
         var categoryTitle = "Комп'ютери";
         var isLaptopCategoryPageCorrect = laptopCategoryPage
                 .getCategoryTitle()
                 .contains(categoryTitle);
         assertTrue(isLaptopCategoryPageCorrect, "Incorrect page title");
         var laptopProductPage = laptopCategoryPage
-                .openProductsListPage(pageCategoryName)
+                .openProductsListPage(categoryName)
                 .openProductByName("Ноутбук Apple MacBook Air 13");
         var isProductTitleCorrect = laptopProductPage
                 .getProductTitle()
                 .contains("Ноутбук Apple MacBook");
         assertTrue(isProductTitleCorrect, "Incorrect product title");
         var laptopCategoryPageByLink = laptopProductPage
-                .openCategoryPageByName(pageCategoryName.toLowerCase());
+                .openCategoryPageByName(categoryName.toLowerCase());
         isLaptopCategoryPageCorrect = laptopCategoryPageByLink
                 .getCategoryTitle()
                 .contains(categoryTitle);
@@ -92,7 +92,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
         var categoryName = "Знижки";
         var salesCategoryPage = rozetkaHomePage
                 .getCatalogMenu()
-                .openCategory(categoryName);
+                .openCategoryPage(categoryName);
         var isPageTitleCorrect = salesCategoryPage
                 .getPageTitle()
                 .contains(categoryName);
@@ -108,7 +108,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
     public void testShowMoreProducts() {
         var productPage = rozetkaHomePage
                 .getCatalogMenu()
-                .openCategory("Товари для дому")
+                .openCategoryPage("Товари для дому")
                 .openProductsListPage("Домашній текстиль");
         var productsCount = productPage.getProductListSize();
         var firstProductName = productPage.getProductName(1);
@@ -129,7 +129,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .getHeader()
                 .openCatalogMenu();
         var makeUpCategory = catalogMenu.scrollToCategory("Краса");
-        var subcategoryCount = makeUpCategory.getCategoryListSize();
+        var subcategoryCount = makeUpCategory.getCategoriesSize();
         assertTrue(subcategoryCount > 0, "Category should contains at least one subcategory");
         var productsListPage = makeUpCategory.openProductsListPage("Догляд за обличчям");
         var isProductListPageCorrect = productsListPage
