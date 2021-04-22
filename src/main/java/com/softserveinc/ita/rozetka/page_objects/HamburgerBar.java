@@ -1,15 +1,19 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import io.qameta.allure.Step;
+
 import static com.codeborne.selenide.Selenide.$x;
-import static java.lang.String.*;
+import static java.lang.String.format;
 
 public class HamburgerBar {
 
+    @Step("Hamburger bar: switch language to {language}")
     public HomePage switchLanguage(LanguageOption language) {
         $x(format("//div[@class='side-menu__switch']//a[contains(text(), '%s')]", language.getLanguageKey())).click();
         return new HomePage();
     }
 
+    @Step("Hamburger bar: open contacts page")
     public ContactsPage openContactsPage() {
         $x("//a[contains(@class, 'side-menu__button') and contains(@href, 'contacts')]").click();
         return new ContactsPage();
