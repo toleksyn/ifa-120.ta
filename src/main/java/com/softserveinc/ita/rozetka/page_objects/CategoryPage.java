@@ -1,6 +1,6 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.CollectionCondition;
 
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
@@ -37,11 +37,12 @@ public class CategoryPage extends BasePage {
     }
 
     public int getCategoriesCount() {
-        return $$x("//li[@class='portal-grid__cell']").size();
+        return $$x("//li[@class='portal-grid__cell']")
+                .shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1)).size();
     }
 
-    public ProductsListPage openSubcategoriesAndProductsListPage(int number) {
+    public ProductsListPageWithSubcategories openProductsListPageWithSubcategories(int number) {
         $x(format("(//li[@class='portal-grid__cell'])[%d]", number)).click();
-        return new ProductsListPage();
+        return new ProductsListPageWithSubcategories();
     }
 }

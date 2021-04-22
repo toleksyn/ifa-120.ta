@@ -55,7 +55,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
         var expectedProductType = "Ноутбук";
         assertTrue(productListPage.getProductName(1).contains(expectedProductType),
                 format("First product should be '%s'", expectedProductType));
-        var productCount = productListPage.getProductListSize();
+        var productCount = productListPage.getProductsAmount();
         assertTrue(productListPage.getProductName(productCount / 2).contains(expectedProductType),
                 format("Middle product should be '%s'", expectedProductType));
         assertTrue(productListPage.getProductName(productCount).contains(expectedProductType),
@@ -70,10 +70,10 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .openProductsListPage("Планшети")
                 .openProductByNumber(1)
                 .openProductTab(ProductPageTab.CHARACTERISTICS);
-        var characteristicsListSize = productCharacteristicPage
+        var characteristicsAmount = productCharacteristicPage
                 .getCharacteristicsTexts()
                 .size();
-        assertTrue(characteristicsListSize > 0,
+        assertTrue(characteristicsAmount > 0,
                 "product characteristic description should contains at least 1 item");
         var productCommentPageTitle = productCharacteristicPage
                 .openProductTab(ProductPageTab.COMMENTS)
@@ -81,7 +81,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
         assertTrue(productCommentPageTitle.contains("Відгуки"), "incorrect tab's title");
         var questionsCount = productCharacteristicPage
                 .openProductTab(ProductPageTab.QUESTIONS)
-                .getQuestionListSize();
+                .getQuestionsAmount();
         assertTrue(questionsCount > 0, "list size  should contain at least 1 item");
     }
 
@@ -89,21 +89,21 @@ public class RozetkaProductNavigationTest extends TestRunner {
     public void testFilterProductsUsingFilterSearch() {
         var filterCategory = "producer";
         var filterName = "buro";
-        var productListPage = rozetkaHomePage
+        var tradeEquipmentPage = rozetkaHomePage
                 .getLeftSidebar()
                 .openCategory("Товари для бізнесу")
-                .openProductsListPage(1);
-        var filteredProductListPage = productListPage
+                .openProductsListPageWithSubcategories(1);
+        var filteredTradeEquipmentPage = tradeEquipmentPage
                 .searchInFilterMenu(filterCategory, filterName)
                 .filterProductsList(filterName);
-        var productsAmount = filteredProductListPage.getProductListSize();
-        var firstProductTitle = filteredProductListPage
+        var productsAmount = filteredTradeEquipmentPage.getProductsAmount();
+        var firstProductTitle = filteredTradeEquipmentPage
                 .getProductName(1)
                 .toLowerCase();
-        var middleProductTitle = filteredProductListPage
+        var middleProductTitle = filteredTradeEquipmentPage
                 .getProductName(productsAmount / 2)
                 .toLowerCase();
-        var lastProductTitle = filteredProductListPage
+        var lastProductTitle = filteredTradeEquipmentPage
                 .getProductName(productsAmount)
                 .toLowerCase();
         assertTrue(firstProductTitle.contains(filterName), "incorrect filter result");
@@ -116,12 +116,13 @@ public class RozetkaProductNavigationTest extends TestRunner {
         var sportAndHobbiesCategoryPage = rozetkaHomePage
                 .getLeftSidebar()
                 .openCategory("Спорт і захоплення");
-        var categoriesCountOnPage = sportAndHobbiesCategoryPage.getCategoriesCount();
-        assertTrue(categoriesCountOnPage > 0, "page should contains at least 1 category");
-        var bicyclesPageProductsNumber = sportAndHobbiesCategoryPage
-                .openSubcategoriesAndProductsListPage(1)
-                .getProductListSize();
-        assertTrue(bicyclesPageProductsNumber > 0,
+        var categoriesCount = sportAndHobbiesCategoryPage.getCategoriesCount();
+        assertTrue(categoriesCount > 0, "page should contains at least 1 category");
+        var bicyclesPageProductsAmount = sportAndHobbiesCategoryPage
+                .openProductsListPageWithSubcategories(1)
+                .getProductsAmount();
+        assertTrue(bicyclesPageProductsAmount > 0,
                 "bicycles page should contains at least 1 product");
+
     }
 }

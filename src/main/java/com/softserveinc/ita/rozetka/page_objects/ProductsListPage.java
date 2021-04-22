@@ -8,7 +8,7 @@ import static java.lang.String.format;
 
 public class ProductsListPage extends BasePage {
 
-    public int getProductListSize() {
+    public int getProductsAmount() {
         return $$x("//span[@class='goods-tile__title']")
                 .shouldHave(sizeGreaterThanOrEqual(1))
                 .size();
@@ -49,7 +49,7 @@ public class ProductsListPage extends BasePage {
     }
 
     public ProductsListPage filterProductsList(String filterName) {
-        String capitalizedFirstLetterFilterName = filterName
+        var capitalizedFirstLetterFilterName = filterName
                 .toUpperCase()
                 .charAt(0) + filterName
                 .substring(1, filterName.length());

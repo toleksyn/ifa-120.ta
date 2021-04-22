@@ -27,7 +27,7 @@ public class ProductPage extends BasePage {
         return $x("//h2[@class='product-tabs__heading']").text();
     }
 
-    public int getQuestionListSize() {
+    public int getQuestionsAmount() {
         return $$x("//div[@class='comment']")
                 .shouldHave(sizeGreaterThan(0))
                 .size();
