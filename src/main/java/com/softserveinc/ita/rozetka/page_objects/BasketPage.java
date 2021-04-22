@@ -112,11 +112,11 @@ public class BasketPage {
         return this;
     }
 
-    public String getRecentlyViewedProductLink(int productIndex) {
-        return $x(format("(//a[@class='lite-tile__title'])[%d]", productIndex)).attr("href");
+    public String getRecentlyViewedProductId(int productIndex) {
+        return $x(format("(//div[@class='g-id display-none'])[%d]", productIndex)).text();
     }
 
-    public String getProductLink(int productIndex) {
-        return $x(format("(//a[@class='cart-product__title'])[%d]", productIndex)).attr("href");
+    public String getProductId(int productIndex) {
+        return $x(format("(//div[@class='g-id display-none'])[%d]", productIndex)).text();
     }
 }
