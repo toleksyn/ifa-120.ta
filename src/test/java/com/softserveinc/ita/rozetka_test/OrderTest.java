@@ -13,11 +13,9 @@ import static org.testng.Assert.assertTrue;
 
 public class OrderTest extends TestRunner {
 
-    //This added for future tests
     private OrderPage orderPage;
     private BasketPage basketPage;
 
-    //This added for future tests
     @BeforeMethod
     public void addProductToBasketOpenOrder() {
         orderPage = new HomePage()

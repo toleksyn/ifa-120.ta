@@ -7,11 +7,8 @@ import com.softserveinc.ita.rozetka.page_objects.SortingOption;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-
 import static java.lang.String.format;
+import static org.testng.Assert.*;
 
 public class RozetkaProductNavigationTest extends TestRunner {
 

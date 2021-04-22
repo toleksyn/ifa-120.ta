@@ -16,12 +16,13 @@ public class ProductsListPage extends BasePage {
                 .size();
     }
 
-    @Step("ProductListPage: open product page by number {number}")
+    @Step("Products list page: open product by number {number}")
     public ProductPage openProductByNumber(int number) {
         $x(format("(//a[@class='goods-tile__picture'])[%d]", number)).click();
         return new ProductPage();
     }
 
+    @Step("Products list page: set sorting type {sortingOption}")
     public ProductsListPage setSortingType(SortingOption sortingOption) {
         $x("//select").selectOptionByValue(sortingOption.getSortingOptionValue());
         return this;
@@ -37,11 +38,13 @@ public class ProductsListPage extends BasePage {
                 .replaceAll(" ", ""));
     }
 
+    @Step("Products list page: open next page")
     public ProductsListPage openNextPage() {
         $x("//a[contains(@class, 'pagination__direction_type_forward')]").click();
         return this;
     }
 
+    @Step("Products list page: open previous page")
     public ProductsListPage openPreviousPage() {
         $x("//a[contains(@class, 'pagination__direction')]").click();
         return this;
@@ -51,12 +54,13 @@ public class ProductsListPage extends BasePage {
         return parseInt($x("//a[contains(@class, 'pagination__link_state_active')]").text());
     }
 
-    @Step("ProductListPage: filter products list by filter name {filterName")
+    @Step("Products list page: filter products list by filter name {filterName}")
     public ProductsListPage filterProductsList(String filterName) {
         $x(format("//label[contains(text(),'%s')]", filterName)).click();
         return new ProductsListPage();
     }
 
+    @Step("Products list page: open product by name {productName}")
     public ProductPage openProductByName(String productName) {
         $x(format("//span[@class='goods-tile__title'and contains(text(), '%s')]", productName)).click();
         return new ProductPage();
@@ -66,11 +70,13 @@ public class ProductsListPage extends BasePage {
         return $x("//h1[@class='catalog-heading']").text();
     }
 
+    @Step("Products list page: show more products")
     public ProductsListPage showMoreProducts() {
         $x("//a[@class='show-more show-more--horizontal']").click();
         return this;
     }
 
+    @Step("Products list page: get age confirmation popup")
     public AgeConfirmationPopup getAgeConfirmationPopup() {
         return new AgeConfirmationPopup();
     }
