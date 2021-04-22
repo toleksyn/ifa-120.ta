@@ -73,4 +73,9 @@ public class ProductPage extends BasePage {
         return $x(format("//div[@class='characteristics-full__item' and .//span/text()='%s']//li/*",
                 characteristicType)).text();
     }
+
+    public HomePage openHomePageByLogo() {
+        $x("//*[@class='header__logo']").click();
+        return new HomePage();
+    }
 }

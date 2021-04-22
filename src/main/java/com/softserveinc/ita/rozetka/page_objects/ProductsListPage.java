@@ -8,7 +8,7 @@ import static java.lang.String.format;
 
 public class ProductsListPage extends BasePage {
 
-    public int getProductListSize() {
+    public int getProductsAmount() {
         return $$x("//span[@class='goods-tile__title']")
                 .shouldHave(sizeGreaterThanOrEqual(1))
                 .size();
@@ -28,7 +28,7 @@ public class ProductsListPage extends BasePage {
         return $x(format("(//span[@class='goods-tile__title'])[%d]", number)).text();
     }
 
-    public int getProductPrice(int number) {
+    public int getPriceFromProduct(int number) {
         return parseInt($x(format("(//span[@class='goods-tile__price-value'])[%d]", number))
                 .text()
                 .replaceAll(" ", ""));

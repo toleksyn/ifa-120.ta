@@ -74,7 +74,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
         var expectedProductType = "Ноутбук";
         assertTrue(productListPage.getProductName(1).contains(expectedProductType),
                 format("First product should be '%s'", expectedProductType));
-        var productCount = productListPage.getProductListSize();
+        var productCount = productListPage.getProductsAmount();
         assertTrue(productListPage.getProductName(productCount / 2).contains(expectedProductType),
                 format("Middle product should be '%s'", expectedProductType));
         assertTrue(productListPage.getProductName(productCount).contains(expectedProductType),
@@ -87,10 +87,10 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .getHeader()
                 .searchFor("сокира")
                 .setSortingType(SortingOption.CHEAP);
-        var productsAmount = productListPage.getProductListSize();
-        var firstProductPrice = productListPage.getProductPrice(1);
-        var lastProductPrice = productListPage.getProductPrice(productsAmount);
-        var middleProductPrice = productListPage.getProductPrice(productsAmount / 2);
+        var lastProductNumber = productListPage.getProductsAmount();
+        var firstProductPrice = productListPage.getPriceFromProduct(1);
+        var lastProductPrice = productListPage.getPriceFromProduct(lastProductNumber);
+        var middleProductPrice = productListPage.getPriceFromProduct(lastProductNumber / 2);
         assertTrue(middleProductPrice < lastProductPrice,
                 "Incorrect products sorting by price at the end of list");
         assertTrue(firstProductPrice < middleProductPrice,
@@ -98,7 +98,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
     }
 
     @Test
-    public void testViewedProducts() {
+    public void testFirstProductInViewedProductsList() {
         var productPage = rozetkaHomePage
                 .getHeader()
                 .searchFor("галстук");
@@ -110,11 +110,11 @@ public class RozetkaProductNavigationTest extends TestRunner {
     }
 
     @Test
-    public void testPageChanging() {
+    public void testNextPreviousPagePagination() {
         var productListPage = rozetkaHomePage
                 .getHeader()
                 .searchFor("мисливський ніж");
-        var productsAmount = productListPage.getProductListSize();
+        var productsAmount = productListPage.getProductsAmount();
         var firstProductName = productListPage.getProductName(1);
         var lastProductName = productListPage.getProductName(productsAmount);
         var middleProductName = productListPage.getProductName(productsAmount/2);
