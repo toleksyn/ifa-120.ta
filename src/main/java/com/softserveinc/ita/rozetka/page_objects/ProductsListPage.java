@@ -19,8 +19,8 @@ public class ProductsListPage extends BasePage {
         return new ProductPage();
     }
 
-    public ProductsListPage setSortingType(String sortingTypeKey) {
-        $x("//select").selectOptionContainingText(sortingTypeKey);
+    public ProductsListPage setSortingType(SortingOption sortingOption) {
+        $x("//select").selectOptionByValue(sortingOption.getSortingOptionValue());
         return this;
     }
 
@@ -74,5 +74,9 @@ public class ProductsListPage extends BasePage {
     public ProductsListPage searchInFilterMenu(String filterCategory, String filterName) {
         $x(format("//div[@data-filter-name='%s']//input[@name='searchline']", filterCategory)).setValue(filterName);
         return this;
+    }
+
+    public AgeConfirmationPopup getAgeConfirmationPopup() {
+        return new AgeConfirmationPopup();
     }
 }
