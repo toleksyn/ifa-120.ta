@@ -1,15 +1,11 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
 import com.codeborne.selenide.Selenide;
-import org.openqa.selenium.Keys;
-
-import com.codeborne.selenide.Selenide;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.switchTo;
 import static java.lang.Integer.parseInt;
 import static java.lang.String.format;
 
@@ -100,11 +96,6 @@ public class BasketPage {
         } else {
             return 0;
         }
-    }
-
-    public ProductPage openProductPage(int productNumber) {
-        $x(format("(//*[@class='cart-product__title'])[%d]", productNumber)).click();
-        return new ProductPage();
     }
 
     public BasketPage restoreProduct(int productIndex) {
