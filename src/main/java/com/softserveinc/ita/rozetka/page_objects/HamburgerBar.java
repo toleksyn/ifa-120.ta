@@ -9,4 +9,9 @@ public class HamburgerBar {
         $x(format("//div[@class='side-menu__switch']//a[contains(text(), '%s')]", language.getLanguageKey())).click();
         return new HomePage();
     }
+
+    public ContactsPage openContactsPage() {
+        $x("//a[contains(@class, 'side-menu__button') and contains(@href, 'contacts')]").click();
+        return new ContactsPage();
+    }
 }
