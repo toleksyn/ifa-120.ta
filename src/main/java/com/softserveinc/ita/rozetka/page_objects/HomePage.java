@@ -2,10 +2,9 @@ package com.softserveinc.ita.rozetka.page_objects;
 
 import lombok.Getter;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.interactions.KeyDownAction;
 
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
+import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 
 public class HomePage extends BasePage {
