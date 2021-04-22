@@ -5,4 +5,4 @@ pom.*
 *.iml
 /build/*
 .allure/
-/*/allure-results/
+/allure-results/
