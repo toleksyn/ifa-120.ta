@@ -18,21 +18,21 @@ public class OrderPage {
         return $x("//div[@class='checkout-total__buttons']").isDisplayed();
     }
 
-    public static String getSurname() {
+    public String getSurname() {
         return $x("//div[@class='form__row js-surname']/input").getValue();
     }
 
-    public static String getName() {
+    public String getName() {
         return $x("//div[@class='form__row js-name']/input").getValue();
     }
 
-    public static String getPhone() {
+    public String getPhone() {
         return $x("//input[@type='tel']")
                 .getValue()
                 .replaceAll(" ", "");
     }
 
-    public static String getCity() {
+    public String getCity() {
         return $x("//div[@class='form__row js-city']//input[@name='search']")
                 .getValue()
                 .toLowerCase();
@@ -46,22 +46,22 @@ public class OrderPage {
         return this;
     }
 
-    private OrderPage setName(String name) {
+    public OrderPage setName(String name) {
         $x("//div[@class='form__row js-name']/input").setValue(name);
         return this;
     }
 
-    private OrderPage setSurName(String surName) {
+    public OrderPage setSurName(String surName) {
         $x("//div[@class='form__row js-surname']/input").setValue(surName);
         return this;
     }
 
-    private OrderPage setPhoneNumber(String phoneNumber) {
+    public OrderPage setPhoneNumber(String phoneNumber) {
         $x("//input[@type='tel']").setValue(phoneNumber);
         return this;
     }
 
-    private OrderPage setCity(String city) {
+    public OrderPage setCity(String city) {
         $x("//div[@class='form__row js-city']//input[@name='search']")
                 .setValue(city)
                 .click();

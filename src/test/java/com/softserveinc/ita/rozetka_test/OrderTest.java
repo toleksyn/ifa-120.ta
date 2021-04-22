@@ -41,9 +41,9 @@ public class OrderTest extends TestRunner {
                 .isConfirmOrderButtonDisplayed();
 
         assertTrue(isConfirmOrderButtonDisplayed, "The Confirm Button should be displayed");
-        assertEquals(OrderPage.getSurname(), shippingAddress.getSurname(), "Incorrect surname");
-        assertEquals(OrderPage.getName(), shippingAddress.getName(), "Incorrect name");
-        assertTrue(OrderPage.getCity().contains(shippingAddress.getCity().toLowerCase()), "Incorrect city");
-        assertEquals(OrderPage.getPhone(), "+38" + shippingAddress.getPhone(), "Incorrect phone");
+        assertEquals(orderPage.getSurname(), shippingAddress.getSurname(), "Incorrect surname");
+        assertEquals(orderPage.getName(), shippingAddress.getName(), "Incorrect name");
+        assertTrue(orderPage.getCity().contains(shippingAddress.getCity().toLowerCase()), "Incorrect city");
+        assertEquals(orderPage.getPhone(), "+38" + shippingAddress.getPhone(), "Incorrect phone");
     }
 }
