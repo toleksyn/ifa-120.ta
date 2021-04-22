@@ -50,21 +50,21 @@ public class BasketPage {
     }
 
     public BasketPage deleteProduct(int productIndex) {
-        $x(String.format("//button[@aria-controls='cartProductActions%d']", productIndex)).click();
+        $x(format("//button[@aria-controls='cartProductActions%d']", productIndex)).click();
         $x("//button[@class='button button--medium button--with-icon button--link context-menu-actions__button']").click();
         return this;
     }
 
-    public BasketPage restoreDeletedProduct(int productIndex) {
-        $x(String.format("(//button[@class='buy-button lite-tile__buy-button'])[%d]", productIndex)).click();
+    public BasketPage restoreProduct(int productIndex) {
+        $x(format("(//button[@class='buy-button lite-tile__buy-button'])[%d]", productIndex)).click();
         return this;
     }
 
-    public String getDeletedFromBasketProductLink(int productIndex) {
-        return $x(String.format("(//a[@class='lite-tile__title'])[%d]", productIndex)).getText();
+    public String getRecentlyViewedProductLink(int productIndex) {
+        return $x(format("(//a[@class='lite-tile__title'])[%d]", productIndex)).getText();
     }
 
-    public String getProductInBasketLink(int productIndex) {
-        return $x(String.format("(//a[@class='cart-product__title'])[%d]", productIndex)).getText();
+    public String getProductLink(int productIndex) {
+        return $x(format("(//a[@class='cart-product__title'])[%d]", productIndex)).getText();
     }
 }

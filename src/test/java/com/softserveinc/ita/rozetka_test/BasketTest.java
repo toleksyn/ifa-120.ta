@@ -21,12 +21,11 @@ public class BasketTest extends TestRunner {
 
     //In progress
     @Test
-    public void testRestoreDeletedOrder() {
+    public void testRestoreProduct() {
         openBasketPage.deleteProduct(0);
-        var deletedProductLink = openBasketPage.getDeletedFromBasketProductLink(0);
-        openBasketPage.restoreDeletedProduct(0);
-        var restoredProductLink = openBasketPage.getProductInBasketLink(0);
-        assertTrue(deletedProductLink == restoredProductLink, "Product shouldn't added to basket");
-
+        var deletedProductLink = openBasketPage.getRecentlyViewedProductLink(0);
+        openBasketPage.restoreProduct(0);
+        var restoredProductLink = openBasketPage.getProductLink(0);
+        assertTrue(deletedProductLink == restoredProductLink);
     }
 }

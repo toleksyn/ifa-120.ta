@@ -27,7 +27,7 @@ public class OrderTest extends TestRunner {
 
     @Test
     public void testOpenOrderPage() {
-        var pageTitle = openOrderPage.getPageTitle();
+        var pageTitle = orderPage.getPageTitle();
         assertTrue(!pageTitle.isEmpty(), "The title shouldn't be empty");
         assertTrue(pageTitle.equals("Оформлення замовлення"), "The page title should match the condition");
     }
