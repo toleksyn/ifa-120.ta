@@ -32,10 +32,10 @@ public class HamburgerTest extends TestRunner {
         var categoryNames = homePage
                 .getLeftSidebar()
                 .getCategoryNames();
-        var isCategoryNamesUkrainian = categoryNames
+        var areCategoryNamesUkrainian = categoryNames
                 .stream()
                 .anyMatch(name -> name.contains("і"));
-        assertFalse(isCategoryNamesUkrainian, "Category names should be translated");
+        assertFalse(areCategoryNamesUkrainian, "Category names should be translated");
     }
 
     @Test
@@ -43,10 +43,10 @@ public class HamburgerTest extends TestRunner {
         var contactsPage = hamburgerBar.openContactsPage();
         var expectedTitle = "Контакти";
         assertEquals(contactsPage.getPageTitle(), expectedTitle, format("Page title should be '%s'", expectedTitle));
-        var isPhoneNumbersCorrect = contactsPage
+        var arePhoneNumbersCorrect = contactsPage
                 .getPhoneNumbers()
                 .stream()
                 .allMatch(phoneNumber -> phoneNumber.contains("044"));
-        assertTrue(isPhoneNumbersCorrect, "Phone numbers should be correct");
+        assertTrue(arePhoneNumbersCorrect, "Phone numbers should be correct");
     }
 }
