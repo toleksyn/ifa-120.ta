@@ -109,7 +109,6 @@ public class BasketPage {
 
     public BasketPage restoreProduct(int productIndex) {
         Selenide.actions().moveToElement($x(format("(//button[@class='buy-button lite-tile__buy-button'])[%d]", productIndex))).click();
-//        $x(format("(//button[@class='buy-button lite-tile__buy-button'])[%d]", productIndex)).click();
         return this;
     }
 
