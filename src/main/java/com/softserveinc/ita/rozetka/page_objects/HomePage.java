@@ -20,4 +20,9 @@ public class HomePage extends BasePage {
         $x(format("(//li[@class='main-goods__cell'])[%d]", number)).click();
         return new ProductPage();
     }
+
+    public BasketPage openBasketPage() {
+        $x("//button[@class='header__button header__button--active']").click();
+        return new BasketPage();
+    }
 }

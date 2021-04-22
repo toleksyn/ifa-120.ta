@@ -8,6 +8,10 @@ import com.softserveinc.ita.rozetka.page_objects.ShippingAddress;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertTrue;
+
+import org.testng.annotations.Test;
+
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -45,5 +49,15 @@ public class OrderTest extends TestRunner {
         assertEquals(orderPage.getName(), shippingAddress.getName(), "Incorrect name");
         assertTrue(orderPage.getCity().contains(shippingAddress.getCity().toLowerCase()), "Incorrect city");
         assertEquals(orderPage.getPhone(), "+38" + shippingAddress.getPhone(), "Incorrect phone");
+    }
+
+    @Test
+    public void testDeletingProductFromBasket() {   // Popup basket
+        basketPage = orderPage
+                .openProductPage(1)
+                .openHomePageByLogo()
+                .openBasketPage()
+                .deleteAllProducts();
+        assertTrue(basketPage.isBasketEmpty(), "Basket should be empty");
     }
 }
