@@ -3,8 +3,7 @@ package com.softserveinc.ita.rozetka.page_objects;
 import java.util.List;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.Selenide.$$x;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 import static java.lang.Integer.parseInt;
 import static java.lang.String.format;
 
@@ -90,7 +89,9 @@ public class ProductPage extends BasePage {
     }
 
     public DeliveryCityPage openDeliveryCityPage() {
-        $x("(//button [@class='button button_type_link'])[2]").click();
+        $x("(//button [@class='button button_type_link'])[2]")
+                .scrollIntoView(false)
+                .click();
         return new DeliveryCityPage();
     }
 }

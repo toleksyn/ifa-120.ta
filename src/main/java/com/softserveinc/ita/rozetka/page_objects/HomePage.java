@@ -18,7 +18,10 @@ public class HomePage extends BasePage {
     }
 
     public ProductPage openProductByNumber(int number) {
-        $x(format("(//li[@class='main-goods__cell'])[%d]", number)).click();
+        actions().sendKeys(Keys.HOME).perform(); //manipulations to display the item, in the case of overlapping by advertising pop-up window
+        $x(format("(//li[@class='main-goods__cell'])[%d]", number))
+                .scrollIntoView(true)
+                .click();
         return new ProductPage();
     }
 
@@ -27,12 +30,12 @@ public class HomePage extends BasePage {
         return new BasketPage();
     }
 
-    public int getProductsListSize(int listSizeNotLess) {
+    public int getProductsCountOnPage(int countNotLess) {
         actions().sendKeys(Keys.PAGE_DOWN)   // page scrolling to dynamically increase the list of products
                 .sendKeys(Keys.END)
                 .perform();
         return $$x("//li[@class='main-goods__cell']")
-                .shouldHave(sizeGreaterThan(listSizeNotLess))
+                .shouldHave(sizeGreaterThan(countNotLess))
                 .size();
     }
 
