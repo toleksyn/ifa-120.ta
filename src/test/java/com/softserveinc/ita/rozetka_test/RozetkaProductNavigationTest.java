@@ -2,12 +2,8 @@ package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
-import com.softserveinc.ita.rozetka.page_objects.ProductPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.Arrays;
-import java.util.List;
 
 import static java.lang.String.format;
 import static org.testng.Assert.assertEquals;
@@ -66,32 +62,60 @@ public class RozetkaProductNavigationTest extends TestRunner {
     }
 
     @Test
-    public void testProductMainSectionsPresence() {
-        var ProductsListSize = rozetkaHomePage.getHomePageProductsListSize(12);
-        var randomProductNumber = (int) ((Math.random() * 1000) * ProductsListSize / 1000);
-        randomProductNumber = randomProductNumber > 1 ? randomProductNumber : 1;
-        var randomProductName = rozetkaHomePage.getProductNameByNumber(randomProductNumber);
+    public void testSelectProductByCatalog() {
+        var pageCategoryName = "Ноутбуки";
+        var chosenCategoryPageByCatalog = rozetkaHomePage
+                .getLeftSidebar()
+                .openCategory(pageCategoryName);
+        var categoryTitle = "Комп'ютери";
+        assertTrue(chosenCategoryPageByCatalog.getCategoryTitle().contains(categoryTitle),
+                "Incorrect page title");
+        var chosenProductPage = chosenCategoryPageByCatalog
+                .openProductsListPage(pageCategoryName)
+                .openProductByName("Ноутбук Apple MacBook Air 13");
+        var isProductTitleCorrect = chosenProductPage
+                .getProductTitle()
+                .contains("Ноутбук Apple MacBook");
+        assertTrue(isProductTitleCorrect, "Incorrect product title");
+        var chosenCategoryPageByLink = chosenProductPage
+                .openCategoryPageByName(pageCategoryName.toLowerCase());
+        assertTrue(chosenCategoryPageByLink.getCategoryTitle().contains(categoryTitle),
+                "Incorrect page title");
+    }
 
-        var productPage = rozetkaHomePage.openProductByNumber(randomProductNumber);
-        var productTitle = productPage.getProductTitle();
-        assertEquals(productTitle, randomProductName, "Incorrect product opened");
+    @Test
+    public void testCompareProductPrices() {
+        var catalogCategoryPage = rozetkaHomePage
+                .getLeftSidebar()
+                .openCategory("Знижки");
+        var isPageTitleCorrect = catalogCategoryPage
+                .getPageTitle()
+                .contains("Знижки");
+        assertTrue(isPageTitleCorrect, "Incorrect page title");
+        var productPage = catalogCategoryPage.openProductByNumber(1);
+        var preDiscountPrice = productPage.getPreDiscountPrice();
+        var discountPrice = productPage.getDiscountPrice();
+        assertTrue(preDiscountPrice > discountPrice,
+                "Pre discount price should be bigger than current price with discount");
+    }
 
-        List<String> productSectionsTitles = productPage.getProductSectionsTitleList(3);
-        assertTrue(productSectionsTitles.contains("Також вас можуть зацікавити"),
-                "'Також вас можуть зацікавити' section should be present on page");
-        assertTrue(productSectionsTitles.contains("Опис" + " " + productTitle), "'Опис' section should be present on page");
-        var ProductReviewCount = productPage.getProductReviewCount();
-        assertTrue(productSectionsTitles.contains("Відгуки покупців" + " " + ProductReviewCount) ||
-                        productSectionsTitles.contains("Додати відгук до товару"),
-                "Customer review section should be present on page");
-        assertTrue(productSectionsTitles.contains("Характеристики" + " " + productTitle),
-                "'Характеристики' section should be present on page");
-        assertTrue(productSectionsTitles.contains("Разом з цим товаром купують"),
-                "'Разом з цим товаром купують' section should be present on page");
-
-        var deliveryCityPage = productPage.openDeliveryCityPage();
-        var deliveryCityPageHeader = deliveryCityPage.getHeaderText();
-        deliveryCityPage.closeDeliveryCityPage();
-        assertEquals(deliveryCityPageHeader, "Виберіть своє місто", "Incorrect page opened");
+    @Test
+    public void testShowMoreProducts() {
+        var chosenProductPage = rozetkaHomePage
+                .getLeftSidebar()
+                .openCategory("Товари для дому")
+                .openProductsListPage("Домашній текстиль");
+        var productCount = chosenProductPage.getProductListSize();
+        var firstProductName = chosenProductPage.getProductName(1);
+        var lastProductName = chosenProductPage.getProductName(productCount);
+        chosenProductPage.showMoreProducts();
+        var extendedProductCount = chosenProductPage.getProductListSize();
+        var extendedFirstProductName = chosenProductPage.getProductName(1);
+        var extendedLastProductName = chosenProductPage.getProductName(extendedProductCount);
+        assertTrue(firstProductName.equals(extendedFirstProductName),
+                "First product name should be the same to the first product name after the extended page");
+        assertTrue(!lastProductName.equals(extendedLastProductName),
+                "Last product name should be different to the last product name after the extended page");
     }
 }
+
