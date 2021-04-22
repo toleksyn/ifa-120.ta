@@ -22,10 +22,10 @@ public class BasketTest extends TestRunner {
 
     @Test
     public void testRestoreProduct() {
-        var basket = openBasketPage.deleteProduct(0);
-        var deletedProductLink = basket.getRecentlyViewedProductId(1);
-        var newB = basket.restoreProduct(1);
-        var restoredProductLink = newB.getProductId(1);
-        assertEquals(restoredProductLink, deletedProductLink);
+        var basketAfterDeletedProduct = openBasketPage.deleteProduct(0);
+        var deletedProductId = basketAfterDeletedProduct.getRecentlyViewedProductId(1);
+        var basketAfterRestoreProduct = basketAfterDeletedProduct.restoreProduct(1);
+        var restoredProductId = basketAfterRestoreProduct.getProductId(1);
+        assertEquals(restoredProductId, deletedProductId);
     }
 }
