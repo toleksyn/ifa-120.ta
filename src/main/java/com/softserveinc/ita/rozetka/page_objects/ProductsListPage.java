@@ -1,5 +1,7 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import io.qameta.allure.Step;
+
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
@@ -14,6 +16,7 @@ public class ProductsListPage extends BasePage {
                 .size();
     }
 
+    @Step("ProductListPage: open product page by number {number}")
     public ProductPage openProductByNumber(int number) {
         $x(format("(//a[@class='goods-tile__picture'])[%d]", number)).click();
         return new ProductPage();
@@ -48,6 +51,7 @@ public class ProductsListPage extends BasePage {
         return parseInt($x("//a[contains(@class, 'pagination__link_state_active')]").text());
     }
 
+    @Step("ProductListPage: filter products list by filter name {filterName")
     public ProductsListPage filterProductsList(String filterName) {
         $x(format("//label[contains(text(),'%s')]", filterName)).click();
         return new ProductsListPage();

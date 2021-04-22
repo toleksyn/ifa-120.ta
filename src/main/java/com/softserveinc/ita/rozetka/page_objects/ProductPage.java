@@ -1,5 +1,7 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import io.qameta.allure.Step;
+
 import java.util.List;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
@@ -39,6 +41,7 @@ public class ProductPage extends BasePage {
                 .texts();
     }
 
+    @Step("ProductPage: open product tab {productPageTab}")
     public ProductPage openProductTab(ProductPageTab productPageTab) {
         var tabButton = productPageTab == ProductPageTab.DESCRIPTION ?
                 $x("(//ul[@class='tabs__list']//a)[1]") :
