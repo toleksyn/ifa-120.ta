@@ -135,16 +135,16 @@ public class RozetkaProductNavigationTest extends TestRunner {
     }
 
     @Test
-    public void testSelectProductByLeftSidebar() {
+    public void testSelectProductByCatalogMenu() {
         var categoryName = "Ноутбуки";
         var laptopCategoryPage = rozetkaHomePage
                 .getCatalogMenu()
                 .openCategoryPage(categoryName);
         var categoryTitle = "Комп'ютери";
-        var isLaptopCategoryPageCorrect = laptopCategoryPage
+        var isLaptopCategoryPageOpened = laptopCategoryPage
                 .getCategoryTitle()
                 .contains(categoryTitle);
-        assertTrue(isLaptopCategoryPageCorrect, "Incorrect page title");
+        assertTrue(isLaptopCategoryPageOpened, "Incorrect page title");
         var laptopProductPage = laptopCategoryPage
                 .openProductsListPage(categoryName)
                 .openProductByName("Ноутбук Apple MacBook Air 13");
@@ -152,12 +152,11 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .getProductTitle()
                 .contains("Ноутбук Apple MacBook");
         assertTrue(isProductTitleCorrect, "Incorrect product title");
-        var laptopCategoryPageByLink = laptopProductPage
-                .openCategoryPageByName(categoryName.toLowerCase());
-        isLaptopCategoryPageCorrect = laptopCategoryPageByLink
+        var laptopCategoryPageByLink = laptopProductPage.openCategoryPageByLink(categoryName.toLowerCase());
+        isLaptopCategoryPageOpened = laptopCategoryPageByLink
                 .getCategoryTitle()
                 .contains(categoryTitle);
-        assertTrue(isLaptopCategoryPageCorrect, "Incorrect page title");
+        assertTrue(isLaptopCategoryPageOpened, "Incorrect page title");
     }
 
     @Test
@@ -192,7 +191,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
         var extendedLastProductName = productPage.getProductName(extendedProductCount);
         assertTrue(firstProductName.equals(extendedFirstProductName),
                 "First product name should be the same to the first product name after the extended page");
-        assertTrue(!lastProductName.equals(extendedLastProductName),
+        assertFalse(lastProductName.equals(extendedLastProductName),
                 "Last product name should be different to the last product name after the extended page");
     }
 
@@ -202,13 +201,13 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .getHeader()
                 .openCatalogMenu();
         var makeUpCategory = catalogMenu.scrollToCategory("Краса");
-        var subcategoryCount = makeUpCategory.getCategoriesSize();
-        assertTrue(subcategoryCount > 0, "Category should contains at least one subcategory");
+        var subcategoryAmount = makeUpCategory.getCategoriesAmount();
+        assertTrue(subcategoryAmount > 0, "Category should contains at least one subcategory");
         var productsListPage = makeUpCategory.openProductsListPage("Догляд за обличчям");
-        var isProductListPageCorrect = productsListPage
+        var isProductListPageOpened = productsListPage
                 .getPageTitle()
                 .contains("Косметика для догляду за обличчям");
-        assertTrue(isProductListPageCorrect, "Incorrect page title");
+        assertTrue(isProductListPageOpened, "Incorrect page title");
     }
 }
 

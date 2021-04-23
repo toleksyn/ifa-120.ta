@@ -20,7 +20,7 @@ public class CatalogMenu {
         return this;
     }
 
-    public int getCategoriesSize() {
+    public int getCategoriesAmount() {
         return $$x("//li//a[@class='menu__hidden-title']")
                 .shouldHave(sizeGreaterThanOrEqual(1))
                 .size();
