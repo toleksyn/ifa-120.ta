@@ -61,7 +61,7 @@ public class BasketPage {
     @Step("Basket page: delete product by number {productNumber}")
     public BasketPage deleteProduct(int productNumber) {
         var totalOrderPriceLocator = "//*[contains(@class,'m-p')]";
-        var deleteButtonLocator = "//*[contains(@class,'k c')]";
+        var deleteButtonLocator = "//*[contains(@class,'button button--medium button--with-icon button--link context-menu-actions__button')]";
         if (getUniqueProductsAmount() > 1) {
             var priceBeforeDeleting = $x(totalOrderPriceLocator).text();
             $x(format("//button[@id='cartProductActions%d']", productNumber - 1)).click();
@@ -109,16 +109,18 @@ public class BasketPage {
     public ProductPage openProductPage(int productNumber) {
         $x(format("(//*[@class='cart-product__title'])[%d]", productNumber)).click();
         return new ProductPage();
-    public BasketPage restoreProduct(int productIndex) {
+    }
+
+    public BasketPage addProductFromRecentlyViewedProducts(int productIndex) {
         Selenide.actions().moveToElement($x(format("(//button[@class='buy-button lite-tile__buy-button'])[%d]", productIndex))).click();
         return this;
     }
 
-    public String getRecentlyViewedProductId(int productIndex) {
+    public String getRecentlyViewedProductTitle(int productIndex) {
         return $x(format("(//div[@class='g-id display-none'])[%d]", productIndex)).text();
     }
 
-    public String getProductId(int productIndex) {
+    public String getProductTitle(int productIndex) {
         return $x(format("(//div[@class='g-id display-none'])[%d]", productIndex)).text();
     }
 }
