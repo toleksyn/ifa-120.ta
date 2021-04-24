@@ -1,9 +1,9 @@
 package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
+import com.softserveinc.ita.rozetka.enums.LanguageOption;
 import com.softserveinc.ita.rozetka.modules.HamburgerBar;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
-import com.softserveinc.ita.rozetka.enums.LanguageOption;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 

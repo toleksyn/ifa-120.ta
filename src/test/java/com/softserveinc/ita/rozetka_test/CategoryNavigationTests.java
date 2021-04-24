@@ -2,7 +2,6 @@ package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.rozetka.modules.CatalogMenu;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
-
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
