@@ -1,4 +1,4 @@
-package com.softserveinc.ita.rozetka.page_objects;
+package com.softserveinc.ita.rozetka.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

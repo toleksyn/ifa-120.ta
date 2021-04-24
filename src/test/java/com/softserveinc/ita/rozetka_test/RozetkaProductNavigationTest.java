@@ -2,8 +2,8 @@ package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
-import com.softserveinc.ita.rozetka.page_objects.ProductPageTab;
-import com.softserveinc.ita.rozetka.page_objects.SortingOption;
+import com.softserveinc.ita.rozetka.enums.ProductPageTab;
+import com.softserveinc.ita.rozetka.enums.SortingOption;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -22,7 +22,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
     @Test
     public void testAddingProductToBasket() {
         var productPage = rozetkaHomePage
-                .getLeftSidebar()
+                .getCatalogMenu()
                 .openCategory("Сантехніка")
                 .openProductsListPage("Ванни")
                 .openProductByNumber(1);
@@ -62,7 +62,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
     public void testResultsOnProductsListPage() {
         var productCategoryName = "Ноутбуки";
         var productListPage = rozetkaHomePage
-                .getLeftSidebar()
+                .getCatalogMenu()
                 .openCategory("Ноутбуки та комп’ютери")
                 .openProductsListPage(productCategoryName);
         assertEquals(productListPage.getPageTitle(), productCategoryName, format("Title should be '%s'", productCategoryName));
