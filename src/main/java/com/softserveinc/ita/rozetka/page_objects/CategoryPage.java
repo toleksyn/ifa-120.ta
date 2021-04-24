@@ -1,7 +1,5 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-import com.codeborne.selenide.Selenide;
-
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.title;
 import static java.lang.String.format;
@@ -37,7 +35,7 @@ public class CategoryPage extends BasePage {
         return title();
     }
 
-    public ProductsListPage openProductsListPage1() {
+    public ProductsListPage openProductsListPageBySubCategory(String subCategoryName) {
         $x(format("(//ul[@class='tile-cats__list ng-star-inserted']//li[4])[1]")).click();
         return new ProductsListPage();
     }

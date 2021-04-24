@@ -15,7 +15,7 @@ public class Header {
         return new HamburgerBar();
     }
 
-    public boolean isSearchButtonDisplayed() {
-        return $x("//button[contains(@class, 'search-form__submit')]").isDisplayed();
+    public String getSearchFieldText() {
+        return $x("//input[contains(@class, 'search-form__input')]").attr("placeholder");
     }
 }

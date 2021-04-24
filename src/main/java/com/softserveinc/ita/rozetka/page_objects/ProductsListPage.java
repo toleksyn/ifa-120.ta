@@ -8,19 +8,19 @@ import static java.lang.String.format;
 
 public class ProductsListPage extends BasePage {
 
-    public int getProductListSize() {
+    public int getProductsAmount() {
         return $$x("//span[@class='goods-tile__title']")
                 .shouldHave(sizeGreaterThanOrEqual(1))
                 .size();
     }
 
     public ProductPage openProductByNumber(int number) {
-        $x(format("(//a[@class='goods-tile__picture'])[%d]", number)).click();
+        $x(format("(//a[@class='goods-tile__picture ng-star-inserted'])[%d]", number)).click();
         return new ProductPage();
     }
 
-    public ProductsListPage setSortingType(String sortingTypeKey) {
-        $x("//select").selectOptionContainingText(sortingTypeKey);
+    public ProductsListPage setSortingType(SortingOption sortingOption) {
+        $x("//select").selectOptionByValue(sortingOption.getSortingOptionValue());
         return this;
     }
 
@@ -28,7 +28,7 @@ public class ProductsListPage extends BasePage {
         return $x(format("(//span[@class='goods-tile__title'])[%d]", number)).text();
     }
 
-    public int getProductPrice(int number) {
+    public int getPriceFromProduct(int number) {
         return parseInt($x(format("(//span[@class='goods-tile__price-value'])[%d]", number))
                 .text()
                 .replaceAll(" ", ""));
@@ -50,7 +50,7 @@ public class ProductsListPage extends BasePage {
 
     public ProductsListPage filterProductsList(String filterName) {
         $x(format("//label[contains(text(),'%s')]", filterName)).click();
-        return this;
+        return new ProductsListPage();
     }
 
     public ProductPage openProductByName(String productName) {
@@ -67,5 +67,7 @@ public class ProductsListPage extends BasePage {
         return this;
     }
 
-
+    public AgeConfirmationPopup getAgeConfirmationPopup() {
+        return new AgeConfirmationPopup();
+    }
 }

@@ -70,6 +70,21 @@ public class ProductPage extends BasePage {
     }
 
     public boolean isRatingDisplayed(){
-        return  $x("(//app-rating-stars[@class='product__rating-stars'])").isDisplayed();
+       System.out.println($x("//div[@class='product__rating']").getText());
+        return  $x("//div[@class='product__rating']").isDisplayed();
+    }
+
+    public String getCharacteristicText(String characteristicType) {
+        return $x(format("//div[@class='characteristics-full__item' and .//span/text()='%s']//li/*",
+                characteristicType)).text();
+    }
+
+    public HomePage openHomePageByLogo() {
+        $x("//*[@class='header__logo']").click();
+        return new HomePage();
+    }
+
+    public boolean isWarrantyDisplayed(){
+        return $x("//div[@class='product-about__block-heading product-delivery__heading'])[2]").isDisplayed();
     }
 }

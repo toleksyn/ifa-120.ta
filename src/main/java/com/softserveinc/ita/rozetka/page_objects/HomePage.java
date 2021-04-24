@@ -17,7 +17,12 @@ public class HomePage extends BasePage {
     }
 
     public ProductPage openProductByNumber(int number) {
-        $x(format("(//li[@class='main-goods__cell'])[%d]", number)).click();
+        $x(format("(//li[@class='main-goods__cell ng-star-inserted'])[%d]", number)).click();
         return new ProductPage();
+    }
+
+    public BasketPage openBasketPage() {
+        $x("//button[@class='header__button header__button--active']").click();
+        return new BasketPage();
     }
 }
