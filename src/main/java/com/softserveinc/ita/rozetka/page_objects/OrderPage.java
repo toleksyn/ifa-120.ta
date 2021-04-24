@@ -31,6 +31,12 @@ public class OrderPage {
         return $x("//div[@class='form__row js-name']/input").getValue();
     }
 
+    @Step("Order page: set name {name}")
+    public OrderPage setName(String name) {
+        $x("//div[@class='form__row js-name']/input").setValue(name);
+        return this;
+    }
+
     public String getPhone() {
         return $x("//input[@type='tel']")
                 .getValue()
@@ -43,18 +49,21 @@ public class OrderPage {
                 .toLowerCase();
     }
 
+    @Step("Order page: set city {city}")
+    public OrderPage setCity(String city) {
+        $x("//div[@class='form__row js-city']//input[@name='search']")
+                .setValue(city)
+                .click();
+        $x("//div[@class='form__row js-city']//li[1]").click();
+        return this;
+    }
+
     @Step("Order page: set shipping address {shippingAddress}")
     public OrderPage setShippingAddress(ShippingAddress shippingAddress) {
         setName(shippingAddress.getName())
                 .setSurName(shippingAddress.getSurname())
                 .setPhoneNumber(shippingAddress.getPhone())
                 .setCity(shippingAddress.getCity());
-        return this;
-    }
-
-    @Step("Order page: set name {name}")
-    public OrderPage setName(String name) {
-        $x("//div[@class='form__row js-name']/input").setValue(name);
         return this;
     }
 
@@ -67,15 +76,6 @@ public class OrderPage {
     @Step("Order page: set phone number {phoneNumber}")
     public OrderPage setPhoneNumber(String phoneNumber) {
         $x("//input[@type='tel']").setValue(phoneNumber);
-        return this;
-    }
-
-    @Step("Order page: set city {city}")
-    public OrderPage setCity(String city) {
-        $x("//div[@class='form__row js-city']//input[@name='search']")
-                .setValue(city)
-                .click();
-        $x("//div[@class='form__row js-city']//li[1]").click();
         return this;
     }
 

@@ -1,42 +1,28 @@
 package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
-import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import com.softserveinc.ita.rozetka.enums.ProductPageTab;
 import com.softserveinc.ita.rozetka.enums.SortingOption;
+import com.softserveinc.ita.rozetka.modules.Header;
+import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static java.lang.String.format;
 import static org.testng.Assert.*;
 
-public class RozetkaProductNavigationTest extends TestRunner {
+public class ProductNavigationTest extends TestRunner {
 
-    private HomePage rozetkaHomePage;
+    private Header header;
 
     @BeforeMethod
     public void openHomepage() {
-        rozetkaHomePage = new HomePage().openHomePage();
-    }
-
-    @Test
-    public void testAddingProductToBasket() {
-        var productPage = rozetkaHomePage
-                .getCatalogMenu()
-                .openCategory("Сантехніка")
-                .openProductsListPage("Ванни")
-                .openProductByNumber(1);
-        var productTitle = productPage.getProductTitle();
-        var basketPage = productPage.addProductToBasket();
-        assertEquals(basketPage.getProductTitleByName("Ванна"), productTitle,
-                "Product should be added to basket");
+        header = new HomePage().openHomePage().getHeader();
     }
 
     @Test
     public void testSelectProductBySearch() {
         var productName = "гаманець";
-        var productTitle = rozetkaHomePage
-                .getHeader()
+        var productTitle = header
                 .searchFor(productName)
                 .openProductByNumber(1)
                 .getProductTitle();
@@ -48,8 +34,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
         var productName = "бензопила";
         var filterType = "Ланцюгова пила";
         var characteristicType = "Вид";
-        var characteristicTypeText = rozetkaHomePage
-                .getHeader()
+        var characteristicTypeText = header
                 .searchFor(productName)
                 .filterProductsList(filterType)
                 .openProductByNumber(1)
@@ -59,27 +44,8 @@ public class RozetkaProductNavigationTest extends TestRunner {
     }
 
     @Test
-    public void testResultsOnProductsListPage() {
-        var productCategoryName = "Ноутбуки";
-        var productListPage = rozetkaHomePage
-                .getCatalogMenu()
-                .openCategory("Ноутбуки та комп’ютери")
-                .openProductsListPage(productCategoryName);
-        assertEquals(productListPage.getPageTitle(), productCategoryName, format("Title should be '%s'", productCategoryName));
-        var expectedProductType = "Ноутбук";
-        assertTrue(productListPage.getProductName(1).contains(expectedProductType),
-                format("First product should be '%s'", expectedProductType));
-        var productCount = productListPage.getProductsAmount();
-        assertTrue(productListPage.getProductName(productCount / 2).contains(expectedProductType),
-                format("Middle product should be '%s'", expectedProductType));
-        assertTrue(productListPage.getProductName(productCount).contains(expectedProductType),
-                format("Last product should be '%s'", expectedProductType));
-    }
-
-    @Test
     public void testSortByPrice() {
-        var productListPage = rozetkaHomePage
-                .getHeader()
+        var productListPage = header
                 .searchFor("сокира")
                 .setSortingType(SortingOption.CHEAP);
         var lastProductNumber = productListPage.getProductsAmount();
@@ -94,8 +60,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     @Test
     public void testFirstProductInViewedProductsList() {
-        var productPage = rozetkaHomePage
-                .getHeader()
+        var productPage = header
                 .searchFor("галстук");
         var productName = productPage.getProductName(1);
         var firstViewedProductName = productPage
@@ -106,13 +71,12 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     @Test
     public void testNextPreviousPagePagination() {
-        var productListPage = rozetkaHomePage
-                .getHeader()
+        var productListPage = header
                 .searchFor("мисливський ніж");
         var lastProductNumber = productListPage.getProductsAmount();
         var firstProductName = productListPage.getProductName(1);
         var lastProductName = productListPage.getProductName(lastProductNumber);
-        var middleProductName = productListPage.getProductName(lastProductNumber/2);
+        var middleProductName = productListPage.getProductName(lastProductNumber / 2);
         var currentPageNumber = productListPage.getCurrentPageNumber();
         productListPage.openNextPage();
         assertNotEquals(firstProductName, productListPage.getProductName(1),
