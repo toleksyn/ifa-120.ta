@@ -1,5 +1,6 @@
-package com.softserveinc.ita.rozetka.page_objects;
+package com.softserveinc.ita.rozetka.modules;
 
+import com.softserveinc.ita.rozetka.page_objects.CategoryPage;
 import io.qameta.allure.Step;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
 
-public class LeftSidebar {
+public class CatalogMenu {
 
     @Step("Left side bar: open category by name {categoryName}")
     public CategoryPage openCategory(String categoryName) {
