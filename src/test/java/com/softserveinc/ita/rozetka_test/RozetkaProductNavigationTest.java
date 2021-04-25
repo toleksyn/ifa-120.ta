@@ -151,10 +151,10 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 .openProductTab(ProductPageTab.COMMENTS)
                 .getProductTabTitle();
         assertTrue(productCommentPageTitle.contains("Відгуки"), "incorrect tab's title");
-        var questionsCount = productCharacteristicPage
+        var questionsAmount = productCharacteristicPage
                 .openProductTab(ProductPageTab.QUESTIONS)
                 .getQuestionsAmount();
-        assertTrue(questionsCount > 0, "list size  should contain at least 1 item");
+        assertTrue(questionsAmount > 0, "list size  should contain at least 1 item");
     }
 
     @Test
@@ -188,8 +188,8 @@ public class RozetkaProductNavigationTest extends TestRunner {
         var sportAndHobbiesCategoryPage = rozetkaHomePage
                 .getLeftSidebar()
                 .openCategory("Спорт і захоплення");
-        var categoriesCount = sportAndHobbiesCategoryPage.getCategoriesCount();
-        assertTrue(categoriesCount > 0, "page should contains at least 1 category");
+        var categoriesAmount = sportAndHobbiesCategoryPage.getCategoriesAmount();
+        assertTrue(categoriesAmount > 0, "page should contains at least 1 category");
         var bicyclesPageProductsAmount = sportAndHobbiesCategoryPage
                 .openProductsListPageWithSubcategories(1)
                 .getProductsAmount();

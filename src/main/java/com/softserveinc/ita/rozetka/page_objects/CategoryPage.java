@@ -38,9 +38,10 @@ public class CategoryPage extends BasePage {
         return title();
     }
 
-    public int getCategoriesCount() {
+    public int getCategoriesAmount() {
         return $$x("//li[@class='portal-grid__cell']")
-                .shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1)).size();
+                .shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1))
+                .size();
     }
 
     public ProductsListPageWithSubcategories openProductsListPageWithSubcategories(int number) {
