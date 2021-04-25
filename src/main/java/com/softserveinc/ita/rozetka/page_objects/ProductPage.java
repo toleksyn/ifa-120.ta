@@ -1,5 +1,8 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import com.codeborne.selenide.Condition;
+import io.qameta.allure.Step;
+
 import java.util.List;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
@@ -18,6 +21,7 @@ public class ProductPage extends BasePage {
         return $x(format("(//section[@class='recently-viewed']//a[@class='lite-tile__title'])[%d]", number)).text();
     }
 
+    @Step("Product page: add product to basket")
     public BasketPage addProductToBasket() {
         $x("//button[contains(@class, 'button_size_large')]").hover().click();
         return new BasketPage();
@@ -39,6 +43,7 @@ public class ProductPage extends BasePage {
                 .texts();
     }
 
+    @Step("Product page: open product tab {productPageTab}")
     public ProductPage openProductTab(ProductPageTab productPageTab) {
         var tabButton = productPageTab == ProductPageTab.DESCRIPTION ?
                 $x("(//ul[@class='tabs__list']//a)[1]") :
@@ -47,6 +52,7 @@ public class ProductPage extends BasePage {
         return this;
     }
 
+    @Step("Product page: open category page by name {categoryName}")
     public CategoryPage openCategoryPageByName(String categoryName) {
         $x(format("//a[@class='breadcrumbs__link'] //span[contains(text(),'%s')]", categoryName)).click();
         return new CategoryPage();
@@ -69,9 +75,11 @@ public class ProductPage extends BasePage {
         return discountPrice;
     }
 
-    public boolean isRatingDisplayed(){
-       System.out.println($x("//div[@class='product__rating']").getText());
-        return  $x("//div[@class='product__rating']").isDisplayed();
+    @Step("Product page: rating is displayed")
+    public boolean isRatingDisplayed() {
+        return $x("//div[@class='product__rating']")
+                .shouldBe(Condition.visible)
+                .isDisplayed();
     }
 
     public String getCharacteristicText(String characteristicType) {
@@ -79,12 +87,30 @@ public class ProductPage extends BasePage {
                 characteristicType)).text();
     }
 
+    @Step("Product page: open home page by logo")
     public HomePage openHomePageByLogo() {
         $x("//*[@class='header__logo']").click();
         return new HomePage();
     }
 
-    public boolean isWarrantyDisplayed(){
-        return $x("//div[@class='product-about__block-heading product-delivery__heading'])[2]").isDisplayed();
+    @Step("Product page: warranty is displayed")
+    public boolean isWarrantyDisplayed() {
+        return $x("(//div[@class='product-about__block-heading product-delivery__heading'])[2]")
+                .shouldBe(Condition.visible)
+                .isDisplayed();
+    }
+
+    @Step("Product page: Premium Button is displayed")
+    public boolean isPremiumButtonDisplayed() {
+        return $x("//a[@class='button button--small button--gray']")
+                .shouldBe(Condition.visible)
+                .isDisplayed();
+    }
+
+    @Step("Product page: get Product code")
+    public String getProductCode() {
+        return $x("//p[@class='product__code detail-code']")
+                .shouldBe(Condition.visible)
+                .text().replaceAll("Код:", "").replaceAll(" ", "");
     }
 }
