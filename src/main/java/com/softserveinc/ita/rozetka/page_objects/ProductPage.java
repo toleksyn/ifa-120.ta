@@ -1,5 +1,6 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import com.softserveinc.ita.rozetka.enums.ProductPageTab;
 import io.qameta.allure.Step;
 
 import java.util.List;
@@ -77,11 +78,5 @@ public class ProductPage extends BasePage {
     public String getCharacteristicText(String characteristicType) {
         return $x(format("//div[@class='characteristics-full__item' and .//span/text()='%s']//li/*",
                 characteristicType)).text();
-    }
-
-    @Step("Product page: open home page by logo")
-    public HomePage openHomePageByLogo() {
-        $x("//*[@class='header__logo']").click();
-        return new HomePage();
     }
 }

@@ -1,4 +1,4 @@
-package com.softserveinc.ita.rozetka.page_objects;
+package com.softserveinc.ita.rozetka.utility_class;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
