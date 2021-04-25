@@ -1,11 +1,14 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import io.qameta.allure.Step;
+
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.switchTo;
 import static java.lang.String.format;
 
 public class OrderPage {
 
+    @Step("Order page: start editing products in basket")
     public BasketPage startEditingProductsInBasket() {
         $x("//*[contains(@class, 'edit-button')]").click();
         return new BasketPage();
@@ -62,6 +65,7 @@ public class OrderPage {
         return this;
     }
 
+    @Step("Order page: set city {city}")
     public OrderPage setCity(String city) {
         $x("//div[@class='form__row js-city']//input[@name='search']")
                 .setValue(city)
@@ -70,6 +74,7 @@ public class OrderPage {
         return this;
     }
 
+    @Step("Order page: open product page by number {productNumber}")
     public ProductPage openProductPage(int productNumber) {
         $x(format("(//*[@class='checkout-product__title-product'])[%d]", productNumber)).click();
         switchTo().window(1);

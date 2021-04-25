@@ -1,5 +1,7 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import java.util.Objects;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$$x;
@@ -39,7 +41,8 @@ public class BasketPage {
     }
 
     public int getProductCount(int productNumber) {
-        return parseInt($x(format("(//*[contains(@class, 'cart-counter__input')])[%d]", productNumber)).val());
+        return parseInt(Objects.requireNonNull($x(format("(//*[contains(@class, 'cart-counter__input')])[%d]", productNumber))
+                .val()));
     }
 
     public int getOrderProductSum(int productNumber) {

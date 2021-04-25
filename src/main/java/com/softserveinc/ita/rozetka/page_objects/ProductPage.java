@@ -1,5 +1,9 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import com.codeborne.selenide.Condition;
+import io.qameta.allure.Step;
+import org.openqa.selenium.Keys;
+
 import java.util.List;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
@@ -17,6 +21,7 @@ public class ProductPage extends BasePage {
         return $x(format("(//section[@class='recently-viewed']//a[@class='lite-tile__title'])[%d]", number)).text();
     }
 
+    @Step("Product page: add product to basket")
     public BasketPage addProductToBasket() {
         $x("//button[contains(@class, 'button_size_large')]").hover().click();
         return new BasketPage();
@@ -78,20 +83,22 @@ public class ProductPage extends BasePage {
         return new HomePage();
     }
 
-    public List<String> getProductSectionsTitleList(int minSectionsCount) {
+    public List<String> getProductSectionsTitleList() {
         return $$x("//*[@class='product-tabs__heading']")
-                .shouldHave(sizeGreaterThan(minSectionsCount))
+                .shouldHave(sizeGreaterThan(2))
                 .texts();
     }
 
     public String getProductReviewCount() {
-        return $x("//product-comments-tab-main//span[@class='product-tabs__heading_color_gray']").text();
+        return $x("//*[contains(@class,'product-comm')]//span[contains(@class,'product-t')]").text();
     }
 
+    @Step("Product page: open Delivery City page")
     public DeliveryCityPage openDeliveryCityPage() {
-        $x("(//button [@class='button button_type_link'])[2]")
-                .scrollIntoView(false)
-                .click();
+        actions().
+                moveToElement($x("//div[contains(@class,'product-about__block-h')]//*[contains(@class,'button')]"))
+                .click()
+                .perform(); //manipulations to display the item, in the case of overlapping by advertising pop-up window
         return new DeliveryCityPage();
     }
 }
