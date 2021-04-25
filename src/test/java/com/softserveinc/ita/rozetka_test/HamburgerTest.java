@@ -7,7 +7,7 @@ import com.softserveinc.ita.rozetka.page_objects.LanguageOption;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static java.lang.String.*;
+import static java.lang.String.format;
 import static org.testng.Assert.*;
 
 public class HamburgerTest extends TestRunner {

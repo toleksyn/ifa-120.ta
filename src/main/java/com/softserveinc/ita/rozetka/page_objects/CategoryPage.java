@@ -1,5 +1,7 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import io.qameta.allure.Step;
+
 import com.codeborne.selenide.CollectionCondition;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -9,22 +11,26 @@ import static java.lang.String.format;
 
 public class CategoryPage extends BasePage {
 
+    @Step("Category page: open product category page for category {categoryName}")
     public CategoryPage openProductCategoryPage(String categoryName) {
         $x(format("//a[@class='tile-cats__heading tile-cats__heading_type_center'" +
                 " and contains(text(), '%s')]", categoryName)).click();
         return new CategoryPage();
     }
 
+    @Step("Category page: open product by number {number}")
     public ProductPage openProductByNumber(int number) {
         $x(format("(//span[@class='goods-tile__title'])[%d]", number)).click();
         return new ProductPage();
     }
 
+    @Step("Category page: open products list page for category index {index}")
     public ProductsListPage openProductsListPage(int index) {
         $x(format("(//a[@class='tile-cats__heading tile-cats__heading_type_center'])[%d]", index)).click();
         return new ProductsListPage();
     }
 
+    @Step("Category page: open products list page for category {productCategoryName}")
     public ProductsListPage openProductsListPage(String productCategoryName) {
         $x(format("//a[contains(@class, 'tile-cats__heading') and contains(text(), '%s')]", productCategoryName)).click();
         return new ProductsListPage();
