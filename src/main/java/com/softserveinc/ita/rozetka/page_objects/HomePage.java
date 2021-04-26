@@ -1,11 +1,11 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-import com.codeborne.selenide.CollectionCondition;
 import com.softserveinc.ita.rozetka.modules.CatalogMenu;
 import io.qameta.allure.Step;
 import lombok.Getter;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.open;
 import static java.lang.String.format;
 
 public class HomePage extends BasePage {
@@ -26,9 +26,6 @@ public class HomePage extends BasePage {
     }
 
     public String getViewedProductName(int number) {
-        return $$x("//a[@class='tile__title']")
-                .shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1))
-                .get(number)
-                .text();
+        return $x(format("(//a[contains(@class,'tile__picture')])[%d]", number)).text();
     }
 }
