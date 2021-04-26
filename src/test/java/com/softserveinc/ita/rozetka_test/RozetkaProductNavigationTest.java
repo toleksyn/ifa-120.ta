@@ -12,16 +12,16 @@ import static org.testng.Assert.*;
 
 public class RozetkaProductNavigationTest extends TestRunner {
 
-    private HomePage rozetkaHomePage;
+    private HomePage homePage;
 
     @BeforeMethod
     public void openHomepage() {
-        rozetkaHomePage = new HomePage().openHomePage();
+        homePage = new HomePage().openHomePage();
     }
 
     @Test
     public void testAddingProductToBasket() {
-        var productPage = rozetkaHomePage
+        var productPage = homePage
                 .getCatalogMenu()
                 .openCategoryPage("Сантехніка")
                 .openProductsListPage("Ванни")
@@ -35,7 +35,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
     @Test
     public void testSelectProductBySearch() {
         var productName = "гаманець";
-        var productTitle = rozetkaHomePage
+        var productTitle = homePage
                 .getHeader()
                 .searchFor(productName)
                 .openProductByNumber(1)
@@ -48,7 +48,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
         var productName = "бензопила";
         var filterType = "Ланцюгова пила";
         var characteristicType = "Вид";
-        var characteristicTypeText = rozetkaHomePage
+        var characteristicTypeText = homePage
                 .getHeader()
                 .searchFor(productName)
                 .filterProductsList(filterType)
@@ -61,7 +61,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
     @Test
     public void testResultsOnProductsListPage() {
         var productCategoryName = "Ноутбуки";
-        var productListPage = rozetkaHomePage
+        var productListPage = homePage
                 .getCatalogMenu()
                 .openCategoryPage("Ноутбуки та комп’ютери")
                 .openProductsListPage(productCategoryName);
@@ -78,7 +78,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     @Test
     public void testSortByPrice() {
-        var productListPage = rozetkaHomePage
+        var productListPage = homePage
                 .getHeader()
                 .searchFor("сокира")
                 .setSortingType(SortingOption.CHEAP);
@@ -94,7 +94,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     @Test
     public void testFirstProductInViewedProductsList() {
-        var productPage = rozetkaHomePage
+        var productPage = homePage
                 .getHeader()
                 .searchFor("галстук");
         var productName = productPage.getProductName(1);
@@ -106,7 +106,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     @Test
     public void testNextPreviousPagePagination() {
-        var productListPage = rozetkaHomePage
+        var productListPage = homePage
                 .getHeader()
                 .searchFor("мисливський ніж");
         var lastProductNumber = productListPage.getProductsAmount();
@@ -137,7 +137,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
     @Test
     public void testSelectProductByCatalogMenu() {
         var categoryName = "Ноутбуки";
-        var laptopCategoryPage = rozetkaHomePage
+        var laptopCategoryPage = homePage
                 .getCatalogMenu()
                 .openCategoryPage(categoryName);
         var categoryTitle = "Комп'ютери";
@@ -162,7 +162,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
     @Test
     public void testCompareDiscountWithPreDiscountPrices() {
         var categoryName = "Ціни";
-        var salesCategoryPage = rozetkaHomePage
+        var salesCategoryPage = homePage
                 .getCatalogMenu()
                 .openCategoryPage(categoryName);
         var isPageTitleCorrect = salesCategoryPage
@@ -178,7 +178,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     @Test
     public void testShowMoreProducts() {
-        var productPage = rozetkaHomePage
+        var productPage = homePage
                 .getCatalogMenu()
                 .openCategoryPage("Товари для дому")
                 .openProductsListPage("Домашній текстиль");
@@ -197,7 +197,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     @Test
     public void testSelectProductByCatalog() {
-        var catalogMenu = rozetkaHomePage
+        var catalogMenu = homePage
                 .getHeader()
                 .openCatalogMenu();
         var makeUpCategory = catalogMenu.scrollToCategory("Краса");
