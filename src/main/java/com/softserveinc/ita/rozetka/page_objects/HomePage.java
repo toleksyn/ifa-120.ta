@@ -21,7 +21,7 @@ public class HomePage extends BasePage {
 
     @Step("Home page: open product by number {number}")
     public ProductPage openProductByNumber(int number) {
-        $x(format("(//a[@class='tile__picture'])[%d]", number)).click();
+        $x(format("(//li[contains(@class,'main-goods__cell')])[%d]", number)).click();
         return new ProductPage();
     }
 
