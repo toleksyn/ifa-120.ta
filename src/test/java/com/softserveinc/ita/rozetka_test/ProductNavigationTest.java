@@ -31,9 +31,9 @@ public class ProductNavigationTest extends TestRunner {
 
     @Test
     public void testFilterProductsList() {
-        var productName = "бензопила";
-        var filterType = "Ланцюгова пила";
-        var characteristicType = "Вид";
+        var productName = "приціл";
+        var filterType = "Оптичний";
+        var characteristicType = "Тип прицілу";
         var characteristicTypeText = header
                 .searchFor(productName)
                 .filterProductsList(filterType)
@@ -65,6 +65,8 @@ public class ProductNavigationTest extends TestRunner {
         var productName = productPage.getProductName(1);
         var firstViewedProductName = productPage
                 .openProductByNumber(1)
+                .getHeader()
+                .openHomePageByLogo()
                 .getViewedProductName(1);
         assertTrue(productName.contains(firstViewedProductName), "First viewed product name is incorrect");
     }

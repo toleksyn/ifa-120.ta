@@ -20,7 +20,7 @@ public class ProductsListPage extends BasePage {
 
     @Step("Products list page: open product by number {number}")
     public ProductPage openProductByNumber(int number) {
-        $x(format("(//a[@class='goods-tile__picture'])[%d]", number)).click();
+        $x(format("(//a[contains(@class, 'goods-tile__picture')])[%d]", number)).click();
         return new ProductPage();
     }
 
