@@ -69,7 +69,7 @@ public class ProductsListPage extends BasePage {
     }
 
     public String getPageTitle() {
-        return $x("//h1[@class='catalog-heading']").text();
+        return $x("//h1[contains(@class, 'catalog-heading')]").text();
     }
 
     @Step("Products list page: show more products")
