@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 
 public class CatalogMenu {
-    public CategoryPage openCategoryPage(String categoryName) {
+    public CategoryPage openCategory(String categoryName) {
         $x(format("//ul[contains(@class, 'menu-categories_type_main')] //a[contains(@class, 'menu-categories__link') and contains(text(), '%s')]", categoryName)).click();
         // click on microphone element to hide dropdown
         $x("//button[contains(@class, 'search-form__microphone')]").click();

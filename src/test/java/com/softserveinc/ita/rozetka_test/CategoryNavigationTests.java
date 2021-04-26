@@ -22,7 +22,7 @@ public class CategoryNavigationTests {
     @Test
     public void testAddingProductToBasket() {
         var productPage = catalogMenu
-                .openCategoryPage("Сантехніка")
+                .openCategory("Сантехніка")
                 .openProductsListPage("Ванни")
                 .openProductByNumber(1);
         var productTitle = productPage.getProductTitle();
@@ -35,7 +35,7 @@ public class CategoryNavigationTests {
     public void testResultsOnProductsListPage() {
         var productCategoryName = "Ноутбуки";
         var productListPage = catalogMenu
-                .openCategoryPage("Ноутбуки та комп’ютери")
+                .openCategory("Ноутбуки та комп’ютери")
                 .openProductsListPage(productCategoryName);
         assertEquals(productListPage.getPageTitle(), productCategoryName, format("Title should be '%s'", productCategoryName));
         var expectedProductType = "Ноутбук";
@@ -52,7 +52,7 @@ public class CategoryNavigationTests {
     public void testSelectProductByCatalogMenu() {
         var categoryName = "Ноутбуки";
         var laptopCategoryPage = catalogMenu
-                .openCategoryPage(categoryName);
+                .openCategory(categoryName);
         var categoryTitle = "Комп'ютери";
         var isLaptopCategoryPageOpened = laptopCategoryPage
                 .getCategoryTitle()
@@ -76,7 +76,7 @@ public class CategoryNavigationTests {
     public void testCompareDiscountWithPreDiscountPrices() {
         var categoryName = "Ціни";
         var salesCategoryPage = catalogMenu
-                .openCategoryPage(categoryName);
+                .openCategory(categoryName);
         var isPageTitleCorrect = salesCategoryPage
                 .getPageTitle()
                 .contains(categoryName);
@@ -91,7 +91,7 @@ public class CategoryNavigationTests {
     @Test
     public void testShowMoreProducts() {
         var productPage = catalogMenu
-                .openCategoryPage("Товари для дому")
+                .openCategory("Товари для дому")
                 .openProductsListPage("Домашній текстиль");
         var productsCount = productPage.getProductsAmount();
         var firstProductName = productPage.getProductName(1);
@@ -104,5 +104,24 @@ public class CategoryNavigationTests {
                 "First product name should be the same to the first product name after the extended page");
         assertFalse(lastProductName.equals(extendedLastProductName),
                 "Last product name should be different to the last product name after the extended page");
+    }
+
+    @Test
+    public void testCompareCurrentProductPriceWithDiscountInCheaperTogetherMenu() {
+        var categoryName = "Ноутбуки";
+        var cheaperTogetherMenu = catalogMenu
+                .openCategory(categoryName)
+                .openProductsListPage(categoryName)
+                .openProductByNumber(1)
+                .openCheaperTogetherMenu();
+        var productName = cheaperTogetherMenu.getProductNameByNumber(1);
+        var productPage = cheaperTogetherMenu.openProductByNumber(1);
+        var productPageTitle = productPage.getProductTitle();
+        assertEquals(productName, productPageTitle,
+                "The product name should be the same to the product page title");
+        var discountPrice = cheaperTogetherMenu.getDiscountPrice(1);
+        var currentPrice = productPage.getDiscountPrice();
+        assertTrue(discountPrice < currentPrice,
+                "The discount price should be smaller than the current product price");
     }
 }
