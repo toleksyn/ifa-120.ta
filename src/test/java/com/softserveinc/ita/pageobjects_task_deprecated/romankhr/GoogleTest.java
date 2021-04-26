@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 public class GoogleTest extends TestRunner {
-    private String searchTerm = "funny kitten";
+    private final String searchTerm = "funny kitten";
     private GoogleHomePage homePage;
 
     @BeforeMethod
