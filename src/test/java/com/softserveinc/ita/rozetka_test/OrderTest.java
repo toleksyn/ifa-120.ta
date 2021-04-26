@@ -4,13 +4,8 @@ import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.page_objects.BasketPage;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import com.softserveinc.ita.rozetka.page_objects.OrderPage;
-import com.softserveinc.ita.rozetka.page_objects.ShippingAddress;
+import com.softserveinc.ita.rozetka.utility_class.ShippingAddress;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -18,11 +13,9 @@ import static org.testng.Assert.assertTrue;
 
 public class OrderTest extends TestRunner {
 
-    //This added for future tests
     private OrderPage orderPage;
     private BasketPage basketPage;
 
-    //This added for future tests
     @BeforeMethod
     public void addProductToBasketOpenOrder() {
         orderPage = new HomePage()
@@ -56,7 +49,9 @@ public class OrderTest extends TestRunner {
     public void testDeletingProductFromBasket() {   // Popup basket
         basketPage = orderPage
                 .openProductPage(1)
+                .getHeader()
                 .openHomePageByLogo()
+                .getHeader()
                 .openBasketPage()
                 .deleteAllProducts();
         assertTrue(basketPage.isBasketEmpty(), "Basket should be empty");
