@@ -18,7 +18,7 @@ public class HamburgerBar {
 
     @Step("Hamburger bar: open contacts page")
     public ContactsPage openContactsPage() {
-        $x("//a[contains(@class, 'side-menu__button') and contains(@href, 'contacts')]").click();
+        $x("//a[@class='ng-tns-c19-2' and contains(@href, 'contacts')]").click();
         return new ContactsPage();
     }
 }
