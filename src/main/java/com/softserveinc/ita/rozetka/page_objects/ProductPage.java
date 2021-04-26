@@ -4,10 +4,14 @@ import com.codeborne.selenide.Condition;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 
+import com.softserveinc.ita.rozetka.enums.ProductPageTab;
+import io.qameta.allure.Step;
+
 import java.util.List;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$$x;
+import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.Integer.parseInt;
 import static java.lang.String.format;
 
@@ -15,10 +19,6 @@ public class ProductPage extends BasePage {
 
     public String getProductTitle() {
         return $x("//h1[@class='product__title']").text();
-    }
-
-    public String getViewedProductName(int number) {
-        return $x(format("(//section[@class='recently-viewed']//a[@class='lite-tile__title'])[%d]", number)).text();
     }
 
     @Step("Product page: add product to basket")
@@ -43,6 +43,7 @@ public class ProductPage extends BasePage {
                 .texts();
     }
 
+    @Step("Product page: open product tab {productPageTab}")
     public ProductPage openProductTab(ProductPageTab productPageTab) {
         var tabButton = productPageTab == ProductPageTab.DESCRIPTION ?
                 $x("(//ul[@class='tabs__list']//a)[1]") :
@@ -51,6 +52,7 @@ public class ProductPage extends BasePage {
         return this;
     }
 
+    @Step("Product page: open category page by name {categoryName}")
     public CategoryPage openCategoryPageByName(String categoryName) {
         $x(format("//a[@class='breadcrumbs__link'] //span[contains(text(),'%s')]", categoryName)).click();
         return new CategoryPage();
@@ -74,7 +76,7 @@ public class ProductPage extends BasePage {
     }
 
     public String getCharacteristicText(String characteristicType) {
-        return $x(format("//div[@class='characteristics-full__item' and .//span/text()='%s']//li/*",
+        return $x(format("//div[contains(@class, 'characteristics-full__item') and .//span/text()='%s']//li/*",
                 characteristicType)).text();
     }
 

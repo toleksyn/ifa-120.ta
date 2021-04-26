@@ -1,5 +1,7 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import io.qameta.allure.Step;
+
 import java.util.Objects;
 
 import static com.codeborne.selenide.Condition.text;
@@ -15,11 +17,13 @@ public class BasketPage {
         return $x(format("//a[@class='cart-product__title' and contains(text(), '%s')]", productName)).text();
     }
 
+    @Step("Basket page: open order page")
     public OrderPage openOrderPage() {
         $x("//*[contains(@class,'cart-receipt__submit')]").click();
         return new OrderPage();
     }
 
+    @Step("Basket page: increase product count for product {productNumber}")
     public BasketPage increaseProductCount(int productNumber) {
         var preIncreaseProductSumText = $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).text();
         $x(format("((//*[contains(@class, 'cart-counter__button')])[2])[%d]", productNumber)).click();
@@ -28,6 +32,7 @@ public class BasketPage {
         return this;
     }
 
+    @Step("Basket page: decrease product count for product {productNumber}")
     public BasketPage decreaseProductCount(int productNumber) {
         if (!isDecreaseProductCountEnabled(productNumber)) {
             throw new IllegalStateException("Product count decreasing is disabled");
@@ -41,8 +46,7 @@ public class BasketPage {
     }
 
     public int getProductCount(int productNumber) {
-        return parseInt(Objects.requireNonNull($x(format("(//*[contains(@class, 'cart-counter__input')])[%d]", productNumber))
-                .val()));
+        return parseInt($x(format("(//*[contains(@class, 'cart-counter__input')])[%d]", productNumber)).val());
     }
 
     public int getOrderProductSum(int productNumber) {
@@ -54,6 +58,7 @@ public class BasketPage {
         return $x(format("((//*[contains(@class, 'cart-counter__button')])[1])[%d]", productNumber)).isEnabled();
     }
 
+    @Step("Basket page: delete product by number {productNumber}")
     public BasketPage deleteProduct(int productNumber) {
         var totalOrderPriceLocator = "//*[contains(@class,'m-p')]";
         var deleteButtonLocator = "//*[contains(@class,'k c')]";
@@ -74,6 +79,7 @@ public class BasketPage {
         return $x("//div[@class='cart-dummy']").exists();
     }
 
+    @Step("Basket page: delete all products")
     public BasketPage deleteAllProducts() {
         int tries = 50;
         while (tries > 0 && !isBasketEmpty()) {
@@ -99,6 +105,7 @@ public class BasketPage {
         }
     }
 
+    @Step("Basket page: open product page for product {productNumber}")
     public ProductPage openProductPage(int productNumber) {
         $x(format("(//*[@class='cart-product__title'])[%d]", productNumber)).click();
         return new ProductPage();
