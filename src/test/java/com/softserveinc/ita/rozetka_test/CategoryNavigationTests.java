@@ -1,6 +1,6 @@
 package com.softserveinc.ita.rozetka_test;
 
-\import com.softserveinc.ita.rozetka.modules.CatalogMenu;
+import com.softserveinc.ita.rozetka.page_objects.CatalogMenu;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -14,13 +14,15 @@ public class CategoryNavigationTests {
 
     @BeforeMethod
     public void openHomepage() {
-        catalogMenu = new HomePage().openHomePage().getCatalogMenu();
+        catalogMenu = new HomePage()
+                .openHomePage()
+                .getCatalogMenu();
     }
 
     @Test
     public void testAddingProductToBasket() {
         var productPage = catalogMenu
-                .openCategory("Сантехніка")
+                .openCategoryPage("Сантехніка")
                 .openProductsListPage("Ванни")
                 .openProductByNumber(1);
         var productTitle = productPage.getProductTitle();
@@ -33,7 +35,7 @@ public class CategoryNavigationTests {
     public void testResultsOnProductsListPage() {
         var productCategoryName = "Ноутбуки";
         var productListPage = catalogMenu
-                .openCategory("Ноутбуки та комп’ютери")
+                .openCategoryPage("Ноутбуки та комп’ютери")
                 .openProductsListPage(productCategoryName);
         assertEquals(productListPage.getPageTitle(), productCategoryName, format("Title should be '%s'", productCategoryName));
         var expectedProductType = "Ноутбук";
@@ -50,7 +52,7 @@ public class CategoryNavigationTests {
     public void testSelectProductByCatalogMenu() {
         var categoryName = "Ноутбуки";
         var laptopCategoryPage = catalogMenu
-                .openCategory(categoryName);
+                .openCategoryPage(categoryName);
         var categoryTitle = "Комп'ютери";
         var isLaptopCategoryPageOpened = laptopCategoryPage
                 .getCategoryTitle()
@@ -74,7 +76,7 @@ public class CategoryNavigationTests {
     public void testCompareDiscountWithPreDiscountPrices() {
         var categoryName = "Ціни";
         var salesCategoryPage = catalogMenu
-                .openCategory(categoryName);
+                .openCategoryPage(categoryName);
         var isPageTitleCorrect = salesCategoryPage
                 .getPageTitle()
                 .contains(categoryName);
@@ -89,7 +91,7 @@ public class CategoryNavigationTests {
     @Test
     public void testShowMoreProducts() {
         var productPage = catalogMenu
-                .openCategory("Товари для дому")
+                .openCategoryPage("Товари для дому")
                 .openProductsListPage("Домашній текстиль");
         var productsCount = productPage.getProductsAmount();
         var firstProductName = productPage.getProductName(1);
