@@ -34,7 +34,7 @@ public class CategoryPage extends BasePage {
     }
 
     public String getCategoryTitle() {
-        return $x("//h1[@class='portal__heading']").text();
+        return $x("//h1[contains(@class, 'portal__heading')]").text();
     }
 
     public String getPageTitle() {

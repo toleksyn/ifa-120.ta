@@ -41,7 +41,7 @@ public class Header {
     }
 
     @Step("Header: open catalog menu" )
-    public com.softserveinc.ita.rozetka.page_objects.CatalogMenu openCatalogMenu() {
+    public CatalogMenu openCatalogMenu() {
         $x(format("//button[contains(@class, 'menu__toggle')]")).click();
         return new CatalogMenu();
     }

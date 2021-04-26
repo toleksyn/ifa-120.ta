@@ -10,12 +10,12 @@ public class CatalogMenu {
     public CategoryPage openCategoryPage(String categoryName) {
         $x(format("//ul[contains(@class, 'menu-categories_type_main')] //a[contains(@class, 'menu-categories__link') and contains(text(), '%s')]", categoryName)).click();
         // click on microphone element to hide dropdown
-        $x("//button[@class='search-form__microphone']").click();
+        $x("//button[contains(@class, 'search-form__microphone')]").click();
         return new CategoryPage();
     }
 
     public CatalogMenu scrollToCategory(String categoryName) {
-        var category = $x(format("//ul[@class='menu-categories'] //a[contains(@class, 'menu-categories__link') and contains(text(), '%s')]", categoryName));
+        var category = $x(format("//ul[contains(@class, 'menu-categories')] //a[contains(@class, 'menu-categories__link') and contains(text(), '%s')]", categoryName));
         actions().moveToElement(category).perform();
         return this;
     }
