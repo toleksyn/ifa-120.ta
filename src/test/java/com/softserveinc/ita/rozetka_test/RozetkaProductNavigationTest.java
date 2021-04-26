@@ -136,11 +136,12 @@ public class RozetkaProductNavigationTest extends TestRunner {
 
     @Test
     public void testProductMainSectionsPresence() {
-        var productsCount = rozetkaHomePage.getOnlyOnRozetkaProductsSection().getProductsCount();
+        var sectionName = "Тільки в Розетці";
+        var productsCount = rozetkaHomePage.getProductsSectionByName(sectionName).getProductsCount(sectionName);
         var randomProductNumber = Math.max((int) ((Math.random() * 1000 * productsCount) / 1000), 1);
-        var randomProductName = rozetkaHomePage.getProductNameByNumber(randomProductNumber);
+        var randomProductName = rozetkaHomePage.getProductNameByNumberInSection(randomProductNumber, sectionName);
 
-        var productPage = rozetkaHomePage.openProductByNumber(randomProductNumber);
+        var productPage = rozetkaHomePage.openProductByNumberInSection(randomProductNumber, sectionName);
         var productTitle = productPage.getProductTitle();
         assertEquals(productTitle, randomProductName, "Incorrect product opened");
 
@@ -155,8 +156,6 @@ public class RozetkaProductNavigationTest extends TestRunner {
                 "Customer review section should be present on page");
         assertTrue(productSectionsTitles.contains(format("Характеристики %s", productTitle)),
                 "'Характеристики' section should be present on page");
-        assertTrue(productSectionsTitles.contains("Разом з цим товаром купують"),
-                "'Разом з цим товаром купують' section should be present on page");
 
         var deliveryCityPage = productPage.openDeliveryCityPage();
         var deliveryCityPageHeader = deliveryCityPage.getHeaderText();
@@ -165,5 +164,5 @@ public class RozetkaProductNavigationTest extends TestRunner {
         deliveryCityPage.submitDeliveryCity();
         assertTrue(isSubmitButtonDisplayed, "Opened page is not functional");
     }
-}
+ }
 

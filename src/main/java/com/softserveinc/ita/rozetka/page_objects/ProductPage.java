@@ -95,8 +95,8 @@ public class ProductPage extends BasePage {
 
     @Step("Product page: open Delivery City page")
     public DeliveryCityPage openDeliveryCityPage() {
-        actions().
-                moveToElement($x("//div[contains(@class,'product-about__block-h')]//*[contains(@class,'button')]"))
+        actions()
+                .moveToElement($x("//div[contains(@class,'product-about__block-h')]//*[contains(@class,'button')]"))
                 .click()
                 .perform(); //manipulations to display the item, in the case of overlapping by advertising pop-up window
         return new DeliveryCityPage();
