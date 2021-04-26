@@ -1,5 +1,6 @@
 package com.softserveinc.ita.rozetka_test;
 
+import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.modules.CatalogMenu;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import org.testng.annotations.BeforeMethod;
@@ -9,7 +10,7 @@ import static java.lang.String.format;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class CategoryNavigationTests {
+public class CategoryNavigationTests extends TestRunner {
 
     private CatalogMenu catalogMenu;
 

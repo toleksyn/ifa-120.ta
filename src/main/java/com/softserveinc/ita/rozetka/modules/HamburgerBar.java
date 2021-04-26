@@ -12,13 +12,14 @@ public class HamburgerBar {
 
     @Step("Hamburger bar: switch language to {language}")
     public HomePage switchLanguage(LanguageOption language) {
-        $x(format("//div[@class='side-menu__switch']//a[contains(text(), '%s')]", language.getLanguageKey())).click();
+        $x(format("//div[contains(@class, 'side-menu__switch')]//a[contains(text(), '%s')]", language.getLanguageKey()))
+                .click();
         return new HomePage();
     }
 
     @Step("Hamburger bar: open contacts page")
     public ContactsPage openContactsPage() {
-        $x("//a[contains(@class, 'side-menu__button') and contains(@href, 'contacts')]").click();
+        $x("//a[contains(@class, 'ng-tns-c19-2') and contains(@href, 'contacts')]").click();
         return new ContactsPage();
     }
 }
