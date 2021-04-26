@@ -15,8 +15,7 @@ public class RozetkaProductNavigationTest extends TestRunner {
     private Header rozetkaHeader;
 
     @BeforeMethod
-    public void openHomepage() {
-        rozetkaHeader = new HomePage().openHomePage().getHeader();
+    public void openHomepage() { rozetkaHeader = new HomePage().openHomePage().getHeader();
     }
 
     @Test
@@ -61,10 +60,12 @@ public class RozetkaProductNavigationTest extends TestRunner {
     @Test
     public void testFirstProductInViewedProductsList() {
         var productPage = rozetkaHeader
-                .searchFor("галстук");
+                .searchFor("піджак");
         var productName = productPage.getProductName(1);
         var firstViewedProductName = productPage
                 .openProductByNumber(1)
+                .getHeader()
+                .openHomePage()
                 .getViewedProductName(1);
         assertTrue(productName.contains(firstViewedProductName), "First viewed product name is incorrect");
     }

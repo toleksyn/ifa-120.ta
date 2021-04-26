@@ -16,10 +16,6 @@ public class ProductPage extends BasePage {
         return $x("//h1[@class='product__title']").text();
     }
 
-    public String getViewedProductName(int number) {
-        return $x(format("(//section[@class='recently-viewed']//a[@class='lite-tile__title'])[%d]", number)).text();
-    }
-
     @Step("Product page: add product to basket")
     public BasketPage addProductToBasket() {
         $x("//button[contains(@class, 'button_size_large')]").hover().click();

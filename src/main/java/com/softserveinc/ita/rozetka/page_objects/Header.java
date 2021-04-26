@@ -22,4 +22,10 @@ public class Header {
     public String getSearchFieldText() {
         return $x("//input[contains(@class, 'search-form__input')]").attr("placeholder");
     }
+
+    @Step("Header: open home page")
+    public HomePage openHomePage() {
+        $x("//img[@alt='Rozetka Logo']").click();
+        return new HomePage();
+    }
 }

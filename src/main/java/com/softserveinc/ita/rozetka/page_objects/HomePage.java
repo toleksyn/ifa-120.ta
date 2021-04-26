@@ -1,10 +1,10 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import com.codeborne.selenide.CollectionCondition;
 import io.qameta.allure.Step;
 import lombok.Getter;
 
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 
 public class HomePage extends BasePage {
@@ -28,5 +28,12 @@ public class HomePage extends BasePage {
     public BasketPage openBasketPage() {
         $x("//button[@class='header__button header__button--active']").click();
         return new BasketPage();
+    }
+
+    public String getViewedProductName(int number) {
+        return $$x("//a[@class='tile__title']")
+                .shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1))
+                .get(number)
+                .text();
     }
 }
