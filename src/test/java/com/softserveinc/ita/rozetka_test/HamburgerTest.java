@@ -49,4 +49,29 @@ public class HamburgerTest extends TestRunner {
                 .allMatch(phoneNumber -> phoneNumber.contains("044"));
         assertTrue(arePhoneNumbersCorrect, "Phone numbers should be correct");
     }
+
+    @Test
+    public void testHelpCenterInformation() {
+        var helpCenterPage = hamburgerBar.openHelpCenterPage();
+        var expectedHeaderText = "Довідковий центр";
+        var isHeaderTextCorrect = helpCenterPage
+                .getHeaderText()
+                .contains(expectedHeaderText);
+        assertTrue(isHeaderTextCorrect, format("Text in header should contain '%s'", expectedHeaderText));
+        var isHelpCategoryListEmpty = helpCenterPage
+                .getHelpCategoryList()
+                .isEmpty();
+        assertFalse(isHelpCategoryListEmpty, "Help category list shouldn't be empty");
+        var sectionsTitles = helpCenterPage
+                .openPaymentHelpCategoryPage()
+                .getSectionsTitleList();
+        var firstSectionsTitle = sectionsTitles.get(0);
+        var expectedFirstSectionTitle = "Оплата";
+        assertTrue(firstSectionsTitle.contains(expectedFirstSectionTitle),
+                format("First section's title should be '%s'", expectedFirstSectionTitle));
+        var secondSectionsTitle = sectionsTitles.get(1);
+        var expectedSecondSectionsTitle = "Кредитування та розсрочка";
+        assertTrue(secondSectionsTitle.contains(expectedSecondSectionsTitle),
+                format("Second section's title should be '%s'", expectedSecondSectionsTitle));
+    }
 }
