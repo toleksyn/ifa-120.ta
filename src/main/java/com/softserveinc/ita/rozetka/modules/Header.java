@@ -1,7 +1,6 @@
 package com.softserveinc.ita.rozetka.modules;
 
 import com.softserveinc.ita.rozetka.page_objects.BasketPage;
-import com.softserveinc.ita.rozetka.page_objects.CatalogMenu;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import com.softserveinc.ita.rozetka.page_objects.ProductsListPage;
 import io.qameta.allure.Step;

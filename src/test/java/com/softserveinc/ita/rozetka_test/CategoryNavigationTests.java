@@ -1,6 +1,7 @@
 package com.softserveinc.ita.rozetka_test;
 
-import com.softserveinc.ita.rozetka.page_objects.CatalogMenu;
+import com.softserveinc.ita.common.TestRunner;
+import com.softserveinc.ita.rozetka.modules.CatalogMenu;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -8,15 +9,13 @@ import org.testng.annotations.Test;
 import static java.lang.String.format;
 import static org.testng.Assert.*;
 
-public class CategoryNavigationTests {
+public class CategoryNavigationTests extends TestRunner {
 
     private CatalogMenu catalogMenu;
 
     @BeforeMethod
     public void openHomepage() {
-        catalogMenu = new HomePage()
-                .openHomePage()
-                .getCatalogMenu();
+        catalogMenu = new HomePage().openHomePage().getCatalogMenu();
     }
 
     @Test
