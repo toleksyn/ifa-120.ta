@@ -74,7 +74,9 @@ public class ProductPage extends BasePage {
         return $x(format("//div[contains(@class, 'characteristics-full__item') and .//span/text()='%s']//li/*",
                 characteristicType)).text();
     }
-    public CheaperTogetherMenu openCheaperTogetherMenu(){
+
+    @Step("Product page: open cheaper-together menu")
+    public CheaperTogetherMenu openCheaperTogetherMenu() {
         return new CheaperTogetherMenu();
     }
 }

@@ -49,9 +49,9 @@ public class ProductNavigationTest extends TestRunner {
                 .searchFor("сокира")
                 .setSortingType(SortingOption.CHEAP);
         var lastProductNumber = productListPage.getProductsAmount();
-        var firstProductPrice = productListPage.getPriceFromProduct(1);
-        var lastProductPrice = productListPage.getPriceFromProduct(lastProductNumber);
-        var middleProductPrice = productListPage.getPriceFromProduct(lastProductNumber / 2);
+        var firstProductPrice = productListPage.getProductPrice(1);
+        var lastProductPrice = productListPage.getProductPrice(lastProductNumber);
+        var middleProductPrice = productListPage.getProductPrice(lastProductNumber / 2);
         assertTrue(middleProductPrice < lastProductPrice,
                 "Incorrect products sorting by price at the end of list");
         assertTrue(firstProductPrice < middleProductPrice,

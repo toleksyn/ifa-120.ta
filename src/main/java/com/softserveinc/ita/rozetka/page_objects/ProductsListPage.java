@@ -34,7 +34,7 @@ public class ProductsListPage extends BasePage {
         return $x(format("(//span[@class='goods-tile__title'])[%d]", number)).text();
     }
 
-    public int getPriceFromProduct(int number) {
+    public int getProductPrice(int number) {
         return parseInt($x(format("(//span[@class='goods-tile__price-value'])[%d]", number))
                 .text()
                 .replaceAll(" ", ""));
@@ -78,7 +78,6 @@ public class ProductsListPage extends BasePage {
         return this;
     }
 
-    @Step("Products list page: get age confirmation popup")
     public AgeConfirmationPopup getAgeConfirmationPopup() {
         return new AgeConfirmationPopup();
     }

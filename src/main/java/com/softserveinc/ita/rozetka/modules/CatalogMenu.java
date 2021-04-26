@@ -12,7 +12,7 @@ import static java.lang.String.format;
 
 public class CatalogMenu {
 
-    @Step("Left side bar: open category by name {categoryName}")
+    @Step("Catalog menu: open category by name {categoryName}")
     public CategoryPage openCategory(String categoryName) {
         $x(format("//ul[contains(@class, 'menu-categories_type_main')] //a[contains(@class, 'menu-categories__link') and contains(text(), '%s')]", categoryName)).click();
         // click on microphone element to hide dropdown
@@ -26,6 +26,7 @@ public class CatalogMenu {
                 .texts();
     }
 
+    @Step("Catalog menu: scroll to category by category name {categoryName}")
     public CatalogMenu scrollToCategory(String categoryName) {
         var category = $x(format("//ul[contains(@class, 'menu-categories')] //a[contains(@class, 'menu-categories__link') and contains(text(), '%s')]", categoryName));
         actions().moveToElement(category).perform();
@@ -38,6 +39,7 @@ public class CatalogMenu {
                 .size();
     }
 
+    @Step("Catalog menu: open products list page by category name {categoryName}")
     public ProductsListPage openProductsListPage(String productCategoryName) {
         $x(format("//li//a[@class='menu__hidden-title' and contains(text(), '%s')]", productCategoryName)).click();
         return new ProductsListPage();

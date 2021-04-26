@@ -1,5 +1,7 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import io.qameta.allure.Step;
+
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.Integer.parseInt;
 import static java.lang.String.format;
@@ -19,6 +21,7 @@ public class CheaperTogetherMenu extends ProductPage {
         return discountPrice;
     }
 
+    @Step("Cheaper together menu: open product page by number {number}")
     public ProductPage openProductByNumber(int number) {
         $x(format("(//li[contains(@class, 'kits-list__item_type_proposed')]//a[contains(@class, 'kits-tile__title')])[%d]", number)).click();
         return new ProductPage();
