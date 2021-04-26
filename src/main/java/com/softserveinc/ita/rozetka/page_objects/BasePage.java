@@ -1,5 +1,7 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import com.softserveinc.ita.rozetka.modules.Footer;
+import com.softserveinc.ita.rozetka.modules.Header;
 import lombok.Getter;
 
 @Getter

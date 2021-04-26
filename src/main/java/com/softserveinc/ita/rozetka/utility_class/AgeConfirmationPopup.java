@@ -1,5 +1,6 @@
-package com.softserveinc.ita.rozetka.page_objects;
+package com.softserveinc.ita.rozetka.utility_class;
 
+import com.softserveinc.ita.rozetka.page_objects.ProductsListPage;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;

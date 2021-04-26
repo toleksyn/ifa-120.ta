@@ -1,5 +1,8 @@
-package com.softserveinc.ita.rozetka.page_objects;
+package com.softserveinc.ita.rozetka.modules;
 
+import com.softserveinc.ita.rozetka.enums.LanguageOption;
+import com.softserveinc.ita.rozetka.page_objects.ContactsPage;
+import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
