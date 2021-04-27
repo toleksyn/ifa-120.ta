@@ -22,7 +22,11 @@ public class HomePage extends BasePage {
 
     @Step("Home page: open product by number {number}")
     public ProductPage openProductByNumber(int number) {
-        $x(format("(//li[@class='main-goods__cell'])[%d]", number)).click();
+        $x(format("(//li[contains(@class,'main-goods__cell')])[%d]", number)).click();
         return new ProductPage();
+    }
+
+    public String getViewedProductName(int number) {
+        return $x(format("(//a[contains(@class,'tile__picture')])[%d]", number)).text();
     }
 }

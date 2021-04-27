@@ -20,7 +20,7 @@ public class ProductsListPage extends BasePage {
 
     @Step("Products list page: open product by number {number}")
     public ProductPage openProductByNumber(int number) {
-        $x(format("(//a[@class='goods-tile__picture'])[%d]", number)).click();
+        $x(format("(//a[contains(@class, 'goods-tile__picture')])[%d]", number)).click();
         return new ProductPage();
     }
 
@@ -69,7 +69,7 @@ public class ProductsListPage extends BasePage {
     }
 
     public String getPageTitle() {
-        return $x("//h1[@class='catalog-heading']").text();
+        return $x("//h1[contains(@class, 'catalog-heading')]").text();
     }
 
     @Step("Products list page: show more products")
