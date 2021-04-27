@@ -1,13 +1,11 @@
 package com.softserveinc.ita.rozetka_test;
 
-import com.softserveinc.ita.common.ScreenshotListener;
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.components.Header;
 import com.softserveinc.ita.rozetka.enums.ProductPageTab;
 import com.softserveinc.ita.rozetka.enums.SortingOption;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
