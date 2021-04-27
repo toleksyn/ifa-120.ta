@@ -18,7 +18,7 @@
         <org.projectlombok.version>1.18.20</org.projectlombok.version>
         <io.qameta.allure.version>2.10.0</io.qameta.allure.version>
         <io.qameta.allure-testng>2.13.9</io.qameta.allure-testng>
-        <aspectj.version>1.8.10</aspectj.version>
+        <aspectj.version>1.9.6</aspectj.version>
         <org.apache.maven-surefire-plugin>2.20</org.apache.maven-surefire-plugin>
     </properties>
 
