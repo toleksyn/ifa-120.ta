@@ -1,5 +1,7 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import com.softserveinc.ita.rozetka.components.AgeConfirmationPopup;
+import com.softserveinc.ita.rozetka.enums.SortingOption;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
@@ -18,7 +20,7 @@ public class ProductsListPage extends BasePage {
 
     @Step("Products list page: open product by number {number}")
     public ProductPage openProductByNumber(int number) {
-        $x(format("(//a[@class='goods-tile__picture ng-star-inserted'])[%d]", number)).click();
+        $x(format("(//a[contains(@class, 'goods-tile__picture')])[%d]", number)).click();
         return new ProductPage();
     }
 

@@ -1,10 +1,10 @@
 package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
+import com.softserveinc.ita.rozetka.models.ShippingAddress;
 import com.softserveinc.ita.rozetka.page_objects.BasketPage;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import com.softserveinc.ita.rozetka.page_objects.OrderPage;
-import com.softserveinc.ita.rozetka.page_objects.ShippingAddress;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -50,7 +50,9 @@ public class OrderTest extends TestRunner {
     public void testDeletingProductFromBasket() {   // Popup basket
         basketPage = orderPage
                 .openProductPage(1)
+                .getHeader()
                 .openHomePageByLogo()
+                .getHeader()
                 .openBasketPage()
                 .deleteAllProducts();
         assertTrue(basketPage.isBasketEmpty(), "Basket should be empty");

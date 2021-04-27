@@ -1,5 +1,6 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import com.softserveinc.ita.rozetka.enums.ProductPageTab;
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Step;
 
@@ -83,7 +84,7 @@ public class ProductPage extends BasePage {
     }
 
     public String getCharacteristicText(String characteristicType) {
-        return $x(format("//div[@class='characteristics-full__item' and .//span/text()='%s']//li/*",
+        return $x(format("//div[contains(@class, 'characteristics-full__item') and .//span/text()='%s']//li/*",
                 characteristicType)).text();
     }
 

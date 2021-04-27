@@ -1,16 +1,12 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
 import io.qameta.allure.Step;
-import lombok.Getter;
 
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 import static java.lang.String.format;
 
 public class HomePage extends BasePage {
-
-    @Getter
-    private final LeftSidebar leftSidebar = new LeftSidebar();
 
     @Step("Home page: open home page")
     public HomePage openHomePage() {
@@ -20,7 +16,7 @@ public class HomePage extends BasePage {
 
     @Step("Home page: open product by number {number}")
     public ProductPage openProductByNumber(int number) {
-        $x(format("(//li[@class='main-goods__cell ng-star-inserted'])[%d]", number)).click();
+        $x(format("(//li[contains(@class,'main-goods__cell')])[%d]", number)).click();
         return new ProductPage();
     }
 
