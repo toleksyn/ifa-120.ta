@@ -12,7 +12,6 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-@Listeners({ScreenshotListener.class})
 public class ProductNavigationTest extends TestRunner {
 
     private Header header;
