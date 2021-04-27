@@ -50,8 +50,7 @@ public class CategoryNavigationTests extends TestRunner {
     @Test
     public void testSelectProductByCatalogMenu() {
         var categoryName = "Ноутбуки";
-        var laptopCategoryPage = catalogMenu
-                .openCategory(categoryName);
+        var laptopCategoryPage = catalogMenu.openCategory(categoryName);
         var categoryTitle = "Комп'ютери";
         var isLaptopCategoryPageOpened = laptopCategoryPage
                 .getCategoryTitle()
@@ -74,8 +73,7 @@ public class CategoryNavigationTests extends TestRunner {
     @Test
     public void testCompareDiscountWithPreDiscountPrices() {
         var categoryName = "Ціни";
-        var salesCategoryPage = catalogMenu
-                .openCategory(categoryName);
+        var salesCategoryPage = catalogMenu.openCategory(categoryName);
         var isPageTitleCorrect = salesCategoryPage
                 .getPageTitle()
                 .contains(categoryName);

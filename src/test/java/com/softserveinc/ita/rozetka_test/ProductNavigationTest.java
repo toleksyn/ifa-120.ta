@@ -102,15 +102,14 @@ public class ProductNavigationTest extends TestRunner {
 
     @Test
     public void testSelectProductByCatalog() {
-        var catalogMenu = header
-                .openCatalogMenu();
+        var catalogMenu = header.openCatalogMenu();
         var makeUpCategory = catalogMenu.scrollToCategory("Краса");
         var subcategoryAmount = makeUpCategory.getCategoriesAmount();
         assertTrue(subcategoryAmount > 0, "Category should contains at least one subcategory");
         var productsListPage = makeUpCategory.openProductsListPage("Догляд за обличчям");
         var isProductListPageOpened = productsListPage
                 .getPageTitle()
-                .contains("Косметика для догляду за обличчям");
+                .contains("Косметика для догляду за обличчяr");
         assertTrue(isProductListPageOpened, "Incorrect page title");
     }
 }
