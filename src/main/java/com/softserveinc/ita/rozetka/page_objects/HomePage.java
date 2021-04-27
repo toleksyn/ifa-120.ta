@@ -1,6 +1,6 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-import com.softserveinc.ita.rozetka.modules.CatalogMenu;
+import com.softserveinc.ita.rozetka.components.CatalogMenu;
 import io.qameta.allure.Step;
 import lombok.Getter;
 
