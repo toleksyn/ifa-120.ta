@@ -111,7 +111,7 @@ public class ProductNavigationTest extends TestRunner {
         var productsListPage = makeUpCategory.openProductsListPage("Догляд за обличчям");
         var isProductListPageOpened = productsListPage
                 .getPageTitle()
-                .contains("Косметика для догляду за обличчяr");
+                .contains("Косметика для догляду за обличчям");
         assertTrue(isProductListPageOpened, "Incorrect page title");
     }
 }
