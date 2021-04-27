@@ -1,11 +1,11 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
 import com.softserveinc.ita.rozetka.components.CatalogMenu;
+import com.softserveinc.ita.rozetka.components.ProductsSection;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.Keys;
 
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 
@@ -35,13 +35,13 @@ public class HomePage extends BasePage {
     }
 
     @Step("Home page: open product section by name for section {sectionName}")
-    public ProductsSectionPage getProductsSectionByName(String sectionName) {
+    public ProductsSection getProductsSectionByName(String sectionName) {
         actions()
                 .sendKeys(Keys.PAGE_DOWN)   // page scrolling to dynamically increase the list of products
                 .sendKeys(Keys.END)
                 .perform();
         $x(format("//*[contains(text(), '%s')]/following-sibling::button[contains(@class,'main-goods__show-more')]", sectionName))
                 .click();
-        return new ProductsSectionPage();
+        return new ProductsSection();
     }
 }

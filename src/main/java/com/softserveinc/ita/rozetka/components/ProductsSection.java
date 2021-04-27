@@ -1,5 +1,6 @@
-package com.softserveinc.ita.rozetka.page_objects;
+package com.softserveinc.ita.rozetka.components;
 
+import com.softserveinc.ita.rozetka.page_objects.ProductPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 
@@ -7,7 +8,7 @@ import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 
-public class ProductsSectionPage {
+public class ProductsSection {
 
     public int getProductsCount(String sectionName) {
         return $$x(format("//*[contains(text(), '%s')]/following-sibling::ul[contains(@class,'main-goods__grid')]/li",
