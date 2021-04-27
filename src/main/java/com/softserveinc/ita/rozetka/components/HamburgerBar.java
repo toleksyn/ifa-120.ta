@@ -22,4 +22,14 @@ public class HamburgerBar {
         $x("//a[contains(@class, 'ng-tns-c19-2') and contains(@href, 'contacts')]").click();
         return new ContactsPage();
     }
+
+    public String getSideMenuAuthText() {
+        return $x("//*[contains(@class, 'side-menu__auth')]").toString();
+    }
+
+    @Step("Hamburger bar: close hamburger bar")
+    public HamburgerBar closeBar() {
+        $x("//button[contains(@class, 'side-menu__close')]").click();
+        return this;
+    }
 }

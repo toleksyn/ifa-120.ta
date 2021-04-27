@@ -5,12 +5,11 @@ import com.softserveinc.ita.rozetka.components.Header;
 import com.softserveinc.ita.rozetka.enums.ProductPageTab;
 import com.softserveinc.ita.rozetka.enums.SortingOption;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
-import com.softserveinc.ita.rozetka.page_objects.ProductPageTab;
-import com.softserveinc.ita.rozetka.page_objects.SortingOption;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
+import static java.lang.String.format;
 
 public class ProductNavigationTest extends TestRunner {
 
@@ -45,24 +44,6 @@ public class ProductNavigationTest extends TestRunner {
                 .openProductTab(ProductPageTab.CHARACTERISTICS)
                 .getCharacteristicText(characteristicType);
         assertEquals(characteristicTypeText, filterType, "Incorrect product characteristic");
-    }
-
-    @Test
-    public void testResultsOnProductsListPage() {
-        var productCategoryName = "Ноутбуки";
-        var productListPage = rozetkaHomePage
-                .getLeftSidebar()
-                .openCategory("Ноутбуки та комп’ютери")
-                .openProductsListPage(productCategoryName);
-        assertEquals(productListPage.getPageTitle(), productCategoryName, format("Title should be '%s'", productCategoryName));
-        var expectedProductType = "Ноутбук";
-        assertTrue(productListPage.getProductName(1).contains(expectedProductType),
-                format("First product should be '%s'", expectedProductType));
-        var productCount = productListPage.getProductsAmount();
-        assertTrue(productListPage.getProductName(productCount / 2).contains(expectedProductType),
-                format("Middle product should be '%s'", expectedProductType));
-        assertTrue(productListPage.getProductName(productCount).contains(expectedProductType),
-                format("Last product should be '%s'", expectedProductType));
     }
 
     @Test
@@ -124,12 +105,16 @@ public class ProductNavigationTest extends TestRunner {
 
     @Test
     public void testProductMainSectionsPresence() {
-        var sectionName = "Тільки в Розетці";
-        var productsCount = rozetkaHomePage.getProductsSectionByName(sectionName).getProductsCount(sectionName);
-        var randomProductNumber = Math.max((int) ((Math.random() * 1000 * productsCount) / 1000), 1);
-        var randomProductName = rozetkaHomePage.getProductNameByNumberInSection(randomProductNumber, sectionName);
+        var sectionName = "Гарячі новинки";
+        var productsSection = header
+                .openHomePageByLogo()
+                .getProductsSectionByName(sectionName);
 
-        var productPage = rozetkaHomePage.openProductByNumberInSection(randomProductNumber, sectionName);
+        var productsCount = productsSection.getProductsCount(sectionName);
+        var randomProductNumber = Math.max((int) ((Math.random() * 1000 * productsCount) / 1000), 1);
+
+        var randomProductName = productsSection.getProductNameByNumber(randomProductNumber, sectionName);
+        var productPage = productsSection.openProductByNumber(randomProductNumber, sectionName);
         var productTitle = productPage.getProductTitle();
         assertEquals(productTitle, randomProductName, "Incorrect product opened");
 
@@ -150,7 +135,7 @@ public class ProductNavigationTest extends TestRunner {
         assertEquals(deliveryCityPageHeader, "Виберіть своє місто", "Incorrect page opened");
         var isSubmitButtonDisplayed = deliveryCityPage.isSubmitButtonDisplayed();
         deliveryCityPage.submitDeliveryCity();
-        assertTrue(isSubmitButtonDisplayed, "Opened page is not functional");
+        assertTrue(isSubmitButtonDisplayed, "Submit Button should displayed");
     }
- }
+}
 

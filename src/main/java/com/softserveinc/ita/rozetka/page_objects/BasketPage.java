@@ -37,7 +37,6 @@ public class BasketPage {
         if (!isDecreaseProductCountEnabled(productNumber)) {
             throw new IllegalStateException("Product count decreasing is disabled");
         }
-
         var preDecreaseProductSumText = $x(format("(//*[@class='cart-product__price'])[%d]", productNumber)).text();
         $x(format("((//*[contains(@class, 'cart-counter__button')])[1])[%d]", productNumber)).click();
         // checking var "preDecreaseProductSumText" in the next statement have been added to ensure updating information in the basket window

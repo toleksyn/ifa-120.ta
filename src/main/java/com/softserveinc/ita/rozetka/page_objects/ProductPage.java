@@ -1,17 +1,12 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-import com.codeborne.selenide.Condition;
-import io.qameta.allure.Step;
-import org.openqa.selenium.Keys;
-
 import com.softserveinc.ita.rozetka.enums.ProductPageTab;
 import io.qameta.allure.Step;
 
 import java.util.List;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.Selenide.$$x;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 import static java.lang.Integer.parseInt;
 import static java.lang.String.format;
 
@@ -80,11 +75,6 @@ public class ProductPage extends BasePage {
                 characteristicType)).text();
     }
 
-    public HomePage openHomePageByLogo() {
-        $x("//*[@class='header__logo']").click();
-        return new HomePage();
-    }
-
     public List<String> getProductSectionsTitleList() {
         return $$x("//*[@class='product-tabs__heading']")
                 .shouldHave(sizeGreaterThan(2))
@@ -95,7 +85,7 @@ public class ProductPage extends BasePage {
         return $x("//*[contains(@class,'product-comm')]//span[contains(@class,'product-t')]").text();
     }
 
-    @Step("Product page: open Delivery City page")
+    @Step("Product page: open delivery City page")
     public DeliveryCityPage openDeliveryCityPage() {
         actions()
                 .moveToElement($x("//div[contains(@class,'product-about__block-h')]//*[contains(@class,'button')]"))
