@@ -1,4 +1,4 @@
-package com.softserveinc.ita.rozetka.modules;
+package com.softserveinc.ita.rozetka.components;
 
 import com.softserveinc.ita.rozetka.page_objects.BasketPage;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
