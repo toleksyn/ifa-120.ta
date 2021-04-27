@@ -31,7 +31,7 @@ public class ProductNavigationTest extends TestRunner {
                 .searchFor(productName)
                 .openProductByNumber(1)
                 .getProductTitle();
-        assertTrue(productTitle.contains("productName"), "Incorrect product title");
+        assertTrue(productTitle.contains(productName), "Incorrect product title");
     }
 
     @Test
