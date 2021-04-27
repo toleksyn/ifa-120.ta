@@ -1,14 +1,13 @@
 package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
-import com.softserveinc.ita.rozetka.page_objects.Header;
+import com.softserveinc.ita.rozetka.enums.ProductPageTab;
+import com.softserveinc.ita.rozetka.enums.SortingOption;
+import com.softserveinc.ita.rozetka.modules.Header;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
-import com.softserveinc.ita.rozetka.page_objects.ProductPageTab;
-import com.softserveinc.ita.rozetka.page_objects.SortingOption;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static java.lang.String.format;
 import static org.testng.Assert.*;
 
 public class ProductNavigationTest extends TestRunner {
@@ -50,9 +49,9 @@ public class ProductNavigationTest extends TestRunner {
                 .searchFor("сокира")
                 .setSortingType(SortingOption.CHEAP);
         var lastProductNumber = productListPage.getProductsAmount();
-        var firstProductPrice = productListPage.getPriceFromProduct(1);
-        var lastProductPrice = productListPage.getPriceFromProduct(lastProductNumber);
-        var middleProductPrice = productListPage.getPriceFromProduct(lastProductNumber / 2);
+        var firstProductPrice = productListPage.getProductPrice(1);
+        var lastProductPrice = productListPage.getProductPrice(lastProductNumber);
+        var middleProductPrice = productListPage.getProductPrice(lastProductNumber / 2);
         assertTrue(middleProductPrice < lastProductPrice,
                 "Incorrect products sorting by price at the end of list");
         assertTrue(firstProductPrice < middleProductPrice,
@@ -97,68 +96,5 @@ public class ProductNavigationTest extends TestRunner {
                 "Middle product name on the previous page is incorrect");
         assertEquals(productListPage.getCurrentPageNumber(), currentPageNumber,
                 "Previous page number is incorrect");
-    }
-
-    @Test
-    public void testPossibilityViewingProductDescriptions() {
-        var productCharacteristicPage = rozetkaHomePage
-                .getLeftSidebar()
-                .openCategory("Ноутбуки")
-                .openProductsListPage("Планшети")
-                .openProductByNumber(1)
-                .openProductTab(ProductPageTab.CHARACTERISTICS);
-        var characteristicsAmount = productCharacteristicPage
-                .getCharacteristicsTexts()
-                .size();
-        assertTrue(characteristicsAmount > 0,
-                "product characteristic description should contains at least 1 item");
-        var productCommentPageTitle = productCharacteristicPage
-                .openProductTab(ProductPageTab.COMMENTS)
-                .getProductTabTitle();
-        assertTrue(productCommentPageTitle.contains("Відгуки"), "incorrect tab's title");
-        var questionsAmount = productCharacteristicPage
-                .openProductTab(ProductPageTab.QUESTIONS)
-                .getQuestionsAmount();
-        assertTrue(questionsAmount > 0, "list size  should contain at least 1 item");
-    }
-
-    @Test
-    public void testFilterProductsUsingFilterSearch() {
-        var filterCategory = "producer";
-        var filterName = "buro";
-        var tradeEquipmentPage = rozetkaHomePage
-                .getLeftSidebar()
-                .openCategory("Товари для бізнесу")
-                .openProductsListPageWithSubcategories(1);
-        var filteredTradeEquipmentPage = tradeEquipmentPage
-                .searchInFilterMenu(filterCategory, filterName)
-                .filterProductsList(filterName);
-        var productsAmount = filteredTradeEquipmentPage.getProductsAmount();
-        var firstProductTitle = filteredTradeEquipmentPage
-                .getProductName(1)
-                .toLowerCase();
-        var middleProductTitle = filteredTradeEquipmentPage
-                .getProductName(productsAmount / 2)
-                .toLowerCase();
-        var lastProductTitle = filteredTradeEquipmentPage
-                .getProductName(productsAmount)
-                .toLowerCase();
-        assertTrue(firstProductTitle.contains(filterName), "incorrect filter result");
-        assertTrue(middleProductTitle.contains(filterName), "incorrect filter result");
-        assertTrue(lastProductTitle.contains(filterName), "incorrect filter result");
-    }
-
-    @Test
-    public void testNavigatingFromCategoryToSubcategory() {
-        var sportAndHobbiesCategoryPage = rozetkaHomePage
-                .getLeftSidebar()
-                .openCategory("Спорт і захоплення");
-        var categoriesAmount = sportAndHobbiesCategoryPage.getCategoriesAmount();
-        assertTrue(categoriesAmount > 0, "page should contains at least 1 category");
-        var bicyclesPageProductsAmount = sportAndHobbiesCategoryPage
-                .openProductsListPageWithSubcategories(1)
-                .getProductsAmount();
-        assertTrue(bicyclesPageProductsAmount > 0,
-                "bicycles page should contains at least 1 product");
     }
 }
