@@ -123,4 +123,16 @@ public class CategoryNavigationTests extends TestRunner {
         assertTrue(discountPrice < currentPrice,
                 "The discount price should be smaller than the current product price");
     }
+
+    @Test
+    public void testSelectProductByCatalog() {
+        var makeUpCategory = catalogMenu.scrollToCategory("Краса");
+        var subcategoryAmount = makeUpCategory.getCategoriesAmount();
+        assertTrue(subcategoryAmount > 0, "Category should contains at least one subcategory");
+        var productsListPage = makeUpCategory.openProductsListPage("Догляд за обличчям");
+        var isProductListPageOpened = productsListPage
+                .getPageTitle()
+                .contains("Косметика для догляду за обличчям");
+        assertTrue(isProductListPageOpened, "Incorrect page title");
+    }
 }

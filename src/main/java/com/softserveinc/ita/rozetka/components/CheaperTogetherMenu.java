@@ -10,8 +10,7 @@ import static java.lang.String.format;
 public class CheaperTogetherMenu extends ProductPage {
 
     public String getProductNameByNumber(int number) {
-        return $x(format("(//li[contains(@class, 'kits-list__item_type_proposed')]//a[contains(@class, 'kits-tile__title')])[%d]", number))
-                .text();
+        return $x(format("(//li[contains(@class, 'kits-list__item_type_proposed')]//a[contains(@class, 'kits-tile__title')])[%d]", number)).text();
     }
 
     public Integer getDiscountPrice(int number) {

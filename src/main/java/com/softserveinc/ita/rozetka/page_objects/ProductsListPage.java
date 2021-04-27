@@ -78,6 +78,7 @@ public class ProductsListPage extends BasePage {
         return this;
     }
 
+    @Step("Products list page: get age confirmation popup")
     public AgeConfirmationPopup getAgeConfirmationPopup() {
         return new AgeConfirmationPopup();
     }
