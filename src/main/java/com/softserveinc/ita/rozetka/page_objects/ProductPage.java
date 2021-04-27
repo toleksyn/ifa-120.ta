@@ -111,6 +111,8 @@ public class ProductPage extends BasePage {
     public String getProductCode() {
         return $x("//p[@class='product__code detail-code']")
                 .shouldBe(Condition.visible)
-                .text().replaceAll("Код:", "").replaceAll(" ", "");
+                .text()
+                .replaceAll("Код:", "")
+                .replaceAll(" ", "");
     }
 }

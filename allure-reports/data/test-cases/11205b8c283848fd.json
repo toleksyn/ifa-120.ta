@@ -1,0 +1,170 @@
+{
+  "uid" : "11205b8c283848fd",
+  "name" : "testProductCodeValidation",
+  "fullName" : "com.softserveinc.ita.rozetka_test.RozetkaCategoryNavigationTests.testProductCodeValidation",
+  "historyId" : "a769758d3c55096881627cb21d864c5a",
+  "time" : {
+    "start" : 1619281660911,
+    "stop" : 1619281686373,
+    "duration" : 25462
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "openHomepage",
+    "time" : {
+      "start" : 1619281648690,
+      "stop" : 1619281660083,
+      "duration" : 11393
+    },
+    "description" : "",
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Home page: open home page",
+      "time" : {
+        "start" : 1619281649097,
+        "stop" : 1619281660080,
+        "duration" : 10983
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "hasContent" : false,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "hasContent" : true,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Left side bar: open category by name Дитячі товари",
+      "time" : {
+        "start" : 1619281660925,
+        "stop" : 1619281666286,
+        "duration" : 5361
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "categoryName",
+        "value" : "Дитячі товари"
+      } ],
+      "stepsCount" : 0,
+      "hasContent" : true,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false
+    }, {
+      "name" : "Category page: open products list page for category Іграшки",
+      "time" : {
+        "start" : 1619281666287,
+        "stop" : 1619281679955,
+        "duration" : 13668
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "productCategoryName",
+        "value" : "Іграшки"
+      } ],
+      "stepsCount" : 0,
+      "hasContent" : true,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false
+    }, {
+      "name" : "Products list page: open product by number 1",
+      "time" : {
+        "start" : 1619281679958,
+        "stop" : 1619281682272,
+        "duration" : 2314
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "number",
+        "value" : "1"
+      } ],
+      "stepsCount" : 0,
+      "hasContent" : true,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false
+    }, {
+      "name" : "Product page: get Product code",
+      "time" : {
+        "start" : 1619281682273,
+        "stop" : 1619281686362,
+        "duration" : 4089
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "hasContent" : false,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "hasContent" : true,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "package",
+    "value" : "com.softserveinc.ita.rozetka_test.RozetkaCategoryNavigationTests"
+  }, {
+    "name" : "testClass",
+    "value" : "com.softserveinc.ita.rozetka_test.RozetkaCategoryNavigationTests"
+  }, {
+    "name" : "testMethod",
+    "value" : "testProductCodeValidation"
+  }, {
+    "name" : "parentSuite",
+    "value" : "Default Suite"
+  }, {
+    "name" : "suite",
+    "value" : "ifa-120-home.ta"
+  }, {
+    "name" : "subSuite",
+    "value" : "com.softserveinc.ita.rozetka_test.RozetkaCategoryNavigationTests"
+  }, {
+    "name" : "host",
+    "value" : "DESKTOP-E54RDU2"
+  }, {
+    "name" : "thread",
+    "value" : "7804@DESKTOP-E54RDU2.main(1)"
+  }, {
+    "name" : "framework",
+    "value" : "testng"
+  }, {
+    "name" : "language",
+    "value" : "java"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "11205b8c283848fd.json",
+  "parameterValues" : [ ]
+}

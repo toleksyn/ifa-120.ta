@@ -1,0 +1,128 @@
+{
+  "uid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+  "name" : "timeline",
+  "children" : [ {
+    "name" : "DESKTOP-E54RDU2",
+    "children" : [ {
+      "name" : "5052@DESKTOP-E54RDU2.main(1)",
+      "children" : [ {
+        "name" : "testProductCodeValidation",
+        "uid" : "c1169aeccc998c40",
+        "parentUid" : "75bb0ad5c4b83d90621fa71f5ae7da09",
+        "status" : "passed",
+        "time" : {
+          "start" : 1619284159737,
+          "stop" : 1619284203001,
+          "duration" : 43264
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "75bb0ad5c4b83d90621fa71f5ae7da09"
+    }, {
+      "name" : "9420@DESKTOP-E54RDU2.main(1)",
+      "children" : [ {
+        "name" : "testSellerRatingValidation",
+        "uid" : "6aeca092aa29bfeb",
+        "parentUid" : "21a1644b404b804420f55de98e9616ed",
+        "status" : "passed",
+        "time" : {
+          "start" : 1619279550041,
+          "stop" : 1619279577411,
+          "duration" : 27370
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "21a1644b404b804420f55de98e9616ed"
+    }, {
+      "name" : "5524@DESKTOP-E54RDU2.main(1)",
+      "children" : [ {
+        "name" : "testValidateSellerRating",
+        "uid" : "a5c72a084cd2eb54",
+        "parentUid" : "5adf29ed56b676fd2d9e57a645c38872",
+        "status" : "broken",
+        "time" : {
+          "start" : 1619276945047,
+          "stop" : 1619276980927,
+          "duration" : 35880
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "5adf29ed56b676fd2d9e57a645c38872"
+    }, {
+      "name" : "9544@DESKTOP-E54RDU2.main(1)",
+      "children" : [ {
+        "name" : "testSelectProductBySearch",
+        "uid" : "cdfe79ddd425261d",
+        "parentUid" : "703caae16e8476b467b6073006118306",
+        "status" : "passed",
+        "time" : {
+          "start" : 1619283458911,
+          "stop" : 1619283471170,
+          "duration" : 12259
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "703caae16e8476b467b6073006118306"
+    }, {
+      "name" : "8844@DESKTOP-E54RDU2.main(1)",
+      "children" : [ {
+        "name" : "testSellerRatingValidation",
+        "uid" : "ab32f59087b7152e",
+        "parentUid" : "530477738c65356e54ab19dc52b3db72",
+        "status" : "passed",
+        "time" : {
+          "start" : 1619271467933,
+          "stop" : 1619271531544,
+          "duration" : 63611
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "530477738c65356e54ab19dc52b3db72"
+    }, {
+      "name" : "9908@DESKTOP-E54RDU2.main(1)",
+      "children" : [ {
+        "name" : "testAddingShippingAddress",
+        "uid" : "6ff99f25f5fff8be",
+        "parentUid" : "393cde2b222df05b7e1d93970bb20aa4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1619278543531,
+          "stop" : 1619278550840,
+          "duration" : 7309
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "393cde2b222df05b7e1d93970bb20aa4"
+    }, {
+      "name" : "4232@DESKTOP-E54RDU2.main(1)",
+      "children" : [ {
+        "name" : "testSearchProductByCodeValidation",
+        "uid" : "f49c2b3204cfae44",
+        "parentUid" : "412da988437d87bb921769abf7be54d6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1619284525809,
+          "stop" : 1619284567954,
+          "duration" : 42145
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "412da988437d87bb921769abf7be54d6"
+    } ],
+    "uid" : "61fea7f8807c2fe8b9abf1a9f44a4f48"
+  } ]
+}

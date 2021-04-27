@@ -15,7 +15,10 @@ public class RozetkaCategoryNavigationTests {
 
     @BeforeMethod
     public void openHomepage() {
-        rozetkaLeftSidebar = new HomePage().openHomePage().getLeftSidebar();
+
+        rozetkaLeftSidebar = new HomePage()
+                .openHomePage()
+                .getLeftSidebar();
     }
 
     @Test
