@@ -111,15 +111,20 @@ public class BasketPage {
         return new ProductPage();
     }
 
+    @Step("Basket page: add product from recently viewed product block for product {productIndex}")
     public BasketPage addProductFromRecentlyViewedProducts(int productIndex) {
-        Selenide.actions().moveToElement($x(format("(//button[@class='buy-button lite-tile__buy-button'])[%d]", productIndex))).click();
+        Selenide.actions()
+                .moveToElement($x(format("(//button[@class='buy-button lite-tile__buy-button ng-star-inserted'])[%d]", productIndex)))
+                .click();
         return this;
     }
 
+    @Step("Basket page: get recently viewed product title for product {productIndex}")
     public String getRecentlyViewedProductTitle(int productIndex) {
         return $x(format("(//div[@class='g-id display-none'])[%d]", productIndex)).text();
     }
 
+    @Step("Basket page: get product title for product {productIndex}")
     public String getProductTitle(int productIndex) {
         return $x(format("(//div[@class='g-id display-none'])[%d]", productIndex)).text();
     }
