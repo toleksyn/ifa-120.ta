@@ -1,6 +1,6 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-import com.softserveinc.ita.rozetka.utility_class.ShippingAddress;
+import com.softserveinc.ita.rozetka.models.ShippingAddress;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;

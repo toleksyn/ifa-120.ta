@@ -1,9 +1,9 @@
 package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
+import com.softserveinc.ita.rozetka.components.Header;
 import com.softserveinc.ita.rozetka.enums.ProductPageTab;
 import com.softserveinc.ita.rozetka.enums.SortingOption;
-import com.softserveinc.ita.rozetka.modules.Header;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import com.softserveinc.ita.rozetka.page_objects.ProductPageTab;
 import com.softserveinc.ita.rozetka.page_objects.SortingOption;
@@ -18,7 +18,9 @@ public class ProductNavigationTest extends TestRunner {
 
     @BeforeMethod
     public void openHomepage() {
-        header = new HomePage().openHomePage().getHeader();
+        header = new HomePage()
+                .openHomePage()
+                .getHeader();
     }
 
     @Test

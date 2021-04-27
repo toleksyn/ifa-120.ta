@@ -1,4 +1,4 @@
-package com.softserveinc.ita.rozetka.utility_class;
+package com.softserveinc.ita.rozetka.components;
 
 import com.softserveinc.ita.rozetka.page_objects.ProductsListPage;
 import io.qameta.allure.Step;
