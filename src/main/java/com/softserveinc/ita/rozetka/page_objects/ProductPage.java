@@ -1,6 +1,7 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
 import com.softserveinc.ita.rozetka.enums.ProductPageTab;
+import com.softserveinc.ita.rozetka.modules.CheaperTogetherMenu;
 import io.qameta.allure.Step;
 
 import java.util.List;
@@ -75,8 +76,7 @@ public class ProductPage extends BasePage {
                 characteristicType)).text();
     }
 
-    @Step("Product page: open cheaper-together menu")
-    public CheaperTogetherMenu openCheaperTogetherMenu() {
+    public CheaperTogetherMenu getCheaperTogetherMenu() {
         return new CheaperTogetherMenu();
     }
 }

@@ -110,7 +110,7 @@ public class CategoryNavigationTests extends TestRunner {
                 .openCategory(categoryName)
                 .openProductsListPage(categoryName)
                 .openProductByNumber(1)
-                .openCheaperTogetherMenu();
+                .getCheaperTogetherMenu();
         var productName = cheaperTogetherMenu.getProductNameByNumber(1);
         var productPage = cheaperTogetherMenu.openProductByNumber(1);
         var productPageTitle = productPage.getProductTitle();
