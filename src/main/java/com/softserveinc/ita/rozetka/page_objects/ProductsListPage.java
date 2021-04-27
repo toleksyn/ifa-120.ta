@@ -1,7 +1,7 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import com.softserveinc.ita.rozetka.components.AgeConfirmationPopup;
 import com.softserveinc.ita.rozetka.enums.SortingOption;
-import com.softserveinc.ita.rozetka.utility_class.AgeConfirmationPopup;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
@@ -20,7 +20,7 @@ public class ProductsListPage extends BasePage {
 
     @Step("Products list page: open product by number {number}")
     public ProductPage openProductByNumber(int number) {
-        $x(format("(//a[@class='goods-tile__picture'])[%d]", number)).click();
+        $x(format("(//a[contains(@class, 'goods-tile__picture')])[%d]", number)).click();
         return new ProductPage();
     }
 
@@ -73,7 +73,7 @@ public class ProductsListPage extends BasePage {
     }
 
     public String getPageTitle() {
-        return $x("//h1[@class='catalog-heading']").text();
+        return $x("//h1[contains(@class, 'catalog-heading')]").text();
     }
 
     @Step("Products list page: show more products")
@@ -81,7 +81,7 @@ public class ProductsListPage extends BasePage {
         $x("//a[@class='show-more show-more--horizontal']").click();
         return this;
     }
-
+    @Step("Products list page:search filter name in filter category {filterCategory,filterName}")
     public ProductsListPage searchInFilterMenu(String filterCategory, String filterName) {
         $x(format("//div[@data-filter-name='%s']//input[@name='searchline']", filterCategory)).setValue(filterName);
         return this;

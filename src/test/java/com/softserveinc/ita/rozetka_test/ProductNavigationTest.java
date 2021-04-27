@@ -1,9 +1,9 @@
 package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
+import com.softserveinc.ita.rozetka.components.Header;
 import com.softserveinc.ita.rozetka.enums.ProductPageTab;
 import com.softserveinc.ita.rozetka.enums.SortingOption;
-import com.softserveinc.ita.rozetka.modules.Header;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -16,7 +16,9 @@ public class ProductNavigationTest extends TestRunner {
 
     @BeforeMethod
     public void openHomepage() {
-        header = new HomePage().openHomePage().getHeader();
+        header = new HomePage()
+                .openHomePage()
+                .getHeader();
     }
 
     @Test
@@ -31,9 +33,9 @@ public class ProductNavigationTest extends TestRunner {
 
     @Test
     public void testFilterProductsList() {
-        var productName = "бензопила";
-        var filterType = "Ланцюгова пила";
-        var characteristicType = "Вид";
+        var productName = "приціл";
+        var filterType = "Оптичний";
+        var characteristicType = "Тип прицілу";
         var characteristicTypeText = header
                 .searchFor(productName)
                 .filterProductsList(filterType)
@@ -65,6 +67,8 @@ public class ProductNavigationTest extends TestRunner {
         var productName = productPage.getProductName(1);
         var firstViewedProductName = productPage
                 .openProductByNumber(1)
+                .getHeader()
+                .openHomePageByLogo()
                 .getViewedProductName(1);
         assertTrue(productName.contains(firstViewedProductName), "First viewed product name is incorrect");
     }

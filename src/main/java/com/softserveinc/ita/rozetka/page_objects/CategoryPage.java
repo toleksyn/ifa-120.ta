@@ -49,9 +49,9 @@ public class CategoryPage extends BasePage {
                 .shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1))
                 .size();
     }
-
+    @Step("Category page: open products list page with subcategories by category number {number}")
     public ProductsListPageWithSubcategories openProductsListPageWithSubcategories(int number) {
-        $x(format("(//li[@class='portal-grid__cell'])[%d]", number)).click();
+        $x(format("(//li[contains(@class, 'portal-grid__cell')])[%d]", number)).click();
         return new ProductsListPageWithSubcategories();
     }
 }

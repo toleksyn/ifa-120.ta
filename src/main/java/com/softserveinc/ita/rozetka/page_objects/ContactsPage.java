@@ -9,11 +9,11 @@ import static com.codeborne.selenide.Selenide.$x;
 public class ContactsPage extends BasePage {
 
     public String getPageTitle() {
-        return $x("//h1[@class='static-page__heading']").text();
+        return $x("//h1[contains(@class, 'static-page__heading')]").text();
     }
 
     public List<String> getPhoneNumbers() {
-        return $$x("//a[@class='contacts-main__number']")
+        return $$x("//a[contains(@class, 'contacts-main__number')]")
                 .shouldHave(sizeGreaterThanOrEqual(1))
                 .texts();
     }
