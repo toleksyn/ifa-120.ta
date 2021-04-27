@@ -1,4 +1,4 @@
-package com.softserveinc.ita.rozetka.modules;
+package com.softserveinc.ita.rozetka.components;
 
 import com.softserveinc.ita.rozetka.enums.LanguageOption;
 import com.softserveinc.ita.rozetka.page_objects.ContactsPage;
