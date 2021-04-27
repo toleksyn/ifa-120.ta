@@ -40,8 +40,7 @@ public class HomePage extends BasePage {
                 .sendKeys(Keys.PAGE_DOWN)   // page scrolling to dynamically increase the list of products
                 .sendKeys(Keys.END)
                 .perform();
-        $x(format("//*[contains(text(), '%s')]/following-sibling::button[contains(@class,'main-goods__show-more')]", sectionName))
-                .click();
+        $x(format("//*[contains(text(), '%s')]/following-sibling::button[contains(@class,'main-goods__show-more')]", sectionName)).click();
         return new ProductsSection();
     }
 }
