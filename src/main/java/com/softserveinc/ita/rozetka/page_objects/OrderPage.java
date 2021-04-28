@@ -89,4 +89,9 @@ public class OrderPage {
         switchTo().window(1);
         return new ProductPage();
     }
+
+    public OrderPage confirmOrder() {
+        $x("//section[@class='recently-viewed ng-star-inserted']//a[@class='lite-tile__title ng-star-inserted']").click();
+        return this;
+    }
 }

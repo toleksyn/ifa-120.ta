@@ -95,7 +95,7 @@ public class OrderTest extends TestRunner {
         var name = "Андрій";
         var surname = "Гура";
         orderPage.setName(name).setSurName(surname);
-
+        orderPage.confirmOrder();
         assertTrue(orderPage.getName().equals(name), "Name shouldn't equals with entered");
         assertTrue(orderPage.getSurname().equals(surname), "Surname shouldn't equals with entered");
     }
