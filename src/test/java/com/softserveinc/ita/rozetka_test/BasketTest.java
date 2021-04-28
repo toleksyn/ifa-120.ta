@@ -21,8 +21,8 @@ public class BasketTest extends TestRunner {
 
     @Test
     public void testAddProductFromRecentlyViewedSection() {
-        openBasketPage.deleteProduct(1);
-        openBasketPage.closeBasket();
+        openBasketPage.deleteProduct(1)
+                .closeBasket();
         var recentlyViewedProductPage = openBasketPage.getRecentlyViewedSectionPage();
         var recentlyViewedProductName = recentlyViewedProductPage.getRecentlyViewedProductTitle(1);
         var productTitle = recentlyViewedProductPage.addProductFromRecentlyViewedProducts(1)
