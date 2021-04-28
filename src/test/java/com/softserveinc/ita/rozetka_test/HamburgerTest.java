@@ -1,8 +1,8 @@
 package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
+import com.softserveinc.ita.rozetka.components.HamburgerBar;
 import com.softserveinc.ita.rozetka.enums.LanguageOption;
-import com.softserveinc.ita.rozetka.modules.HamburgerBar;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -48,5 +48,30 @@ public class HamburgerTest extends TestRunner {
                 .stream()
                 .allMatch(phoneNumber -> phoneNumber.contains("044"));
         assertTrue(arePhoneNumbersCorrect, "Phone numbers should be correct");
+    }
+
+    @Test
+    public void testHelpCenterInformation() {
+        var helpCenterPage = hamburgerBar.openHelpCenterPage();
+        var expectedHeaderText = "Довідковий центр";
+        var isHeaderTextCorrect = helpCenterPage
+                .getHeaderText()
+                .contains(expectedHeaderText);
+        assertTrue(isHeaderTextCorrect, format("Text in header should contain '%s'", expectedHeaderText));
+        var isHelpCategoryListEmpty = helpCenterPage
+                .getHelpCategoryList()
+                .isEmpty();
+        assertFalse(isHelpCategoryListEmpty, "Help category list shouldn't be empty");
+        var sectionsTitles = helpCenterPage
+                .openPaymentHelpCategoryPage()
+                .getSectionsTitleList();
+        var firstSectionsTitle = sectionsTitles.get(0);
+        var expectedFirstSectionTitle = "Оплата";
+        assertTrue(firstSectionsTitle.contains(expectedFirstSectionTitle),
+                format("First section's title should be '%s'", expectedFirstSectionTitle));
+        var secondSectionsTitle = sectionsTitles.get(1);
+        var expectedSecondSectionsTitle = "Кредитування та розсрочка";
+        assertTrue(secondSectionsTitle.contains(expectedSecondSectionsTitle),
+                format("Second section's title should be '%s'", expectedSecondSectionsTitle));
     }
 }
