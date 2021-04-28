@@ -76,13 +76,18 @@ public class ProductPage extends BasePage {
     }
 
     public List<String> getProductSectionsTitleList() {
-        return $$x("//*[@class='product-tabs__heading']")
+        return $$x("//*[contains(@class, 'product-tabs__heading')]")
                 .shouldHave(sizeGreaterThan(2))
                 .texts();
     }
 
-    public String getProductReviewCount() {
-        return $x("//*[contains(@class,'product-comm')]//span[contains(@class,'product-t')]").text();
+    @Step("Product page: checking review section presence")
+    public boolean isReviewSectionPresent() {
+        String reviewSectionText = ($x("//*[contains(@class,'product-comm')]//span[contains(@class,'product-t')]").text());
+        if (!(reviewSectionText.replaceAll("[0-9]", "").equals("")) && !reviewSectionText.contains("Додати відгук до товару")) {
+            return false;
+        }
+        return true;
     }
 
     @Step("Product page: open delivery City page")

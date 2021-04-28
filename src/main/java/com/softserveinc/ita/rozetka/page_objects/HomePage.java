@@ -34,13 +34,13 @@ public class HomePage extends BasePage {
         return $x(format("(//a[@class='tile__title'])[%d]", number)).text();
     }
 
-    @Step("Home page: open product section by name for section {sectionName}")
-    public ProductsSection getProductsSectionByName(String sectionName) {
+    @Step("Home page: open product section by name for section: {sectionName}")
+    public ProductsSection openProductsSection(String sectionName) {
         actions()
                 .sendKeys(Keys.PAGE_DOWN)   // page scrolling to dynamically increase the list of products
                 .sendKeys(Keys.END)
                 .perform();
         $x(format("//*[contains(text(), '%s')]/following-sibling::button[contains(@class,'main-goods__show-more')]", sectionName)).click();
-        return new ProductsSection();
+        return new ProductsSection(sectionName);
     }
 }

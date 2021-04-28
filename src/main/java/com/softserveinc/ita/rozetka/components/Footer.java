@@ -9,8 +9,8 @@ public class Footer {
     //This is mock class for future test cases
 
     @Step("Footer: open product tracking page")
-    public ProductTrackingPage openTrackingPage() {
-        $x("//a[contains(text(),'Відстежити замовлення')]").click();
+    public ProductTrackingPage openProductTrackingPage() {
+        $x("//a[contains(@href, '/profile/account/')]").click();
         return new ProductTrackingPage();
     }
 }

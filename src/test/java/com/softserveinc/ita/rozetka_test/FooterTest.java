@@ -10,29 +10,29 @@ import static org.testng.Assert.*;
 
 public class FooterTest extends TestRunner {
 
-    private Footer footerBar;
+    private Footer footer;
 
     @BeforeMethod
-    public void openFooterBar() {
-        footerBar = new HomePage()
+    public void openFooter() {
+        footer = new HomePage()
                 .openHomePage()
                 .getFooter();
     }
 
     @Test
     public void testBanningOrderTrackingWithoutLogin() {
-        var productTrackingPage = footerBar.openTrackingPage();
+        var productTrackingPage = footer.openProductTrackingPage();
         var pageTitle = productTrackingPage.getPageTitle();
         var pageHeader = productTrackingPage.getPageHeader();
-        assertEquals(pageTitle, "ROZETKA — Мої замовлення | Особистий кабінет");
+        assertEquals(pageTitle, "ROZETKA — Мої замовлення | Особистий кабінет", "Incorrect page opened");
 
         var hamburgerBar = productTrackingPage.openHamburgerBar();
         var sideMenuAuthText = hamburgerBar.getSideMenuAuthText();
-        assertTrue(sideMenuAuthText.contains("Авторизуйтесь для отримання розширених можливостей"));
+        assertTrue(sideMenuAuthText.contains("Авторизуйтесь для отримання розширених можливостей"), "You should not be logged in");
         hamburgerBar.closeBar();
 
-        assertFalse(productTrackingPage.isBlankCredentialsAllowed());
-        assertNotEquals(pageHeader, "Мої замовлення");
-        assertEquals(pageHeader, "Вхід");
+        assertFalse(productTrackingPage.isBlankCredentialsAllowed(), "Blank credentials should not be allowed");
+        assertNotEquals(pageHeader, "Мої замовлення", "Incorrect page opened");
+        assertEquals(pageHeader, "Вхід", "Incorrect page opened");
     }
 }

@@ -2,6 +2,7 @@ package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.components.Header;
+import com.softserveinc.ita.rozetka.components.ProductsSection;
 import com.softserveinc.ita.rozetka.enums.ProductPageTab;
 import com.softserveinc.ita.rozetka.enums.SortingOption;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
@@ -14,6 +15,7 @@ import static java.lang.String.format;
 public class ProductNavigationTest extends TestRunner {
 
     private Header header;
+    private ProductsSection productsSection;
 
     @BeforeMethod
     public void openHomepage() {
@@ -105,28 +107,22 @@ public class ProductNavigationTest extends TestRunner {
 
     @Test
     public void testProductMainSectionsPresence() {
-        var sectionName = "Гарячі новинки";
-        var productsSection = header
-                .openHomePageByLogo()
-                .getProductsSectionByName(sectionName);
+        productsSection = new HomePage()
+                .openHomePage()
+                .openProductsSection("Гарячі новинки");
 
-        var productsCount = productsSection.getProductsCount(sectionName);
-        var randomProductNumber = Math.max((int) ((Math.random() * 1000 * productsCount) / 1000), 1);
+        var productName = productsSection.getRandomProductName();
+        var productPage = productsSection.openRandomProduct();
 
-        var randomProductName = productsSection.getProductNameByNumber(randomProductNumber, sectionName);
-        var productPage = productsSection.openProductByNumber(randomProductNumber, sectionName);
         var productTitle = productPage.getProductTitle();
-        assertEquals(productTitle, randomProductName, "Incorrect product opened");
+        assertEquals(productTitle, productName, "Incorrect product opened");
 
         var productSectionsTitles = productPage.getProductSectionsTitleList();
         assertTrue(productSectionsTitles.contains("Також вас можуть зацікавити"),
                 "'Також вас можуть зацікавити' section should be present on page");
         assertTrue(productSectionsTitles.contains(format("Опис %s", productTitle)),
                 "'Опис' section should be present on page");
-        var ProductReviewCount = productPage.getProductReviewCount();
-        assertTrue(productSectionsTitles.contains(format("Відгуки покупців %s", ProductReviewCount)) ||
-                        productSectionsTitles.contains("Додати відгук до товару"),
-                "Customer review section should be present on page");
+        assertTrue(productPage.isReviewSectionPresent(), "Customer review section should be present on page");
         assertTrue(productSectionsTitles.contains(format("Характеристики %s", productTitle)),
                 "'Характеристики' section should be present on page");
 
