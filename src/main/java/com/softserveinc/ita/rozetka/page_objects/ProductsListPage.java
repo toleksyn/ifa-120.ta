@@ -82,4 +82,10 @@ public class ProductsListPage extends BasePage {
     public AgeConfirmationPopup getAgeConfirmationPopup() {
         return new AgeConfirmationPopup();
     }
+
+    @Step("Product list page: add product to comparison")
+    public ProductsListPage addProductToComparison(int productNumber) {
+        $x(format("(//button[@class='compare-button ng-star-inserted'])[%d]", productNumber)).click();
+        return this;
+    }
 }
