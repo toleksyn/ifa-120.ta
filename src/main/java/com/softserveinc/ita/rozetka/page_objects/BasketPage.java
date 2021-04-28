@@ -119,7 +119,7 @@ public class BasketPage {
 
     @Step("Basket page: get product title for product {productIndex}")
     public String getProductTitle(int productIndex) {
-        return $x(format("(//div[@class='g-id display-none'])[%d]", productIndex)).text();
+        return $x(format("(//section[@class='recently-viewed ng-star-inserted']//a[@class='lite-tile__title ng-star-inserted'])[%d]", productIndex)).text();
     }
 
     @Step("Basket page: get RecentlyViewedSectionPage")

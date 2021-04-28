@@ -75,4 +75,9 @@ public class ProductPage extends BasePage {
         return $x(format("//div[contains(@class, 'characteristics-full__item') and .//span/text()='%s']//li/*",
                 characteristicType)).text();
     }
+
+    public BasketPage openBasketPage() {
+        $x("//section[@class='recently-viewed ng-star-inserted']//a[@class='lite-tile__title ng-star-inserted']").click();
+        return new BasketPage();
+    }
 }
