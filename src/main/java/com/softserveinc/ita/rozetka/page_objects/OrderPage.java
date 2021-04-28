@@ -90,6 +90,7 @@ public class OrderPage {
         return new ProductPage();
     }
 
+    @Step("Order page: confirm order")
     public OrderPage confirmOrder() {
         $x("//section[@class='recently-viewed ng-star-inserted']//a[@class='lite-tile__title ng-star-inserted']").click();
         return this;

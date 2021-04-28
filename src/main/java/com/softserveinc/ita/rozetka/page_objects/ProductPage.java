@@ -76,6 +76,7 @@ public class ProductPage extends BasePage {
                 characteristicType)).text();
     }
 
+    @Step("Product page: open basket")
     public BasketPage openBasketPage() {
         $x("//section[@class='recently-viewed ng-star-inserted']//a[@class='lite-tile__title ng-star-inserted']").click();
         return new BasketPage();

@@ -2,8 +2,6 @@ package com.softserveinc.ita.rozetka.page_objects;
 
 import io.qameta.allure.Step;
 
-import com.codeborne.selenide.Selenide;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$$x;
@@ -111,19 +109,16 @@ public class BasketPage {
         return new ProductPage();
     }
 
-    @Step("Basket page: close basket")
     public ProductPage closeBasket() {
         $x("//button[@class='modal__close ng-star-inserted']").click();
         return new ProductPage();
     }
 
-    @Step("Basket page: get product title for product {productIndex}")
     public String getProductTitle(int productIndex) {
         return $x(format("(//section[@class='recently-viewed ng-star-inserted']//a[@class='lite-tile__title ng-star-inserted'])[%d]", productIndex)).text();
     }
 
-    @Step("Basket page: get RecentlyViewedSectionPage")
-    public RecentlyViewedSectionPage getRecentlyViewedSectionPage() {
-        return new RecentlyViewedSectionPage();
+    public RecentlyViewedSection getRecentlyViewedSectionPage() {
+        return new RecentlyViewedSection();
     }
 }
