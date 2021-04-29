@@ -40,4 +40,10 @@ public class CategoryPage extends BasePage {
     public String getPageTitle() {
         return title();
     }
+
+    @Step("Products list page: open subcategory")
+    public SubcategoryPage openSubcategory(String subcategoryName) {
+        $x(format("//a[@title='%s']", subcategoryName)).click();
+        return new SubcategoryPage();
+    }
 }

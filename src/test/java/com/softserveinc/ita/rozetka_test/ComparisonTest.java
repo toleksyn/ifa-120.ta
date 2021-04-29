@@ -1,5 +1,6 @@
 package com.softserveinc.ita.rozetka_test;
 
+import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.page_objects.ComparisonPage;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import org.testng.annotations.BeforeMethod;
@@ -7,7 +8,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-public class ComparisonTest {
+public class ComparisonTest extends TestRunner {
     ComparisonPage openComparisonPage;
     @BeforeMethod
     public ComparisonPage addTwoProductsToComparison() {
@@ -15,6 +16,7 @@ public class ComparisonTest {
                 .openHomePage()
                 .getCatalogMenu()
                 .openCategory("Товари для дому")
+                .openSubcategory("Приготування їжі")
                 .openProductsListPage("Сковороди")
                 .addProductToComparison(1)
                 .addProductToComparison(2)
