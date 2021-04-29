@@ -9,4 +9,8 @@ public class ComparisonPage {
         $x("//button[@class='button button--medium button--with-icon button--link context-menu-actions__button']").click();
         return this;
     }
+
+    public String getAlertMassage() {
+        return $x("//div[@class='form__hint form__hint_type_attention ng-star-inserted']").text();
+    }
 }

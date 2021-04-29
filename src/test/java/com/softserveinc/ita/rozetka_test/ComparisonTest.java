@@ -4,6 +4,7 @@ import com.softserveinc.ita.rozetka.page_objects.ComparisonPage;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import static org.testng.Assert.assertEquals;
 
 public class ComparisonTest {
     ComparisonPage openComparisonPage;
@@ -22,5 +23,6 @@ public class ComparisonTest {
     @Test
     public void deleteProductFromComparison() {
         openComparisonPage.deleteProduct(1);
+        assertEquals(openComparisonPage.getAlertMassage(), "Недостатньо товарів для порівняння");
     }
 }
