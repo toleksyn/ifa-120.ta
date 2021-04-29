@@ -8,12 +8,14 @@ import org.testng.annotations.BeforeMethod;
 public class ComparisonTest {
     ComparisonPage openComparisonPage;
     @BeforeMethod
-    public CategoryPage addTwoProductsToComparison() {
-        var productPage = new HomePage()
+    public ComparisonPage addTwoProductsToComparison() {
+        return openComparisonPage = new HomePage()
                 .openHomePage()
                 .getCatalogMenu()
                 .openCategory("Товари для дому")
                 .openProductsListPage("Сковороди")
-                .
+                .addProductToComparison(1)
+                .addProductToComparison(2)
+                .openComparisonPage(1);
     }
 }

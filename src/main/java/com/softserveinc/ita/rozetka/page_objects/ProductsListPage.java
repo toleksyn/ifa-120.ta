@@ -88,4 +88,10 @@ public class ProductsListPage extends BasePage {
         $x(format("(//button[@class='compare-button ng-star-inserted'])[%d]", productNumber)).click();
         return this;
     }
+
+    public ComparisonPage openComparisonPage(int categoryNumber) {
+        $x("//li[@class='header-actions__item header-actions__item--comparison']").click();
+        $x(format("(//a[@class='comparison-modal__link'])[%d]", categoryNumber)).click();
+        return new ComparisonPage();
+    }
 }
