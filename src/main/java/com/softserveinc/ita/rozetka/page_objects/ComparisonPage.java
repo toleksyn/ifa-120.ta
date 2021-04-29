@@ -1,5 +1,12 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-public class ComparisonPage {
+import static com.codeborne.selenide.Selenide.$x;
+import static java.lang.String.format;
 
+public class ComparisonPage {
+    public ComparisonPage deleteProduct(int productNumber) {
+        $x(format("(//button[@class='button button--white button--small context-menu__toggle'])[%d]", productNumber)).click();
+        $x("//button[@class='button button--medium button--with-icon button--link context-menu-actions__button']").click();
+        return this;
+    }
 }

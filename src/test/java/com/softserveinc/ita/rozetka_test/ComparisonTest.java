@@ -1,9 +1,9 @@
 package com.softserveinc.ita.rozetka_test;
 
-import com.softserveinc.ita.rozetka.page_objects.CategoryPage;
 import com.softserveinc.ita.rozetka.page_objects.ComparisonPage;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class ComparisonTest {
     ComparisonPage openComparisonPage;
@@ -17,5 +17,10 @@ public class ComparisonTest {
                 .addProductToComparison(1)
                 .addProductToComparison(2)
                 .openComparisonPage(1);
+    }
+
+    @Test
+    public void deleteProductFromComparison() {
+        openComparisonPage.deleteProduct(1);
     }
 }
