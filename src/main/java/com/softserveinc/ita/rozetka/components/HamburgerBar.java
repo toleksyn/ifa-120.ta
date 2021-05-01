@@ -2,6 +2,7 @@ package com.softserveinc.ita.rozetka.components;
 
 import com.softserveinc.ita.rozetka.enums.LanguageOption;
 import com.softserveinc.ita.rozetka.page_objects.ContactsPage;
+import com.softserveinc.ita.rozetka.page_objects.HelpCenterPage;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import io.qameta.allure.Step;
 
@@ -21,6 +22,12 @@ public class HamburgerBar {
     public ContactsPage openContactsPage() {
         $x("//a[contains(@class, 'ng-tns-c19-2') and contains(@href, 'contacts')]").click();
         return new ContactsPage();
+    }
+
+    @Step("Hamburger bar: open help center page")
+    public HelpCenterPage openHelpCenterPage() {
+        $x("//a[contains(@class, 'side-menu__button') and contains(@href, 'help')]").click();
+        return new HelpCenterPage();
     }
 
     public String getSideMenuAuthText() {
