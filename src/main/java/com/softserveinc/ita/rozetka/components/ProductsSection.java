@@ -2,28 +2,21 @@ package com.softserveinc.ita.rozetka.components;
 
 import com.softserveinc.ita.rozetka.page_objects.ProductPage;
 import io.qameta.allure.Step;
+import lombok.*;
 import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 
+@AllArgsConstructor
 public class ProductsSection {
-
     private final String sectionName;
 
-    public ProductsSection(String sectionName) {
-        this.sectionName = sectionName;
-    }
-
-    int randomNumber;
-
-    public int randomProductNumber() {
-        var productsCount = $$x(format("//*[contains(text(), '%s')]/following-sibling::ul[contains(@class,'main-goods__grid')]/li", this.sectionName))
+    public int getProductsCountInSection() {
+        return $$x(format("//*[contains(text(), '%s')]/following-sibling::ul[contains(@class,'main-goods__grid')]/li", this.sectionName))
                 .shouldHave(sizeGreaterThan(6))
                 .size();
-        randomNumber = Math.max((int) ((Math.random() * 1000 * productsCount) / 1000), 1);
-        return randomNumber;
     }
 
     public int getProductsCount() {
@@ -32,16 +25,15 @@ public class ProductsSection {
                 .size();
     }
 
-    public String getRandomProductName() {
-        randomNumber = randomProductNumber();
-        return $x(format("(//*[contains(text(), '%s')]/following-sibling::ul[contains(@class,'main-goods__grid')]/li//*[contains(@class,'tile__title')])[%d]", this.sectionName, randomNumber)).text();
+    public String getProductNameAtPosition(int productPosition) {
+        return $x(format("(//*[contains(text(), '%s')]/following-sibling::ul[contains(@class,'main-goods__grid')]/li//*[contains(@class,'tile__title')])[%d]", this.sectionName, productPosition)).text();
     }
 
-    @Step("Products section page: open product random number:{number} in section: {sectionName}")
-    public ProductPage openRandomProduct() {
-        actions()   //manipulations to display the item, in the case of overlapping by advertising pop-up window
-                .sendKeys(Keys.PAGE_DOWN)
-                .moveToElement($x(format("(//*[contains(text(), '%s')]/following-sibling::ul[contains(@class,'main-goods__grid')]/li[contains(@class,'main-goods__cell')])[%d]", this.sectionName, randomNumber)))
+    @Step("Products section page: open product at position: {productPosition} in section: {this.sectionName}")
+    public ProductPage openProductAtPosition(int productPosition) {
+        actions()
+                .sendKeys(Keys.PAGE_DOWN)   //manipulations to display the item, in the case of overlapping by advertising pop-up window
+                .moveToElement($x(format("(//*[contains(text(), '%s')]/following-sibling::ul[contains(@class,'main-goods__grid')]/li[contains(@class,'main-goods__cell')])[%d]", this.sectionName, productPosition)))
                 .click()
                 .perform();
         return new ProductPage();

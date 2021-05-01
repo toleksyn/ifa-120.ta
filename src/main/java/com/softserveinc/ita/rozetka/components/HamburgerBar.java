@@ -24,7 +24,7 @@ public class HamburgerBar {
     }
 
     public String getSideMenuAuthText() {
-        return $x("//*[contains(@class, 'side-menu__auth')]").toString();
+        return $x("//*[contains(@class, 'side-menu__auth')]").text();
     }
 
     @Step("Hamburger bar: close hamburger bar")

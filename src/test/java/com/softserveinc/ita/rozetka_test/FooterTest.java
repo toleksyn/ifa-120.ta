@@ -20,7 +20,7 @@ public class FooterTest extends TestRunner {
     }
 
     @Test
-    public void testBanningOrderTrackingWithoutLogin() {
+    public void testProductCannotBeTrackedWhenNotLoggedIn() {
         var productTrackingPage = footer.openProductTrackingPage();
         var pageTitle = productTrackingPage.getPageTitle();
         var pageHeader = productTrackingPage.getPageHeader();
@@ -31,7 +31,8 @@ public class FooterTest extends TestRunner {
         assertTrue(sideMenuAuthText.contains("Авторизуйтесь для отримання розширених можливостей"), "You should not be logged in");
         hamburgerBar.closeBar();
 
-        assertFalse(productTrackingPage.isBlankCredentialsAllowed(), "Blank credentials should not be allowed");
+        var isLoginAllowed = productTrackingPage.loginWithBlankCredentials().isBlankCredentialsAllowed();
+        assertFalse(isLoginAllowed, "Blank credentials should not be allowed");
         assertNotEquals(pageHeader, "Мої замовлення", "Incorrect page opened");
         assertEquals(pageHeader, "Вхід", "Incorrect page opened");
     }

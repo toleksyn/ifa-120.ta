@@ -4,13 +4,14 @@ import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.components.Header;
 import com.softserveinc.ita.rozetka.components.ProductsSection;
 import com.softserveinc.ita.rozetka.enums.ProductPageTab;
+import com.softserveinc.ita.rozetka.enums.ProductSections;
 import com.softserveinc.ita.rozetka.enums.SortingOption;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
 import static java.lang.String.format;
+import static org.testng.Assert.*;
 
 public class ProductNavigationTest extends TestRunner {
 
@@ -107,12 +108,15 @@ public class ProductNavigationTest extends TestRunner {
 
     @Test
     public void testProductMainSectionsPresence() {
-        productsSection = new HomePage()
-                .openHomePage()
-                .openProductsSection("Гарячі новинки");
+        productsSection = header
+                .openHomePageByLogo()
+                .openProductsSection(ProductSections.HOT_NEW_PRODUCTS.getSectionName());
 
-        var productName = productsSection.getRandomProductName();
-        var productPage = productsSection.openRandomProduct();
+        var productsCountInSection = productsSection.getProductsCountInSection();
+        var randomProductPosition = Math.max((int) ((Math.random() * 1000 * productsCountInSection) / 1000), 1);
+
+        var productName = productsSection.getProductNameAtPosition(randomProductPosition);
+        var productPage = productsSection.openProductAtPosition(randomProductPosition);
 
         var productTitle = productPage.getProductTitle();
         assertEquals(productTitle, productName, "Incorrect product opened");
@@ -131,7 +135,6 @@ public class ProductNavigationTest extends TestRunner {
         assertEquals(deliveryCityPageHeader, "Виберіть своє місто", "Incorrect page opened");
         var isSubmitButtonDisplayed = deliveryCityPage.isSubmitButtonDisplayed();
         deliveryCityPage.submitDeliveryCity();
-        assertTrue(isSubmitButtonDisplayed, "Submit Button should displayed");
+        assertTrue(isSubmitButtonDisplayed, "Submit Button should be displayed");
     }
 }
-

@@ -2,8 +2,10 @@ package com.softserveinc.ita.rozetka.page_objects;
 
 import com.softserveinc.ita.rozetka.enums.ProductPageTab;
 import io.qameta.allure.Step;
+import org.openqa.selenium.Keys;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Selenide.*;
@@ -76,26 +78,25 @@ public class ProductPage extends BasePage {
     }
 
     public List<String> getProductSectionsTitleList() {
+        IntStream.range(0, 8).forEach(i -> actions()      // gradual page scrolling for proper loading all product sections
+                .sendKeys(Keys.PAGE_DOWN)
+                .perform());
         return $$x("//*[contains(@class, 'product-tabs__heading')]")
-                .shouldHave(sizeGreaterThan(2))
+                .shouldHave(sizeGreaterThan(3))
                 .texts();
     }
 
-    @Step("Product page: checking review section presence")
     public boolean isReviewSectionPresent() {
-        String reviewSectionText = ($x("//*[contains(@class,'product-comm')]//span[contains(@class,'product-t')]").text());
-        if (!(reviewSectionText.replaceAll("[0-9]", "").equals("")) && !reviewSectionText.contains("Додати відгук до товару")) {
-            return false;
-        }
-        return true;
+        var reviewSectionName = ($x("//*[contains(@class,'product-comm')]//*[contains(@class,'product-t')]").text());
+        return (reviewSectionName.contains("Відгуки покупців")) || reviewSectionName.contains("Додати відгук до товару");
     }
 
     @Step("Product page: open delivery City page")
     public DeliveryCityPage openDeliveryCityPage() {
-        actions()
+        actions()    //manipulations to display the item, in the case of overlapping by advertising pop-up window
                 .moveToElement($x("//div[contains(@class,'product-about__block-h')]//*[contains(@class,'button')]"))
                 .click()
-                .perform(); //manipulations to display the item, in the case of overlapping by advertising pop-up window
+                .perform();
         return new DeliveryCityPage();
     }
 }

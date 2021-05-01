@@ -2,8 +2,6 @@ package com.softserveinc.ita.rozetka.page_objects;
 
 import io.qameta.allure.Step;
 
-import java.util.Objects;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$$x;

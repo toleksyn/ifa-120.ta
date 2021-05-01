@@ -22,10 +22,14 @@ public class ProductTrackingPage extends BasePage {
         return new HamburgerBar();
     }
 
-    @Step("ProductTrackingPage: checking permission for Blank Credentials")
     public boolean isBlankCredentialsAllowed() {
-        $x("//button[contains(@class, 'button button--large')]").click();
         var errorMessage = $x("//*[contains(@class, 'error-message')]").text();
-        return (!errorMessage.equals("Введено невірну адресу ел. пошти або номер телефону"));
+        return !errorMessage.equals("Введено невірну адресу ел. пошти або номер телефону");
+    }
+
+    @Step("ProductTrackingPage: attempt to login with blank credentials")
+    public ProductTrackingPage loginWithBlankCredentials() {
+        $x("//button[contains(@class, 'button button--large')]").click();
+        return this;
     }
 }
