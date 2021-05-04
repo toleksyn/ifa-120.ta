@@ -38,7 +38,7 @@ public class HomePage extends BasePage {
 
     @Step("Home page: open product section by name for section: {sectionName}")
     public ProductsSection openProductsSection(String sectionName) {
-        IntStream.range(0, 18).forEach(i -> actions()     // page scrolling to dynamically increase the count of products sections
+        IntStream.range(0, 18).forEach(scrollsCount -> actions()     // page scrolling to dynamically increase the count of products sections
                 .sendKeys(Keys.END)
                 .perform());
         $x(format("//*[contains(text(), '%s')]/following-sibling::button[contains(@class,'main-goods__show-more')]", sectionName)).click();

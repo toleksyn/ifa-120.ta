@@ -12,7 +12,7 @@ public class ProductTrackingPage extends BasePage {
         return title();
     }
 
-    public String getPageHeader() {
+    public String getHeaderText() {
         return $x("//h1").text();
     }
 

@@ -78,7 +78,7 @@ public class ProductPage extends BasePage {
     }
 
     public List<String> getProductSectionsTitleList() {
-        IntStream.range(0, 8).forEach(i -> actions()      // gradual page scrolling for proper loading all product sections
+        IntStream.range(0, 8).forEach(scrollsCount -> actions()      // gradual page scrolling for proper loading all product sections
                 .sendKeys(Keys.PAGE_DOWN)
                 .perform());
         return $$x("//*[contains(@class, 'product-tabs__heading')]")
