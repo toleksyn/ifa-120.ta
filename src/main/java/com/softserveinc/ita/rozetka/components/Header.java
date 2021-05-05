@@ -37,4 +37,10 @@ public class Header {
         $x("//*[@class='header__logo']").click();
         return new HomePage();
     }
+
+    @Step("Header: get comparison popup")
+    public ComparisonPopup getComparisonPopup() {
+        $x("//rz-comparison//button[@class='header__button ng-star-inserted']").click();
+        return new ComparisonPopup();
+    }
 }
