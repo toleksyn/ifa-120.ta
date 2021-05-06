@@ -38,8 +38,8 @@ public class Header {
         return new HomePage();
     }
 
-    @Step("Header: get comparison popup")
-    public ComparisonPopup getComparisonPopup() {
+    @Step("Header: open comparison popup")
+    public ComparisonPopup openComparisonPopup() {
         $x("//rz-comparison//button[@class='header__button ng-star-inserted']").click();
         return new ComparisonPopup();
     }
