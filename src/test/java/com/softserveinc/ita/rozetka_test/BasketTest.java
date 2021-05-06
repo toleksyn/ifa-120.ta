@@ -21,13 +21,16 @@ public class BasketTest extends TestRunner {
 
     @Test
     public void testAddProductFromRecentlyViewedSection() {
-        var productPage = openBasketPage.deleteProduct(1)
+        var productPage = openBasketPage
+                .deleteProduct(1)
                 .closeBasket();
         var recentlyViewedProductPage = openBasketPage.getRecentlyViewedSectionPage();
         var recentlyViewedProductName = recentlyViewedProductPage.getProductTitle(1);
-        productPage.openBasketPage()
+        productPage
+                .openBasketPage()
                 .getRecentlyViewedSectionPage();
-        var productTitle = recentlyViewedProductPage.addProduct(1)
+        var productTitle = recentlyViewedProductPage
+                .addProduct(1)
                 .getProductTitle(1);
         assertTrue(productTitle.contains(recentlyViewedProductName), "Added product shouldn't equals with addition");
     }

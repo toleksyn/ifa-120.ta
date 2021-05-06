@@ -9,10 +9,10 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 public class ComparisonTest extends TestRunner {
-    ComparisonPage openComparisonPage;
-    @BeforeMethod
-    public ComparisonPage addTwoProductsToComparison() {
-        return openComparisonPage = new HomePage()
+    private ComparisonPage openComparisonPage;
+    @Test
+    public void deleteProductFromComparison() {
+        openComparisonPage = new HomePage()
                 .openHomePage()
                 .getCatalogMenu()
                 .openCategory("Товари для дому")
@@ -20,12 +20,10 @@ public class ComparisonTest extends TestRunner {
                 .openProductsListPage("Сковороди")
                 .addProductToComparison(1)
                 .addProductToComparison(2)
-                .openComparisonPage(1);
-    }
-
-    @Test
-    public void deleteProductFromComparison() {
-        openComparisonPage.deleteProduct(1);
-        assertEquals(openComparisonPage.getAlertMassage(), "Недостатньо товарів для порівняння");
+                .openComparisonPage(1)
+                .deleteProduct(1);
+        assertEquals(openComparisonPage.getAlertMassage(),
+                "Недостатньо товарів для порівняння",
+                "Product shouldn't delete from comparison");
     }
 }
