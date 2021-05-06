@@ -28,7 +28,7 @@ public class ProductTrackingPage extends BasePage {
     }
 
     @Step("ProductTrackingPage: attempt to login with blank credentials")
-    public ProductTrackingPage loginWithBlankCredentials() {
+    public ProductTrackingPage login() {
         $x("//button[contains(@class, 'button button--large')]").click();
         return this;
     }

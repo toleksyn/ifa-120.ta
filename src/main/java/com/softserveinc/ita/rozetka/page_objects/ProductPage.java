@@ -87,8 +87,7 @@ public class ProductPage extends BasePage {
     }
 
     public boolean isReviewSectionPresent() {
-        var reviewSectionName = ($x("//*[contains(@class,'product-comm')]//*[contains(@class,'product-t')]").text());
-        return (reviewSectionName.contains("Відгуки покупців")) || reviewSectionName.contains("Додати відгук до товару");
+        return $x("//*[contains(@class,'product-comm')]").exists();
     }
 
     @Step("Product page: open delivery City page")

@@ -1,6 +1,5 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
-import com.codeborne.selenide.Condition;
 import com.softserveinc.ita.rozetka.components.Footer;
 import io.qameta.allure.Step;
 
@@ -20,5 +19,11 @@ public class DeliveryHelpPage {
         return $$x("//a[contains(@class, 'sidenav-item')]")
                 .shouldHave(sizeGreaterThanOrEqual(1))
                 .texts();
+    }
+
+    @Step("DeliveryHelpPage: open Footer")
+    public Footer getFooter() {
+        $x("//img[contains(@class, 'header-logo__picture')]").click();
+        return new Footer();
     }
 }

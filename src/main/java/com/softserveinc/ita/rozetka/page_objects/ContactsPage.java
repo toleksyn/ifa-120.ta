@@ -1,5 +1,8 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import com.softserveinc.ita.rozetka.components.Footer;
+import io.qameta.allure.Step;
+
 import java.util.List;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
@@ -17,4 +20,10 @@ public class ContactsPage extends BasePage {
                 .shouldHave(sizeGreaterThanOrEqual(1))
                 .texts();
     }
+    @Step("ContactsPage: open Footer")
+    public Footer getFooter() {
+        $x("//img[contains(@alt, 'Rozetka Logo')]").click();
+        return new Footer();
+    }
+
 }

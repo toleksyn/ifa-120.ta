@@ -27,9 +27,9 @@ public class Footer {
     }
 
     @Step("Footer: open exchange of products page")
-    public ProductsExchangePage openProductsExchangePage() {
+    public DeviceExchangePage openDeviceExchangePage() {
         $x("(//li[contains(@class, 'main-links__')]//a)[14]").click();
-        return new ProductsExchangePage();
+        return new DeviceExchangePage();
     }
 
     @Step("Footer: open partnership page")
