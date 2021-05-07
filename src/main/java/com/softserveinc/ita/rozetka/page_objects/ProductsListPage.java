@@ -5,6 +5,7 @@ import com.softserveinc.ita.rozetka.enums.SortingOption;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.Integer.parseInt;
@@ -81,5 +82,25 @@ public class ProductsListPage extends BasePage {
     @Step("Products list page: get age confirmation popup")
     public AgeConfirmationPopup getAgeConfirmationPopup() {
         return new AgeConfirmationPopup();
+    }
+
+    @Step("Products list page: add product to comparison by number {number}")
+    public ProductsListPage addProductToComparisonByNumber(int number) {
+        $x(format("(//button[contains(@class, 'compare-button')])[%s]", number))
+                .shouldBe(visible)
+                .click();
+        return this;
+    }
+
+    @Step("Products list page: add product to comparison")
+    public ProductsListPage addProductToComparison(int productNumber) {
+        $x(format("(//button[@class='compare-button ng-star-inserted'])[%d]", productNumber)).click();
+        return this;
+    }
+
+    public ComparisonPage openComparisonPage(int categoryNumber) {
+        $x("//li[@class='header-actions__item header-actions__item--comparison']").click();
+        $x(format("(//a[@class='comparison-modal__link'])[%d]", categoryNumber)).click();
+        return new ComparisonPage();
     }
 }

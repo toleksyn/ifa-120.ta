@@ -15,6 +15,10 @@ public class OrderPage {
         return new BasketPage();
     }
 
+    public String getPageTitle() {
+        return $x("//h1[@class='checkout-heading']").text();
+    }
+
     public String getHeaderText() {
         return $x("//h1[@class='checkout-heading']").text();
     }
@@ -84,5 +88,11 @@ public class OrderPage {
         $x(format("(//*[@class='checkout-product__title-product'])[%d]", productNumber)).click();
         switchTo().window(1);
         return new ProductPage();
+    }
+
+    @Step("Order page: confirm order")
+    public OrderPage confirmOrder() {
+        $x("//section[@class='recently-viewed ng-star-inserted']//a[@class='lite-tile__title ng-star-inserted']").click();
+        return this;
     }
 }

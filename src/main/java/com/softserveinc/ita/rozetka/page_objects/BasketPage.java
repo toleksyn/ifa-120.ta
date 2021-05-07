@@ -59,7 +59,7 @@ public class BasketPage {
     @Step("Basket page: delete product by number {productNumber}")
     public BasketPage deleteProduct(int productNumber) {
         var totalOrderPriceLocator = "//*[contains(@class,'m-p')]";
-        var deleteButtonLocator = "//*[contains(@class,'k c')]";
+        var deleteButtonLocator = "//*[contains(@class,'button button--medium button--with-icon button--link context-menu-actions__button')]";
         if (getUniqueProductsAmount() > 1) {
             var priceBeforeDeleting = $x(totalOrderPriceLocator).text();
             $x(format("//button[@id='cartProductActions%d']", productNumber - 1)).click();
@@ -107,5 +107,19 @@ public class BasketPage {
     public ProductPage openProductPage(int productNumber) {
         $x(format("(//*[@class='cart-product__title'])[%d]", productNumber)).click();
         return new ProductPage();
+    }
+
+    @Step("Basket page: close basket")
+    public ProductPage closeBasket() {
+        $x("//button[@class='modal__close ng-star-inserted']").click();
+        return new ProductPage();
+    }
+
+    public String getProductTitle(int productIndex) {
+        return $x(format("(//section[@class='recently-viewed ng-star-inserted']//a[@class='lite-tile__title ng-star-inserted'])[%d]", productIndex)).text();
+    }
+
+    public RecentlyViewedSection getRecentlyViewedSection() {
+        return new RecentlyViewedSection();
     }
 }

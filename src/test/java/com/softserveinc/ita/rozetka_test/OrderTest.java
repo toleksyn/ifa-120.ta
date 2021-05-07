@@ -86,4 +86,18 @@ public class OrderTest extends TestRunner {
         assertEquals(decreaseOrderProductSum, increasedOrderProductSum / 2,
                 "The new sum for the product should be twice less than the previous one");
     }
+
+    @Test
+    public void testOpenOrderPage() {
+        var pageTitle = orderPage.getPageTitle();
+        assertTrue(!pageTitle.isEmpty(), "The title shouldn't be empty");
+        assertTrue(pageTitle.equals("Оформлення замовлення"), "The page title should match the condition");
+        var name = "Андрій";
+        var surname = "Гура";
+        orderPage.setName(name)
+                .setSurName(surname)
+                .confirmOrder();
+        assertTrue(orderPage.getName().equals(name), "Name shouldn't equals with entered");
+        assertTrue(orderPage.getSurname().equals(surname), "Surname shouldn't equals with entered");
+    }
 }
