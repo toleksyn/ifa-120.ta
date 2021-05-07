@@ -55,7 +55,6 @@ public class ComparisonTest extends TestRunner {
         comparisonPage
                 .deleteProduct(1);
         assertEquals(comparisonPage.getAlertMassage(),
-                "Недостатньо товарів для порівняння",
-                "Product shouldn't delete from comparison");
+                "Недостатньо товарів для порівняння");
     }
 }
