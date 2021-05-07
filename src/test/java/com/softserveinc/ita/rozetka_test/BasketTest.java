@@ -24,11 +24,11 @@ public class BasketTest extends TestRunner {
         var productPage = openBasketPage
                 .deleteProduct(1)
                 .closeBasket();
-        var recentlyViewedProductPage = openBasketPage.getRecentlyViewedSectionPage();
+        var recentlyViewedProductPage = openBasketPage.getRecentlyViewedSection();
         var recentlyViewedProductName = recentlyViewedProductPage.getProductTitle(1);
         productPage
                 .openBasketPage()
-                .getRecentlyViewedSectionPage();
+                .getRecentlyViewedSection();
         var productTitle = recentlyViewedProductPage
                 .addProduct(1)
                 .getProductTitle(1);

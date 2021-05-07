@@ -51,10 +51,10 @@ public class ComparisonTest extends TestRunner {
     }
 
     @Test
-    public void deleteProductFromComparison() {
+    public void testDeleteProductFromComparison() {
         comparisonPage
                 .deleteProduct(1);
-        assertEquals(comparisonPage.getAlertMassage(),
+        assertEquals(comparisonPage.getAlertMessage(),
                 "Недостатньо товарів для порівняння");
     }
 }

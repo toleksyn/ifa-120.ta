@@ -109,6 +109,7 @@ public class BasketPage {
         return new ProductPage();
     }
 
+    @Step("Basket page: close basket")
     public ProductPage closeBasket() {
         $x("//button[@class='modal__close ng-star-inserted']").click();
         return new ProductPage();
@@ -118,7 +119,7 @@ public class BasketPage {
         return $x(format("(//section[@class='recently-viewed ng-star-inserted']//a[@class='lite-tile__title ng-star-inserted'])[%d]", productIndex)).text();
     }
 
-    public RecentlyViewedSection getRecentlyViewedSectionPage() {
+    public RecentlyViewedSection getRecentlyViewedSection() {
         return new RecentlyViewedSection();
     }
 }

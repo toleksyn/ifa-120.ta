@@ -44,7 +44,7 @@ public class ComparisonPage extends BasePage {
         return this;
     }
 
-    public String getAlertMassage() {
+    public String getAlertMessage() {
         return $x("//div[@class='form__hint form__hint_type_attention ng-star-inserted']").text();
     }
 }
