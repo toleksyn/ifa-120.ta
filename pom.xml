@@ -18,6 +18,7 @@
         <org.projectlombok.version>1.18.20</org.projectlombok.version>
         <io.qameta.allure.version>2.10.0</io.qameta.allure.version>
         <io.qameta.allure-testng>2.13.9</io.qameta.allure-testng>
+        <io.qameta.allure-selenide>2.13.9</io.qameta.allure-selenide>
         <aspectj.version>1.9.6</aspectj.version>
         <org.apache.maven-surefire-plugin>2.20</org.apache.maven-surefire-plugin>
     </properties>
@@ -57,6 +58,11 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
             <version>${io.qameta.allure-testng}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-selenide</artifactId>
+            <version>${io.qameta.allure-selenide}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>

@@ -2,7 +2,9 @@ package com.softserveinc.ita.common;
 
 import com.codeborne.selenide.Configuration;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Listeners;
 
+@Listeners({ScreenshotListener.class})
 public class TestRunner {
 
     @BeforeSuite
