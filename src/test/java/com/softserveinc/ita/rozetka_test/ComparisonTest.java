@@ -33,20 +33,20 @@ public class ComparisonTest extends TestRunner {
         var secondProductCharacteristics = comparisonPage.getCharacteristicForProduct(2);
 
         var allCharacteristicsSize = firstProductCharacteristics.size() + secondProductCharacteristics.size();
-        var isCharacteristicHaveSameItem = range(0, allCharacteristicsSize)
+        var areCharacteristicsHaveSameItem = range(0, allCharacteristicsSize)
                 .anyMatch(index -> firstProductCharacteristics
                         .get(index)
                         .equals(secondProductCharacteristics.get(index)));
-        assertTrue(isCharacteristicHaveSameItem, "Characteristics of two products should have same item");
+        assertTrue(areCharacteristicsHaveSameItem, "Characteristics of two products should have same item");
 
         comparisonPage.showDifferences();
         var differentFirstProductCharacteristics = comparisonPage.getCharacteristicForProduct(1);
         var differentSecondProductCharacteristics = comparisonPage.getCharacteristicForProduct(2);
 
-        var isAllCharacteristicsDifferent = range(0, differentFirstProductCharacteristics.size())
+        var areAllCharacteristicsDifferent = range(0, differentFirstProductCharacteristics.size())
                 .noneMatch(index -> differentFirstProductCharacteristics
                         .get(index)
                         .equals(differentSecondProductCharacteristics.get(index)));
-        assertTrue(isAllCharacteristicsDifferent, "Characteristics of two products should be different");
+        assertTrue(areAllCharacteristicsDifferent, "Characteristics of two products should be different");
     }
 }

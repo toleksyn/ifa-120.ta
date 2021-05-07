@@ -8,7 +8,8 @@ import java.util.List;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
-import static java.util.stream.IntStream.range;
+import static java.util.stream.Collectors.toCollection;
+import static java.util.stream.IntStream.iterate;
 
 public class ComparisonPage extends BasePage {
 
@@ -16,16 +17,16 @@ public class ComparisonPage extends BasePage {
         var allCharacteristics = $$x("//dd[@class='comparison-characteristic__value']")
                 .shouldHave(sizeGreaterThanOrEqual(1))
                 .texts();
-        var firstProductCharacteristics = new ArrayList<String>();
-        var secondProductCharacteristics = new ArrayList<String>();
-        range(0, allCharacteristics.size())
-                .forEach(index -> (index % 2 == 0 ? firstProductCharacteristics : secondProductCharacteristics)
-                        .add(allCharacteristics.get(index)));
+
         switch (number) {
             case 1:
-                return firstProductCharacteristics;
+                return iterate(0, index -> index < allCharacteristics.size(), index -> index + 2)
+                        .mapToObj(allCharacteristics::get)
+                        .collect(toCollection(ArrayList::new));
             case 2:
-                return secondProductCharacteristics;
+                return iterate(1, index -> index < allCharacteristics.size(), index -> index + 2)
+                        .mapToObj(allCharacteristics::get)
+                        .collect(toCollection(ArrayList::new));
             default:
                 throw new IllegalArgumentException();
         }
