@@ -8,6 +8,7 @@ import java.util.List;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
+import static java.lang.String.format;
 import static java.util.stream.IntStream.range;
 
 public class ComparisonPage extends BasePage {
@@ -35,10 +36,8 @@ public class ComparisonPage extends BasePage {
     public ComparisonPage showDifferences() {
         $x("//button[contains(@class, 'comparison-settings__toggle')]").click();
         return this;
-import static com.codeborne.selenide.Selenide.$x;
-import static java.lang.String.format;
+    }
 
-public class ComparisonPage {
     public ComparisonPage deleteProduct(int productNumber) {
         $x(format("(//button[@class='button button--white button--small context-menu__toggle'])[%d]", productNumber)).click();
         $x("//button[@class='button button--medium button--with-icon button--link context-menu-actions__button']").click();

@@ -8,9 +8,9 @@ import org.testng.annotations.Test;
 
 import static java.util.stream.IntStream.range;
 import static org.testng.Assert.assertTrue;
+import static org.testng.AssertJUnit.assertEquals;
 
 public class ComparisonTest extends TestRunner {
-
     private ComparisonPage comparisonPage;
 
     @BeforeMethod
@@ -48,23 +48,13 @@ public class ComparisonTest extends TestRunner {
                         .get(index)
                         .equals(differentSecondProductCharacteristics.get(index)));
         assertTrue(isAllCharacteristicsDifferent, "Characteristics of two products should be different");
-import static org.testng.Assert.assertEquals;
+    }
 
-public class ComparisonTest extends TestRunner {
-    private ComparisonPage openComparisonPage;
     @Test
     public void deleteProductFromComparison() {
-        openComparisonPage = new HomePage()
-                .openHomePage()
-                .getCatalogMenu()
-                .openCategory("Товари для дому")
-                .openSubcategory("Приготування їжі")
-                .openProductsListPage("Сковороди")
-                .addProductToComparison(1)
-                .addProductToComparison(2)
-                .openComparisonPage(1)
+        comparisonPage
                 .deleteProduct(1);
-        assertEquals(openComparisonPage.getAlertMassage(),
+        assertEquals(comparisonPage.getAlertMassage(),
                 "Недостатньо товарів для порівняння",
                 "Product shouldn't delete from comparison");
     }
