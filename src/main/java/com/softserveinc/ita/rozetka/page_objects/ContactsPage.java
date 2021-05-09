@@ -21,7 +21,7 @@ public class ContactsPage extends BasePage {
                 .texts();
     }
     @Step("ContactsPage: open Footer")
-    public Footer getFooter() {
+    public Footer openFooter() {
         $x("//img[contains(@alt, 'Rozetka Logo')]").click();
         return new Footer();
     }

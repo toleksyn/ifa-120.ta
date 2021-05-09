@@ -12,6 +12,6 @@ public enum DeviceSurfaceState {
     QUITE_NOTICEABLE("C"),
     STRONG_SCRATCHES("D");
 
-    private final String surfaceState;
+    private final String partialLocatorSurfaceState;
 }
 

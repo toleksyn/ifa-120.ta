@@ -22,7 +22,7 @@ public class DeliveryHelpPage {
     }
 
     @Step("DeliveryHelpPage: open Footer")
-    public Footer getFooter() {
+    public Footer openFooter() {
         $x("//img[contains(@class, 'header-logo__picture')]").click();
         return new Footer();
     }

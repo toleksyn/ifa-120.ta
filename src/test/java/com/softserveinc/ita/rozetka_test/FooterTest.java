@@ -2,14 +2,15 @@ package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.components.Footer;
-import com.softserveinc.ita.rozetka.enums.ExchangedDeviceType;
-import com.softserveinc.ita.rozetka.enums.DeviceSurfaceState;
-import com.softserveinc.ita.rozetka.enums.YesNoAnswer;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.title;
+import static com.softserveinc.ita.rozetka.enums.DeviceSurfaceState.QUITE_NOTICEABLE;
+import static com.softserveinc.ita.rozetka.enums.DeviceSurfaceState.STRONG_SCRATCHES;
+import static com.softserveinc.ita.rozetka.enums.ExchangedDeviceType.SMARTPHONE;
+import static com.softserveinc.ita.rozetka.enums.YesNoAnswer.Yes;
 import static org.testng.Assert.*;
 
 public class FooterTest extends TestRunner {
@@ -52,7 +53,7 @@ public class FooterTest extends TestRunner {
                 "'Як діє кур’єрська доставка?' item should be present in side menu");
         assertTrue(helpItemsNamesList.contains("Як діє доставка товарів продавця Rozetka до відділень служб доставки?"),
                 "'Як діє доставка товарів продавця Rozetka до відділень служб доставки?' item should be present in side menu");
-        deliveryHelpPage.getFooter();
+        deliveryHelpPage.openFooter();
 
         var contactsPage = footer.openContactsPage();
         assertEquals(contactsPage.getPageTitle(), "Контакти", "Incorrect page opened");
@@ -61,14 +62,14 @@ public class FooterTest extends TestRunner {
                 .stream()
                 .allMatch(phoneNumber -> phoneNumber.contains("044"));
         assertTrue(arePhoneNumbersCorrect, "Phone numbers should begin with '044'");
-        contactsPage.getFooter();
+        contactsPage.openFooter();
 
         var deviceExchangePage = footer.openDeviceExchangePage();
         var exchangePageHeaderText = deviceExchangePage.getHeaderText();
         assertTrue(exchangePageHeaderText.contains("Оновлюйте техніку до нової"), "Incorrect page opened");
         var exchangeContactsText = deviceExchangePage.getExchangeContactsText();
         assertTrue(exchangeContactsText.contains("Пункти прийому ROZETKA Обмін"), "Incorrect page opened");
-        deviceExchangePage.getFooter();
+        deviceExchangePage.openFooter();
 
         var partnershipPage = footer.openPartnershipPage();
         var partnershipPageHeaderText = partnershipPage.getHeaderText();
@@ -79,25 +80,22 @@ public class FooterTest extends TestRunner {
 
     @Test
     public void testDeviceForExchangeCostCalc() {
-        var valuationCalc = footer.openDeviceExchangePage().openValuationCalc();
+        var exchangePage = footer.openDeviceExchangePage();
+        var valuationCalc = exchangePage.scrollToValueCalculator();
 
-        String deviceType = ExchangedDeviceType.SMARTPHONE.getDeviceType();
-        String brandName = "Xiaomi";
-        String deviceName = "Redmi 6A 2/32";
-        valuationCalc.setDevice(deviceType, brandName, deviceName);
+        valuationCalc.setDeviceType(SMARTPHONE);
+        valuationCalc.setBrandName("Xiaomi");
+        valuationCalc.setDeviceName("Redmi 6A 2/32");
 
-        var canDeviceBePoweredOn = YesNoAnswer.Yes.getYesNoAnswer();
-        valuationCalc.setPowerStateOption(canDeviceBePoweredOn);
-        var isDeviceScreenFullyOperational = YesNoAnswer.Yes.getYesNoAnswer();
-        valuationCalc.setScreenOperationalOption(isDeviceScreenFullyOperational);
-        var isAllDeviceFunctionsWork = YesNoAnswer.Yes.getYesNoAnswer();
-        valuationCalc.setDeviceFunctionsOption(isAllDeviceFunctionsWork);
+        valuationCalc.setCanDeviceBePoweredOn(Yes);
+        valuationCalc.setIsDeviceScreenFullyOperational(Yes);
+        valuationCalc.setIsAllDeviceFunctionsWork(Yes);
 
-        var screenState = DeviceSurfaceState.QUITE_NOTICEABLE.getSurfaceState();
-        valuationCalc.setScreenState(screenState);
-        var coverState = DeviceSurfaceState.STRONG_SCRATCHES.getSurfaceState();
-        valuationCalc.setCoverState(coverState);
+        valuationCalc.setScreenState(QUITE_NOTICEABLE);
+        valuationCalc.setCoverState(STRONG_SCRATCHES);
+        var valuatedCost = valuationCalc.getExchangeCost();
 
-        assertEquals(valuationCalc.getExchangeCost(), "650 ₴", "Incorrect result");
+        exchangePage.exitValueCalculator();
+        assertEquals(valuatedCost, "650 ₴", "Incorrect result");
     }
 }

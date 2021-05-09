@@ -13,12 +13,6 @@ import static java.lang.String.format;
 public class ProductsSection {
     private final String sectionName;
 
-    public int getProductsCountInSection() {
-        return $$x(format("//*[contains(text(), '%s')]/following-sibling::ul[contains(@class,'main-goods__grid')]/li", this.sectionName))
-                .shouldHave(sizeGreaterThan(6))
-                .size();
-    }
-
     public int getProductsCount() {
         return $$x(format("//*[contains(text(), '%s')]/following-sibling::ul[contains(@class,'main-goods__grid')]/li", this.sectionName))
                 .shouldHave(sizeGreaterThan(6))

@@ -2,6 +2,7 @@ package com.softserveinc.ita.rozetka.page_objects;
 
 import com.softserveinc.ita.rozetka.components.CatalogMenu;
 import com.softserveinc.ita.rozetka.components.ProductsSection;
+import com.softserveinc.ita.rozetka.enums.ProductSection;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.Keys;
@@ -37,11 +38,11 @@ public class HomePage extends BasePage {
     }
 
     @Step("Home page: open product section by name for section: {sectionName}")
-    public ProductsSection openProductsSection(String sectionName) {
+    public ProductsSection openProductsSection(ProductSection sectionName) {
         IntStream.range(0, 18).forEach(scrollsCount -> actions()     // page scrolling to dynamically increase the count of products sections
                 .sendKeys(Keys.END)
                 .perform());
-        $x(format("//*[contains(text(), '%s')]/following-sibling::button[contains(@class,'main-goods__show-more')]", sectionName)).click();
-        return new ProductsSection(sectionName);
+        $x(format("//*[contains(text(), '%s')]/following-sibling::button[contains(@class,'main-goods__show-more')]", sectionName.getSectionName())).click();
+        return new ProductsSection(sectionName.getSectionName());
     }
 }

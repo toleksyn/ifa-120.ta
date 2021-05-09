@@ -11,12 +11,12 @@ public class PartnershipPage {
     }
 
     @Step("PartnershipPage: open Footer")
-    public Footer getFooter() {
+    public Footer openFooter() {
         $x("//img[contains(@alt, 'Rozetka Logo')]").click();
         return new Footer();
     }
 
     public String getPartnershipArticleText() {
-        return $x("//article[contains(@class, 'text')]").text();
+        return $x("//div[contains(@class, 'rz-text')]").text();
     }
 }

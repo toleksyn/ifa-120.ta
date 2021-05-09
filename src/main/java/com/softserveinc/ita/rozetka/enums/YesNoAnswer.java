@@ -9,5 +9,5 @@ public enum YesNoAnswer {
     Yes("1"),
     No("0");
 
-    private final String yesNoAnswer;
+    private final String partialLocatorYesNo;
 }

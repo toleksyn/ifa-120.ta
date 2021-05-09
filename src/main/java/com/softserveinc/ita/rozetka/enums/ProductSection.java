@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum ProductSections {
+public enum ProductSection {
 
     ONLY_ON_ROZETKA("Тільки в Розетці"),
     HOT_NEW_PRODUCTS("Гарячі новинки"),

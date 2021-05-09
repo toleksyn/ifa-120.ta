@@ -4,12 +4,12 @@ import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.components.Header;
 import com.softserveinc.ita.rozetka.components.ProductsSection;
 import com.softserveinc.ita.rozetka.enums.ProductPageTab;
-import com.softserveinc.ita.rozetka.enums.ProductSections;
 import com.softserveinc.ita.rozetka.enums.SortingOption;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static com.softserveinc.ita.rozetka.enums.ProductSection.HOT_NEW_PRODUCTS;
 import static java.lang.String.format;
 import static org.testng.Assert.*;
 
@@ -110,9 +110,9 @@ public class ProductNavigationTest extends TestRunner {
     public void testProductMainSectionsPresence() {
         productsSection = header
                 .openHomePageByLogo()
-                .openProductsSection(ProductSections.HOT_NEW_PRODUCTS.getSectionName());
+                .openProductsSection(HOT_NEW_PRODUCTS);
 
-        var productsCountInSection = productsSection.getProductsCountInSection();
+        var productsCountInSection = productsSection.getProductsCount();
         var randomProductPosition = Math.max((int) ((Math.random() * 1000 * productsCountInSection) / 1000), 1);
 
         var productName = productsSection.getProductNameAtPosition(randomProductPosition);
