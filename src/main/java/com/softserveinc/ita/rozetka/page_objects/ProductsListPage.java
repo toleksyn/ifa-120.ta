@@ -84,16 +84,19 @@ public class ProductsListPage extends BasePage {
         return new AgeConfirmationPopup();
     }
 
+    @Step("Products list page: set lowest price {price}")
     public ProductsListPage setLowestPrice(int price) {
         $x("//input[contains(@formcontrolname, 'min')]").val(valueOf(price));
         return this;
     }
 
+    @Step("Products list page: set highest price {price}")
     public ProductsListPage setHighestPrice(int price) {
         $x("//input[contains(@formcontrolname, 'max')]").val(valueOf(price));
         return this;
     }
 
+    @Step("Products list page: confirm filter price range")
     public ProductsListPage confirmFilterPriceRange() {
         $x("//button[contains(@class, 'slider-filter__button')]").click();
         return this;
