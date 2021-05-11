@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Selenide.$$x;
@@ -18,18 +19,17 @@ public class ComparisonPage extends BasePage {
                 .shouldHave(sizeGreaterThanOrEqual(1))
                 .texts();
 
-        switch (number) {
-            case 1:
-                return iterate(0, index -> index < allCharacteristics.size(), index -> index + 2)
-                        .mapToObj(allCharacteristics::get)
-                        .collect(toCollection(ArrayList::new));
-            case 2:
-                return iterate(1, index -> index < allCharacteristics.size(), index -> index + 2)
-                        .mapToObj(allCharacteristics::get)
-                        .collect(toCollection(ArrayList::new));
-            default:
-                throw new IllegalArgumentException();
+        IntStream stream = null;
+        if (number == 1) {
+            stream = iterate(0, index -> index < allCharacteristics.size(), index -> index + 2);
+        } else if (number == 2) {
+            stream = iterate(1, index -> index < allCharacteristics.size(), index -> index + 2);
         }
+        if (number == 1 || number == 2) {
+            return stream
+                    .mapToObj(allCharacteristics::get)
+                    .collect(toCollection(ArrayList::new));
+        } throw new IllegalArgumentException("Incorrect number of product");
     }
 
     @Step("Comparison page: show differences")
