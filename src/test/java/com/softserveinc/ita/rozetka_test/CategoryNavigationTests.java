@@ -49,4 +49,26 @@ public class CategoryNavigationTests extends TestRunner {
         assertTrue(productListPage.getProductName(productCount).contains(expectedProductType),
                 format("Last product should be '%s'", expectedProductType));
     }
+
+    @Test
+    public void testPossibilityToFilterProductsByPriceRange() {
+        var lowestPrice = 8000;
+        var highestPrice = 12000;
+        var productsListPage = catalogMenu
+                .openCategory("Спорт і захоплення")
+                .openProductsListPage("Електротранспорт")
+                .setLowestPrice(lowestPrice)
+                .setHighestPrice(highestPrice)
+                .confirmFilterPriceRange();
+        var productsAmount = productsListPage.getProductsAmount();
+        var firstProductPrice = productsListPage.getPriceFromProduct(1);
+        var isFirstProductPriceInRange = lowestPrice <= firstProductPrice && firstProductPrice <= highestPrice;
+        assertTrue(isFirstProductPriceInRange, "First product price should be in range 8000-12000");
+        var middleProductPrice = productsListPage.getPriceFromProduct(productsAmount / 2);
+        var isMiddleProductPriceInRange = lowestPrice <= middleProductPrice && middleProductPrice <= highestPrice;
+        assertTrue(isMiddleProductPriceInRange, "Middle product price should be in range 8000-12000");
+        var lastProductPrice = productsListPage.getPriceFromProduct(productsAmount);
+        var isLastProductPriceInRange = lowestPrice <= lastProductPrice && lastProductPrice <= highestPrice;
+        assertTrue(isLastProductPriceInRange, "Last product price should be in range 8000-12000");
+    }
 }
