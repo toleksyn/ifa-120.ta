@@ -19,18 +19,12 @@ public class DeviceExchangePage {
     }
 
     @Step("DeviceExchangePage: scroll to device cost valuation calculator")
-    public ValueCalculatorSection scrollToValueCalculator() {
+    public ValueCalculatorSection scrollToValueCalculatorSection() {
         IntStream.range(0, 2).forEach(scrollsCount -> actions()    //manipulations to display the frame, in the case of its invisibility
                 .sendKeys(Keys.PAGE_DOWN)
                 .perform());
         switchTo().frame($x("//iframe[contains(@src, 'https://ti.generalse.com')]"));
         return new ValueCalculatorSection();
-    }
-
-    @Step("DeviceExchangePage: exit from device cost valuation calculator")
-    public DeviceExchangePage exitValueCalculator() {
-        switchTo().defaultContent();
-        return new DeviceExchangePage();
     }
 
     @Step("DeviceExchangePage: open Footer")

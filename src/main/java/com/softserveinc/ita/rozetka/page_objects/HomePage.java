@@ -20,6 +20,7 @@ public class HomePage extends BasePage {
     @Step("Home page: open home page")
     public HomePage openHomePage() {
         open("https://rozetka.com.ua/ua/");
+        closePopupAdWindow();   //closes the pop-up ad window if it appears, to avoid overlapping the product item
         return this;
     }
 
@@ -39,10 +40,17 @@ public class HomePage extends BasePage {
 
     @Step("Home page: open product section by name for section: {sectionName}")
     public ProductsSection openProductsSection(ProductSection sectionName) {
-        IntStream.range(0, 18).forEach(scrollsCount -> actions()     // page scrolling to dynamically increase the count of products sections
+        closePopupAdWindow();   //closes the pop-up ad window if it appears, to avoid overlapping the product item
+        IntStream.range(0, 18).forEach(scrollsCount -> actions()   // page scrolling to dynamically increase the count of products sections
                 .sendKeys(Keys.END)
                 .perform());
         $x(format("//*[contains(text(), '%s')]/following-sibling::button[contains(@class,'main-goods__show-more')]", sectionName.getSectionName())).click();
         return new ProductsSection(sectionName.getSectionName());
+    }
+
+    public void closePopupAdWindow() {
+        if ($x("//*[contains(@id,'rz-banner')]").exists()) {
+            $x("//*[contains(@id,'rz-banner')]/span").click();
+        }
     }
 }

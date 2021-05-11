@@ -9,7 +9,7 @@ import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static com.softserveinc.ita.rozetka.enums.ProductSection.HOT_NEW_PRODUCTS;
+import static com.softserveinc.ita.rozetka.enums.ProductSection.*;
 import static java.lang.String.format;
 import static org.testng.Assert.*;
 

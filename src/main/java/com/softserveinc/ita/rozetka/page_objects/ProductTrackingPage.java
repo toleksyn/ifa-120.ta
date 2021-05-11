@@ -22,7 +22,7 @@ public class ProductTrackingPage extends BasePage {
         return new HamburgerBar();
     }
 
-    public boolean isBlankCredentialsAllowed() {
+    public boolean areBlankCredentialsAllowed() {
         var errorMessage = $x("//*[contains(@class, 'error-message')]").text();
         return !errorMessage.equals("Введено невірну адресу ел. пошти або номер телефону");
     }

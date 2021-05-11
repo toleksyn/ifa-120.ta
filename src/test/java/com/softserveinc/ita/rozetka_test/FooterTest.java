@@ -36,7 +36,7 @@ public class FooterTest extends TestRunner {
         assertTrue(sideMenuAuthText.contains("Авторизуйтесь для отримання розширених можливостей"), "You should not be logged in");
         hamburgerBar.closeBar();
 
-        var isLoginAllowed = productTrackingPage.login().isBlankCredentialsAllowed();
+        var isLoginAllowed = productTrackingPage.login().areBlankCredentialsAllowed();
         assertFalse(isLoginAllowed, "Blank credentials should not be allowed");
         assertNotEquals(pageHeaderText, "Мої замовлення", "Incorrect page opened");
         assertEquals(pageHeaderText, "Вхід", "Incorrect page opened");
@@ -80,22 +80,18 @@ public class FooterTest extends TestRunner {
 
     @Test
     public void testDeviceForExchangeCostCalc() {
-        var exchangePage = footer.openDeviceExchangePage();
-        var valuationCalc = exchangePage.scrollToValueCalculator();
-
-        valuationCalc.setDeviceType(SMARTPHONE);
-        valuationCalc.setBrandName("Xiaomi");
-        valuationCalc.setDeviceName("Redmi 6A 2/32");
-
-        valuationCalc.setCanDeviceBePoweredOn(Yes);
-        valuationCalc.setIsDeviceScreenFullyOperational(Yes);
-        valuationCalc.setIsAllDeviceFunctionsWork(Yes);
-
-        valuationCalc.setScreenState(QUITE_NOTICEABLE);
-        valuationCalc.setCoverState(STRONG_SCRATCHES);
-        var valuatedCost = valuationCalc.getExchangeCost();
-
-        exchangePage.exitValueCalculator();
-        assertEquals(valuatedCost, "650 ₴", "Incorrect result");
+        var valuatedExchangeCost = footer
+                .openDeviceExchangePage()
+                .scrollToValueCalculatorSection()
+                .setDeviceType(SMARTPHONE)
+                .setBrandName("Xiaomi")
+                .setDeviceName("Redmi 6A 2/32")
+                .setCanDeviceBePoweredOn(Yes)
+                .setIsDeviceScreenFullyOperational(Yes)
+                .setAreAllDeviceFunctionsWork(Yes)
+                .setScreenState(QUITE_NOTICEABLE)
+                .setCoverState(STRONG_SCRATCHES)
+                .getExchangeCost();
+        assertEquals(valuatedExchangeCost, "650 ₴", "Incorrect result");
     }
 }
