@@ -13,4 +13,8 @@ public class ComparisonPopup {
         $x(format("(//a[contains(@class, 'comparison-modal__link')])[%s]", number)).click();
         return new ComparisonPage();
     }
+
+    public String getNameFromList(int number) {
+        return $x(format("(//a[contains(@class, 'comparison-modal__link')])[%d]", number)).text();
+    }
 }
