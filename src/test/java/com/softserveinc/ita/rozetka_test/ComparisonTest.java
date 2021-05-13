@@ -44,5 +44,6 @@ public class ComparisonTest extends TestRunner {
                 .getProductCharacteristicsIndexedList(1);
         List<Indexed<String>> secondProductCharacteristic = comparisonPage
                 .getProductCharacteristicsIndexedList(2);
+        assertEquals(firstProductCharacteristic, secondProductCharacteristic);
     }
 }
