@@ -5,6 +5,7 @@ import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import com.softserveinc.ita.rozetka.page_objects.ProductsListPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import static java.util.stream.IntStream.range;
 import static org.testng.Assert.*;
@@ -38,7 +39,8 @@ public class ComparisonTest extends TestRunner {
                 .anyMatch(index -> firstProductCharacteristics
                         .get(index)
                         .equals(secondProductCharacteristics.get(index)));
-        assertTrue(areCharacteristicsHaveSameItem, "Characteristics of two products should have same item");
+        var softAssert = new SoftAssert();
+        softAssert.assertTrue(areCharacteristicsHaveSameItem, "Characteristics of two products should have same item");
 
         comparisonPage.showDifferences();
         var differentFirstProductCharacteristics = comparisonPage.getCharacteristicForProduct(1);
@@ -48,7 +50,8 @@ public class ComparisonTest extends TestRunner {
                 .noneMatch(index -> differentFirstProductCharacteristics
                         .get(index)
                         .equals(differentSecondProductCharacteristics.get(index)));
-        assertTrue(areAllCharacteristicsDifferent, "Characteristics of two products should be different");
+        softAssert.assertTrue(areAllCharacteristicsDifferent, "Characteristics of two products should be different");
+        softAssert.assertAll();
     }
 
     @Test
