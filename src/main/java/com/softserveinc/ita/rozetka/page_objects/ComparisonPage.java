@@ -7,7 +7,6 @@ import io.qameta.allure.Step;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.$$x;
@@ -33,8 +32,8 @@ public class ComparisonPage extends BasePage {
 
     @Step("Comparison page: get product characteristic")
     public List<Indexed<String>> getProductCharacteristicsIndexedList(int productNumber) {
-        List<String> characteristicList = new ArrayList<>($$x(format("(//dt[contains(@class, 'comparison-characteristic__label')])[%d]", productNumber))
-                .texts());
+        List<String> characteristicList = $$x("//dd[@class='comparison-characteristic__value']")
+                .texts();
         if (productNumber == 1) {
             return StreamUtils
                     .zipWithIndex(characteristicList.stream())
