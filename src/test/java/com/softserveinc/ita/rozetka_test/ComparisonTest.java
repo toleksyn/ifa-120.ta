@@ -9,8 +9,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.AssertJUnit.*;
 
 public class ComparisonTest extends TestRunner {
     private ComparisonPage comparisonPage;
@@ -44,6 +43,6 @@ public class ComparisonTest extends TestRunner {
                 .getProductCharacteristicsIndexedList(1);
         List<Indexed<String>> secondProductCharacteristic = comparisonPage
                 .getProductCharacteristicsIndexedList(2);
-        assertEquals(firstProductCharacteristic, secondProductCharacteristic);
+        assertNotSame(firstProductCharacteristic, secondProductCharacteristic);
     }
 }
