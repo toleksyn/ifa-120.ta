@@ -32,7 +32,7 @@ public class ComparisonPage extends BasePage {
     }
 
     @Step("Comparison page: get product characteristic")
-    public List<Indexed<String>> getProductCharacteristicIndexedList(int productNumber) {
+    public List<Indexed<String>> getProductCharacteristicsIndexedList(int productNumber) {
         List<String> characteristicList = new ArrayList<>($$x(format("(//dt[contains(@class, 'comparison-characteristic__label')])[%d]", productNumber))
                 .texts());
         if (productNumber == 1) {
