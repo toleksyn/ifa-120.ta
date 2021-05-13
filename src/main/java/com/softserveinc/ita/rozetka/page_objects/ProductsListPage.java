@@ -3,13 +3,13 @@ package com.softserveinc.ita.rozetka.page_objects;
 import com.softserveinc.ita.rozetka.components.AgeConfirmationPopup;
 import com.softserveinc.ita.rozetka.enums.SortingOption;
 import io.qameta.allure.Step;
+import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
-import static com.codeborne.selenide.Selenide.$$x;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 import static java.lang.Integer.parseInt;
-import static java.lang.String.*;
 import static java.lang.String.format;
+import static java.lang.String.valueOf;
 
 public class ProductsListPage extends BasePage {
 
@@ -21,7 +21,7 @@ public class ProductsListPage extends BasePage {
 
     @Step("Products list page: open product by number {number}")
     public ProductPage openProductByNumber(int number) {
-        $x(format("(//a[contains(@class, 'goods-tile__picture')])[%d]", number)).click();
+        $x(format("(//a[contains(@class, 'goods-tile__heading')])[%d]", number)).click();
         return new ProductPage();
     }
 
@@ -99,6 +99,15 @@ public class ProductsListPage extends BasePage {
     @Step("Products list page: confirm filter price range")
     public ProductsListPage confirmFilterPriceRange() {
         $x("//button[contains(@class, 'slider-filter__button')]").click();
+        return this;
+    }
+
+    @Step("Products list page: set check box filter {filterValue} in section {filterSection}")
+    public ProductsListPage setCheckBoxFilter(String filterSection, String filterValue) {
+        $x(format("//button[span[contains(text(), '%s')]]/following-sibling::div//label[contains(text(), '%s')]", filterSection, filterValue)).click();
+        actions()      //  manipulations to display the item in the case of its invisibility
+                .sendKeys(Keys.HOME)
+                .perform();
         return this;
     }
 }

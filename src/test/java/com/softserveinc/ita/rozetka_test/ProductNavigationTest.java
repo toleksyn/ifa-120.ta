@@ -2,21 +2,19 @@ package com.softserveinc.ita.rozetka_test;
 
 import com.softserveinc.ita.common.TestRunner;
 import com.softserveinc.ita.rozetka.components.Header;
-import com.softserveinc.ita.rozetka.components.ProductsSection;
 import com.softserveinc.ita.rozetka.enums.ProductPageTab;
 import com.softserveinc.ita.rozetka.enums.SortingOption;
 import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static com.softserveinc.ita.rozetka.enums.ProductSection.*;
+import static com.softserveinc.ita.rozetka.enums.ProductSection.HOT_NEW_PRODUCTS;
 import static java.lang.String.format;
 import static org.testng.Assert.*;
 
 public class ProductNavigationTest extends TestRunner {
 
     private Header header;
-    private ProductsSection productsSection;
 
     @BeforeMethod
     public void openHomepage() {
@@ -108,7 +106,7 @@ public class ProductNavigationTest extends TestRunner {
 
     @Test
     public void testProductMainSectionsPresence() {
-        productsSection = header
+        var productsSection = header
                 .openHomePageByLogo()
                 .openProductsSection(HOT_NEW_PRODUCTS);
 
