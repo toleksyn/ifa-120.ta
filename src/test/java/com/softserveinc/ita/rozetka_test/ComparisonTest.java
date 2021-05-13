@@ -40,8 +40,8 @@ public class ComparisonTest extends TestRunner {
     public void testShowOnlyDifferenceCharacteristic() {
         comparisonPage.showDifferences();
         List<Indexed<String>> firstProductCharacteristic = comparisonPage
-                .getProductCharacteristic(1);
+                .getProductCharacteristicIndexedList(1);
         List<Indexed<String>> secondProductCharacteristic = comparisonPage
-                .getProductCharacteristic(2);
+                .getProductCharacteristicIndexedList(2);
     }
 }
