@@ -5,6 +5,7 @@ import com.softserveinc.ita.rozetka.enums.SortingOption;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.Integer.parseInt;
@@ -99,6 +100,14 @@ public class ProductsListPage extends BasePage {
     @Step("Products list page: confirm filter price range")
     public ProductsListPage confirmFilterPriceRange() {
         $x("//button[contains(@class, 'slider-filter__button')]").click();
+        return this;
+    }
+
+    @Step("Products list page: add product to comparison by number {number}")
+    public ProductsListPage addProductToComparisonByNumber(int number) {
+        $x(format("(//button[contains(@class, 'compare-button')])[%s]", number))
+                .shouldBe(visible)
+                .click();
         return this;
     }
 }
