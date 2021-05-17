@@ -2,12 +2,13 @@ package com.softserveinc.ita.rozetka.page_objects;
 
 import com.softserveinc.ita.rozetka.enums.ProductPageTab;
 import io.qameta.allure.Step;
+import org.openqa.selenium.Keys;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.Selenide.$$x;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 import static java.lang.Integer.parseInt;
 import static java.lang.String.format;
 
@@ -74,5 +75,27 @@ public class ProductPage extends BasePage {
     public String getCharacteristicText(String characteristicType) {
         return $x(format("//div[contains(@class, 'characteristics-full__item') and .//span/text()='%s']//li/*",
                 characteristicType)).text();
+    }
+
+    public List<String> getProductSectionsTitleList() {
+        IntStream.range(0, 8).forEach(scrollsCount -> actions()      // gradual page scrolling for proper loading all product sections
+                .sendKeys(Keys.PAGE_DOWN)
+                .perform());
+        return $$x("//*[contains(@class, 'product-tabs__heading')]")
+                .shouldHave(sizeGreaterThan(3))
+                .texts();
+    }
+
+    public boolean isReviewSectionPresent() {
+        return $x("//*[contains(@class,'product-comm')]").exists();
+    }
+
+    @Step("Product page: open delivery City page")
+    public DeliveryCityPage openDeliveryCityPage() {
+        actions()    //manipulations to display the item in the case of its invisibility
+                .moveToElement($x("//div[contains(@class,'product-about__block-h')]//*[contains(@class,'button')]"))
+                .click()
+                .perform();
+        return new DeliveryCityPage();
     }
 }

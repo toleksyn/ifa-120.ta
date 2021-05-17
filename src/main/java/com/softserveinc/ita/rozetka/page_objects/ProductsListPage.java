@@ -5,9 +5,11 @@ import com.softserveinc.ita.rozetka.enums.SortingOption;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.Integer.parseInt;
+import static java.lang.String.*;
 import static java.lang.String.format;
 
 public class ProductsListPage extends BasePage {
@@ -81,5 +83,31 @@ public class ProductsListPage extends BasePage {
     @Step("Products list page: get age confirmation popup")
     public AgeConfirmationPopup getAgeConfirmationPopup() {
         return new AgeConfirmationPopup();
+    }
+
+    @Step("Products list page: set lowest price {price}")
+    public ProductsListPage setLowestPrice(int price) {
+        $x("//input[contains(@formcontrolname, 'min')]").val(valueOf(price));
+        return this;
+    }
+
+    @Step("Products list page: set highest price {price}")
+    public ProductsListPage setHighestPrice(int price) {
+        $x("//input[contains(@formcontrolname, 'max')]").val(valueOf(price));
+        return this;
+    }
+
+    @Step("Products list page: confirm filter price range")
+    public ProductsListPage confirmFilterPriceRange() {
+        $x("//button[contains(@class, 'slider-filter__button')]").click();
+        return this;
+    }
+
+    @Step("Products list page: add product to comparison by number {number}")
+    public ProductsListPage addProductToComparisonByNumber(int number) {
+        $x(format("(//button[contains(@class, 'compare-button')])[%s]", number))
+                .shouldBe(visible)
+                .click();
+        return this;
     }
 }
