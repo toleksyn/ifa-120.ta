@@ -29,4 +29,14 @@ public class HamburgerBar {
         $x("//a[contains(@class, 'side-menu__button') and contains(@href, 'help')]").click();
         return new HelpCenterPage();
     }
+
+    public String getSideMenuAuthText() {
+        return $x("//*[contains(@class, 'side-menu__auth')]").text();
+    }
+
+    @Step("Hamburger bar: close hamburger bar")
+    public HamburgerBar closeBar() {
+        $x("//button[contains(@class, 'side-menu__close')]").click();
+        return this;
+    }
 }

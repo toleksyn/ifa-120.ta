@@ -9,21 +9,21 @@ import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
-public class ContactsPage extends BasePage {
+public class DeliveryHelpPage {
 
-    public String getPageTitle() {
-        return $x("//h1[contains(@class, 'static-page__heading')]").text();
+    public String getHeaderText() {
+        return $x("//h1").text();
     }
 
-    public List<String> getPhoneNumbers() {
-        return $$x("//a[contains(@class, 'contacts-main__number')]")
+    public List<String> getHelpItemsNamesList() {
+        return $$x("//a[contains(@class, 'sidenav-item')]")
                 .shouldHave(sizeGreaterThanOrEqual(1))
                 .texts();
     }
-    @Step("ContactsPage: open Footer")
+
+    @Step("DeliveryHelpPage: open Footer")
     public Footer openFooter() {
-        $x("//img[contains(@alt, 'Rozetka Logo')]").click();
+        $x("//img[contains(@class, 'header-logo__picture')]").click();
         return new Footer();
     }
-
 }
