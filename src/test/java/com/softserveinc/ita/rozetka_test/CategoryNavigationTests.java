@@ -84,7 +84,7 @@ public class CategoryNavigationTests extends TestRunner {
         var catalogMenuCategoryName = "Побутова техніка";
         var subCategorySectionName = "Велика побутова техніка";
         var subCategoryName = "Посудомийні машини";
-        var productsListPage = catalogMenu.openProductsListByCategoryInCatalogMenu(catalogMenuCategoryName, subCategorySectionName, subCategoryName);
+        var productsListPage = catalogMenu.openProductsListBySubCategory(catalogMenuCategoryName, subCategorySectionName, subCategoryName);
 
         var firstFilterType = "Спосіб встановлення";
         var firstFilterValue = "Вбудована";
@@ -97,23 +97,25 @@ public class CategoryNavigationTests extends TestRunner {
         var productsCount = productsListPage.getProductsAmount();
         assertNotEquals(productsCount, 0, "Incorrect products filters parameters");
 
-        SoftAssert softassert = new SoftAssert();
-        //next cycle runs 1, 2 times for 1-2 products, and 3 times for products count > 3 (checks first, middle and last product in filtered list)
-        for (var productNumber = 1; productNumber <= productsCount; ) {//productNumber = productNumber + productCount / 2) {
+        var softAssert = new SoftAssert();
+        for (var productNumber = 1; productNumber <= productsCount; ) {
             var characteristicTab = productsListPage
                     .openProductByNumber(productNumber)
                     .openProductTab(ProductPageTab.CHARACTERISTICS);
-            softassert.assertEquals(characteristicTab.getCharacteristicText(firstFilterType), firstFilterValue, "Incorrect product characteristic");
-            softassert.assertEquals(characteristicTab.getCharacteristicText(secondFilterType), secondFilterValue, "Incorrect product characteristic");
+            softAssert.assertEquals(characteristicTab.getCharacteristicText(firstFilterType), firstFilterValue, "Incorrect product characteristic");
+            softAssert.assertEquals(characteristicTab.getCharacteristicText(secondFilterType), secondFilterValue, "Incorrect product characteristic");
 
-            if (productNumber == 1 + productsCount / 2)
+            if (productNumber == 1 + productsCount / 2) {
                 productNumber = productsCount;
-            else
+            } else {
                 productNumber = productNumber + productsCount / 2;
-            if (productsCount == 1) break;
+            }
+            if (productsCount == 1) {
+                break;
+            }
             back();
             back();
         }
-        softassert.assertAll();
+        softAssert.assertAll();
     }
 }

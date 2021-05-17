@@ -27,20 +27,10 @@ public class CatalogMenu {
                 .texts();
     }
 
-    @Step("CatalogMenu: open products list {subCategoryName} through hovered category {hoveredCategoryName}")
-    public ProductsListPage openProductsListByCategoryInCatalogMenu(String hoveredCategoryName, String... subCategoryName) {
+    @Step("CatalogMenu: open products list {subCategoryName} in section {subCategorySectionName} through hovered category {hoveredCategoryName}")
+    public ProductsListPage openProductsListBySubCategory(String hoveredCategoryName, String subCategorySectionName, String subCategoryName) {
         $x(format("//ul[contains(@class, 'menu-categories_type_main')]//a[contains(@class, 'menu-categories__link') and contains(text(), '%s')]", hoveredCategoryName)).hover();
-        var countSubCategoriesInChain = subCategoryName.length;
-        switch (countSubCategoriesInChain) {
-            case 0:
-                $x(format("//ul[contains(@class, 'menu-categories_type_main')]//a[contains(@class, 'menu-categories__link') and contains(text(), '%s')]", hoveredCategoryName)).click();
-                break;
-            case 1:
-                $x(format("//a[contains(text(),'%s')]", subCategoryName[0])).click();
-                break;
-            case 2:
-                $x(format("//a[contains(text(),'%s')]/following-sibling::ul//a[contains(text(), '%s')]", subCategoryName[0], subCategoryName[1])).click();
-        }
+        $x(format("//a[contains(text(),'%s')]/following-sibling::ul//a[contains(text(), '%s')]", subCategorySectionName, subCategoryName)).click();
         return new ProductsListPage();
     }
 }
