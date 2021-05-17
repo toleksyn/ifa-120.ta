@@ -41,15 +41,17 @@ public class CategoryNavigationTests extends TestRunner {
         var productListPage = catalogMenu
                 .openCategory("Ноутбуки та комп’ютери")
                 .openProductsListPage(productCategoryName);
-        assertEquals(productListPage.getPageTitle(), productCategoryName, format("Title should be '%s'", productCategoryName));
+        var softAssert = new SoftAssert();
+        softAssert.assertEquals(productListPage.getPageTitle(), productCategoryName, format("Title should be '%s'", productCategoryName));
         var expectedProductType = "Ноутбук";
-        assertTrue(productListPage.getProductName(1).contains(expectedProductType),
+        softAssert.assertTrue(productListPage.getProductName(1).contains(expectedProductType),
                 format("First product should be '%s'", expectedProductType));
         var productCount = productListPage.getProductsAmount();
-        assertTrue(productListPage.getProductName(productCount / 2).contains(expectedProductType),
+        softAssert.assertTrue(productListPage.getProductName(productCount / 2).contains(expectedProductType),
                 format("Middle product should be '%s'", expectedProductType));
-        assertTrue(productListPage.getProductName(productCount).contains(expectedProductType),
+        softAssert.assertTrue(productListPage.getProductName(productCount).contains(expectedProductType),
                 format("Last product should be '%s'", expectedProductType));
+        softAssert.assertAll();
     }
 
     @Test
@@ -65,13 +67,15 @@ public class CategoryNavigationTests extends TestRunner {
         var productsAmount = productsListPage.getProductsAmount();
         var firstProductPrice = productsListPage.getPriceFromProduct(1);
         var isFirstProductPriceInRange = lowestPrice <= firstProductPrice && firstProductPrice <= highestPrice;
-        assertTrue(isFirstProductPriceInRange, "First product price should be in range 8000-12000");
+        var softAssert = new SoftAssert();
+        softAssert.assertTrue(isFirstProductPriceInRange, "First product price should be in range 8000-12000");
         var middleProductPrice = productsListPage.getPriceFromProduct(productsAmount / 2);
         var isMiddleProductPriceInRange = lowestPrice <= middleProductPrice && middleProductPrice <= highestPrice;
-        assertTrue(isMiddleProductPriceInRange, "Middle product price should be in range 8000-12000");
+        softAssert.assertTrue(isMiddleProductPriceInRange, "Middle product price should be in range 8000-12000");
         var lastProductPrice = productsListPage.getPriceFromProduct(productsAmount);
         var isLastProductPriceInRange = lowestPrice <= lastProductPrice && lastProductPrice <= highestPrice;
-        assertTrue(isLastProductPriceInRange, "Last product price should be in range 8000-12000");
+        softAssert.assertTrue(isLastProductPriceInRange, "Last product price should be in range 8000-12000");
+        softAssert.assertAll();
     }
 
     @Test
