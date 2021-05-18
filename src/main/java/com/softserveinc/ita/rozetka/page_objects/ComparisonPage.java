@@ -2,16 +2,12 @@ package com.softserveinc.ita.rozetka.page_objects;
 
 import io.qameta.allure.Step;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
-import static java.util.stream.Collectors.*;
-import static java.util.stream.Collectors.toCollection;
+import static java.util.stream.Collectors.toList;
 import static java.util.stream.IntStream.iterate;
 
 public class ComparisonPage extends BasePage {

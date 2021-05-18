@@ -9,7 +9,6 @@ import org.testng.asserts.SoftAssert;
 
 import static java.lang.String.format;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class CategoryNavigationTests extends TestRunner {
 
