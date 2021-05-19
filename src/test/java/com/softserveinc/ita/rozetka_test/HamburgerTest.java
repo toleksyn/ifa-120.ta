@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import static java.lang.String.format;
-import static org.testng.Assert.*;
 
 public class HamburgerTest extends TestRunner {
 
