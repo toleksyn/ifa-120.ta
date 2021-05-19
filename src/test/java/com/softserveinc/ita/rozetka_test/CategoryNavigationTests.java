@@ -98,24 +98,25 @@ public class CategoryNavigationTests extends TestRunner {
         assertNotEquals(productsCount, 0, "Incorrect products filters parameters");
 
         var softAssert = new SoftAssert();
+
+        //next cycle runs 1, 2 times for 1-2 products, and 3 times for products count >= 3 (checks first, middle and last product in filtered list)
         for (var productNumber = 1; productNumber <= productsCount; ) {
             var characteristicTab = productsListPage
                     .openProductByNumber(productNumber)
                     .openProductTab(ProductPageTab.CHARACTERISTICS);
             softAssert.assertEquals(characteristicTab.getCharacteristicText(firstFilterType), firstFilterValue, "Incorrect product characteristic");
             softAssert.assertEquals(characteristicTab.getCharacteristicText(secondFilterType), secondFilterValue, "Incorrect product characteristic");
-
+            if (productsCount == 1) {
+                break;
+            }
             if (productNumber == 1 + productsCount / 2) {
                 productNumber = productsCount;
             } else {
                 productNumber = productNumber + productsCount / 2;
             }
-            if (productsCount == 1) {
-                break;
+                back();
+                back();
             }
-            back();
-            back();
+            softAssert.assertAll();
         }
-        softAssert.assertAll();
     }
-}
