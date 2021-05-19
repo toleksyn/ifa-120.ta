@@ -2,7 +2,7 @@ package com.softserveinc.ita.rozetka.components;
 
 import com.softserveinc.ita.rozetka.page_objects.ProductPage;
 import io.qameta.allure.Step;
-import lombok.*;
+import lombok.AllArgsConstructor;
 import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;

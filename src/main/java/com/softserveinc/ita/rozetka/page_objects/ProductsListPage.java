@@ -9,8 +9,8 @@ import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.Integer.parseInt;
-import static java.lang.String.*;
 import static java.lang.String.format;
+import static java.lang.String.valueOf;
 
 public class ProductsListPage extends BasePage {
 

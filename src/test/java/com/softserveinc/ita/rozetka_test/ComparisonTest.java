@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import static java.util.stream.IntStream.range;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertNotEquals;
 
 public class ComparisonTest extends TestRunner {
 
