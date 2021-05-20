@@ -17,4 +17,10 @@ public class ComparisonPopup {
     public String getNameFromList(int number) {
         return $x(format("(//a[contains(@class, 'comparison-modal__link')])[%d]", number)).text();
     }
+
+    @Step("Comparison popup: delete comparison list by number {number}")
+    public ComparisonPopup deleteComparisonList(int number) {
+        $x(format("(//button[contains(@class, 'comparison-modal__remove')])[%d]", number)).click();
+        return this;
+    }
 }
