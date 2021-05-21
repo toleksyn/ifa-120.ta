@@ -12,7 +12,7 @@ import static java.lang.String.format;
 
 public class CatalogMenu {
 
-    @Step("Left side bar: open category by name {categoryName}")
+    @Step("Catalog menu: open category by name {categoryName}")
     public CategoryPage openCategory(String categoryName) {
         $x(format("//ul[contains(@class, 'menu-categories_type_main')] //a[contains(@class, 'menu-categories__link') and contains(text(), '%s')]", categoryName)).click();
         // click on microphone element to hide dropdown
