@@ -73,8 +73,7 @@ public class ProductPage extends BasePage {
     }
 
     public String getCharacteristicText(String characteristicType) {
-        return $x(format("//div[contains(@class, 'characteristics-full__item') and .//span/text()='%s']//li/*",
-                characteristicType)).text();
+        return $x(format("//div[contains(@class, 'characteristics-full__item') and .//span[contains(text(),'%s')]]//li/*", characteristicType)).text();
     }
 
     public List<String> getProductSectionsTitleList() {

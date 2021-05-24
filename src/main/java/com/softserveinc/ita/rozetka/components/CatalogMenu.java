@@ -1,6 +1,7 @@
 package com.softserveinc.ita.rozetka.components;
 
 import com.softserveinc.ita.rozetka.page_objects.CategoryPage;
+import com.softserveinc.ita.rozetka.page_objects.ProductsListPage;
 import io.qameta.allure.Step;
 
 import java.util.List;
@@ -24,5 +25,12 @@ public class CatalogMenu {
         return $$x("//ul[contains(@class, 'menu-categories_type_main')] //a[contains(@class, 'menu-categories__link')]")
                 .shouldHave(sizeGreaterThanOrEqual(1))
                 .texts();
+    }
+
+    @Step("CatalogMenu: open products list {subCategoryName} in section {subCategorySectionName} through hovered category {hoveredCategoryName}")
+    public ProductsListPage openProductsListBySubCategory(String hoveredCategoryName, String subCategorySectionName, String subCategoryName) {
+        $x(format("//ul[contains(@class, 'menu-categories_type_main')]//a[contains(@class, 'menu-categories__link') and contains(text(), '%s')]", hoveredCategoryName)).hover();
+        $x(format("//a[contains(text(),'%s')]/following-sibling::ul//a[contains(text(), '%s')]", subCategorySectionName, subCategoryName)).click();
+        return new ProductsListPage();
     }
 }
