@@ -52,6 +52,10 @@ public class ComparisonTest extends TestRunner {
                         .equals(differentSecondProductCharacteristics.get(index)));
         softAssert.assertTrue(areAllCharacteristicsDifferent, "Characteristics of two products should be different");
         softAssert.assertAll();
+        comparisonPage
+                .getHeader()
+                .openComparisonPopup()
+                .deleteComparisonList(1);
     }
 
     @Test
@@ -69,5 +73,8 @@ public class ComparisonTest extends TestRunner {
         var firstListName = comparisonPopup.getNameFromList(1);
         var secondListName = comparisonPopup.getNameFromList(2);
         assertNotEquals(secondListName, firstListName, "Name of lists should be different");
+        comparisonPopup
+                .deleteComparisonList(2)
+                .deleteComparisonList(1);
     }
 }
