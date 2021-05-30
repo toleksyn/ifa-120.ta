@@ -20,7 +20,7 @@ public class DeviceExchangePage {
 
     @Step("DeviceExchangePage: scroll to device cost valuation calculator")
     public ValueCalculatorSection scrollToValueCalculatorSection() {
-        IntStream.range(0, 4).forEach(scrollsCount -> actions()    //manipulations to display the frame, in the case of its invisibility
+        IntStream.range(0, 5).forEach(scrollsCount -> actions()    //manipulations to display the frame, in the case of its invisibility
                 .sendKeys(Keys.PAGE_DOWN)
                 .perform());
         switchTo().frame($x("//iframe[contains(@src, 'https://ti.generalse.com')]"));

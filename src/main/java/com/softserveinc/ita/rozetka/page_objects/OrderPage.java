@@ -1,10 +1,10 @@
 package com.softserveinc.ita.rozetka.page_objects;
 
+import com.softserveinc.ita.rozetka.enums.DeliveryOption;
 import com.softserveinc.ita.rozetka.models.ShippingAddress;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.switchTo;
+import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 
 public class OrderPage {
@@ -85,4 +85,40 @@ public class OrderPage {
         switchTo().window(1);
         return new ProductPage();
     }
+
+    @Step("Order page: set Delivery city {city} ")
+    public OrderPage setDeliveryCity(String city) {
+        $x("//button[contains(@class, 'button--link')]").click();
+        $x("//div[@class='form__row js-city']//li[1]").click();
+        return this;
+    }
+
+    public String getDeliveryRegion(String deliveryCity) {
+        return $x("//span[contains(@class,'deliveries-heading')]").text();
+    }
+
+    @Step("Order page: open delivery City page")
+    public DeliveryCityPage openDeliveryCityPage() {
+        $x("//button[contains(@class, 'button--link')]").click();
+        return new DeliveryCityPage();
+    }
+
+    @Step("Order page: set delivery option {deliveryOption}")
+    public OrderPage setDeliveryOption(DeliveryOption deliveryOption) {
+        $x(format("(//fieldset[contains(@class, 'checkout-block')]//ul)[4]/li//span[contains(text(), '%s')]", deliveryOption.getPartialLocatorDeliveryOption())).click();
+        return this;
+    }
+
+    @Step("Order page: set delivery point by address")
+    public String setDeliveryPointByAddress(String Street, String houseNbr) {
+        $x("//button[contains(@class, 'dropdown-button')]").click();
+        $x("//input[@id='searchPickupDelivery']").setValue(Street);
+        $x(format("//div[contains(@class, 'autocomplete__item') and contains(text(), '%s')]", houseNbr)).click();
+        return $x("//button[contains(@class, 'dropdown-button')]").text();
+    }
+
+    public String getDeliveryPointTimesheet() {
+        return $x("//dl[contains(@class, 'schedule')]").text();
+    }
+
 }

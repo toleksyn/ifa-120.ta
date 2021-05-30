@@ -10,9 +10,9 @@ public class DeliveryCityPage {
     }
 
     @Step("Delivery city page: close page")
-    public DeliveryCityPage closeDeliveryCityPage() {
-        $x("//*[@class='modal__close']").click();
-        return this;
+    public OrderPage closeDeliveryCityPage() {
+        $x("//*[contains(@class, 'modal__close')]").click();
+        return new OrderPage();
     }
 
     @Step("Delivery city page: submit delivery city")
@@ -23,5 +23,13 @@ public class DeliveryCityPage {
 
     public boolean isSubmitButtonDisplayed() {
         return $x("(//button[contains(@class,'button_color_green')])[3]").isDisplayed();
+    }
+
+    @Step("Delivery city page: set delivery city {city}")
+    public DeliveryCityPage setDeliveryCity(String city) {
+        $x("(//input[@name= 'search'])[3]").setValue(city);
+        var deliveryCity = $x("//li[contains(@class, 'autocomplete__item dialog_list')]").text();
+        $x("//li[contains(@class, 'autocomplete__item dialog_list')]").click();
+        return this;
     }
 }
