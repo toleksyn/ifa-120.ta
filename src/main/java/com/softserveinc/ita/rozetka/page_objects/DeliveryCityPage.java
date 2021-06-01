@@ -28,7 +28,6 @@ public class DeliveryCityPage {
     @Step("Delivery city page: set delivery city {city}")
     public DeliveryCityPage setDeliveryCity(String city) {
         $x("(//input[@name= 'search'])[3]").setValue(city);
-        var deliveryCity = $x("//li[contains(@class, 'autocomplete__item dialog_list')]").text();
         $x("//li[contains(@class, 'autocomplete__item dialog_list')]").click();
         return this;
     }
