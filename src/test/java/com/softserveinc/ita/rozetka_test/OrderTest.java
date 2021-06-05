@@ -7,7 +7,9 @@ import com.softserveinc.ita.rozetka.page_objects.HomePage;
 import com.softserveinc.ita.rozetka.page_objects.OrderPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
+import static com.softserveinc.ita.rozetka.enums.DeliveryOption.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -85,5 +87,25 @@ public class OrderTest extends TestRunner {
                 "The new count for the product should be twice less than the previous one");
         assertEquals(decreaseOrderProductSum, increasedOrderProductSum / 2,
                 "The new sum for the product should be twice less than the previous one");
+    }
+
+    @Test
+    public void testSetDeliveryData() {
+        var deliveryCity = "Івано-Франківськ";
+        var deliveryPoint = orderPage.openDeliveryCityPage()
+                .setDeliveryCity(deliveryCity)
+                .closeDeliveryCityPage()
+                .setDeliveryOption(JUSTIN)
+                .setDeliveryPointByAddress("Галицька", "51");
+
+        var softAssert = new SoftAssert();
+        var deliveryRegion = orderPage.getDeliveryRegion(deliveryCity);
+        softAssert.assertEquals(deliveryRegion, "Івано-Франківськ, Івано-Франківська обл., Івано-Франківськ р-н", "Incorrect Region");
+        softAssert.assertEquals(deliveryPoint, "№495, Галицька вул., 51А", "Incorrect delivery point entered");
+
+        var deliveryPointTimesheet = orderPage.getDeliveryPointTimesheet();
+        softAssert.assertTrue(deliveryPointTimesheet.contains("Пн - Нд :\n08:00-20:00"), "Delivery Point timesheet should be displayed");
+
+        softAssert.assertAll();
     }
 }
